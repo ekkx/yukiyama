@@ -98,6 +98,14 @@ Full API reference: [pkg.go.dev/github.com/ekkx/yukiyama](https://pkg.go.dev/git
 
 ## Status
 
-Pre-1.0. The Go module pins API version **10.3.3**. Breaking changes are
-possible as either the upstream or the SDK firms up — see the godoc on
-`yukiyama.APIVersionName` and `yukiyama.SDKVersion`.
+Pre-1.0. The Go module pins to a single upstream API version (see
+[`yukiyama.APIVersionName`](https://pkg.go.dev/github.com/ekkx/yukiyama#pkg-constants)).
+Breaking changes are possible as either the upstream or the SDK firms up.
+
+## Disclaimer
+
+This SDK is published for research and educational purposes only. The
+authors and contributors make no warranty and accept no liability for any
+use of this software.
+
+Distributed under the [MIT License](./LICENSE).

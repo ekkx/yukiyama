@@ -3,7 +3,9 @@ package yukiyama
 import (
 	"context"
 	"errors"
+	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/ekkx/yukiyama/gen"
 )
@@ -243,16 +245,30 @@ type ListDistributionNotificationsOptions struct {
 	Offset *int32
 }
 
-// ListDistributionNotifications fetches the user-targeted distribution
-// notification feed (broadcasts, campaign messages, etc.).
+// ListGeneralDistributionNotifications fetches broadcast / campaign-style
+// distribution notifications (the wire selects this slice with cmd="notification").
 // Underlying op: GET /common/get_notification_distribution_user
 // (operationId: listDistributionNotifications).
 //
-// `cmd` is required by the wire (observed values include "get_list");
-// callers pass it directly to keep the facade signature explicit about that
-// requirement. Wire-version caveat: `version` is a content-schema selector
-// pinned to "2", set here to prevent transport auto-injection.
-func (c *Client) ListDistributionNotifications(ctx context.Context, cmd string, opts ListDistributionNotificationsOptions) (*gen.CommonResponse, error) {
+// Wire-version caveat: `version` is a content-schema selector pinned to "2",
+// set here to prevent transport auto-injection.
+func (c *Client) ListGeneralDistributionNotifications(ctx context.Context, opts ListDistributionNotificationsOptions) (*gen.CommonResponse, error) {
+	return c.listDistributionNotifications(ctx, "notification", opts)
+}
+
+// ListLikeDistributionNotifications fetches the "someone liked your checkin"
+// slice of the distribution feed (wire cmd="like").
+func (c *Client) ListLikeDistributionNotifications(ctx context.Context, opts ListDistributionNotificationsOptions) (*gen.CommonResponse, error) {
+	return c.listDistributionNotifications(ctx, "like", opts)
+}
+
+// ListScheduleDistributionNotifications fetches the schedule-related slice
+// of the distribution feed (wire cmd="schedule").
+func (c *Client) ListScheduleDistributionNotifications(ctx context.Context, opts ListDistributionNotificationsOptions) (*gen.CommonResponse, error) {
+	return c.listDistributionNotifications(ctx, "schedule", opts)
+}
+
+func (c *Client) listDistributionNotifications(ctx context.Context, cmd string, opts ListDistributionNotificationsOptions) (*gen.CommonResponse, error) {
 	if err := c.ensureSession(ctx); err != nil {
 		return nil, err
 	}
@@ -626,4 +642,254 @@ func (c *Client) ListCheckinHistory(ctx context.Context, targetUserID int32, opt
 	}
 	res, _, err := req.Execute()
 	return res, err
+}
+
+// --- いいね (interest) -------------------------------------------------------
+
+// LikeCheckin marks the caller as "interested in" (i.e. likes) the given
+// checkin. Underlying op: GET /checkin/update_interest (operationId:
+// updateCheckinInterest) with cmd="add".
+//
+// Equivalent to tapping the heart icon on a timeline entry. Idempotent on
+// the wire — re-liking a post that is already liked returns status=true.
+func (c *Client) LikeCheckin(ctx context.Context, checkinID int32) error {
+	return c.updateCheckinInterest(ctx, checkinID, "add")
+}
+
+// UnlikeCheckin removes the caller's interest from (i.e. unlikes) the given
+// checkin. Underlying op: GET /checkin/update_interest (operationId:
+// updateCheckinInterest) with cmd="delete".
+func (c *Client) UnlikeCheckin(ctx context.Context, checkinID int32) error {
+	return c.updateCheckinInterest(ctx, checkinID, "delete")
+}
+
+func (c *Client) updateCheckinInterest(ctx context.Context, checkinID int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.CheckinAPI.UpdateCheckinInterest(ctx).
+		CheckinId(checkinID).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "update_interest", cmd)
+}
+
+// statusOrError converts a CommonResponse + transport error into the canonical
+// facade-side error for fire-and-forget mutations. err wins over status=false.
+func statusOrError(res *gen.CommonResponse, err error, opName, cmd string) error {
+	if err != nil {
+		return err
+	}
+	if res != nil && !res.GetStatus() {
+		return fmt.Errorf("yukiyama: %s cmd=%q failed: %s", opName, cmd, res.GetError())
+	}
+	return nil
+}
+
+// --- フォロー (follow) -------------------------------------------------------
+
+// FollowUser adds the target user to the caller's follow list.
+// Underlying op: GET /user/update_follow (operationId: updateFollow)
+// with cmd="add".
+func (c *Client) FollowUser(ctx context.Context, targetUserID int32) error {
+	return c.updateFollow(ctx, targetUserID, "add")
+}
+
+// UnfollowUser removes the target user from the caller's follow list.
+// Underlying op: GET /user/update_follow with cmd="delete".
+func (c *Client) UnfollowUser(ctx context.Context, targetUserID int32) error {
+	return c.updateFollow(ctx, targetUserID, "delete")
+}
+
+func (c *Client) updateFollow(ctx context.Context, targetUserID int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.UserAPI.UpdateFollow(ctx).
+		FollowUserId(targetUserID).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "update_follow", cmd)
+}
+
+// --- お気に入りスキー場 (favorite skiarea) -----------------------------------
+
+// AddFavoriteSkiarea adds a skiarea to the caller's favorites.
+// Underlying op: GET /user/update_favorite (operationId: updateFavoriteSkiarea)
+// with cmd="add".
+func (c *Client) AddFavoriteSkiarea(ctx context.Context, skiareaID int32) error {
+	return c.updateFavoriteSkiarea(ctx, skiareaID, "add")
+}
+
+// RemoveFavoriteSkiarea removes a skiarea from the caller's favorites.
+// Underlying op: GET /user/update_favorite with cmd="delete".
+func (c *Client) RemoveFavoriteSkiarea(ctx context.Context, skiareaID int32) error {
+	return c.updateFavoriteSkiarea(ctx, skiareaID, "delete")
+}
+
+func (c *Client) updateFavoriteSkiarea(ctx context.Context, skiareaID int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.UserAPI.UpdateFavoriteSkiarea(ctx).
+		SkiareaId(skiareaID).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "update_favorite", cmd)
+}
+
+// --- スキー場トピックいいね (skiarea topic interest) -------------------------
+
+// LikeSkiareaTopic marks the caller as interested in a skiarea community topic.
+// Underlying op: GET /skiarea/update_topics_interest
+// (operationId: updateSkiareaTopicsInterest) with cmd="add".
+func (c *Client) LikeSkiareaTopic(ctx context.Context, topicID int32) error {
+	return c.updateSkiareaTopicsInterest(ctx, topicID, "add")
+}
+
+// UnlikeSkiareaTopic removes the caller's interest from a skiarea topic.
+// Underlying op: GET /skiarea/update_topics_interest with cmd="delete".
+func (c *Client) UnlikeSkiareaTopic(ctx context.Context, topicID int32) error {
+	return c.updateSkiareaTopicsInterest(ctx, topicID, "delete")
+}
+
+func (c *Client) updateSkiareaTopicsInterest(ctx context.Context, topicID int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.SkiareaAPI.UpdateSkiareaTopicsInterest(ctx).
+		TopicsId(topicID).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "update_topics_interest", cmd)
+}
+
+// --- スケジュール参加 (schedule join) ----------------------------------------
+
+// JoinSchedule joins the caller to a planned schedule (ride-out).
+// Underlying op: GET /user/update_schedule_join
+// (operationId: updateScheduleJoin) with cmd="join".
+//
+// Wire-naming caveat: the caller user id is sent as `id` (not `user_id`)
+// on this endpoint. The facade fills it from CurrentUserID().
+func (c *Client) JoinSchedule(ctx context.Context, scheduleID int32) error {
+	return c.updateScheduleJoin(ctx, scheduleID, "join")
+}
+
+// LeaveSchedule removes the caller from a planned schedule.
+// Underlying op: GET /user/update_schedule_join with cmd="delete".
+func (c *Client) LeaveSchedule(ctx context.Context, scheduleID int32) error {
+	return c.updateScheduleJoin(ctx, scheduleID, "delete")
+}
+
+func (c *Client) updateScheduleJoin(ctx context.Context, scheduleID int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.UserAPI.UpdateScheduleJoin(ctx).
+		Id(c.CurrentUserID()).
+		ScheduleId(scheduleID).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "update_schedule_join", cmd)
+}
+
+// --- コメント (checkin comment) ----------------------------------------------
+
+// AddCheckinComment posts a new top-level comment on the given checkin.
+// Underlying op: GET /checkin/update_comment with cmd="add".
+func (c *Client) AddCheckinComment(ctx context.Context, checkinID int32, comment string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.CheckinAPI.UpdateCheckinComment(ctx).
+		CheckinId(checkinID).
+		Comment(comment).
+		Cmd("add").
+		Execute()
+	return statusOrError(res, err, "update_comment", "add")
+}
+
+// EditCheckinComment edits an existing comment on a checkin.
+// Underlying op: GET /checkin/update_comment with cmd="update".
+func (c *Client) EditCheckinComment(ctx context.Context, checkinID, commentID int32, comment string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.CheckinAPI.UpdateCheckinComment(ctx).
+		CheckinId(checkinID).
+		CommentId(commentID).
+		Comment(comment).
+		Cmd("update").
+		Execute()
+	return statusOrError(res, err, "update_comment", "update")
+}
+
+// DeleteCheckinComment removes a comment from a checkin.
+// Underlying op: GET /checkin/update_comment with cmd="delete".
+func (c *Client) DeleteCheckinComment(ctx context.Context, checkinID, commentID int32) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.CheckinAPI.UpdateCheckinComment(ctx).
+		CheckinId(checkinID).
+		CommentId(commentID).
+		Cmd("delete").
+		Execute()
+	return statusOrError(res, err, "update_comment", "delete")
+}
+
+// ReplyCheckinComment posts a reply targeting an existing comment.
+// Underlying op: GET /checkin/update_comment with cmd="reply".
+//
+// replyTargetCommentID identifies the comment being replied to within the
+// thread.
+func (c *Client) ReplyCheckinComment(ctx context.Context, checkinID, replyTargetCommentID int32, comment string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	res, _, err := c.api.CheckinAPI.UpdateCheckinComment(ctx).
+		CheckinId(checkinID).
+		ReplyTargetCommentId(replyTargetCommentID).
+		Comment(comment).
+		Cmd("reply").
+		Execute()
+	return statusOrError(res, err, "update_comment", "reply")
+}
+
+// --- ポップアップニュース ack (popup news telemetry) -------------------------
+
+// AckPopupNewsShown records that the given popup news items were displayed
+// to the user. Underlying op: GET /common/popup_news (operationId:
+// ackPopupNews) with cmd="show". Multiple IDs are concatenated on the wire
+// as a comma-separated string.
+func (c *Client) AckPopupNewsShown(ctx context.Context, popupNewsIDs []int32) error {
+	return c.ackPopupNews(ctx, popupNewsIDs, "show")
+}
+
+// AckPopupNewsViewed records that the user viewed the given popup news items.
+// Underlying op: GET /common/popup_news with cmd="view".
+func (c *Client) AckPopupNewsViewed(ctx context.Context, popupNewsIDs []int32) error {
+	return c.ackPopupNews(ctx, popupNewsIDs, "view")
+}
+
+// AckPopupNewsClicked records that the user clicked through on a popup news
+// item. Underlying op: GET /common/popup_news with cmd="click".
+func (c *Client) AckPopupNewsClicked(ctx context.Context, popupNewsIDs []int32) error {
+	return c.ackPopupNews(ctx, popupNewsIDs, "click")
+}
+
+func (c *Client) ackPopupNews(ctx context.Context, popupNewsIDs []int32, cmd string) error {
+	if err := c.ensureSession(ctx); err != nil {
+		return err
+	}
+	parts := make([]string, len(popupNewsIDs))
+	for i, id := range popupNewsIDs {
+		parts[i] = strconv.FormatInt(int64(id), 10)
+	}
+	res, _, err := c.api.CommonAPI.AckPopupNews(ctx).
+		PopupNewsId(strings.Join(parts, ",")).
+		Cmd(cmd).
+		Execute()
+	return statusOrError(res, err, "popup_news", cmd)
 }

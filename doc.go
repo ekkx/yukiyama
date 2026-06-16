@@ -75,5 +75,6 @@
 // # Stability
 //
 // Pre-1.0. The API surface tracks the generated gen package and the upstream
-// at API version 10.3.3; breaking changes are possible as either firms up.
+// API version pinned in [APIVersionName]; breaking changes are possible as
+// either firms up.
 package yukiyama
