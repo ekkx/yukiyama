@@ -1,0 +1,21 @@
+# Build artifacts
+*.test
+*.out
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# gen/ contains only *.go; everything else is ignored.
+gen/docs/
+gen/api/
+gen/.openapi-generator/
+gen/.openapi-generator-ignore
+gen/.gitignore
+gen/README.md
+gen/git_push.sh
+gen/.travis.yml
+gen/test/
