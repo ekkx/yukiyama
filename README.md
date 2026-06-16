@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://pkg.go.dev/github.com/ekkx/yukiyama"><img src="https://pkg.go.dev/badge/github.com/ekkx/yukiyama.svg" alt="Go Reference"></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/github/license/ekkx/yukiyama?color=blue" alt="License"></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Go-1.24+-00ADD8?logo=go&logoColor=white" alt="Go 1.24+">
 </p>
 
