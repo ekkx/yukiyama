@@ -108,11 +108,11 @@ func TestInjectAuth_AddsQueryParams(t *testing.T) {
 }
 
 // TestInjectAuth_PreservesCallerUserID verifies that when a caller (typically
-// a facade like CheckUserNameAvailable) has already populated `user_id=` on
-// the outbound URL, the transport does NOT clobber it with the session id.
-// All three members of the auth triple follow the same "caller wins" rule;
-// see CheckUserNameAvailable in facade.go for the motivating use case (wire
-// param `user_id` carrying a username string).
+// a facade like UserService.CheckUserNameAvailable) has already populated
+// `user_id=` on the outbound URL, the transport does NOT clobber it with the
+// session id. All three members of the auth triple follow the same "caller
+// wins" rule; see UserService.CheckUserNameAvailable for the motivating use
+// case (wire param `user_id` carrying a username string).
 func TestInjectAuth_PreservesCallerUserID(t *testing.T) {
 	c := &Client{cfg: &config{userAgent: "test-ua", autoLogin: false}, session: &Session{}}
 	c.session.Set(12345, "deadbeefcafef00d")

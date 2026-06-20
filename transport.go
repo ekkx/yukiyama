@@ -166,7 +166,7 @@ func (t *authTransport) maybeReloginRetry(req *http.Request, reqBody []byte, res
 
 	t.client.log().Warn("yukiyama: error_code=103 detected, attempting re-login + retry", "path", req.URL.Path)
 	t.client.session.Clear()
-	if loginErr := t.client.Login(req.Context()); loginErr != nil {
+	if loginErr := t.client.User.Login(req.Context()); loginErr != nil {
 		// Re-login failed: surface the original 103 envelope so the caller
 		// still sees a decodable response (IsAuthExpired() will report true).
 		t.client.log().Warn("yukiyama: re-login failed, returning original 103 response", "err", loginErr)
@@ -207,9 +207,9 @@ func (t *authTransport) injectAuth(req *http.Request) error {
 	userID, token, ok := t.client.session.Snapshot()
 	if !ok {
 		if !t.client.cfg.autoLogin {
-			return errors.New("yukiyama: session not authenticated; call client.Login(ctx) first or enable WithAutoLogin(true)")
+			return errors.New("yukiyama: session not authenticated; call client.User.Login(ctx) first or enable WithAutoLogin(true)")
 		}
-		if err := t.client.Login(req.Context()); err != nil {
+		if err := t.client.User.Login(req.Context()); err != nil {
 			return err
 		}
 		userID, token, ok = t.client.session.Snapshot()

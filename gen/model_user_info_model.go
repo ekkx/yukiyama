@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserInfoModel type satisfies the MappedNullable interface at compile time
@@ -17,33 +15,34 @@ var _ MappedNullable = &UserInfoModel{}
 
 // UserInfoModel struct for UserInfoModel
 type UserInfoModel struct {
-	Id                    int32               `json:"id"`
-	Token                 string              `json:"token"`
-	IsDebugger            int32               `json:"is_debugger"`
-	Profile               ProfileModel        `json:"profile"`
-	CheckinList           interface{}         `json:"checkin_list,omitempty"`
-	CheckinSeasonList     interface{}         `json:"checkin_season_list,omitempty"`
-	IsFollow              bool                `json:"is_follow"`
-	IsFollower            bool                `json:"is_follower"`
-	FollowList            interface{}         `json:"follow_list,omitempty"`
-	FollowerList          interface{}         `json:"follower_list,omitempty"`
-	FavoriteList          interface{}         `json:"favorite_list,omitempty"`
-	FollowCount           int32               `json:"follow_count"`
-	FollowerCount         int32               `json:"follower_count"`
-	InterestUsersCount    int32               `json:"interest_users_count"`
-	FavoriteStance        NullableStanceModel `json:"favorite_stance,omitempty"`
-	StanceCount           int32               `json:"stance_count"`
-	CouponDistributionNum int32               `json:"coupon_distribution_num"`
-	SafetyNum             int32               `json:"safety_num"`
-	SafetyEnable          interface{}         `json:"safety_enable,omitempty"`
-	VisitSkiarea          int32               `json:"visit_skiarea"`
-	IsBlock               bool                `json:"is_block"`
-	IsBlocked             bool                `json:"is_blocked"`
-	RidingAnalysis        interface{}         `json:"riding_analysis,omitempty"`
-	BlockedNum            int32               `json:"blocked_num"`
-	TotalCheckinCount     int32               `json:"totalCheckinCount"`
-	TotalMaxSpeed         int32               `json:"totalMaxSpeed"`
-	TotalSlideDistance    int32               `json:"totalSlideDistance"`
+	Id                    *int32                       `json:"id,omitempty"`
+	Token                 *string                      `json:"token,omitempty"`
+	IsDebugger            *int32                       `json:"is_debugger,omitempty"`
+	Profile               *ProfileModel                `json:"profile,omitempty"`
+	CheckinList           interface{}                  `json:"checkin_list,omitempty"`
+	CheckinSeasonList     interface{}                  `json:"checkin_season_list,omitempty"`
+	IsFollow              *bool                        `json:"is_follow,omitempty"`
+	IsFollower            *bool                        `json:"is_follower,omitempty"`
+	FollowList            interface{}                  `json:"follow_list,omitempty"`
+	FollowerList          interface{}                  `json:"follower_list,omitempty"`
+	FavoriteList          interface{}                  `json:"favorite_list,omitempty"`
+	FollowCount           *int32                       `json:"follow_count,omitempty"`
+	FollowerCount         *int32                       `json:"follower_count,omitempty"`
+	InterestUsersCount    *int32                       `json:"interest_users_count,omitempty"`
+	FavoriteStance        *UserInfoModelFavoriteStance `json:"favorite_stance,omitempty"`
+	StanceCount           *int32                       `json:"stance_count,omitempty"`
+	CouponDistributionNum *int32                       `json:"coupon_distribution_num,omitempty"`
+	SafetyNum             *int32                       `json:"safety_num,omitempty"`
+	SafetyEnable          interface{}                  `json:"safety_enable,omitempty"`
+	VisitSkiarea          *int32                       `json:"visit_skiarea,omitempty"`
+	IsBlock               *bool                        `json:"is_block,omitempty"`
+	IsBlocked             *bool                        `json:"is_blocked,omitempty"`
+	RidingAnalysis        interface{}                  `json:"riding_analysis,omitempty"`
+	BlockedNum            *int32                       `json:"blocked_num,omitempty"`
+	TotalCheckinCount     *int32                       `json:"totalCheckinCount,omitempty"`
+	TotalMaxSpeed         *int32                       `json:"totalMaxSpeed,omitempty"`
+	TotalSlideDistance    *int32                       `json:"totalSlideDistance,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _UserInfoModel UserInfoModel
@@ -52,27 +51,8 @@ type _UserInfoModel UserInfoModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserInfoModel(id int32, token string, isDebugger int32, profile ProfileModel, isFollow bool, isFollower bool, followCount int32, followerCount int32, interestUsersCount int32, stanceCount int32, couponDistributionNum int32, safetyNum int32, visitSkiarea int32, isBlock bool, isBlocked bool, blockedNum int32, totalCheckinCount int32, totalMaxSpeed int32, totalSlideDistance int32) *UserInfoModel {
+func NewUserInfoModel() *UserInfoModel {
 	this := UserInfoModel{}
-	this.Id = id
-	this.Token = token
-	this.IsDebugger = isDebugger
-	this.Profile = profile
-	this.IsFollow = isFollow
-	this.IsFollower = isFollower
-	this.FollowCount = followCount
-	this.FollowerCount = followerCount
-	this.InterestUsersCount = interestUsersCount
-	this.StanceCount = stanceCount
-	this.CouponDistributionNum = couponDistributionNum
-	this.SafetyNum = safetyNum
-	this.VisitSkiarea = visitSkiarea
-	this.IsBlock = isBlock
-	this.IsBlocked = isBlocked
-	this.BlockedNum = blockedNum
-	this.TotalCheckinCount = totalCheckinCount
-	this.TotalMaxSpeed = totalMaxSpeed
-	this.TotalSlideDistance = totalSlideDistance
 	return &this
 }
 
@@ -84,100 +64,132 @@ func NewUserInfoModelWithDefaults() *UserInfoModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *UserInfoModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *UserInfoModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *UserInfoModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetToken returns the Token field value
+// GetToken returns the Token field value if set, zero value otherwise.
 func (o *UserInfoModel) GetToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		var ret string
 		return ret
 	}
-
-	return o.Token
+	return *o.Token
 }
 
-// GetTokenOk returns a tuple with the Token field value
+// GetTokenOk returns a tuple with the Token field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Token) {
 		return nil, false
 	}
-	return &o.Token, true
+	return o.Token, true
 }
 
-// SetToken sets field value
+// HasToken returns a boolean if a field has been set.
+func (o *UserInfoModel) HasToken() bool {
+	if o != nil && !IsNil(o.Token) {
+		return true
+	}
+
+	return false
+}
+
+// SetToken gets a reference to the given string and assigns it to the Token field.
 func (o *UserInfoModel) SetToken(v string) {
-	o.Token = v
+	o.Token = &v
 }
 
-// GetIsDebugger returns the IsDebugger field value
+// GetIsDebugger returns the IsDebugger field value if set, zero value otherwise.
 func (o *UserInfoModel) GetIsDebugger() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsDebugger) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsDebugger
+	return *o.IsDebugger
 }
 
-// GetIsDebuggerOk returns a tuple with the IsDebugger field value
+// GetIsDebuggerOk returns a tuple with the IsDebugger field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIsDebuggerOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsDebugger) {
 		return nil, false
 	}
-	return &o.IsDebugger, true
+	return o.IsDebugger, true
 }
 
-// SetIsDebugger sets field value
+// HasIsDebugger returns a boolean if a field has been set.
+func (o *UserInfoModel) HasIsDebugger() bool {
+	if o != nil && !IsNil(o.IsDebugger) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsDebugger gets a reference to the given int32 and assigns it to the IsDebugger field.
 func (o *UserInfoModel) SetIsDebugger(v int32) {
-	o.IsDebugger = v
+	o.IsDebugger = &v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *UserInfoModel) GetProfile() ProfileModel {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret ProfileModel
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetProfileOk() (*ProfileModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *UserInfoModel) HasProfile() bool {
+	if o != nil && !IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given ProfileModel and assigns it to the Profile field.
 func (o *UserInfoModel) SetProfile(v ProfileModel) {
-	o.Profile = v
+	o.Profile = &v
 }
 
 // GetCheckinList returns the CheckinList field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -246,52 +258,68 @@ func (o *UserInfoModel) SetCheckinSeasonList(v interface{}) {
 	o.CheckinSeasonList = v
 }
 
-// GetIsFollow returns the IsFollow field value
+// GetIsFollow returns the IsFollow field value if set, zero value otherwise.
 func (o *UserInfoModel) GetIsFollow() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsFollow) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsFollow
+	return *o.IsFollow
 }
 
-// GetIsFollowOk returns a tuple with the IsFollow field value
+// GetIsFollowOk returns a tuple with the IsFollow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIsFollowOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsFollow) {
 		return nil, false
 	}
-	return &o.IsFollow, true
+	return o.IsFollow, true
 }
 
-// SetIsFollow sets field value
+// HasIsFollow returns a boolean if a field has been set.
+func (o *UserInfoModel) HasIsFollow() bool {
+	if o != nil && !IsNil(o.IsFollow) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsFollow gets a reference to the given bool and assigns it to the IsFollow field.
 func (o *UserInfoModel) SetIsFollow(v bool) {
-	o.IsFollow = v
+	o.IsFollow = &v
 }
 
-// GetIsFollower returns the IsFollower field value
+// GetIsFollower returns the IsFollower field value if set, zero value otherwise.
 func (o *UserInfoModel) GetIsFollower() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsFollower) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsFollower
+	return *o.IsFollower
 }
 
-// GetIsFollowerOk returns a tuple with the IsFollower field value
+// GetIsFollowerOk returns a tuple with the IsFollower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIsFollowerOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsFollower) {
 		return nil, false
 	}
-	return &o.IsFollower, true
+	return o.IsFollower, true
 }
 
-// SetIsFollower sets field value
+// HasIsFollower returns a boolean if a field has been set.
+func (o *UserInfoModel) HasIsFollower() bool {
+	if o != nil && !IsNil(o.IsFollower) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsFollower gets a reference to the given bool and assigns it to the IsFollower field.
 func (o *UserInfoModel) SetIsFollower(v bool) {
-	o.IsFollower = v
+	o.IsFollower = &v
 }
 
 // GetFollowList returns the FollowList field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -393,191 +421,228 @@ func (o *UserInfoModel) SetFavoriteList(v interface{}) {
 	o.FavoriteList = v
 }
 
-// GetFollowCount returns the FollowCount field value
+// GetFollowCount returns the FollowCount field value if set, zero value otherwise.
 func (o *UserInfoModel) GetFollowCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FollowCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.FollowCount
+	return *o.FollowCount
 }
 
-// GetFollowCountOk returns a tuple with the FollowCount field value
+// GetFollowCountOk returns a tuple with the FollowCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetFollowCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FollowCount) {
 		return nil, false
 	}
-	return &o.FollowCount, true
+	return o.FollowCount, true
 }
 
-// SetFollowCount sets field value
-func (o *UserInfoModel) SetFollowCount(v int32) {
-	o.FollowCount = v
-}
-
-// GetFollowerCount returns the FollowerCount field value
-func (o *UserInfoModel) GetFollowerCount() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.FollowerCount
-}
-
-// GetFollowerCountOk returns a tuple with the FollowerCount field value
-// and a boolean to check if the value has been set.
-func (o *UserInfoModel) GetFollowerCountOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FollowerCount, true
-}
-
-// SetFollowerCount sets field value
-func (o *UserInfoModel) SetFollowerCount(v int32) {
-	o.FollowerCount = v
-}
-
-// GetInterestUsersCount returns the InterestUsersCount field value
-func (o *UserInfoModel) GetInterestUsersCount() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.InterestUsersCount
-}
-
-// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value
-// and a boolean to check if the value has been set.
-func (o *UserInfoModel) GetInterestUsersCountOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.InterestUsersCount, true
-}
-
-// SetInterestUsersCount sets field value
-func (o *UserInfoModel) SetInterestUsersCount(v int32) {
-	o.InterestUsersCount = v
-}
-
-// GetFavoriteStance returns the FavoriteStance field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UserInfoModel) GetFavoriteStance() StanceModel {
-	if o == nil || IsNil(o.FavoriteStance.Get()) {
-		var ret StanceModel
-		return ret
-	}
-	return *o.FavoriteStance.Get()
-}
-
-// GetFavoriteStanceOk returns a tuple with the FavoriteStance field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UserInfoModel) GetFavoriteStanceOk() (*StanceModel, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.FavoriteStance.Get(), o.FavoriteStance.IsSet()
-}
-
-// HasFavoriteStance returns a boolean if a field has been set.
-func (o *UserInfoModel) HasFavoriteStance() bool {
-	if o != nil && o.FavoriteStance.IsSet() {
+// HasFollowCount returns a boolean if a field has been set.
+func (o *UserInfoModel) HasFollowCount() bool {
+	if o != nil && !IsNil(o.FollowCount) {
 		return true
 	}
 
 	return false
 }
 
-// SetFavoriteStance gets a reference to the given NullableStanceModel and assigns it to the FavoriteStance field.
-func (o *UserInfoModel) SetFavoriteStance(v StanceModel) {
-	o.FavoriteStance.Set(&v)
+// SetFollowCount gets a reference to the given int32 and assigns it to the FollowCount field.
+func (o *UserInfoModel) SetFollowCount(v int32) {
+	o.FollowCount = &v
 }
 
-// SetFavoriteStanceNil sets the value for FavoriteStance to be an explicit nil
-func (o *UserInfoModel) SetFavoriteStanceNil() {
-	o.FavoriteStance.Set(nil)
-}
-
-// UnsetFavoriteStance ensures that no value is present for FavoriteStance, not even an explicit nil
-func (o *UserInfoModel) UnsetFavoriteStance() {
-	o.FavoriteStance.Unset()
-}
-
-// GetStanceCount returns the StanceCount field value
-func (o *UserInfoModel) GetStanceCount() int32 {
-	if o == nil {
+// GetFollowerCount returns the FollowerCount field value if set, zero value otherwise.
+func (o *UserInfoModel) GetFollowerCount() int32 {
+	if o == nil || IsNil(o.FollowerCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.StanceCount
+	return *o.FollowerCount
 }
 
-// GetStanceCountOk returns a tuple with the StanceCount field value
+// GetFollowerCountOk returns a tuple with the FollowerCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserInfoModel) GetFollowerCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.FollowerCount) {
+		return nil, false
+	}
+	return o.FollowerCount, true
+}
+
+// HasFollowerCount returns a boolean if a field has been set.
+func (o *UserInfoModel) HasFollowerCount() bool {
+	if o != nil && !IsNil(o.FollowerCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetFollowerCount gets a reference to the given int32 and assigns it to the FollowerCount field.
+func (o *UserInfoModel) SetFollowerCount(v int32) {
+	o.FollowerCount = &v
+}
+
+// GetInterestUsersCount returns the InterestUsersCount field value if set, zero value otherwise.
+func (o *UserInfoModel) GetInterestUsersCount() int32 {
+	if o == nil || IsNil(o.InterestUsersCount) {
+		var ret int32
+		return ret
+	}
+	return *o.InterestUsersCount
+}
+
+// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserInfoModel) GetInterestUsersCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.InterestUsersCount) {
+		return nil, false
+	}
+	return o.InterestUsersCount, true
+}
+
+// HasInterestUsersCount returns a boolean if a field has been set.
+func (o *UserInfoModel) HasInterestUsersCount() bool {
+	if o != nil && !IsNil(o.InterestUsersCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterestUsersCount gets a reference to the given int32 and assigns it to the InterestUsersCount field.
+func (o *UserInfoModel) SetInterestUsersCount(v int32) {
+	o.InterestUsersCount = &v
+}
+
+// GetFavoriteStance returns the FavoriteStance field value if set, zero value otherwise.
+func (o *UserInfoModel) GetFavoriteStance() UserInfoModelFavoriteStance {
+	if o == nil || IsNil(o.FavoriteStance) {
+		var ret UserInfoModelFavoriteStance
+		return ret
+	}
+	return *o.FavoriteStance
+}
+
+// GetFavoriteStanceOk returns a tuple with the FavoriteStance field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UserInfoModel) GetFavoriteStanceOk() (*UserInfoModelFavoriteStance, bool) {
+	if o == nil || IsNil(o.FavoriteStance) {
+		return nil, false
+	}
+	return o.FavoriteStance, true
+}
+
+// HasFavoriteStance returns a boolean if a field has been set.
+func (o *UserInfoModel) HasFavoriteStance() bool {
+	if o != nil && !IsNil(o.FavoriteStance) {
+		return true
+	}
+
+	return false
+}
+
+// SetFavoriteStance gets a reference to the given UserInfoModelFavoriteStance and assigns it to the FavoriteStance field.
+func (o *UserInfoModel) SetFavoriteStance(v UserInfoModelFavoriteStance) {
+	o.FavoriteStance = &v
+}
+
+// GetStanceCount returns the StanceCount field value if set, zero value otherwise.
+func (o *UserInfoModel) GetStanceCount() int32 {
+	if o == nil || IsNil(o.StanceCount) {
+		var ret int32
+		return ret
+	}
+	return *o.StanceCount
+}
+
+// GetStanceCountOk returns a tuple with the StanceCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetStanceCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StanceCount) {
 		return nil, false
 	}
-	return &o.StanceCount, true
+	return o.StanceCount, true
 }
 
-// SetStanceCount sets field value
+// HasStanceCount returns a boolean if a field has been set.
+func (o *UserInfoModel) HasStanceCount() bool {
+	if o != nil && !IsNil(o.StanceCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetStanceCount gets a reference to the given int32 and assigns it to the StanceCount field.
 func (o *UserInfoModel) SetStanceCount(v int32) {
-	o.StanceCount = v
+	o.StanceCount = &v
 }
 
-// GetCouponDistributionNum returns the CouponDistributionNum field value
+// GetCouponDistributionNum returns the CouponDistributionNum field value if set, zero value otherwise.
 func (o *UserInfoModel) GetCouponDistributionNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CouponDistributionNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.CouponDistributionNum
+	return *o.CouponDistributionNum
 }
 
-// GetCouponDistributionNumOk returns a tuple with the CouponDistributionNum field value
+// GetCouponDistributionNumOk returns a tuple with the CouponDistributionNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetCouponDistributionNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CouponDistributionNum) {
 		return nil, false
 	}
-	return &o.CouponDistributionNum, true
+	return o.CouponDistributionNum, true
 }
 
-// SetCouponDistributionNum sets field value
+// HasCouponDistributionNum returns a boolean if a field has been set.
+func (o *UserInfoModel) HasCouponDistributionNum() bool {
+	if o != nil && !IsNil(o.CouponDistributionNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponDistributionNum gets a reference to the given int32 and assigns it to the CouponDistributionNum field.
 func (o *UserInfoModel) SetCouponDistributionNum(v int32) {
-	o.CouponDistributionNum = v
+	o.CouponDistributionNum = &v
 }
 
-// GetSafetyNum returns the SafetyNum field value
+// GetSafetyNum returns the SafetyNum field value if set, zero value otherwise.
 func (o *UserInfoModel) GetSafetyNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SafetyNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.SafetyNum
+	return *o.SafetyNum
 }
 
-// GetSafetyNumOk returns a tuple with the SafetyNum field value
+// GetSafetyNumOk returns a tuple with the SafetyNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetSafetyNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SafetyNum) {
 		return nil, false
 	}
-	return &o.SafetyNum, true
+	return o.SafetyNum, true
 }
 
-// SetSafetyNum sets field value
+// HasSafetyNum returns a boolean if a field has been set.
+func (o *UserInfoModel) HasSafetyNum() bool {
+	if o != nil && !IsNil(o.SafetyNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetSafetyNum gets a reference to the given int32 and assigns it to the SafetyNum field.
 func (o *UserInfoModel) SetSafetyNum(v int32) {
-	o.SafetyNum = v
+	o.SafetyNum = &v
 }
 
 // GetSafetyEnable returns the SafetyEnable field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -613,76 +678,100 @@ func (o *UserInfoModel) SetSafetyEnable(v interface{}) {
 	o.SafetyEnable = v
 }
 
-// GetVisitSkiarea returns the VisitSkiarea field value
+// GetVisitSkiarea returns the VisitSkiarea field value if set, zero value otherwise.
 func (o *UserInfoModel) GetVisitSkiarea() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.VisitSkiarea) {
 		var ret int32
 		return ret
 	}
-
-	return o.VisitSkiarea
+	return *o.VisitSkiarea
 }
 
-// GetVisitSkiareaOk returns a tuple with the VisitSkiarea field value
+// GetVisitSkiareaOk returns a tuple with the VisitSkiarea field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetVisitSkiareaOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.VisitSkiarea) {
 		return nil, false
 	}
-	return &o.VisitSkiarea, true
+	return o.VisitSkiarea, true
 }
 
-// SetVisitSkiarea sets field value
+// HasVisitSkiarea returns a boolean if a field has been set.
+func (o *UserInfoModel) HasVisitSkiarea() bool {
+	if o != nil && !IsNil(o.VisitSkiarea) {
+		return true
+	}
+
+	return false
+}
+
+// SetVisitSkiarea gets a reference to the given int32 and assigns it to the VisitSkiarea field.
 func (o *UserInfoModel) SetVisitSkiarea(v int32) {
-	o.VisitSkiarea = v
+	o.VisitSkiarea = &v
 }
 
-// GetIsBlock returns the IsBlock field value
+// GetIsBlock returns the IsBlock field value if set, zero value otherwise.
 func (o *UserInfoModel) GetIsBlock() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsBlock) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsBlock
+	return *o.IsBlock
 }
 
-// GetIsBlockOk returns a tuple with the IsBlock field value
+// GetIsBlockOk returns a tuple with the IsBlock field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIsBlockOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsBlock) {
 		return nil, false
 	}
-	return &o.IsBlock, true
+	return o.IsBlock, true
 }
 
-// SetIsBlock sets field value
+// HasIsBlock returns a boolean if a field has been set.
+func (o *UserInfoModel) HasIsBlock() bool {
+	if o != nil && !IsNil(o.IsBlock) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsBlock gets a reference to the given bool and assigns it to the IsBlock field.
 func (o *UserInfoModel) SetIsBlock(v bool) {
-	o.IsBlock = v
+	o.IsBlock = &v
 }
 
-// GetIsBlocked returns the IsBlocked field value
+// GetIsBlocked returns the IsBlocked field value if set, zero value otherwise.
 func (o *UserInfoModel) GetIsBlocked() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsBlocked) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsBlocked
+	return *o.IsBlocked
 }
 
-// GetIsBlockedOk returns a tuple with the IsBlocked field value
+// GetIsBlockedOk returns a tuple with the IsBlocked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetIsBlockedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsBlocked) {
 		return nil, false
 	}
-	return &o.IsBlocked, true
+	return o.IsBlocked, true
 }
 
-// SetIsBlocked sets field value
+// HasIsBlocked returns a boolean if a field has been set.
+func (o *UserInfoModel) HasIsBlocked() bool {
+	if o != nil && !IsNil(o.IsBlocked) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsBlocked gets a reference to the given bool and assigns it to the IsBlocked field.
 func (o *UserInfoModel) SetIsBlocked(v bool) {
-	o.IsBlocked = v
+	o.IsBlocked = &v
 }
 
 // GetRidingAnalysis returns the RidingAnalysis field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -718,100 +807,132 @@ func (o *UserInfoModel) SetRidingAnalysis(v interface{}) {
 	o.RidingAnalysis = v
 }
 
-// GetBlockedNum returns the BlockedNum field value
+// GetBlockedNum returns the BlockedNum field value if set, zero value otherwise.
 func (o *UserInfoModel) GetBlockedNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BlockedNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.BlockedNum
+	return *o.BlockedNum
 }
 
-// GetBlockedNumOk returns a tuple with the BlockedNum field value
+// GetBlockedNumOk returns a tuple with the BlockedNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetBlockedNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BlockedNum) {
 		return nil, false
 	}
-	return &o.BlockedNum, true
+	return o.BlockedNum, true
 }
 
-// SetBlockedNum sets field value
+// HasBlockedNum returns a boolean if a field has been set.
+func (o *UserInfoModel) HasBlockedNum() bool {
+	if o != nil && !IsNil(o.BlockedNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetBlockedNum gets a reference to the given int32 and assigns it to the BlockedNum field.
 func (o *UserInfoModel) SetBlockedNum(v int32) {
-	o.BlockedNum = v
+	o.BlockedNum = &v
 }
 
-// GetTotalCheckinCount returns the TotalCheckinCount field value
+// GetTotalCheckinCount returns the TotalCheckinCount field value if set, zero value otherwise.
 func (o *UserInfoModel) GetTotalCheckinCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalCheckinCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.TotalCheckinCount
+	return *o.TotalCheckinCount
 }
 
-// GetTotalCheckinCountOk returns a tuple with the TotalCheckinCount field value
+// GetTotalCheckinCountOk returns a tuple with the TotalCheckinCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetTotalCheckinCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalCheckinCount) {
 		return nil, false
 	}
-	return &o.TotalCheckinCount, true
+	return o.TotalCheckinCount, true
 }
 
-// SetTotalCheckinCount sets field value
+// HasTotalCheckinCount returns a boolean if a field has been set.
+func (o *UserInfoModel) HasTotalCheckinCount() bool {
+	if o != nil && !IsNil(o.TotalCheckinCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalCheckinCount gets a reference to the given int32 and assigns it to the TotalCheckinCount field.
 func (o *UserInfoModel) SetTotalCheckinCount(v int32) {
-	o.TotalCheckinCount = v
+	o.TotalCheckinCount = &v
 }
 
-// GetTotalMaxSpeed returns the TotalMaxSpeed field value
+// GetTotalMaxSpeed returns the TotalMaxSpeed field value if set, zero value otherwise.
 func (o *UserInfoModel) GetTotalMaxSpeed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalMaxSpeed) {
 		var ret int32
 		return ret
 	}
-
-	return o.TotalMaxSpeed
+	return *o.TotalMaxSpeed
 }
 
-// GetTotalMaxSpeedOk returns a tuple with the TotalMaxSpeed field value
+// GetTotalMaxSpeedOk returns a tuple with the TotalMaxSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetTotalMaxSpeedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalMaxSpeed) {
 		return nil, false
 	}
-	return &o.TotalMaxSpeed, true
+	return o.TotalMaxSpeed, true
 }
 
-// SetTotalMaxSpeed sets field value
+// HasTotalMaxSpeed returns a boolean if a field has been set.
+func (o *UserInfoModel) HasTotalMaxSpeed() bool {
+	if o != nil && !IsNil(o.TotalMaxSpeed) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalMaxSpeed gets a reference to the given int32 and assigns it to the TotalMaxSpeed field.
 func (o *UserInfoModel) SetTotalMaxSpeed(v int32) {
-	o.TotalMaxSpeed = v
+	o.TotalMaxSpeed = &v
 }
 
-// GetTotalSlideDistance returns the TotalSlideDistance field value
+// GetTotalSlideDistance returns the TotalSlideDistance field value if set, zero value otherwise.
 func (o *UserInfoModel) GetTotalSlideDistance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TotalSlideDistance) {
 		var ret int32
 		return ret
 	}
-
-	return o.TotalSlideDistance
+	return *o.TotalSlideDistance
 }
 
-// GetTotalSlideDistanceOk returns a tuple with the TotalSlideDistance field value
+// GetTotalSlideDistanceOk returns a tuple with the TotalSlideDistance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserInfoModel) GetTotalSlideDistanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TotalSlideDistance) {
 		return nil, false
 	}
-	return &o.TotalSlideDistance, true
+	return o.TotalSlideDistance, true
 }
 
-// SetTotalSlideDistance sets field value
+// HasTotalSlideDistance returns a boolean if a field has been set.
+func (o *UserInfoModel) HasTotalSlideDistance() bool {
+	if o != nil && !IsNil(o.TotalSlideDistance) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalSlideDistance gets a reference to the given int32 and assigns it to the TotalSlideDistance field.
 func (o *UserInfoModel) SetTotalSlideDistance(v int32) {
-	o.TotalSlideDistance = v
+	o.TotalSlideDistance = &v
 }
 
 func (o UserInfoModel) MarshalJSON() ([]byte, error) {
@@ -824,18 +945,30 @@ func (o UserInfoModel) MarshalJSON() ([]byte, error) {
 
 func (o UserInfoModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["token"] = o.Token
-	toSerialize["is_debugger"] = o.IsDebugger
-	toSerialize["profile"] = o.Profile
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Token) {
+		toSerialize["token"] = o.Token
+	}
+	if !IsNil(o.IsDebugger) {
+		toSerialize["is_debugger"] = o.IsDebugger
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
 	if o.CheckinList != nil {
 		toSerialize["checkin_list"] = o.CheckinList
 	}
 	if o.CheckinSeasonList != nil {
 		toSerialize["checkin_season_list"] = o.CheckinSeasonList
 	}
-	toSerialize["is_follow"] = o.IsFollow
-	toSerialize["is_follower"] = o.IsFollower
+	if !IsNil(o.IsFollow) {
+		toSerialize["is_follow"] = o.IsFollow
+	}
+	if !IsNil(o.IsFollower) {
+		toSerialize["is_follower"] = o.IsFollower
+	}
 	if o.FollowList != nil {
 		toSerialize["follow_list"] = o.FollowList
 	}
@@ -845,82 +978,105 @@ func (o UserInfoModel) ToMap() (map[string]interface{}, error) {
 	if o.FavoriteList != nil {
 		toSerialize["favorite_list"] = o.FavoriteList
 	}
-	toSerialize["follow_count"] = o.FollowCount
-	toSerialize["follower_count"] = o.FollowerCount
-	toSerialize["interest_users_count"] = o.InterestUsersCount
-	if o.FavoriteStance.IsSet() {
-		toSerialize["favorite_stance"] = o.FavoriteStance.Get()
+	if !IsNil(o.FollowCount) {
+		toSerialize["follow_count"] = o.FollowCount
 	}
-	toSerialize["stance_count"] = o.StanceCount
-	toSerialize["coupon_distribution_num"] = o.CouponDistributionNum
-	toSerialize["safety_num"] = o.SafetyNum
+	if !IsNil(o.FollowerCount) {
+		toSerialize["follower_count"] = o.FollowerCount
+	}
+	if !IsNil(o.InterestUsersCount) {
+		toSerialize["interest_users_count"] = o.InterestUsersCount
+	}
+	if !IsNil(o.FavoriteStance) {
+		toSerialize["favorite_stance"] = o.FavoriteStance
+	}
+	if !IsNil(o.StanceCount) {
+		toSerialize["stance_count"] = o.StanceCount
+	}
+	if !IsNil(o.CouponDistributionNum) {
+		toSerialize["coupon_distribution_num"] = o.CouponDistributionNum
+	}
+	if !IsNil(o.SafetyNum) {
+		toSerialize["safety_num"] = o.SafetyNum
+	}
 	if o.SafetyEnable != nil {
 		toSerialize["safety_enable"] = o.SafetyEnable
 	}
-	toSerialize["visit_skiarea"] = o.VisitSkiarea
-	toSerialize["is_block"] = o.IsBlock
-	toSerialize["is_blocked"] = o.IsBlocked
+	if !IsNil(o.VisitSkiarea) {
+		toSerialize["visit_skiarea"] = o.VisitSkiarea
+	}
+	if !IsNil(o.IsBlock) {
+		toSerialize["is_block"] = o.IsBlock
+	}
+	if !IsNil(o.IsBlocked) {
+		toSerialize["is_blocked"] = o.IsBlocked
+	}
 	if o.RidingAnalysis != nil {
 		toSerialize["riding_analysis"] = o.RidingAnalysis
 	}
-	toSerialize["blocked_num"] = o.BlockedNum
-	toSerialize["totalCheckinCount"] = o.TotalCheckinCount
-	toSerialize["totalMaxSpeed"] = o.TotalMaxSpeed
-	toSerialize["totalSlideDistance"] = o.TotalSlideDistance
+	if !IsNil(o.BlockedNum) {
+		toSerialize["blocked_num"] = o.BlockedNum
+	}
+	if !IsNil(o.TotalCheckinCount) {
+		toSerialize["totalCheckinCount"] = o.TotalCheckinCount
+	}
+	if !IsNil(o.TotalMaxSpeed) {
+		toSerialize["totalMaxSpeed"] = o.TotalMaxSpeed
+	}
+	if !IsNil(o.TotalSlideDistance) {
+		toSerialize["totalSlideDistance"] = o.TotalSlideDistance
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *UserInfoModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"token",
-		"is_debugger",
-		"profile",
-		"is_follow",
-		"is_follower",
-		"follow_count",
-		"follower_count",
-		"interest_users_count",
-		"stance_count",
-		"coupon_distribution_num",
-		"safety_num",
-		"visit_skiarea",
-		"is_block",
-		"is_blocked",
-		"blocked_num",
-		"totalCheckinCount",
-		"totalMaxSpeed",
-		"totalSlideDistance",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUserInfoModel := _UserInfoModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserInfoModel)
+	err = json.Unmarshal(data, &varUserInfoModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserInfoModel(varUserInfoModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "token")
+		delete(additionalProperties, "is_debugger")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "checkin_list")
+		delete(additionalProperties, "checkin_season_list")
+		delete(additionalProperties, "is_follow")
+		delete(additionalProperties, "is_follower")
+		delete(additionalProperties, "follow_list")
+		delete(additionalProperties, "follower_list")
+		delete(additionalProperties, "favorite_list")
+		delete(additionalProperties, "follow_count")
+		delete(additionalProperties, "follower_count")
+		delete(additionalProperties, "interest_users_count")
+		delete(additionalProperties, "favorite_stance")
+		delete(additionalProperties, "stance_count")
+		delete(additionalProperties, "coupon_distribution_num")
+		delete(additionalProperties, "safety_num")
+		delete(additionalProperties, "safety_enable")
+		delete(additionalProperties, "visit_skiarea")
+		delete(additionalProperties, "is_block")
+		delete(additionalProperties, "is_blocked")
+		delete(additionalProperties, "riding_analysis")
+		delete(additionalProperties, "blocked_num")
+		delete(additionalProperties, "totalCheckinCount")
+		delete(additionalProperties, "totalMaxSpeed")
+		delete(additionalProperties, "totalSlideDistance")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the UserSettingModel type satisfies the MappedNullable interface at compile time
@@ -17,12 +15,13 @@ var _ MappedNullable = &UserSettingModel{}
 
 // UserSettingModel struct for UserSettingModel
 type UserSettingModel struct {
-	Height int32 `json:"height"`
-	Weight int32 `json:"weight"`
-	Age    int32 `json:"age"`
-	Gender int32 `json:"gender"`
-	Eye    int32 `json:"eye"`
-	Level  int32 `json:"level"`
+	Height               *int32 `json:"height,omitempty"`
+	Weight               *int32 `json:"weight,omitempty"`
+	Age                  *int32 `json:"age,omitempty"`
+	Gender               *int32 `json:"gender,omitempty"`
+	Eye                  *int32 `json:"eye,omitempty"`
+	Level                *int32 `json:"level,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserSettingModel UserSettingModel
@@ -31,14 +30,8 @@ type _UserSettingModel UserSettingModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserSettingModel(height int32, weight int32, age int32, gender int32, eye int32, level int32) *UserSettingModel {
+func NewUserSettingModel() *UserSettingModel {
 	this := UserSettingModel{}
-	this.Height = height
-	this.Weight = weight
-	this.Age = age
-	this.Gender = gender
-	this.Eye = eye
-	this.Level = level
 	return &this
 }
 
@@ -50,148 +43,196 @@ func NewUserSettingModelWithDefaults() *UserSettingModel {
 	return &this
 }
 
-// GetHeight returns the Height field value
+// GetHeight returns the Height field value if set, zero value otherwise.
 func (o *UserSettingModel) GetHeight() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Height) {
 		var ret int32
 		return ret
 	}
-
-	return o.Height
+	return *o.Height
 }
 
-// GetHeightOk returns a tuple with the Height field value
+// GetHeightOk returns a tuple with the Height field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetHeightOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Height) {
 		return nil, false
 	}
-	return &o.Height, true
+	return o.Height, true
 }
 
-// SetHeight sets field value
+// HasHeight returns a boolean if a field has been set.
+func (o *UserSettingModel) HasHeight() bool {
+	if o != nil && !IsNil(o.Height) {
+		return true
+	}
+
+	return false
+}
+
+// SetHeight gets a reference to the given int32 and assigns it to the Height field.
 func (o *UserSettingModel) SetHeight(v int32) {
-	o.Height = v
+	o.Height = &v
 }
 
-// GetWeight returns the Weight field value
+// GetWeight returns the Weight field value if set, zero value otherwise.
 func (o *UserSettingModel) GetWeight() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Weight) {
 		var ret int32
 		return ret
 	}
-
-	return o.Weight
+	return *o.Weight
 }
 
-// GetWeightOk returns a tuple with the Weight field value
+// GetWeightOk returns a tuple with the Weight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetWeightOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Weight) {
 		return nil, false
 	}
-	return &o.Weight, true
+	return o.Weight, true
 }
 
-// SetWeight sets field value
+// HasWeight returns a boolean if a field has been set.
+func (o *UserSettingModel) HasWeight() bool {
+	if o != nil && !IsNil(o.Weight) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeight gets a reference to the given int32 and assigns it to the Weight field.
 func (o *UserSettingModel) SetWeight(v int32) {
-	o.Weight = v
+	o.Weight = &v
 }
 
-// GetAge returns the Age field value
+// GetAge returns the Age field value if set, zero value otherwise.
 func (o *UserSettingModel) GetAge() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Age) {
 		var ret int32
 		return ret
 	}
-
-	return o.Age
+	return *o.Age
 }
 
-// GetAgeOk returns a tuple with the Age field value
+// GetAgeOk returns a tuple with the Age field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetAgeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Age) {
 		return nil, false
 	}
-	return &o.Age, true
+	return o.Age, true
 }
 
-// SetAge sets field value
+// HasAge returns a boolean if a field has been set.
+func (o *UserSettingModel) HasAge() bool {
+	if o != nil && !IsNil(o.Age) {
+		return true
+	}
+
+	return false
+}
+
+// SetAge gets a reference to the given int32 and assigns it to the Age field.
 func (o *UserSettingModel) SetAge(v int32) {
-	o.Age = v
+	o.Age = &v
 }
 
-// GetGender returns the Gender field value
+// GetGender returns the Gender field value if set, zero value otherwise.
 func (o *UserSettingModel) GetGender() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Gender) {
 		var ret int32
 		return ret
 	}
-
-	return o.Gender
+	return *o.Gender
 }
 
-// GetGenderOk returns a tuple with the Gender field value
+// GetGenderOk returns a tuple with the Gender field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetGenderOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Gender) {
 		return nil, false
 	}
-	return &o.Gender, true
+	return o.Gender, true
 }
 
-// SetGender sets field value
+// HasGender returns a boolean if a field has been set.
+func (o *UserSettingModel) HasGender() bool {
+	if o != nil && !IsNil(o.Gender) {
+		return true
+	}
+
+	return false
+}
+
+// SetGender gets a reference to the given int32 and assigns it to the Gender field.
 func (o *UserSettingModel) SetGender(v int32) {
-	o.Gender = v
+	o.Gender = &v
 }
 
-// GetEye returns the Eye field value
+// GetEye returns the Eye field value if set, zero value otherwise.
 func (o *UserSettingModel) GetEye() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Eye) {
 		var ret int32
 		return ret
 	}
-
-	return o.Eye
+	return *o.Eye
 }
 
-// GetEyeOk returns a tuple with the Eye field value
+// GetEyeOk returns a tuple with the Eye field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetEyeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Eye) {
 		return nil, false
 	}
-	return &o.Eye, true
+	return o.Eye, true
 }
 
-// SetEye sets field value
+// HasEye returns a boolean if a field has been set.
+func (o *UserSettingModel) HasEye() bool {
+	if o != nil && !IsNil(o.Eye) {
+		return true
+	}
+
+	return false
+}
+
+// SetEye gets a reference to the given int32 and assigns it to the Eye field.
 func (o *UserSettingModel) SetEye(v int32) {
-	o.Eye = v
+	o.Eye = &v
 }
 
-// GetLevel returns the Level field value
+// GetLevel returns the Level field value if set, zero value otherwise.
 func (o *UserSettingModel) GetLevel() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Level) {
 		var ret int32
 		return ret
 	}
-
-	return o.Level
+	return *o.Level
 }
 
-// GetLevelOk returns a tuple with the Level field value
+// GetLevelOk returns a tuple with the Level field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *UserSettingModel) GetLevelOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Level) {
 		return nil, false
 	}
-	return &o.Level, true
+	return o.Level, true
 }
 
-// SetLevel sets field value
+// HasLevel returns a boolean if a field has been set.
+func (o *UserSettingModel) HasLevel() bool {
+	if o != nil && !IsNil(o.Level) {
+		return true
+	}
+
+	return false
+}
+
+// SetLevel gets a reference to the given int32 and assigns it to the Level field.
 func (o *UserSettingModel) SetLevel(v int32) {
-	o.Level = v
+	o.Level = &v
 }
 
 func (o UserSettingModel) MarshalJSON() ([]byte, error) {
@@ -204,53 +245,54 @@ func (o UserSettingModel) MarshalJSON() ([]byte, error) {
 
 func (o UserSettingModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["height"] = o.Height
-	toSerialize["weight"] = o.Weight
-	toSerialize["age"] = o.Age
-	toSerialize["gender"] = o.Gender
-	toSerialize["eye"] = o.Eye
-	toSerialize["level"] = o.Level
+	if !IsNil(o.Height) {
+		toSerialize["height"] = o.Height
+	}
+	if !IsNil(o.Weight) {
+		toSerialize["weight"] = o.Weight
+	}
+	if !IsNil(o.Age) {
+		toSerialize["age"] = o.Age
+	}
+	if !IsNil(o.Gender) {
+		toSerialize["gender"] = o.Gender
+	}
+	if !IsNil(o.Eye) {
+		toSerialize["eye"] = o.Eye
+	}
+	if !IsNil(o.Level) {
+		toSerialize["level"] = o.Level
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *UserSettingModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"height",
-		"weight",
-		"age",
-		"gender",
-		"eye",
-		"level",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varUserSettingModel := _UserSettingModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserSettingModel)
+	err = json.Unmarshal(data, &varUserSettingModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserSettingModel(varUserSettingModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "height")
+		delete(additionalProperties, "weight")
+		delete(additionalProperties, "age")
+		delete(additionalProperties, "gender")
+		delete(additionalProperties, "eye")
+		delete(additionalProperties, "level")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

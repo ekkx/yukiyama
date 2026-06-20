@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the DeviceInfoModel type satisfies the MappedNullable interface at compile time
@@ -17,17 +15,18 @@ var _ MappedNullable = &DeviceInfoModel{}
 
 // DeviceInfoModel struct for DeviceInfoModel
 type DeviceInfoModel struct {
-	AppVer            string `json:"app_ver"`
-	OsVer             string `json:"os_ver"`
-	DeviceToken       string `json:"device_token"`
-	Platform          string `json:"platform"`
-	Uuid              string `json:"uuid"`
-	Model             string `json:"model"`
-	LastUpdate        string `json:"lastUpdate"`
-	SafeAreaInsetsTop int32  `json:"safe_area_insets_top"`
-	SafeAreaInsets    int32  `json:"safe_area_insets"`
-	IsTablet          int32  `json:"is_tablet"`
-	Lang              string `json:"lang"`
+	AppVer               *string `json:"app_ver,omitempty"`
+	OsVer                *string `json:"os_ver,omitempty"`
+	DeviceToken          *string `json:"device_token,omitempty"`
+	Platform             *string `json:"platform,omitempty"`
+	Uuid                 *string `json:"uuid,omitempty"`
+	Model                *string `json:"model,omitempty"`
+	LastUpdate           *string `json:"lastUpdate,omitempty"`
+	SafeAreaInsetsTop    *int32  `json:"safe_area_insets_top,omitempty"`
+	SafeAreaInsets       *int32  `json:"safe_area_insets,omitempty"`
+	IsTablet             *int32  `json:"is_tablet,omitempty"`
+	Lang                 *string `json:"lang,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _DeviceInfoModel DeviceInfoModel
@@ -36,19 +35,8 @@ type _DeviceInfoModel DeviceInfoModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDeviceInfoModel(appVer string, osVer string, deviceToken string, platform string, uuid string, model string, lastUpdate string, safeAreaInsetsTop int32, safeAreaInsets int32, isTablet int32, lang string) *DeviceInfoModel {
+func NewDeviceInfoModel() *DeviceInfoModel {
 	this := DeviceInfoModel{}
-	this.AppVer = appVer
-	this.OsVer = osVer
-	this.DeviceToken = deviceToken
-	this.Platform = platform
-	this.Uuid = uuid
-	this.Model = model
-	this.LastUpdate = lastUpdate
-	this.SafeAreaInsetsTop = safeAreaInsetsTop
-	this.SafeAreaInsets = safeAreaInsets
-	this.IsTablet = isTablet
-	this.Lang = lang
 	return &this
 }
 
@@ -60,268 +48,356 @@ func NewDeviceInfoModelWithDefaults() *DeviceInfoModel {
 	return &this
 }
 
-// GetAppVer returns the AppVer field value
+// GetAppVer returns the AppVer field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetAppVer() string {
-	if o == nil {
+	if o == nil || IsNil(o.AppVer) {
 		var ret string
 		return ret
 	}
-
-	return o.AppVer
+	return *o.AppVer
 }
 
-// GetAppVerOk returns a tuple with the AppVer field value
+// GetAppVerOk returns a tuple with the AppVer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetAppVerOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AppVer) {
 		return nil, false
 	}
-	return &o.AppVer, true
+	return o.AppVer, true
 }
 
-// SetAppVer sets field value
+// HasAppVer returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasAppVer() bool {
+	if o != nil && !IsNil(o.AppVer) {
+		return true
+	}
+
+	return false
+}
+
+// SetAppVer gets a reference to the given string and assigns it to the AppVer field.
 func (o *DeviceInfoModel) SetAppVer(v string) {
-	o.AppVer = v
+	o.AppVer = &v
 }
 
-// GetOsVer returns the OsVer field value
+// GetOsVer returns the OsVer field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetOsVer() string {
-	if o == nil {
+	if o == nil || IsNil(o.OsVer) {
 		var ret string
 		return ret
 	}
-
-	return o.OsVer
+	return *o.OsVer
 }
 
-// GetOsVerOk returns a tuple with the OsVer field value
+// GetOsVerOk returns a tuple with the OsVer field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetOsVerOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OsVer) {
 		return nil, false
 	}
-	return &o.OsVer, true
+	return o.OsVer, true
 }
 
-// SetOsVer sets field value
+// HasOsVer returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasOsVer() bool {
+	if o != nil && !IsNil(o.OsVer) {
+		return true
+	}
+
+	return false
+}
+
+// SetOsVer gets a reference to the given string and assigns it to the OsVer field.
 func (o *DeviceInfoModel) SetOsVer(v string) {
-	o.OsVer = v
+	o.OsVer = &v
 }
 
-// GetDeviceToken returns the DeviceToken field value
+// GetDeviceToken returns the DeviceToken field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetDeviceToken() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceToken) {
 		var ret string
 		return ret
 	}
-
-	return o.DeviceToken
+	return *o.DeviceToken
 }
 
-// GetDeviceTokenOk returns a tuple with the DeviceToken field value
+// GetDeviceTokenOk returns a tuple with the DeviceToken field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetDeviceTokenOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceToken) {
 		return nil, false
 	}
-	return &o.DeviceToken, true
+	return o.DeviceToken, true
 }
 
-// SetDeviceToken sets field value
+// HasDeviceToken returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasDeviceToken() bool {
+	if o != nil && !IsNil(o.DeviceToken) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceToken gets a reference to the given string and assigns it to the DeviceToken field.
 func (o *DeviceInfoModel) SetDeviceToken(v string) {
-	o.DeviceToken = v
+	o.DeviceToken = &v
 }
 
-// GetPlatform returns the Platform field value
+// GetPlatform returns the Platform field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetPlatform() string {
-	if o == nil {
+	if o == nil || IsNil(o.Platform) {
 		var ret string
 		return ret
 	}
-
-	return o.Platform
+	return *o.Platform
 }
 
-// GetPlatformOk returns a tuple with the Platform field value
+// GetPlatformOk returns a tuple with the Platform field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetPlatformOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Platform) {
 		return nil, false
 	}
-	return &o.Platform, true
+	return o.Platform, true
 }
 
-// SetPlatform sets field value
+// HasPlatform returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasPlatform() bool {
+	if o != nil && !IsNil(o.Platform) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlatform gets a reference to the given string and assigns it to the Platform field.
 func (o *DeviceInfoModel) SetPlatform(v string) {
-	o.Platform = v
+	o.Platform = &v
 }
 
-// GetUuid returns the Uuid field value
+// GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetUuid() string {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		var ret string
 		return ret
 	}
-
-	return o.Uuid
+	return *o.Uuid
 }
 
-// GetUuidOk returns a tuple with the Uuid field value
+// GetUuidOk returns a tuple with the Uuid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetUuidOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Uuid) {
 		return nil, false
 	}
-	return &o.Uuid, true
+	return o.Uuid, true
 }
 
-// SetUuid sets field value
+// HasUuid returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasUuid() bool {
+	if o != nil && !IsNil(o.Uuid) {
+		return true
+	}
+
+	return false
+}
+
+// SetUuid gets a reference to the given string and assigns it to the Uuid field.
 func (o *DeviceInfoModel) SetUuid(v string) {
-	o.Uuid = v
+	o.Uuid = &v
 }
 
-// GetModel returns the Model field value
+// GetModel returns the Model field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetModel() string {
-	if o == nil {
+	if o == nil || IsNil(o.Model) {
 		var ret string
 		return ret
 	}
-
-	return o.Model
+	return *o.Model
 }
 
-// GetModelOk returns a tuple with the Model field value
+// GetModelOk returns a tuple with the Model field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetModelOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Model) {
 		return nil, false
 	}
-	return &o.Model, true
+	return o.Model, true
 }
 
-// SetModel sets field value
+// HasModel returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasModel() bool {
+	if o != nil && !IsNil(o.Model) {
+		return true
+	}
+
+	return false
+}
+
+// SetModel gets a reference to the given string and assigns it to the Model field.
 func (o *DeviceInfoModel) SetModel(v string) {
-	o.Model = v
+	o.Model = &v
 }
 
-// GetLastUpdate returns the LastUpdate field value
+// GetLastUpdate returns the LastUpdate field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetLastUpdate() string {
-	if o == nil {
+	if o == nil || IsNil(o.LastUpdate) {
 		var ret string
 		return ret
 	}
-
-	return o.LastUpdate
+	return *o.LastUpdate
 }
 
-// GetLastUpdateOk returns a tuple with the LastUpdate field value
+// GetLastUpdateOk returns a tuple with the LastUpdate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetLastUpdateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LastUpdate) {
 		return nil, false
 	}
-	return &o.LastUpdate, true
+	return o.LastUpdate, true
 }
 
-// SetLastUpdate sets field value
+// HasLastUpdate returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasLastUpdate() bool {
+	if o != nil && !IsNil(o.LastUpdate) {
+		return true
+	}
+
+	return false
+}
+
+// SetLastUpdate gets a reference to the given string and assigns it to the LastUpdate field.
 func (o *DeviceInfoModel) SetLastUpdate(v string) {
-	o.LastUpdate = v
+	o.LastUpdate = &v
 }
 
-// GetSafeAreaInsetsTop returns the SafeAreaInsetsTop field value
+// GetSafeAreaInsetsTop returns the SafeAreaInsetsTop field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetSafeAreaInsetsTop() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SafeAreaInsetsTop) {
 		var ret int32
 		return ret
 	}
-
-	return o.SafeAreaInsetsTop
+	return *o.SafeAreaInsetsTop
 }
 
-// GetSafeAreaInsetsTopOk returns a tuple with the SafeAreaInsetsTop field value
+// GetSafeAreaInsetsTopOk returns a tuple with the SafeAreaInsetsTop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetSafeAreaInsetsTopOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SafeAreaInsetsTop) {
 		return nil, false
 	}
-	return &o.SafeAreaInsetsTop, true
+	return o.SafeAreaInsetsTop, true
 }
 
-// SetSafeAreaInsetsTop sets field value
+// HasSafeAreaInsetsTop returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasSafeAreaInsetsTop() bool {
+	if o != nil && !IsNil(o.SafeAreaInsetsTop) {
+		return true
+	}
+
+	return false
+}
+
+// SetSafeAreaInsetsTop gets a reference to the given int32 and assigns it to the SafeAreaInsetsTop field.
 func (o *DeviceInfoModel) SetSafeAreaInsetsTop(v int32) {
-	o.SafeAreaInsetsTop = v
+	o.SafeAreaInsetsTop = &v
 }
 
-// GetSafeAreaInsets returns the SafeAreaInsets field value
+// GetSafeAreaInsets returns the SafeAreaInsets field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetSafeAreaInsets() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SafeAreaInsets) {
 		var ret int32
 		return ret
 	}
-
-	return o.SafeAreaInsets
+	return *o.SafeAreaInsets
 }
 
-// GetSafeAreaInsetsOk returns a tuple with the SafeAreaInsets field value
+// GetSafeAreaInsetsOk returns a tuple with the SafeAreaInsets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetSafeAreaInsetsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SafeAreaInsets) {
 		return nil, false
 	}
-	return &o.SafeAreaInsets, true
+	return o.SafeAreaInsets, true
 }
 
-// SetSafeAreaInsets sets field value
+// HasSafeAreaInsets returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasSafeAreaInsets() bool {
+	if o != nil && !IsNil(o.SafeAreaInsets) {
+		return true
+	}
+
+	return false
+}
+
+// SetSafeAreaInsets gets a reference to the given int32 and assigns it to the SafeAreaInsets field.
 func (o *DeviceInfoModel) SetSafeAreaInsets(v int32) {
-	o.SafeAreaInsets = v
+	o.SafeAreaInsets = &v
 }
 
-// GetIsTablet returns the IsTablet field value
+// GetIsTablet returns the IsTablet field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetIsTablet() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsTablet) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsTablet
+	return *o.IsTablet
 }
 
-// GetIsTabletOk returns a tuple with the IsTablet field value
+// GetIsTabletOk returns a tuple with the IsTablet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetIsTabletOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsTablet) {
 		return nil, false
 	}
-	return &o.IsTablet, true
+	return o.IsTablet, true
 }
 
-// SetIsTablet sets field value
+// HasIsTablet returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasIsTablet() bool {
+	if o != nil && !IsNil(o.IsTablet) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsTablet gets a reference to the given int32 and assigns it to the IsTablet field.
 func (o *DeviceInfoModel) SetIsTablet(v int32) {
-	o.IsTablet = v
+	o.IsTablet = &v
 }
 
-// GetLang returns the Lang field value
+// GetLang returns the Lang field value if set, zero value otherwise.
 func (o *DeviceInfoModel) GetLang() string {
-	if o == nil {
+	if o == nil || IsNil(o.Lang) {
 		var ret string
 		return ret
 	}
-
-	return o.Lang
+	return *o.Lang
 }
 
-// GetLangOk returns a tuple with the Lang field value
+// GetLangOk returns a tuple with the Lang field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DeviceInfoModel) GetLangOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Lang) {
 		return nil, false
 	}
-	return &o.Lang, true
+	return o.Lang, true
 }
 
-// SetLang sets field value
+// HasLang returns a boolean if a field has been set.
+func (o *DeviceInfoModel) HasLang() bool {
+	if o != nil && !IsNil(o.Lang) {
+		return true
+	}
+
+	return false
+}
+
+// SetLang gets a reference to the given string and assigns it to the Lang field.
 func (o *DeviceInfoModel) SetLang(v string) {
-	o.Lang = v
+	o.Lang = &v
 }
 
 func (o DeviceInfoModel) MarshalJSON() ([]byte, error) {
@@ -334,63 +410,74 @@ func (o DeviceInfoModel) MarshalJSON() ([]byte, error) {
 
 func (o DeviceInfoModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["app_ver"] = o.AppVer
-	toSerialize["os_ver"] = o.OsVer
-	toSerialize["device_token"] = o.DeviceToken
-	toSerialize["platform"] = o.Platform
-	toSerialize["uuid"] = o.Uuid
-	toSerialize["model"] = o.Model
-	toSerialize["lastUpdate"] = o.LastUpdate
-	toSerialize["safe_area_insets_top"] = o.SafeAreaInsetsTop
-	toSerialize["safe_area_insets"] = o.SafeAreaInsets
-	toSerialize["is_tablet"] = o.IsTablet
-	toSerialize["lang"] = o.Lang
+	if !IsNil(o.AppVer) {
+		toSerialize["app_ver"] = o.AppVer
+	}
+	if !IsNil(o.OsVer) {
+		toSerialize["os_ver"] = o.OsVer
+	}
+	if !IsNil(o.DeviceToken) {
+		toSerialize["device_token"] = o.DeviceToken
+	}
+	if !IsNil(o.Platform) {
+		toSerialize["platform"] = o.Platform
+	}
+	if !IsNil(o.Uuid) {
+		toSerialize["uuid"] = o.Uuid
+	}
+	if !IsNil(o.Model) {
+		toSerialize["model"] = o.Model
+	}
+	if !IsNil(o.LastUpdate) {
+		toSerialize["lastUpdate"] = o.LastUpdate
+	}
+	if !IsNil(o.SafeAreaInsetsTop) {
+		toSerialize["safe_area_insets_top"] = o.SafeAreaInsetsTop
+	}
+	if !IsNil(o.SafeAreaInsets) {
+		toSerialize["safe_area_insets"] = o.SafeAreaInsets
+	}
+	if !IsNil(o.IsTablet) {
+		toSerialize["is_tablet"] = o.IsTablet
+	}
+	if !IsNil(o.Lang) {
+		toSerialize["lang"] = o.Lang
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *DeviceInfoModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"app_ver",
-		"os_ver",
-		"device_token",
-		"platform",
-		"uuid",
-		"model",
-		"lastUpdate",
-		"safe_area_insets_top",
-		"safe_area_insets",
-		"is_tablet",
-		"lang",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varDeviceInfoModel := _DeviceInfoModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDeviceInfoModel)
+	err = json.Unmarshal(data, &varDeviceInfoModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = DeviceInfoModel(varDeviceInfoModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "app_ver")
+		delete(additionalProperties, "os_ver")
+		delete(additionalProperties, "device_token")
+		delete(additionalProperties, "platform")
+		delete(additionalProperties, "uuid")
+		delete(additionalProperties, "model")
+		delete(additionalProperties, "lastUpdate")
+		delete(additionalProperties, "safe_area_insets_top")
+		delete(additionalProperties, "safe_area_insets")
+		delete(additionalProperties, "is_tablet")
+		delete(additionalProperties, "lang")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the TimelineSettingModel type satisfies the MappedNullable interface at compile time
@@ -17,8 +15,9 @@ var _ MappedNullable = &TimelineSettingModel{}
 
 // TimelineSettingModel struct for TimelineSettingModel
 type TimelineSettingModel struct {
-	TargetUser    int32 `json:"target_user"`
-	TargetSkiarea int32 `json:"target_skiarea"`
+	TargetUser           *int32 `json:"target_user,omitempty"`
+	TargetSkiarea        *int32 `json:"target_skiarea,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _TimelineSettingModel TimelineSettingModel
@@ -27,10 +26,8 @@ type _TimelineSettingModel TimelineSettingModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTimelineSettingModel(targetUser int32, targetSkiarea int32) *TimelineSettingModel {
+func NewTimelineSettingModel() *TimelineSettingModel {
 	this := TimelineSettingModel{}
-	this.TargetUser = targetUser
-	this.TargetSkiarea = targetSkiarea
 	return &this
 }
 
@@ -42,52 +39,68 @@ func NewTimelineSettingModelWithDefaults() *TimelineSettingModel {
 	return &this
 }
 
-// GetTargetUser returns the TargetUser field value
+// GetTargetUser returns the TargetUser field value if set, zero value otherwise.
 func (o *TimelineSettingModel) GetTargetUser() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetUser) {
 		var ret int32
 		return ret
 	}
-
-	return o.TargetUser
+	return *o.TargetUser
 }
 
-// GetTargetUserOk returns a tuple with the TargetUser field value
+// GetTargetUserOk returns a tuple with the TargetUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TimelineSettingModel) GetTargetUserOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetUser) {
 		return nil, false
 	}
-	return &o.TargetUser, true
+	return o.TargetUser, true
 }
 
-// SetTargetUser sets field value
+// HasTargetUser returns a boolean if a field has been set.
+func (o *TimelineSettingModel) HasTargetUser() bool {
+	if o != nil && !IsNil(o.TargetUser) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetUser gets a reference to the given int32 and assigns it to the TargetUser field.
 func (o *TimelineSettingModel) SetTargetUser(v int32) {
-	o.TargetUser = v
+	o.TargetUser = &v
 }
 
-// GetTargetSkiarea returns the TargetSkiarea field value
+// GetTargetSkiarea returns the TargetSkiarea field value if set, zero value otherwise.
 func (o *TimelineSettingModel) GetTargetSkiarea() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TargetSkiarea) {
 		var ret int32
 		return ret
 	}
-
-	return o.TargetSkiarea
+	return *o.TargetSkiarea
 }
 
-// GetTargetSkiareaOk returns a tuple with the TargetSkiarea field value
+// GetTargetSkiareaOk returns a tuple with the TargetSkiarea field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TimelineSettingModel) GetTargetSkiareaOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TargetSkiarea) {
 		return nil, false
 	}
-	return &o.TargetSkiarea, true
+	return o.TargetSkiarea, true
 }
 
-// SetTargetSkiarea sets field value
+// HasTargetSkiarea returns a boolean if a field has been set.
+func (o *TimelineSettingModel) HasTargetSkiarea() bool {
+	if o != nil && !IsNil(o.TargetSkiarea) {
+		return true
+	}
+
+	return false
+}
+
+// SetTargetSkiarea gets a reference to the given int32 and assigns it to the TargetSkiarea field.
 func (o *TimelineSettingModel) SetTargetSkiarea(v int32) {
-	o.TargetSkiarea = v
+	o.TargetSkiarea = &v
 }
 
 func (o TimelineSettingModel) MarshalJSON() ([]byte, error) {
@@ -100,45 +113,38 @@ func (o TimelineSettingModel) MarshalJSON() ([]byte, error) {
 
 func (o TimelineSettingModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["target_user"] = o.TargetUser
-	toSerialize["target_skiarea"] = o.TargetSkiarea
+	if !IsNil(o.TargetUser) {
+		toSerialize["target_user"] = o.TargetUser
+	}
+	if !IsNil(o.TargetSkiarea) {
+		toSerialize["target_skiarea"] = o.TargetSkiarea
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *TimelineSettingModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"target_user",
-		"target_skiarea",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varTimelineSettingModel := _TimelineSettingModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varTimelineSettingModel)
+	err = json.Unmarshal(data, &varTimelineSettingModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = TimelineSettingModel(varTimelineSettingModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "target_user")
+		delete(additionalProperties, "target_skiarea")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

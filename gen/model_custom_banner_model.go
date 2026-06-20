@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CustomBannerModel type satisfies the MappedNullable interface at compile time
@@ -17,14 +15,15 @@ var _ MappedNullable = &CustomBannerModel{}
 
 // CustomBannerModel struct for CustomBannerModel
 type CustomBannerModel struct {
-	Id        int32  `json:"id"`
-	SkiareaId int32  `json:"skiarea_id"`
-	LinkUrl   string `json:"link_url"`
-	Image     string `json:"image"`
-	LinkText  string `json:"link_text"`
-	SortKey   int32  `json:"sort_key"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	Id                   *int32  `json:"id,omitempty"`
+	SkiareaId            *int32  `json:"skiarea_id,omitempty"`
+	LinkUrl              *string `json:"link_url,omitempty"`
+	Image                *string `json:"image,omitempty"`
+	LinkText             *string `json:"link_text,omitempty"`
+	SortKey              *int32  `json:"sort_key,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CustomBannerModel CustomBannerModel
@@ -33,16 +32,8 @@ type _CustomBannerModel CustomBannerModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCustomBannerModel(id int32, skiareaId int32, linkUrl string, image string, linkText string, sortKey int32, createdAt string, updatedAt string) *CustomBannerModel {
+func NewCustomBannerModel() *CustomBannerModel {
 	this := CustomBannerModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.LinkUrl = linkUrl
-	this.Image = image
-	this.LinkText = linkText
-	this.SortKey = sortKey
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -54,196 +45,260 @@ func NewCustomBannerModelWithDefaults() *CustomBannerModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *CustomBannerModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *CustomBannerModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetLinkUrl returns the LinkUrl field value
+// GetLinkUrl returns the LinkUrl field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetLinkUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.LinkUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.LinkUrl
+	return *o.LinkUrl
 }
 
-// GetLinkUrlOk returns a tuple with the LinkUrl field value
+// GetLinkUrlOk returns a tuple with the LinkUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetLinkUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinkUrl) {
 		return nil, false
 	}
-	return &o.LinkUrl, true
+	return o.LinkUrl, true
 }
 
-// SetLinkUrl sets field value
+// HasLinkUrl returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasLinkUrl() bool {
+	if o != nil && !IsNil(o.LinkUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkUrl gets a reference to the given string and assigns it to the LinkUrl field.
 func (o *CustomBannerModel) SetLinkUrl(v string) {
-	o.LinkUrl = v
+	o.LinkUrl = &v
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret string
 		return ret
 	}
-
-	return o.Image
+	return *o.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		return nil, false
 	}
-	return &o.Image, true
+	return o.Image, true
 }
 
-// SetImage sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasImage() bool {
+	if o != nil && !IsNil(o.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given string and assigns it to the Image field.
 func (o *CustomBannerModel) SetImage(v string) {
-	o.Image = v
+	o.Image = &v
 }
 
-// GetLinkText returns the LinkText field value
+// GetLinkText returns the LinkText field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetLinkText() string {
-	if o == nil {
+	if o == nil || IsNil(o.LinkText) {
 		var ret string
 		return ret
 	}
-
-	return o.LinkText
+	return *o.LinkText
 }
 
-// GetLinkTextOk returns a tuple with the LinkText field value
+// GetLinkTextOk returns a tuple with the LinkText field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetLinkTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LinkText) {
 		return nil, false
 	}
-	return &o.LinkText, true
+	return o.LinkText, true
 }
 
-// SetLinkText sets field value
+// HasLinkText returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasLinkText() bool {
+	if o != nil && !IsNil(o.LinkText) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkText gets a reference to the given string and assigns it to the LinkText field.
 func (o *CustomBannerModel) SetLinkText(v string) {
-	o.LinkText = v
+	o.LinkText = &v
 }
 
-// GetSortKey returns the SortKey field value
+// GetSortKey returns the SortKey field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetSortKey() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SortKey) {
 		var ret int32
 		return ret
 	}
-
-	return o.SortKey
+	return *o.SortKey
 }
 
-// GetSortKeyOk returns a tuple with the SortKey field value
+// GetSortKeyOk returns a tuple with the SortKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetSortKeyOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SortKey) {
 		return nil, false
 	}
-	return &o.SortKey, true
+	return o.SortKey, true
 }
 
-// SetSortKey sets field value
+// HasSortKey returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasSortKey() bool {
+	if o != nil && !IsNil(o.SortKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetSortKey gets a reference to the given int32 and assigns it to the SortKey field.
 func (o *CustomBannerModel) SetSortKey(v int32) {
-	o.SortKey = v
+	o.SortKey = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *CustomBannerModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CustomBannerModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CustomBannerModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CustomBannerModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *CustomBannerModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o CustomBannerModel) MarshalJSON() ([]byte, error) {
@@ -256,57 +311,62 @@ func (o CustomBannerModel) MarshalJSON() ([]byte, error) {
 
 func (o CustomBannerModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["link_url"] = o.LinkUrl
-	toSerialize["image"] = o.Image
-	toSerialize["link_text"] = o.LinkText
-	toSerialize["sort_key"] = o.SortKey
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.LinkUrl) {
+		toSerialize["link_url"] = o.LinkUrl
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
+	if !IsNil(o.LinkText) {
+		toSerialize["link_text"] = o.LinkText
+	}
+	if !IsNil(o.SortKey) {
+		toSerialize["sort_key"] = o.SortKey
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *CustomBannerModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"link_url",
-		"image",
-		"link_text",
-		"sort_key",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCustomBannerModel := _CustomBannerModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCustomBannerModel)
+	err = json.Unmarshal(data, &varCustomBannerModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CustomBannerModel(varCustomBannerModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "link_url")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "link_text")
+		delete(additionalProperties, "sort_key")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

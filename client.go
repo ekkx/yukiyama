@@ -15,37 +15,38 @@ const (
 	defaultUserAgent = "Mozilla/5.0 (Linux; Android 14; SM-S908N Build/UP1A.231005.007; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/120.0.0.0 Mobile Safari/537.36"
 )
 
-// Client is the high-level yukiyama API client. It embeds each
-// auto-generated service so every operation is reachable as a flat method
-// on the client (no service-tag prefix required):
+// Client is the entry point for the yukiyama SDK. Domain operations are
+// grouped onto service-typed accessors (client.User, client.Checkin,
+// client.Common, client.Skiarea, client.Ranking, client.Safety). The full
+// session-lifecycle trio (Login, Logout, Withdraw) lives on client.User as
+// a coherent group; session-state inspection (IsAuthenticated,
+// CurrentUserID, CurrentToken, SetSession) stays on the client itself
+// because it never touches the network. For endpoints not yet covered by
+// a service, Gen() returns the raw generated *gen.APIClient as an escape
+// hatch:
 //
-//	client.GetMyProfile(ctx)                   // handwritten facade
-//	client.GetMaster(ctx).Execute()            // generated builder, flat
-//	client.ListMyCoupons(ctx).Execute()        // generated builder, flat
-//
-// When the same name exists on both a handwritten facade and an embedded
-// gen service, Go's method-resolution rules pick the facade (the outer
-// type shadows the promoted method). Reach for the gen builder explicitly
-// via the embedded field name (e.g. client.CommonAPIService.GetHomeData)
-// or via Gen() for the full *gen.APIClient escape hatch.
+//	client.User.Login(ctx)                          // session lifecycle
+//	client.User.Logout()                            // session lifecycle (local)
+//	client.Skiarea.SearchSkiareasByLocation(ctx, lat, lng, yukiyama.SearchSkiareasByLocationOptions{})
+//	client.Gen().CommonAPI.SomeNewOp(ctx).Execute() // escape hatch
 //
 // Authentication state (user_id, token) is injected onto every request by
-// the underlying authTransport, so callers should not set those query
-// params manually.
+// the underlying transport, so callers should not set those query params
+// manually.
 type Client struct {
-	// Flat-promoted generated services. Methods on each are reachable
-	// directly on *Client unless shadowed by a handwritten facade.
-	*gen.CheckinAPIService
-	*gen.CommonAPIService
-	*gen.RankingAPIService
-	*gen.SafetyAPIService
-	*gen.SkiareaAPIService
-	*gen.UserAPIService
-
-	// api is the underlying gen.APIClient. Used by the SDK internally and
-	// exposed via Gen() as an escape hatch for callers that want to reach
-	// the whole gen surface in one place.
+	// api is the underlying generated API client. Used by the SDK internally
+	// and exposed via Gen() as an escape hatch for callers that want to
+	// reach the whole generated surface in one place.
 	api *gen.APIClient
+
+	// Service-grouped facades. Each one groups operations under a single
+	// wire-path prefix and owns the wire-quirk corrections for that group.
+	Checkin *CheckinService
+	Common  *CommonService
+	Ranking *RankingService
+	Safety  *SafetyService
+	Skiarea *SkiareaService
+	User    *UserService
 
 	cfg     *config
 	session *Session
@@ -123,16 +124,16 @@ func NewClient(opts ...Option) (*Client, error) {
 	genCfg.HTTPClient = wrappedHTTP
 
 	c.api = gen.NewAPIClient(genCfg)
-	// Wire each generated service onto the embed slot so methods promote
-	// directly onto *Client. The gen layer shares one internal `service`
-	// struct across every XxxAPIService, so these assignments are pointer
-	// aliasing into the same underlying state — no extra allocation.
-	c.CheckinAPIService = c.api.CheckinAPI
-	c.CommonAPIService = c.api.CommonAPI
-	c.RankingAPIService = c.api.RankingAPI
-	c.SafetyAPIService = c.api.SafetyAPI
-	c.SkiareaAPIService = c.api.SkiareaAPI
-	c.UserAPIService = c.api.UserAPI
+
+	// Wire service-grouped facades. Each service holds a back-pointer to the
+	// Client so methods reach the gen layer via c.api.XAPI and inherit the
+	// session / autoLogin / autoRetry behavior on every call.
+	c.Checkin = &CheckinService{c: c}
+	c.Common = &CommonService{c: c}
+	c.Ranking = &RankingService{c: c}
+	c.Safety = &SafetyService{c: c}
+	c.Skiarea = &SkiareaService{c: c}
+	c.User = &UserService{c: c}
 
 	// Hydrate session from the configured SessionStore. Failures are logged
 	// and swallowed: a missing or unreadable store should not block
@@ -157,17 +158,19 @@ func (c *Client) IsAuthenticated() bool {
 	return c.session.IsAuthenticated()
 }
 
-// Gen returns the underlying *gen.APIClient. Day-to-day callers do not need
-// this — every operation is already promoted onto *Client via embedded
-// service pointers — but it is useful when you need the gen client as a
-// value (e.g. passing to a helper) or want to reach a specific service
-// when a facade has shadowed its name (see CommonAPIService et al. on the
-// embed slot, or call client.Gen().CommonAPI.GetHomeData(ctx) here).
+// Gen returns the underlying *gen.APIClient as an escape hatch for endpoints
+// the service-grouped accessors do not yet wrap. Typical use:
 //
-// Auth (user_id / token / version) is injected by authTransport on every
-// path, so calls through Gen() are authenticated identically; only the
-// ensureSession() pre-check and any facade-level rename / Options
-// ergonomics are skipped.
+//	res, _, err := client.Gen().CommonAPI.SomeNewOp(ctx).Execute()
+//
+// Prefer the service-grouped accessor (client.User, client.Checkin, ...)
+// when one exists — those wrap wire-naming quirks and content-schema version
+// pinning that callers would otherwise have to remember endpoint-by-endpoint.
+//
+// Auth (user_id / token / version) is injected by the underlying transport on
+// every path, so calls through Gen() are authenticated identically; only the
+// ensureSession() pre-check and the service-level rename / Options ergonomics
+// are skipped.
 func (c *Client) Gen() *gen.APIClient {
 	return c.api
 }

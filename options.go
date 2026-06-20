@@ -68,8 +68,8 @@ func WithLogger(l Logger) Option {
 }
 
 // WithAutoLogin toggles automatic Login on the first authenticated call.
-// Default: true. When false, callers must invoke client.Login(ctx) explicitly
-// or set the session out-of-band before issuing API calls.
+// Default: true. When false, callers must invoke client.User.Login(ctx)
+// explicitly or set the session out-of-band before issuing API calls.
 func WithAutoLogin(enabled bool) Option {
 	return func(c *config) {
 		c.autoLogin = enabled
@@ -82,8 +82,9 @@ func WithAutoLogin(enabled bool) Option {
 //
 //   - NewClient calls store.Load(ctx) and seeds the in-memory session from it
 //     (unless WithAutoLoadSession(false) is also set).
-//   - Login() and the transparent 103 re-login both Save() the new session.
-//   - Logout() Clear()s the store.
+//   - client.User.Login() and the transparent 103 re-login both Save() the
+//     new session.
+//   - client.User.Logout() Clear()s the store.
 //
 // Common implementations:
 //

@@ -15,17 +15,17 @@ var _ MappedNullable = &UserGetResponse{}
 
 // UserGetResponse struct for UserGetResponse
 type UserGetResponse struct {
-	// 対象ユーザの user_id (string。profile.id は number で別)。実 API の wire 不整合を吸収。
-	UserIdString          *string                                      `json:"user_id_string,omitempty"`
-	CouponDistributionNum NullableUserGetResponseCouponDistributionNum `json:"coupon_distribution_num,omitempty"`
+	// 対象ユーザの user_id (string)。profile.id は number で別フィールド (Go 側は型で区別)。
+	Id                    *string                               `json:"id,omitempty"`
+	CouponDistributionNum *UserGetResponseCouponDistributionNum `json:"coupon_distribution_num,omitempty"`
 	// common envelope status。
 	Status        *bool                    `json:"status,omitempty"`
 	Profile       *ProfileModel            `json:"profile,omitempty"`
 	Checkin       []CheckinModel           `json:"checkin,omitempty"`
 	CheckinSeason []map[string]interface{} `json:"checkin_season,omitempty"`
-	Favorite      []SkiareaModel           `json:"favorite,omitempty"`
-	Follow        []ProfileModel           `json:"follow,omitempty"`
-	Follower      []ProfileModel           `json:"follower,omitempty"`
+	Favorite      []map[string]interface{} `json:"favorite,omitempty"`
+	Follow        []map[string]interface{} `json:"follow,omitempty"`
+	Follower      []map[string]interface{} `json:"follower,omitempty"`
 	// フォロー中の人数。
 	FollowCount *int32 `json:"follow_count,omitempty"`
 	// フォロワー数。
@@ -35,9 +35,9 @@ type UserGetResponse struct {
 	// 対象が自分をフォローしているか。
 	IsFollow *bool `json:"is_follow,omitempty"`
 	// 対象を自分がフォローしているか。
-	IsFollower     *bool               `json:"is_follower,omitempty"`
-	StanceCount    *int32              `json:"stance_count,omitempty"`
-	FavoriteStance NullableStanceModel `json:"favorite_stance,omitempty"`
+	IsFollower     *bool                          `json:"is_follower,omitempty"`
+	StanceCount    *int32                         `json:"stance_count,omitempty"`
+	FavoriteStance *UserGetResponseFavoriteStance `json:"favorite_stance,omitempty"`
 	// 訪問スキー場の visit count。
 	VisitSkiarea         *int32 `json:"visit_skiarea,omitempty"`
 	IsBlock              *bool  `json:"is_block,omitempty"`
@@ -64,79 +64,68 @@ func NewUserGetResponseWithDefaults() *UserGetResponse {
 	return &this
 }
 
-// GetUserIdString returns the UserIdString field value if set, zero value otherwise.
-func (o *UserGetResponse) GetUserIdString() string {
-	if o == nil || IsNil(o.UserIdString) {
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *UserGetResponse) GetId() string {
+	if o == nil || IsNil(o.Id) {
 		var ret string
 		return ret
 	}
-	return *o.UserIdString
+	return *o.Id
 }
 
-// GetUserIdStringOk returns a tuple with the UserIdString field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserGetResponse) GetUserIdStringOk() (*string, bool) {
-	if o == nil || IsNil(o.UserIdString) {
+func (o *UserGetResponse) GetIdOk() (*string, bool) {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return o.UserIdString, true
+	return o.Id, true
 }
 
-// HasUserIdString returns a boolean if a field has been set.
-func (o *UserGetResponse) HasUserIdString() bool {
-	if o != nil && !IsNil(o.UserIdString) {
+// HasId returns a boolean if a field has been set.
+func (o *UserGetResponse) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
 		return true
 	}
 
 	return false
 }
 
-// SetUserIdString gets a reference to the given string and assigns it to the UserIdString field.
-func (o *UserGetResponse) SetUserIdString(v string) {
-	o.UserIdString = &v
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *UserGetResponse) SetId(v string) {
+	o.Id = &v
 }
 
-// GetCouponDistributionNum returns the CouponDistributionNum field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetCouponDistributionNum returns the CouponDistributionNum field value if set, zero value otherwise.
 func (o *UserGetResponse) GetCouponDistributionNum() UserGetResponseCouponDistributionNum {
-	if o == nil || IsNil(o.CouponDistributionNum.Get()) {
+	if o == nil || IsNil(o.CouponDistributionNum) {
 		var ret UserGetResponseCouponDistributionNum
 		return ret
 	}
-	return *o.CouponDistributionNum.Get()
+	return *o.CouponDistributionNum
 }
 
 // GetCouponDistributionNumOk returns a tuple with the CouponDistributionNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserGetResponse) GetCouponDistributionNumOk() (*UserGetResponseCouponDistributionNum, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CouponDistributionNum) {
 		return nil, false
 	}
-	return o.CouponDistributionNum.Get(), o.CouponDistributionNum.IsSet()
+	return o.CouponDistributionNum, true
 }
 
 // HasCouponDistributionNum returns a boolean if a field has been set.
 func (o *UserGetResponse) HasCouponDistributionNum() bool {
-	if o != nil && o.CouponDistributionNum.IsSet() {
+	if o != nil && !IsNil(o.CouponDistributionNum) {
 		return true
 	}
 
 	return false
 }
 
-// SetCouponDistributionNum gets a reference to the given NullableUserGetResponseCouponDistributionNum and assigns it to the CouponDistributionNum field.
+// SetCouponDistributionNum gets a reference to the given UserGetResponseCouponDistributionNum and assigns it to the CouponDistributionNum field.
 func (o *UserGetResponse) SetCouponDistributionNum(v UserGetResponseCouponDistributionNum) {
-	o.CouponDistributionNum.Set(&v)
-}
-
-// SetCouponDistributionNumNil sets the value for CouponDistributionNum to be an explicit nil
-func (o *UserGetResponse) SetCouponDistributionNumNil() {
-	o.CouponDistributionNum.Set(nil)
-}
-
-// UnsetCouponDistributionNum ensures that no value is present for CouponDistributionNum, not even an explicit nil
-func (o *UserGetResponse) UnsetCouponDistributionNum() {
-	o.CouponDistributionNum.Unset()
+	o.CouponDistributionNum = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -268,9 +257,9 @@ func (o *UserGetResponse) SetCheckinSeason(v []map[string]interface{}) {
 }
 
 // GetFavorite returns the Favorite field value if set, zero value otherwise.
-func (o *UserGetResponse) GetFavorite() []SkiareaModel {
+func (o *UserGetResponse) GetFavorite() []map[string]interface{} {
 	if o == nil || IsNil(o.Favorite) {
-		var ret []SkiareaModel
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Favorite
@@ -278,7 +267,7 @@ func (o *UserGetResponse) GetFavorite() []SkiareaModel {
 
 // GetFavoriteOk returns a tuple with the Favorite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserGetResponse) GetFavoriteOk() ([]SkiareaModel, bool) {
+func (o *UserGetResponse) GetFavoriteOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Favorite) {
 		return nil, false
 	}
@@ -294,15 +283,15 @@ func (o *UserGetResponse) HasFavorite() bool {
 	return false
 }
 
-// SetFavorite gets a reference to the given []SkiareaModel and assigns it to the Favorite field.
-func (o *UserGetResponse) SetFavorite(v []SkiareaModel) {
+// SetFavorite gets a reference to the given []map[string]interface{} and assigns it to the Favorite field.
+func (o *UserGetResponse) SetFavorite(v []map[string]interface{}) {
 	o.Favorite = v
 }
 
 // GetFollow returns the Follow field value if set, zero value otherwise.
-func (o *UserGetResponse) GetFollow() []ProfileModel {
+func (o *UserGetResponse) GetFollow() []map[string]interface{} {
 	if o == nil || IsNil(o.Follow) {
-		var ret []ProfileModel
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Follow
@@ -310,7 +299,7 @@ func (o *UserGetResponse) GetFollow() []ProfileModel {
 
 // GetFollowOk returns a tuple with the Follow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserGetResponse) GetFollowOk() ([]ProfileModel, bool) {
+func (o *UserGetResponse) GetFollowOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Follow) {
 		return nil, false
 	}
@@ -326,15 +315,15 @@ func (o *UserGetResponse) HasFollow() bool {
 	return false
 }
 
-// SetFollow gets a reference to the given []ProfileModel and assigns it to the Follow field.
-func (o *UserGetResponse) SetFollow(v []ProfileModel) {
+// SetFollow gets a reference to the given []map[string]interface{} and assigns it to the Follow field.
+func (o *UserGetResponse) SetFollow(v []map[string]interface{}) {
 	o.Follow = v
 }
 
 // GetFollower returns the Follower field value if set, zero value otherwise.
-func (o *UserGetResponse) GetFollower() []ProfileModel {
+func (o *UserGetResponse) GetFollower() []map[string]interface{} {
 	if o == nil || IsNil(o.Follower) {
-		var ret []ProfileModel
+		var ret []map[string]interface{}
 		return ret
 	}
 	return o.Follower
@@ -342,7 +331,7 @@ func (o *UserGetResponse) GetFollower() []ProfileModel {
 
 // GetFollowerOk returns a tuple with the Follower field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UserGetResponse) GetFollowerOk() ([]ProfileModel, bool) {
+func (o *UserGetResponse) GetFollowerOk() ([]map[string]interface{}, bool) {
 	if o == nil || IsNil(o.Follower) {
 		return nil, false
 	}
@@ -358,8 +347,8 @@ func (o *UserGetResponse) HasFollower() bool {
 	return false
 }
 
-// SetFollower gets a reference to the given []ProfileModel and assigns it to the Follower field.
-func (o *UserGetResponse) SetFollower(v []ProfileModel) {
+// SetFollower gets a reference to the given []map[string]interface{} and assigns it to the Follower field.
+func (o *UserGetResponse) SetFollower(v []map[string]interface{}) {
 	o.Follower = v
 }
 
@@ -555,47 +544,36 @@ func (o *UserGetResponse) SetStanceCount(v int32) {
 	o.StanceCount = &v
 }
 
-// GetFavoriteStance returns the FavoriteStance field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *UserGetResponse) GetFavoriteStance() StanceModel {
-	if o == nil || IsNil(o.FavoriteStance.Get()) {
-		var ret StanceModel
+// GetFavoriteStance returns the FavoriteStance field value if set, zero value otherwise.
+func (o *UserGetResponse) GetFavoriteStance() UserGetResponseFavoriteStance {
+	if o == nil || IsNil(o.FavoriteStance) {
+		var ret UserGetResponseFavoriteStance
 		return ret
 	}
-	return *o.FavoriteStance.Get()
+	return *o.FavoriteStance
 }
 
 // GetFavoriteStanceOk returns a tuple with the FavoriteStance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UserGetResponse) GetFavoriteStanceOk() (*StanceModel, bool) {
-	if o == nil {
+func (o *UserGetResponse) GetFavoriteStanceOk() (*UserGetResponseFavoriteStance, bool) {
+	if o == nil || IsNil(o.FavoriteStance) {
 		return nil, false
 	}
-	return o.FavoriteStance.Get(), o.FavoriteStance.IsSet()
+	return o.FavoriteStance, true
 }
 
 // HasFavoriteStance returns a boolean if a field has been set.
 func (o *UserGetResponse) HasFavoriteStance() bool {
-	if o != nil && o.FavoriteStance.IsSet() {
+	if o != nil && !IsNil(o.FavoriteStance) {
 		return true
 	}
 
 	return false
 }
 
-// SetFavoriteStance gets a reference to the given NullableStanceModel and assigns it to the FavoriteStance field.
-func (o *UserGetResponse) SetFavoriteStance(v StanceModel) {
-	o.FavoriteStance.Set(&v)
-}
-
-// SetFavoriteStanceNil sets the value for FavoriteStance to be an explicit nil
-func (o *UserGetResponse) SetFavoriteStanceNil() {
-	o.FavoriteStance.Set(nil)
-}
-
-// UnsetFavoriteStance ensures that no value is present for FavoriteStance, not even an explicit nil
-func (o *UserGetResponse) UnsetFavoriteStance() {
-	o.FavoriteStance.Unset()
+// SetFavoriteStance gets a reference to the given UserGetResponseFavoriteStance and assigns it to the FavoriteStance field.
+func (o *UserGetResponse) SetFavoriteStance(v UserGetResponseFavoriteStance) {
+	o.FavoriteStance = &v
 }
 
 // GetVisitSkiarea returns the VisitSkiarea field value if set, zero value otherwise.
@@ -704,11 +682,11 @@ func (o UserGetResponse) MarshalJSON() ([]byte, error) {
 
 func (o UserGetResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.UserIdString) {
-		toSerialize["user_id_string"] = o.UserIdString
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
 	}
-	if o.CouponDistributionNum.IsSet() {
-		toSerialize["coupon_distribution_num"] = o.CouponDistributionNum.Get()
+	if !IsNil(o.CouponDistributionNum) {
+		toSerialize["coupon_distribution_num"] = o.CouponDistributionNum
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -749,8 +727,8 @@ func (o UserGetResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.StanceCount) {
 		toSerialize["stance_count"] = o.StanceCount
 	}
-	if o.FavoriteStance.IsSet() {
-		toSerialize["favorite_stance"] = o.FavoriteStance.Get()
+	if !IsNil(o.FavoriteStance) {
+		toSerialize["favorite_stance"] = o.FavoriteStance
 	}
 	if !IsNil(o.VisitSkiarea) {
 		toSerialize["visit_skiarea"] = o.VisitSkiarea
@@ -783,7 +761,7 @@ func (o *UserGetResponse) UnmarshalJSON(data []byte) (err error) {
 	additionalProperties := make(map[string]interface{})
 
 	if err = json.Unmarshal(data, &additionalProperties); err == nil {
-		delete(additionalProperties, "user_id_string")
+		delete(additionalProperties, "id")
 		delete(additionalProperties, "coupon_distribution_num")
 		delete(additionalProperties, "status")
 		delete(additionalProperties, "profile")

@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ScheduleModel type satisfies the MappedNullable interface at compile time
@@ -17,24 +15,25 @@ var _ MappedNullable = &ScheduleModel{}
 
 // ScheduleModel struct for ScheduleModel
 type ScheduleModel struct {
-	Id                 int32                   `json:"id"`
-	UserId             int32                   `json:"user_id"`
-	From               string                  `json:"from"`
-	To                 string                  `json:"to"`
-	SkiareaId          int32                   `json:"skiarea_id"`
-	NoDestinationYet   int32                   `json:"no_destination_yet"`
-	PublicType         int32                   `json:"public_type"`
-	IsPush             int32                   `json:"is_push"`
-	IsWelcome          int32                   `json:"is_welcome"`
-	IsPushCheckinAlert int32                   `json:"is_push_checkin_alert"`
-	Memo               string                  `json:"memo"`
-	SkiareaName        string                  `json:"skiarea_name"`
-	SkiareaLogoImage   string                  `json:"skiarea_logo_image"`
-	PrefCode           int32                   `json:"pref_code"`
-	Nickname           string                  `json:"nickname"`
-	UserIconImage      string                  `json:"user_icon_image"`
-	IsJoin             bool                    `json:"is_join"`
-	ScheduleJoinUsers  []ScheduleJoinUserModel `json:"schedule_join_users"`
+	Id                   *int32                  `json:"id,omitempty"`
+	UserId               *int32                  `json:"user_id,omitempty"`
+	From                 *string                 `json:"from,omitempty"`
+	To                   *string                 `json:"to,omitempty"`
+	SkiareaId            *int32                  `json:"skiarea_id,omitempty"`
+	NoDestinationYet     *int32                  `json:"no_destination_yet,omitempty"`
+	PublicType           *int32                  `json:"public_type,omitempty"`
+	IsPush               *int32                  `json:"is_push,omitempty"`
+	IsWelcome            *int32                  `json:"is_welcome,omitempty"`
+	IsPushCheckinAlert   *int32                  `json:"is_push_checkin_alert,omitempty"`
+	Memo                 *string                 `json:"memo,omitempty"`
+	SkiareaName          *string                 `json:"skiarea_name,omitempty"`
+	SkiareaLogoImage     *string                 `json:"skiarea_logo_image,omitempty"`
+	PrefCode             *int32                  `json:"pref_code,omitempty"`
+	Nickname             *string                 `json:"nickname,omitempty"`
+	UserIconImage        *string                 `json:"user_icon_image,omitempty"`
+	IsJoin               *bool                   `json:"is_join,omitempty"`
+	ScheduleJoinUsers    []ScheduleJoinUserModel `json:"schedule_join_users,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ScheduleModel ScheduleModel
@@ -43,26 +42,8 @@ type _ScheduleModel ScheduleModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScheduleModel(id int32, userId int32, from string, to string, skiareaId int32, noDestinationYet int32, publicType int32, isPush int32, isWelcome int32, isPushCheckinAlert int32, memo string, skiareaName string, skiareaLogoImage string, prefCode int32, nickname string, userIconImage string, isJoin bool, scheduleJoinUsers []ScheduleJoinUserModel) *ScheduleModel {
+func NewScheduleModel() *ScheduleModel {
 	this := ScheduleModel{}
-	this.Id = id
-	this.UserId = userId
-	this.From = from
-	this.To = to
-	this.SkiareaId = skiareaId
-	this.NoDestinationYet = noDestinationYet
-	this.PublicType = publicType
-	this.IsPush = isPush
-	this.IsWelcome = isWelcome
-	this.IsPushCheckinAlert = isPushCheckinAlert
-	this.Memo = memo
-	this.SkiareaName = skiareaName
-	this.SkiareaLogoImage = skiareaLogoImage
-	this.PrefCode = prefCode
-	this.Nickname = nickname
-	this.UserIconImage = userIconImage
-	this.IsJoin = isJoin
-	this.ScheduleJoinUsers = scheduleJoinUsers
 	return &this
 }
 
@@ -74,434 +55,578 @@ func NewScheduleModelWithDefaults() *ScheduleModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *ScheduleModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *ScheduleModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *ScheduleModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *ScheduleModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *ScheduleModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *ScheduleModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetFrom returns the From field value
+// GetFrom returns the From field value if set, zero value otherwise.
 func (o *ScheduleModel) GetFrom() string {
-	if o == nil {
+	if o == nil || IsNil(o.From) {
 		var ret string
 		return ret
 	}
-
-	return o.From
+	return *o.From
 }
 
-// GetFromOk returns a tuple with the From field value
+// GetFromOk returns a tuple with the From field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetFromOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.From) {
 		return nil, false
 	}
-	return &o.From, true
+	return o.From, true
 }
 
-// SetFrom sets field value
+// HasFrom returns a boolean if a field has been set.
+func (o *ScheduleModel) HasFrom() bool {
+	if o != nil && !IsNil(o.From) {
+		return true
+	}
+
+	return false
+}
+
+// SetFrom gets a reference to the given string and assigns it to the From field.
 func (o *ScheduleModel) SetFrom(v string) {
-	o.From = v
+	o.From = &v
 }
 
-// GetTo returns the To field value
+// GetTo returns the To field value if set, zero value otherwise.
 func (o *ScheduleModel) GetTo() string {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		var ret string
 		return ret
 	}
-
-	return o.To
+	return *o.To
 }
 
-// GetToOk returns a tuple with the To field value
+// GetToOk returns a tuple with the To field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetToOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.To) {
 		return nil, false
 	}
-	return &o.To, true
+	return o.To, true
 }
 
-// SetTo sets field value
+// HasTo returns a boolean if a field has been set.
+func (o *ScheduleModel) HasTo() bool {
+	if o != nil && !IsNil(o.To) {
+		return true
+	}
+
+	return false
+}
+
+// SetTo gets a reference to the given string and assigns it to the To field.
 func (o *ScheduleModel) SetTo(v string) {
-	o.To = v
+	o.To = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *ScheduleModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *ScheduleModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *ScheduleModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetNoDestinationYet returns the NoDestinationYet field value
+// GetNoDestinationYet returns the NoDestinationYet field value if set, zero value otherwise.
 func (o *ScheduleModel) GetNoDestinationYet() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NoDestinationYet) {
 		var ret int32
 		return ret
 	}
-
-	return o.NoDestinationYet
+	return *o.NoDestinationYet
 }
 
-// GetNoDestinationYetOk returns a tuple with the NoDestinationYet field value
+// GetNoDestinationYetOk returns a tuple with the NoDestinationYet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetNoDestinationYetOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NoDestinationYet) {
 		return nil, false
 	}
-	return &o.NoDestinationYet, true
+	return o.NoDestinationYet, true
 }
 
-// SetNoDestinationYet sets field value
+// HasNoDestinationYet returns a boolean if a field has been set.
+func (o *ScheduleModel) HasNoDestinationYet() bool {
+	if o != nil && !IsNil(o.NoDestinationYet) {
+		return true
+	}
+
+	return false
+}
+
+// SetNoDestinationYet gets a reference to the given int32 and assigns it to the NoDestinationYet field.
 func (o *ScheduleModel) SetNoDestinationYet(v int32) {
-	o.NoDestinationYet = v
+	o.NoDestinationYet = &v
 }
 
-// GetPublicType returns the PublicType field value
+// GetPublicType returns the PublicType field value if set, zero value otherwise.
 func (o *ScheduleModel) GetPublicType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PublicType) {
 		var ret int32
 		return ret
 	}
-
-	return o.PublicType
+	return *o.PublicType
 }
 
-// GetPublicTypeOk returns a tuple with the PublicType field value
+// GetPublicTypeOk returns a tuple with the PublicType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetPublicTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PublicType) {
 		return nil, false
 	}
-	return &o.PublicType, true
+	return o.PublicType, true
 }
 
-// SetPublicType sets field value
+// HasPublicType returns a boolean if a field has been set.
+func (o *ScheduleModel) HasPublicType() bool {
+	if o != nil && !IsNil(o.PublicType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicType gets a reference to the given int32 and assigns it to the PublicType field.
 func (o *ScheduleModel) SetPublicType(v int32) {
-	o.PublicType = v
+	o.PublicType = &v
 }
 
-// GetIsPush returns the IsPush field value
+// GetIsPush returns the IsPush field value if set, zero value otherwise.
 func (o *ScheduleModel) GetIsPush() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsPush) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsPush
+	return *o.IsPush
 }
 
-// GetIsPushOk returns a tuple with the IsPush field value
+// GetIsPushOk returns a tuple with the IsPush field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetIsPushOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsPush) {
 		return nil, false
 	}
-	return &o.IsPush, true
+	return o.IsPush, true
 }
 
-// SetIsPush sets field value
+// HasIsPush returns a boolean if a field has been set.
+func (o *ScheduleModel) HasIsPush() bool {
+	if o != nil && !IsNil(o.IsPush) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPush gets a reference to the given int32 and assigns it to the IsPush field.
 func (o *ScheduleModel) SetIsPush(v int32) {
-	o.IsPush = v
+	o.IsPush = &v
 }
 
-// GetIsWelcome returns the IsWelcome field value
+// GetIsWelcome returns the IsWelcome field value if set, zero value otherwise.
 func (o *ScheduleModel) GetIsWelcome() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsWelcome) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsWelcome
+	return *o.IsWelcome
 }
 
-// GetIsWelcomeOk returns a tuple with the IsWelcome field value
+// GetIsWelcomeOk returns a tuple with the IsWelcome field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetIsWelcomeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsWelcome) {
 		return nil, false
 	}
-	return &o.IsWelcome, true
+	return o.IsWelcome, true
 }
 
-// SetIsWelcome sets field value
+// HasIsWelcome returns a boolean if a field has been set.
+func (o *ScheduleModel) HasIsWelcome() bool {
+	if o != nil && !IsNil(o.IsWelcome) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsWelcome gets a reference to the given int32 and assigns it to the IsWelcome field.
 func (o *ScheduleModel) SetIsWelcome(v int32) {
-	o.IsWelcome = v
+	o.IsWelcome = &v
 }
 
-// GetIsPushCheckinAlert returns the IsPushCheckinAlert field value
+// GetIsPushCheckinAlert returns the IsPushCheckinAlert field value if set, zero value otherwise.
 func (o *ScheduleModel) GetIsPushCheckinAlert() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsPushCheckinAlert) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsPushCheckinAlert
+	return *o.IsPushCheckinAlert
 }
 
-// GetIsPushCheckinAlertOk returns a tuple with the IsPushCheckinAlert field value
+// GetIsPushCheckinAlertOk returns a tuple with the IsPushCheckinAlert field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetIsPushCheckinAlertOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsPushCheckinAlert) {
 		return nil, false
 	}
-	return &o.IsPushCheckinAlert, true
+	return o.IsPushCheckinAlert, true
 }
 
-// SetIsPushCheckinAlert sets field value
+// HasIsPushCheckinAlert returns a boolean if a field has been set.
+func (o *ScheduleModel) HasIsPushCheckinAlert() bool {
+	if o != nil && !IsNil(o.IsPushCheckinAlert) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPushCheckinAlert gets a reference to the given int32 and assigns it to the IsPushCheckinAlert field.
 func (o *ScheduleModel) SetIsPushCheckinAlert(v int32) {
-	o.IsPushCheckinAlert = v
+	o.IsPushCheckinAlert = &v
 }
 
-// GetMemo returns the Memo field value
+// GetMemo returns the Memo field value if set, zero value otherwise.
 func (o *ScheduleModel) GetMemo() string {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		var ret string
 		return ret
 	}
-
-	return o.Memo
+	return *o.Memo
 }
 
-// GetMemoOk returns a tuple with the Memo field value
+// GetMemoOk returns a tuple with the Memo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetMemoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		return nil, false
 	}
-	return &o.Memo, true
+	return o.Memo, true
 }
 
-// SetMemo sets field value
+// HasMemo returns a boolean if a field has been set.
+func (o *ScheduleModel) HasMemo() bool {
+	if o != nil && !IsNil(o.Memo) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemo gets a reference to the given string and assigns it to the Memo field.
 func (o *ScheduleModel) SetMemo(v string) {
-	o.Memo = v
+	o.Memo = &v
 }
 
-// GetSkiareaName returns the SkiareaName field value
+// GetSkiareaName returns the SkiareaName field value if set, zero value otherwise.
 func (o *ScheduleModel) GetSkiareaName() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaName) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaName
+	return *o.SkiareaName
 }
 
-// GetSkiareaNameOk returns a tuple with the SkiareaName field value
+// GetSkiareaNameOk returns a tuple with the SkiareaName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetSkiareaNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaName) {
 		return nil, false
 	}
-	return &o.SkiareaName, true
+	return o.SkiareaName, true
 }
 
-// SetSkiareaName sets field value
+// HasSkiareaName returns a boolean if a field has been set.
+func (o *ScheduleModel) HasSkiareaName() bool {
+	if o != nil && !IsNil(o.SkiareaName) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaName gets a reference to the given string and assigns it to the SkiareaName field.
 func (o *ScheduleModel) SetSkiareaName(v string) {
-	o.SkiareaName = v
+	o.SkiareaName = &v
 }
 
-// GetSkiareaLogoImage returns the SkiareaLogoImage field value
+// GetSkiareaLogoImage returns the SkiareaLogoImage field value if set, zero value otherwise.
 func (o *ScheduleModel) GetSkiareaLogoImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaLogoImage) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaLogoImage
+	return *o.SkiareaLogoImage
 }
 
-// GetSkiareaLogoImageOk returns a tuple with the SkiareaLogoImage field value
+// GetSkiareaLogoImageOk returns a tuple with the SkiareaLogoImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetSkiareaLogoImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaLogoImage) {
 		return nil, false
 	}
-	return &o.SkiareaLogoImage, true
+	return o.SkiareaLogoImage, true
 }
 
-// SetSkiareaLogoImage sets field value
+// HasSkiareaLogoImage returns a boolean if a field has been set.
+func (o *ScheduleModel) HasSkiareaLogoImage() bool {
+	if o != nil && !IsNil(o.SkiareaLogoImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaLogoImage gets a reference to the given string and assigns it to the SkiareaLogoImage field.
 func (o *ScheduleModel) SetSkiareaLogoImage(v string) {
-	o.SkiareaLogoImage = v
+	o.SkiareaLogoImage = &v
 }
 
-// GetPrefCode returns the PrefCode field value
+// GetPrefCode returns the PrefCode field value if set, zero value otherwise.
 func (o *ScheduleModel) GetPrefCode() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PrefCode) {
 		var ret int32
 		return ret
 	}
-
-	return o.PrefCode
+	return *o.PrefCode
 }
 
-// GetPrefCodeOk returns a tuple with the PrefCode field value
+// GetPrefCodeOk returns a tuple with the PrefCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetPrefCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrefCode) {
 		return nil, false
 	}
-	return &o.PrefCode, true
+	return o.PrefCode, true
 }
 
-// SetPrefCode sets field value
+// HasPrefCode returns a boolean if a field has been set.
+func (o *ScheduleModel) HasPrefCode() bool {
+	if o != nil && !IsNil(o.PrefCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefCode gets a reference to the given int32 and assigns it to the PrefCode field.
 func (o *ScheduleModel) SetPrefCode(v int32) {
-	o.PrefCode = v
+	o.PrefCode = &v
 }
 
-// GetNickname returns the Nickname field value
+// GetNickname returns the Nickname field value if set, zero value otherwise.
 func (o *ScheduleModel) GetNickname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		var ret string
 		return ret
 	}
-
-	return o.Nickname
+	return *o.Nickname
 }
 
-// GetNicknameOk returns a tuple with the Nickname field value
+// GetNicknameOk returns a tuple with the Nickname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetNicknameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		return nil, false
 	}
-	return &o.Nickname, true
+	return o.Nickname, true
 }
 
-// SetNickname sets field value
+// HasNickname returns a boolean if a field has been set.
+func (o *ScheduleModel) HasNickname() bool {
+	if o != nil && !IsNil(o.Nickname) {
+		return true
+	}
+
+	return false
+}
+
+// SetNickname gets a reference to the given string and assigns it to the Nickname field.
 func (o *ScheduleModel) SetNickname(v string) {
-	o.Nickname = v
+	o.Nickname = &v
 }
 
-// GetUserIconImage returns the UserIconImage field value
+// GetUserIconImage returns the UserIconImage field value if set, zero value otherwise.
 func (o *ScheduleModel) GetUserIconImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserIconImage) {
 		var ret string
 		return ret
 	}
-
-	return o.UserIconImage
+	return *o.UserIconImage
 }
 
-// GetUserIconImageOk returns a tuple with the UserIconImage field value
+// GetUserIconImageOk returns a tuple with the UserIconImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetUserIconImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserIconImage) {
 		return nil, false
 	}
-	return &o.UserIconImage, true
+	return o.UserIconImage, true
 }
 
-// SetUserIconImage sets field value
+// HasUserIconImage returns a boolean if a field has been set.
+func (o *ScheduleModel) HasUserIconImage() bool {
+	if o != nil && !IsNil(o.UserIconImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserIconImage gets a reference to the given string and assigns it to the UserIconImage field.
 func (o *ScheduleModel) SetUserIconImage(v string) {
-	o.UserIconImage = v
+	o.UserIconImage = &v
 }
 
-// GetIsJoin returns the IsJoin field value
+// GetIsJoin returns the IsJoin field value if set, zero value otherwise.
 func (o *ScheduleModel) GetIsJoin() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsJoin) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsJoin
+	return *o.IsJoin
 }
 
-// GetIsJoinOk returns a tuple with the IsJoin field value
+// GetIsJoinOk returns a tuple with the IsJoin field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetIsJoinOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsJoin) {
 		return nil, false
 	}
-	return &o.IsJoin, true
+	return o.IsJoin, true
 }
 
-// SetIsJoin sets field value
+// HasIsJoin returns a boolean if a field has been set.
+func (o *ScheduleModel) HasIsJoin() bool {
+	if o != nil && !IsNil(o.IsJoin) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsJoin gets a reference to the given bool and assigns it to the IsJoin field.
 func (o *ScheduleModel) SetIsJoin(v bool) {
-	o.IsJoin = v
+	o.IsJoin = &v
 }
 
-// GetScheduleJoinUsers returns the ScheduleJoinUsers field value
+// GetScheduleJoinUsers returns the ScheduleJoinUsers field value if set, zero value otherwise.
 func (o *ScheduleModel) GetScheduleJoinUsers() []ScheduleJoinUserModel {
-	if o == nil {
+	if o == nil || IsNil(o.ScheduleJoinUsers) {
 		var ret []ScheduleJoinUserModel
 		return ret
 	}
-
 	return o.ScheduleJoinUsers
 }
 
-// GetScheduleJoinUsersOk returns a tuple with the ScheduleJoinUsers field value
+// GetScheduleJoinUsersOk returns a tuple with the ScheduleJoinUsers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleModel) GetScheduleJoinUsersOk() ([]ScheduleJoinUserModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ScheduleJoinUsers) {
 		return nil, false
 	}
 	return o.ScheduleJoinUsers, true
 }
 
-// SetScheduleJoinUsers sets field value
+// HasScheduleJoinUsers returns a boolean if a field has been set.
+func (o *ScheduleModel) HasScheduleJoinUsers() bool {
+	if o != nil && !IsNil(o.ScheduleJoinUsers) {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduleJoinUsers gets a reference to the given []ScheduleJoinUserModel and assigns it to the ScheduleJoinUsers field.
 func (o *ScheduleModel) SetScheduleJoinUsers(v []ScheduleJoinUserModel) {
 	o.ScheduleJoinUsers = v
 }
@@ -516,77 +641,102 @@ func (o ScheduleModel) MarshalJSON() ([]byte, error) {
 
 func (o ScheduleModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["user_id"] = o.UserId
-	toSerialize["from"] = o.From
-	toSerialize["to"] = o.To
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["no_destination_yet"] = o.NoDestinationYet
-	toSerialize["public_type"] = o.PublicType
-	toSerialize["is_push"] = o.IsPush
-	toSerialize["is_welcome"] = o.IsWelcome
-	toSerialize["is_push_checkin_alert"] = o.IsPushCheckinAlert
-	toSerialize["memo"] = o.Memo
-	toSerialize["skiarea_name"] = o.SkiareaName
-	toSerialize["skiarea_logo_image"] = o.SkiareaLogoImage
-	toSerialize["pref_code"] = o.PrefCode
-	toSerialize["nickname"] = o.Nickname
-	toSerialize["user_icon_image"] = o.UserIconImage
-	toSerialize["is_join"] = o.IsJoin
-	toSerialize["schedule_join_users"] = o.ScheduleJoinUsers
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.From) {
+		toSerialize["from"] = o.From
+	}
+	if !IsNil(o.To) {
+		toSerialize["to"] = o.To
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.NoDestinationYet) {
+		toSerialize["no_destination_yet"] = o.NoDestinationYet
+	}
+	if !IsNil(o.PublicType) {
+		toSerialize["public_type"] = o.PublicType
+	}
+	if !IsNil(o.IsPush) {
+		toSerialize["is_push"] = o.IsPush
+	}
+	if !IsNil(o.IsWelcome) {
+		toSerialize["is_welcome"] = o.IsWelcome
+	}
+	if !IsNil(o.IsPushCheckinAlert) {
+		toSerialize["is_push_checkin_alert"] = o.IsPushCheckinAlert
+	}
+	if !IsNil(o.Memo) {
+		toSerialize["memo"] = o.Memo
+	}
+	if !IsNil(o.SkiareaName) {
+		toSerialize["skiarea_name"] = o.SkiareaName
+	}
+	if !IsNil(o.SkiareaLogoImage) {
+		toSerialize["skiarea_logo_image"] = o.SkiareaLogoImage
+	}
+	if !IsNil(o.PrefCode) {
+		toSerialize["pref_code"] = o.PrefCode
+	}
+	if !IsNil(o.Nickname) {
+		toSerialize["nickname"] = o.Nickname
+	}
+	if !IsNil(o.UserIconImage) {
+		toSerialize["user_icon_image"] = o.UserIconImage
+	}
+	if !IsNil(o.IsJoin) {
+		toSerialize["is_join"] = o.IsJoin
+	}
+	if !IsNil(o.ScheduleJoinUsers) {
+		toSerialize["schedule_join_users"] = o.ScheduleJoinUsers
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *ScheduleModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"user_id",
-		"from",
-		"to",
-		"skiarea_id",
-		"no_destination_yet",
-		"public_type",
-		"is_push",
-		"is_welcome",
-		"is_push_checkin_alert",
-		"memo",
-		"skiarea_name",
-		"skiarea_logo_image",
-		"pref_code",
-		"nickname",
-		"user_icon_image",
-		"is_join",
-		"schedule_join_users",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varScheduleModel := _ScheduleModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varScheduleModel)
+	err = json.Unmarshal(data, &varScheduleModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ScheduleModel(varScheduleModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "from")
+		delete(additionalProperties, "to")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "no_destination_yet")
+		delete(additionalProperties, "public_type")
+		delete(additionalProperties, "is_push")
+		delete(additionalProperties, "is_welcome")
+		delete(additionalProperties, "is_push_checkin_alert")
+		delete(additionalProperties, "memo")
+		delete(additionalProperties, "skiarea_name")
+		delete(additionalProperties, "skiarea_logo_image")
+		delete(additionalProperties, "pref_code")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "user_icon_image")
+		delete(additionalProperties, "is_join")
+		delete(additionalProperties, "schedule_join_users")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -7,7 +7,6 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
 	"fmt"
 )
@@ -17,21 +16,25 @@ var _ MappedNullable = &UserBadgeSettingModel{}
 
 // UserBadgeSettingModel struct for UserBadgeSettingModel
 type UserBadgeSettingModel struct {
-	Type1            int32       `json:"type1"`
-	Rank1            int32       `json:"rank1"`
-	Type2            int32       `json:"type2"`
-	Rank2            int32       `json:"rank2"`
-	Type3            int32       `json:"type3"`
-	Rank3            int32       `json:"rank3"`
-	EventBadgeId     int32       `json:"event_badge_id"`
-	EventBadge2Id    int32       `json:"event_badge2_id"`
-	EventBadge3Id    int32       `json:"event_badge3_id"`
-	EventBadgeImage  string      `json:"event_badge_image"`
-	EventBadge2Image string      `json:"event_badge2_image"`
-	EventBadge3Image string      `json:"event_badge3_image"`
-	EventBadge       interface{} `json:"event_badge"`
-	EventBadge2      interface{} `json:"event_badge2"`
-	EventBadge3      interface{} `json:"event_badge3"`
+	Type1 int32 `json:"type1"`
+	Rank1 int32 `json:"rank1"`
+	Type2 int32 `json:"type2"`
+	Rank2 int32 `json:"rank2"`
+	Type3 int32 `json:"type3"`
+	Rank3 int32 `json:"rank3"`
+	// Not present in observed responses; kept nullable for forward compatibility.
+	EventBadgeImage  NullableString `json:"event_badge_image,omitempty"`
+	EventBadge2Image NullableString `json:"event_badge2_image,omitempty"`
+	EventBadge3Image NullableString `json:"event_badge3_image,omitempty"`
+	// observed wire field name (the property was called event_badge_id in the source-level type).
+	YukiyamaBadgeId  int32 `json:"yukiyama_badge_id"`
+	YukiyamaBadge2Id int32 `json:"yukiyama_badge2_id"`
+	YukiyamaBadge3Id int32 `json:"yukiyama_badge3_id"`
+	// yukiyama_badge object (or null when no badge granted).
+	YukiyamaBadge        interface{} `json:"yukiyama_badge,omitempty"`
+	YukiyamaBadge2       interface{} `json:"yukiyama_badge2,omitempty"`
+	YukiyamaBadge3       interface{} `json:"yukiyama_badge3,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _UserBadgeSettingModel UserBadgeSettingModel
@@ -40,7 +43,7 @@ type _UserBadgeSettingModel UserBadgeSettingModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewUserBadgeSettingModel(type1 int32, rank1 int32, type2 int32, rank2 int32, type3 int32, rank3 int32, eventBadgeId int32, eventBadge2Id int32, eventBadge3Id int32, eventBadgeImage string, eventBadge2Image string, eventBadge3Image string, eventBadge interface{}, eventBadge2 interface{}, eventBadge3 interface{}) *UserBadgeSettingModel {
+func NewUserBadgeSettingModel(type1 int32, rank1 int32, type2 int32, rank2 int32, type3 int32, rank3 int32, yukiyamaBadgeId int32, yukiyamaBadge2Id int32, yukiyamaBadge3Id int32) *UserBadgeSettingModel {
 	this := UserBadgeSettingModel{}
 	this.Type1 = type1
 	this.Rank1 = rank1
@@ -48,15 +51,9 @@ func NewUserBadgeSettingModel(type1 int32, rank1 int32, type2 int32, rank2 int32
 	this.Rank2 = rank2
 	this.Type3 = type3
 	this.Rank3 = rank3
-	this.EventBadgeId = eventBadgeId
-	this.EventBadge2Id = eventBadge2Id
-	this.EventBadge3Id = eventBadge3Id
-	this.EventBadgeImage = eventBadgeImage
-	this.EventBadge2Image = eventBadge2Image
-	this.EventBadge3Image = eventBadge3Image
-	this.EventBadge = eventBadge
-	this.EventBadge2 = eventBadge2
-	this.EventBadge3 = eventBadge3
+	this.YukiyamaBadgeId = yukiyamaBadgeId
+	this.YukiyamaBadge2Id = yukiyamaBadge2Id
+	this.YukiyamaBadge3Id = yukiyamaBadge3Id
 	return &this
 }
 
@@ -212,226 +209,304 @@ func (o *UserBadgeSettingModel) SetRank3(v int32) {
 	o.Rank3 = v
 }
 
-// GetEventBadgeId returns the EventBadgeId field value
-func (o *UserBadgeSettingModel) GetEventBadgeId() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.EventBadgeId
-}
-
-// GetEventBadgeIdOk returns a tuple with the EventBadgeId field value
-// and a boolean to check if the value has been set.
-func (o *UserBadgeSettingModel) GetEventBadgeIdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventBadgeId, true
-}
-
-// SetEventBadgeId sets field value
-func (o *UserBadgeSettingModel) SetEventBadgeId(v int32) {
-	o.EventBadgeId = v
-}
-
-// GetEventBadge2Id returns the EventBadge2Id field value
-func (o *UserBadgeSettingModel) GetEventBadge2Id() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.EventBadge2Id
-}
-
-// GetEventBadge2IdOk returns a tuple with the EventBadge2Id field value
-// and a boolean to check if the value has been set.
-func (o *UserBadgeSettingModel) GetEventBadge2IdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventBadge2Id, true
-}
-
-// SetEventBadge2Id sets field value
-func (o *UserBadgeSettingModel) SetEventBadge2Id(v int32) {
-	o.EventBadge2Id = v
-}
-
-// GetEventBadge3Id returns the EventBadge3Id field value
-func (o *UserBadgeSettingModel) GetEventBadge3Id() int32 {
-	if o == nil {
-		var ret int32
-		return ret
-	}
-
-	return o.EventBadge3Id
-}
-
-// GetEventBadge3IdOk returns a tuple with the EventBadge3Id field value
-// and a boolean to check if the value has been set.
-func (o *UserBadgeSettingModel) GetEventBadge3IdOk() (*int32, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.EventBadge3Id, true
-}
-
-// SetEventBadge3Id sets field value
-func (o *UserBadgeSettingModel) SetEventBadge3Id(v int32) {
-	o.EventBadge3Id = v
-}
-
-// GetEventBadgeImage returns the EventBadgeImage field value
+// GetEventBadgeImage returns the EventBadgeImage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserBadgeSettingModel) GetEventBadgeImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.EventBadgeImage.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.EventBadgeImage
+	return *o.EventBadgeImage.Get()
 }
 
-// GetEventBadgeImageOk returns a tuple with the EventBadgeImage field value
+// GetEventBadgeImageOk returns a tuple with the EventBadgeImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserBadgeSettingModel) GetEventBadgeImageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EventBadgeImage, true
+	return o.EventBadgeImage.Get(), o.EventBadgeImage.IsSet()
 }
 
-// SetEventBadgeImage sets field value
+// HasEventBadgeImage returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasEventBadgeImage() bool {
+	if o != nil && o.EventBadgeImage.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEventBadgeImage gets a reference to the given NullableString and assigns it to the EventBadgeImage field.
 func (o *UserBadgeSettingModel) SetEventBadgeImage(v string) {
-	o.EventBadgeImage = v
+	o.EventBadgeImage.Set(&v)
 }
 
-// GetEventBadge2Image returns the EventBadge2Image field value
+// SetEventBadgeImageNil sets the value for EventBadgeImage to be an explicit nil
+func (o *UserBadgeSettingModel) SetEventBadgeImageNil() {
+	o.EventBadgeImage.Set(nil)
+}
+
+// UnsetEventBadgeImage ensures that no value is present for EventBadgeImage, not even an explicit nil
+func (o *UserBadgeSettingModel) UnsetEventBadgeImage() {
+	o.EventBadgeImage.Unset()
+}
+
+// GetEventBadge2Image returns the EventBadge2Image field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserBadgeSettingModel) GetEventBadge2Image() string {
-	if o == nil {
+	if o == nil || IsNil(o.EventBadge2Image.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.EventBadge2Image
+	return *o.EventBadge2Image.Get()
 }
 
-// GetEventBadge2ImageOk returns a tuple with the EventBadge2Image field value
+// GetEventBadge2ImageOk returns a tuple with the EventBadge2Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserBadgeSettingModel) GetEventBadge2ImageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EventBadge2Image, true
+	return o.EventBadge2Image.Get(), o.EventBadge2Image.IsSet()
 }
 
-// SetEventBadge2Image sets field value
+// HasEventBadge2Image returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasEventBadge2Image() bool {
+	if o != nil && o.EventBadge2Image.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEventBadge2Image gets a reference to the given NullableString and assigns it to the EventBadge2Image field.
 func (o *UserBadgeSettingModel) SetEventBadge2Image(v string) {
-	o.EventBadge2Image = v
+	o.EventBadge2Image.Set(&v)
 }
 
-// GetEventBadge3Image returns the EventBadge3Image field value
+// SetEventBadge2ImageNil sets the value for EventBadge2Image to be an explicit nil
+func (o *UserBadgeSettingModel) SetEventBadge2ImageNil() {
+	o.EventBadge2Image.Set(nil)
+}
+
+// UnsetEventBadge2Image ensures that no value is present for EventBadge2Image, not even an explicit nil
+func (o *UserBadgeSettingModel) UnsetEventBadge2Image() {
+	o.EventBadge2Image.Unset()
+}
+
+// GetEventBadge3Image returns the EventBadge3Image field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserBadgeSettingModel) GetEventBadge3Image() string {
-	if o == nil {
+	if o == nil || IsNil(o.EventBadge3Image.Get()) {
 		var ret string
 		return ret
 	}
-
-	return o.EventBadge3Image
+	return *o.EventBadge3Image.Get()
 }
 
-// GetEventBadge3ImageOk returns a tuple with the EventBadge3Image field value
+// GetEventBadge3ImageOk returns a tuple with the EventBadge3Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserBadgeSettingModel) GetEventBadge3ImageOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.EventBadge3Image, true
+	return o.EventBadge3Image.Get(), o.EventBadge3Image.IsSet()
 }
 
-// SetEventBadge3Image sets field value
+// HasEventBadge3Image returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasEventBadge3Image() bool {
+	if o != nil && o.EventBadge3Image.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetEventBadge3Image gets a reference to the given NullableString and assigns it to the EventBadge3Image field.
 func (o *UserBadgeSettingModel) SetEventBadge3Image(v string) {
-	o.EventBadge3Image = v
+	o.EventBadge3Image.Set(&v)
 }
 
-// GetEventBadge returns the EventBadge field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *UserBadgeSettingModel) GetEventBadge() interface{} {
+// SetEventBadge3ImageNil sets the value for EventBadge3Image to be an explicit nil
+func (o *UserBadgeSettingModel) SetEventBadge3ImageNil() {
+	o.EventBadge3Image.Set(nil)
+}
+
+// UnsetEventBadge3Image ensures that no value is present for EventBadge3Image, not even an explicit nil
+func (o *UserBadgeSettingModel) UnsetEventBadge3Image() {
+	o.EventBadge3Image.Unset()
+}
+
+// GetYukiyamaBadgeId returns the YukiyamaBadgeId field value
+func (o *UserBadgeSettingModel) GetYukiyamaBadgeId() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.YukiyamaBadgeId
+}
+
+// GetYukiyamaBadgeIdOk returns a tuple with the YukiyamaBadgeId field value
+// and a boolean to check if the value has been set.
+func (o *UserBadgeSettingModel) GetYukiyamaBadgeIdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.YukiyamaBadgeId, true
+}
+
+// SetYukiyamaBadgeId sets field value
+func (o *UserBadgeSettingModel) SetYukiyamaBadgeId(v int32) {
+	o.YukiyamaBadgeId = v
+}
+
+// GetYukiyamaBadge2Id returns the YukiyamaBadge2Id field value
+func (o *UserBadgeSettingModel) GetYukiyamaBadge2Id() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.YukiyamaBadge2Id
+}
+
+// GetYukiyamaBadge2IdOk returns a tuple with the YukiyamaBadge2Id field value
+// and a boolean to check if the value has been set.
+func (o *UserBadgeSettingModel) GetYukiyamaBadge2IdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.YukiyamaBadge2Id, true
+}
+
+// SetYukiyamaBadge2Id sets field value
+func (o *UserBadgeSettingModel) SetYukiyamaBadge2Id(v int32) {
+	o.YukiyamaBadge2Id = v
+}
+
+// GetYukiyamaBadge3Id returns the YukiyamaBadge3Id field value
+func (o *UserBadgeSettingModel) GetYukiyamaBadge3Id() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+
+	return o.YukiyamaBadge3Id
+}
+
+// GetYukiyamaBadge3IdOk returns a tuple with the YukiyamaBadge3Id field value
+// and a boolean to check if the value has been set.
+func (o *UserBadgeSettingModel) GetYukiyamaBadge3IdOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.YukiyamaBadge3Id, true
+}
+
+// SetYukiyamaBadge3Id sets field value
+func (o *UserBadgeSettingModel) SetYukiyamaBadge3Id(v int32) {
+	o.YukiyamaBadge3Id = v
+}
+
+// GetYukiyamaBadge returns the YukiyamaBadge field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserBadgeSettingModel) GetYukiyamaBadge() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
-	return o.EventBadge
+	return o.YukiyamaBadge
 }
 
-// GetEventBadgeOk returns a tuple with the EventBadge field value
+// GetYukiyamaBadgeOk returns a tuple with the YukiyamaBadge field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UserBadgeSettingModel) GetEventBadgeOk() (*interface{}, bool) {
-	if o == nil || IsNil(o.EventBadge) {
+func (o *UserBadgeSettingModel) GetYukiyamaBadgeOk() (*interface{}, bool) {
+	if o == nil || IsNil(o.YukiyamaBadge) {
 		return nil, false
 	}
-	return &o.EventBadge, true
+	return &o.YukiyamaBadge, true
 }
 
-// SetEventBadge sets field value
-func (o *UserBadgeSettingModel) SetEventBadge(v interface{}) {
-	o.EventBadge = v
+// HasYukiyamaBadge returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasYukiyamaBadge() bool {
+	if o != nil && !IsNil(o.YukiyamaBadge) {
+		return true
+	}
+
+	return false
 }
 
-// GetEventBadge2 returns the EventBadge2 field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *UserBadgeSettingModel) GetEventBadge2() interface{} {
+// SetYukiyamaBadge gets a reference to the given interface{} and assigns it to the YukiyamaBadge field.
+func (o *UserBadgeSettingModel) SetYukiyamaBadge(v interface{}) {
+	o.YukiyamaBadge = v
+}
+
+// GetYukiyamaBadge2 returns the YukiyamaBadge2 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserBadgeSettingModel) GetYukiyamaBadge2() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
-	return o.EventBadge2
+	return o.YukiyamaBadge2
 }
 
-// GetEventBadge2Ok returns a tuple with the EventBadge2 field value
+// GetYukiyamaBadge2Ok returns a tuple with the YukiyamaBadge2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UserBadgeSettingModel) GetEventBadge2Ok() (*interface{}, bool) {
-	if o == nil || IsNil(o.EventBadge2) {
+func (o *UserBadgeSettingModel) GetYukiyamaBadge2Ok() (*interface{}, bool) {
+	if o == nil || IsNil(o.YukiyamaBadge2) {
 		return nil, false
 	}
-	return &o.EventBadge2, true
+	return &o.YukiyamaBadge2, true
 }
 
-// SetEventBadge2 sets field value
-func (o *UserBadgeSettingModel) SetEventBadge2(v interface{}) {
-	o.EventBadge2 = v
+// HasYukiyamaBadge2 returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasYukiyamaBadge2() bool {
+	if o != nil && !IsNil(o.YukiyamaBadge2) {
+		return true
+	}
+
+	return false
 }
 
-// GetEventBadge3 returns the EventBadge3 field value
-// If the value is explicit nil, the zero value for interface{} will be returned
-func (o *UserBadgeSettingModel) GetEventBadge3() interface{} {
+// SetYukiyamaBadge2 gets a reference to the given interface{} and assigns it to the YukiyamaBadge2 field.
+func (o *UserBadgeSettingModel) SetYukiyamaBadge2(v interface{}) {
+	o.YukiyamaBadge2 = v
+}
+
+// GetYukiyamaBadge3 returns the YukiyamaBadge3 field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *UserBadgeSettingModel) GetYukiyamaBadge3() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
-	return o.EventBadge3
+	return o.YukiyamaBadge3
 }
 
-// GetEventBadge3Ok returns a tuple with the EventBadge3 field value
+// GetYukiyamaBadge3Ok returns a tuple with the YukiyamaBadge3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *UserBadgeSettingModel) GetEventBadge3Ok() (*interface{}, bool) {
-	if o == nil || IsNil(o.EventBadge3) {
+func (o *UserBadgeSettingModel) GetYukiyamaBadge3Ok() (*interface{}, bool) {
+	if o == nil || IsNil(o.YukiyamaBadge3) {
 		return nil, false
 	}
-	return &o.EventBadge3, true
+	return &o.YukiyamaBadge3, true
 }
 
-// SetEventBadge3 sets field value
-func (o *UserBadgeSettingModel) SetEventBadge3(v interface{}) {
-	o.EventBadge3 = v
+// HasYukiyamaBadge3 returns a boolean if a field has been set.
+func (o *UserBadgeSettingModel) HasYukiyamaBadge3() bool {
+	if o != nil && !IsNil(o.YukiyamaBadge3) {
+		return true
+	}
+
+	return false
+}
+
+// SetYukiyamaBadge3 gets a reference to the given interface{} and assigns it to the YukiyamaBadge3 field.
+func (o *UserBadgeSettingModel) SetYukiyamaBadge3(v interface{}) {
+	o.YukiyamaBadge3 = v
 }
 
 func (o UserBadgeSettingModel) MarshalJSON() ([]byte, error) {
@@ -450,21 +525,32 @@ func (o UserBadgeSettingModel) ToMap() (map[string]interface{}, error) {
 	toSerialize["rank2"] = o.Rank2
 	toSerialize["type3"] = o.Type3
 	toSerialize["rank3"] = o.Rank3
-	toSerialize["event_badge_id"] = o.EventBadgeId
-	toSerialize["event_badge2_id"] = o.EventBadge2Id
-	toSerialize["event_badge3_id"] = o.EventBadge3Id
-	toSerialize["event_badge_image"] = o.EventBadgeImage
-	toSerialize["event_badge2_image"] = o.EventBadge2Image
-	toSerialize["event_badge3_image"] = o.EventBadge3Image
-	if o.EventBadge != nil {
-		toSerialize["event_badge"] = o.EventBadge
+	if o.EventBadgeImage.IsSet() {
+		toSerialize["event_badge_image"] = o.EventBadgeImage.Get()
 	}
-	if o.EventBadge2 != nil {
-		toSerialize["event_badge2"] = o.EventBadge2
+	if o.EventBadge2Image.IsSet() {
+		toSerialize["event_badge2_image"] = o.EventBadge2Image.Get()
 	}
-	if o.EventBadge3 != nil {
-		toSerialize["event_badge3"] = o.EventBadge3
+	if o.EventBadge3Image.IsSet() {
+		toSerialize["event_badge3_image"] = o.EventBadge3Image.Get()
 	}
+	toSerialize["yukiyama_badge_id"] = o.YukiyamaBadgeId
+	toSerialize["yukiyama_badge2_id"] = o.YukiyamaBadge2Id
+	toSerialize["yukiyama_badge3_id"] = o.YukiyamaBadge3Id
+	if o.YukiyamaBadge != nil {
+		toSerialize["yukiyama_badge"] = o.YukiyamaBadge
+	}
+	if o.YukiyamaBadge2 != nil {
+		toSerialize["yukiyama_badge2"] = o.YukiyamaBadge2
+	}
+	if o.YukiyamaBadge3 != nil {
+		toSerialize["yukiyama_badge3"] = o.YukiyamaBadge3
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
@@ -479,15 +565,9 @@ func (o *UserBadgeSettingModel) UnmarshalJSON(data []byte) (err error) {
 		"rank2",
 		"type3",
 		"rank3",
-		"event_badge_id",
-		"event_badge2_id",
-		"event_badge3_id",
-		"event_badge_image",
-		"event_badge2_image",
-		"event_badge3_image",
-		"event_badge",
-		"event_badge2",
-		"event_badge3",
+		"yukiyama_badge_id",
+		"yukiyama_badge2_id",
+		"yukiyama_badge3_id",
 	}
 
 	allProperties := make(map[string]interface{})
@@ -506,15 +586,34 @@ func (o *UserBadgeSettingModel) UnmarshalJSON(data []byte) (err error) {
 
 	varUserBadgeSettingModel := _UserBadgeSettingModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varUserBadgeSettingModel)
+	err = json.Unmarshal(data, &varUserBadgeSettingModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = UserBadgeSettingModel(varUserBadgeSettingModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "type1")
+		delete(additionalProperties, "rank1")
+		delete(additionalProperties, "type2")
+		delete(additionalProperties, "rank2")
+		delete(additionalProperties, "type3")
+		delete(additionalProperties, "rank3")
+		delete(additionalProperties, "event_badge_image")
+		delete(additionalProperties, "event_badge2_image")
+		delete(additionalProperties, "event_badge3_image")
+		delete(additionalProperties, "yukiyama_badge_id")
+		delete(additionalProperties, "yukiyama_badge2_id")
+		delete(additionalProperties, "yukiyama_badge3_id")
+		delete(additionalProperties, "yukiyama_badge")
+		delete(additionalProperties, "yukiyama_badge2")
+		delete(additionalProperties, "yukiyama_badge3")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

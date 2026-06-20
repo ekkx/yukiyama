@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FacilityStatusModel type satisfies the MappedNullable interface at compile time
@@ -17,16 +15,17 @@ var _ MappedNullable = &FacilityStatusModel{}
 
 // FacilityStatusModel struct for FacilityStatusModel
 type FacilityStatusModel struct {
-	Id         int32  `json:"id"`
-	SkiareaId  int32  `json:"skiarea_id"`
-	FacilityId int32  `json:"facility_id"`
-	Status     int32  `json:"status"`
-	Groomed    int32  `json:"groomed"`
-	StartTime  string `json:"start_time"`
-	EndTime    string `json:"end_time"`
-	Comment    string `json:"comment"`
-	CreatedAt  string `json:"created_at"`
-	UpdatedAt  string `json:"updated_at"`
+	Id                   *int32  `json:"id,omitempty"`
+	SkiareaId            *int32  `json:"skiarea_id,omitempty"`
+	FacilityId           *int32  `json:"facility_id,omitempty"`
+	Status               *int32  `json:"status,omitempty"`
+	Groomed              *int32  `json:"groomed,omitempty"`
+	StartTime            *string `json:"start_time,omitempty"`
+	EndTime              *string `json:"end_time,omitempty"`
+	Comment              *string `json:"comment,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FacilityStatusModel FacilityStatusModel
@@ -35,18 +34,8 @@ type _FacilityStatusModel FacilityStatusModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFacilityStatusModel(id int32, skiareaId int32, facilityId int32, status int32, groomed int32, startTime string, endTime string, comment string, createdAt string, updatedAt string) *FacilityStatusModel {
+func NewFacilityStatusModel() *FacilityStatusModel {
 	this := FacilityStatusModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.FacilityId = facilityId
-	this.Status = status
-	this.Groomed = groomed
-	this.StartTime = startTime
-	this.EndTime = endTime
-	this.Comment = comment
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -58,244 +47,324 @@ func NewFacilityStatusModelWithDefaults() *FacilityStatusModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *FacilityStatusModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *FacilityStatusModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetFacilityId returns the FacilityId field value
+// GetFacilityId returns the FacilityId field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetFacilityId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityId) {
 		var ret int32
 		return ret
 	}
-
-	return o.FacilityId
+	return *o.FacilityId
 }
 
-// GetFacilityIdOk returns a tuple with the FacilityId field value
+// GetFacilityIdOk returns a tuple with the FacilityId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetFacilityIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityId) {
 		return nil, false
 	}
-	return &o.FacilityId, true
+	return o.FacilityId, true
 }
 
-// SetFacilityId sets field value
+// HasFacilityId returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasFacilityId() bool {
+	if o != nil && !IsNil(o.FacilityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacilityId gets a reference to the given int32 and assigns it to the FacilityId field.
 func (o *FacilityStatusModel) SetFacilityId(v int32) {
-	o.FacilityId = v
+	o.FacilityId = &v
 }
 
-// GetStatus returns the Status field value
+// GetStatus returns the Status field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetStatus() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		var ret int32
 		return ret
 	}
-
-	return o.Status
+	return *o.Status
 }
 
-// GetStatusOk returns a tuple with the Status field value
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetStatusOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
-	return &o.Status, true
+	return o.Status, true
 }
 
-// SetStatus sets field value
+// HasStatus returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given int32 and assigns it to the Status field.
 func (o *FacilityStatusModel) SetStatus(v int32) {
-	o.Status = v
+	o.Status = &v
 }
 
-// GetGroomed returns the Groomed field value
+// GetGroomed returns the Groomed field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetGroomed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Groomed) {
 		var ret int32
 		return ret
 	}
-
-	return o.Groomed
+	return *o.Groomed
 }
 
-// GetGroomedOk returns a tuple with the Groomed field value
+// GetGroomedOk returns a tuple with the Groomed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetGroomedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Groomed) {
 		return nil, false
 	}
-	return &o.Groomed, true
+	return o.Groomed, true
 }
 
-// SetGroomed sets field value
+// HasGroomed returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasGroomed() bool {
+	if o != nil && !IsNil(o.Groomed) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroomed gets a reference to the given int32 and assigns it to the Groomed field.
 func (o *FacilityStatusModel) SetGroomed(v int32) {
-	o.Groomed = v
+	o.Groomed = &v
 }
 
-// GetStartTime returns the StartTime field value
+// GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetStartTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.StartTime) {
 		var ret string
 		return ret
 	}
-
-	return o.StartTime
+	return *o.StartTime
 }
 
-// GetStartTimeOk returns a tuple with the StartTime field value
+// GetStartTimeOk returns a tuple with the StartTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetStartTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StartTime) {
 		return nil, false
 	}
-	return &o.StartTime, true
+	return o.StartTime, true
 }
 
-// SetStartTime sets field value
+// HasStartTime returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasStartTime() bool {
+	if o != nil && !IsNil(o.StartTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartTime gets a reference to the given string and assigns it to the StartTime field.
 func (o *FacilityStatusModel) SetStartTime(v string) {
-	o.StartTime = v
+	o.StartTime = &v
 }
 
-// GetEndTime returns the EndTime field value
+// GetEndTime returns the EndTime field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetEndTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.EndTime) {
 		var ret string
 		return ret
 	}
-
-	return o.EndTime
+	return *o.EndTime
 }
 
-// GetEndTimeOk returns a tuple with the EndTime field value
+// GetEndTimeOk returns a tuple with the EndTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetEndTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EndTime) {
 		return nil, false
 	}
-	return &o.EndTime, true
+	return o.EndTime, true
 }
 
-// SetEndTime sets field value
+// HasEndTime returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasEndTime() bool {
+	if o != nil && !IsNil(o.EndTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndTime gets a reference to the given string and assigns it to the EndTime field.
 func (o *FacilityStatusModel) SetEndTime(v string) {
-	o.EndTime = v
+	o.EndTime = &v
 }
 
-// GetComment returns the Comment field value
+// GetComment returns the Comment field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetComment() string {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
-
-	return o.Comment
+	return *o.Comment
 }
 
-// GetCommentOk returns a tuple with the Comment field value
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetCommentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
-	return &o.Comment, true
+	return o.Comment, true
 }
 
-// SetComment sets field value
+// HasComment returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
 func (o *FacilityStatusModel) SetComment(v string) {
-	o.Comment = v
+	o.Comment = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *FacilityStatusModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FacilityStatusModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityStatusModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *FacilityStatusModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *FacilityStatusModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o FacilityStatusModel) MarshalJSON() ([]byte, error) {
@@ -308,61 +377,70 @@ func (o FacilityStatusModel) MarshalJSON() ([]byte, error) {
 
 func (o FacilityStatusModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["facility_id"] = o.FacilityId
-	toSerialize["status"] = o.Status
-	toSerialize["groomed"] = o.Groomed
-	toSerialize["start_time"] = o.StartTime
-	toSerialize["end_time"] = o.EndTime
-	toSerialize["comment"] = o.Comment
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.FacilityId) {
+		toSerialize["facility_id"] = o.FacilityId
+	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Groomed) {
+		toSerialize["groomed"] = o.Groomed
+	}
+	if !IsNil(o.StartTime) {
+		toSerialize["start_time"] = o.StartTime
+	}
+	if !IsNil(o.EndTime) {
+		toSerialize["end_time"] = o.EndTime
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *FacilityStatusModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"facility_id",
-		"status",
-		"groomed",
-		"start_time",
-		"end_time",
-		"comment",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varFacilityStatusModel := _FacilityStatusModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFacilityStatusModel)
+	err = json.Unmarshal(data, &varFacilityStatusModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FacilityStatusModel(varFacilityStatusModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "facility_id")
+		delete(additionalProperties, "status")
+		delete(additionalProperties, "groomed")
+		delete(additionalProperties, "start_time")
+		delete(additionalProperties, "end_time")
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

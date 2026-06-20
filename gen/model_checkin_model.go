@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CheckinModel type satisfies the MappedNullable interface at compile time
@@ -17,54 +15,55 @@ var _ MappedNullable = &CheckinModel{}
 
 // CheckinModel struct for CheckinModel
 type CheckinModel struct {
-	Id                      int32                         `json:"id"`
-	UserId                  int32                         `json:"user_id"`
-	SkiareaId               int32                         `json:"skiarea_id"`
-	Title                   string                        `json:"title"`
-	Memo                    string                        `json:"memo"`
-	CommentCount            int32                         `json:"comment_count"`
-	InterestUsersCount      int32                         `json:"interest_users_count"`
-	MaxSpeed                int32                         `json:"maxSpeed"`
-	SlideDistance           int32                         `json:"slideDistance"`
-	LiftCount               int32                         `json:"liftCount"`
-	GlidingDistance         int32                         `json:"glidingDistance"`
-	StayTime                int32                         `json:"stayTime"`
-	OpenRange               int32                         `json:"open_range"`
-	CompressGeodata         int32                         `json:"compressGeodata"`
-	CreatedAt               string                        `json:"created_at"`
-	UpdatedAt               string                        `json:"updated_at"`
-	TimelineLayout          int32                         `json:"timeline_layout"`
-	CheckinAt               string                        `json:"checkin_at"`
-	CheckoutAt              string                        `json:"checkout_at"`
-	FirstCheckoutAt         string                        `json:"first_checkout_at"`
-	CheckinPhotos           []CheckinPhotoModel           `json:"checkin_photos"`
-	RidingImage             string                        `json:"riding_image"`
-	Profile                 ProfileModel                  `json:"profile"`
-	Skiarea                 SkiareaModel                  `json:"skiarea"`
-	IsInterest              bool                          `json:"is_interest"`
-	CheckinComments         []CheckinCommentModel         `json:"checkin_comments"`
-	Groups                  []GroupModel                  `json:"groups"`
-	GroupMarkers            []interface{}                 `json:"group_markers"`
-	GroupMemberTrektrack    []GroupMemberTrektrackModel   `json:"group_member_trektrack"`
-	PremiumCouponNum        int32                         `json:"premium_coupon_num"`
-	CheckinCouponNum        int32                         `json:"checkin_coupon_num"`
-	IsOffpost               int32                         `json:"is_offpost"`
-	SafetyEnable            interface{}                   `json:"safety_enable"`
-	YoutubeUrl              string                        `json:"youtube_url"`
-	IsViolation             int32                         `json:"is_violation"`
+	Id                      *int32                        `json:"id,omitempty"`
+	UserId                  *int32                        `json:"user_id,omitempty"`
+	SkiareaId               *int32                        `json:"skiarea_id,omitempty"`
+	Title                   *string                       `json:"title,omitempty"`
+	Memo                    *string                       `json:"memo,omitempty"`
+	CommentCount            *int32                        `json:"comment_count,omitempty"`
+	InterestUsersCount      *int32                        `json:"interest_users_count,omitempty"`
+	MaxSpeed                *int32                        `json:"maxSpeed,omitempty"`
+	SlideDistance           *int32                        `json:"slideDistance,omitempty"`
+	LiftCount               *int32                        `json:"liftCount,omitempty"`
+	GlidingDistance         *int32                        `json:"glidingDistance,omitempty"`
+	StayTime                *int32                        `json:"stayTime,omitempty"`
+	OpenRange               *int32                        `json:"open_range,omitempty"`
+	CompressGeodata         *int32                        `json:"compressGeodata,omitempty"`
+	CreatedAt               *string                       `json:"created_at,omitempty"`
+	UpdatedAt               *string                       `json:"updated_at,omitempty"`
+	TimelineLayout          *int32                        `json:"timeline_layout,omitempty"`
+	CheckinAt               *string                       `json:"checkin_at,omitempty"`
+	CheckoutAt              *string                       `json:"checkout_at,omitempty"`
+	FirstCheckoutAt         *string                       `json:"first_checkout_at,omitempty"`
+	CheckinPhotos           []CheckinPhotoModel           `json:"checkin_photos,omitempty"`
+	RidingImage             *string                       `json:"riding_image,omitempty"`
+	Profile                 *ProfileModel                 `json:"profile,omitempty"`
+	Skiarea                 *SkiareaModel                 `json:"skiarea,omitempty"`
+	IsInterest              *bool                         `json:"is_interest,omitempty"`
+	CheckinComments         []CheckinCommentModel         `json:"checkin_comments,omitempty"`
+	Groups                  []GroupModel                  `json:"groups,omitempty"`
+	GroupMarkers            []interface{}                 `json:"group_markers,omitempty"`
+	GroupMemberTrektrack    []GroupMemberTrektrackModel   `json:"group_member_trektrack,omitempty"`
+	PremiumCouponNum        *int32                        `json:"premium_coupon_num,omitempty"`
+	CheckinCouponNum        *int32                        `json:"checkin_coupon_num,omitempty"`
+	IsOffpost               *int32                        `json:"is_offpost,omitempty"`
+	SafetyEnable            interface{}                   `json:"safety_enable,omitempty"`
+	YoutubeUrl              *string                       `json:"youtube_url,omitempty"`
+	IsViolation             *int32                        `json:"is_violation,omitempty"`
 	UserBadgeSetting        NullableUserBadgeSettingModel `json:"user_badge_setting,omitempty"`
-	EvaluateTotal           int32                         `json:"evaluate_total"`
-	Evaluate1               int32                         `json:"evaluate_1"`
-	Evaluate2               int32                         `json:"evaluate_2"`
-	Evaluate3               int32                         `json:"evaluate_3"`
-	Evaluate4               int32                         `json:"evaluate_4"`
-	Evaluate5               int32                         `json:"evaluate_5"`
-	Evaluate6               int32                         `json:"evaluate_6"`
-	CheckinWeather          int32                         `json:"checkin_weather"`
-	CheckinSnowState        int32                         `json:"checkin_snow_state"`
-	CheckinCourceState      int32                         `json:"checkin_cource_state"`
-	CheckinTemperature      string                        `json:"checkin_temperature"`
-	CheckinSnowAccumulation string                        `json:"checkin_snow_accumulation"`
+	EvaluateTotal           *int32                        `json:"evaluate_total,omitempty"`
+	Evaluate1               *int32                        `json:"evaluate_1,omitempty"`
+	Evaluate2               *int32                        `json:"evaluate_2,omitempty"`
+	Evaluate3               *int32                        `json:"evaluate_3,omitempty"`
+	Evaluate4               *int32                        `json:"evaluate_4,omitempty"`
+	Evaluate5               *int32                        `json:"evaluate_5,omitempty"`
+	Evaluate6               *int32                        `json:"evaluate_6,omitempty"`
+	CheckinWeather          *int32                        `json:"checkin_weather,omitempty"`
+	CheckinSnowState        *int32                        `json:"checkin_snow_state,omitempty"`
+	CheckinCourceState      *int32                        `json:"checkin_cource_state,omitempty"`
+	CheckinTemperature      *string                       `json:"checkin_temperature,omitempty"`
+	CheckinSnowAccumulation *string                       `json:"checkin_snow_accumulation,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _CheckinModel CheckinModel
@@ -73,55 +72,8 @@ type _CheckinModel CheckinModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckinModel(id int32, userId int32, skiareaId int32, title string, memo string, commentCount int32, interestUsersCount int32, maxSpeed int32, slideDistance int32, liftCount int32, glidingDistance int32, stayTime int32, openRange int32, compressGeodata int32, createdAt string, updatedAt string, timelineLayout int32, checkinAt string, checkoutAt string, firstCheckoutAt string, checkinPhotos []CheckinPhotoModel, ridingImage string, profile ProfileModel, skiarea SkiareaModel, isInterest bool, checkinComments []CheckinCommentModel, groups []GroupModel, groupMarkers []interface{}, groupMemberTrektrack []GroupMemberTrektrackModel, premiumCouponNum int32, checkinCouponNum int32, isOffpost int32, safetyEnable interface{}, youtubeUrl string, isViolation int32, evaluateTotal int32, evaluate1 int32, evaluate2 int32, evaluate3 int32, evaluate4 int32, evaluate5 int32, evaluate6 int32, checkinWeather int32, checkinSnowState int32, checkinCourceState int32, checkinTemperature string, checkinSnowAccumulation string) *CheckinModel {
+func NewCheckinModel() *CheckinModel {
 	this := CheckinModel{}
-	this.Id = id
-	this.UserId = userId
-	this.SkiareaId = skiareaId
-	this.Title = title
-	this.Memo = memo
-	this.CommentCount = commentCount
-	this.InterestUsersCount = interestUsersCount
-	this.MaxSpeed = maxSpeed
-	this.SlideDistance = slideDistance
-	this.LiftCount = liftCount
-	this.GlidingDistance = glidingDistance
-	this.StayTime = stayTime
-	this.OpenRange = openRange
-	this.CompressGeodata = compressGeodata
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.TimelineLayout = timelineLayout
-	this.CheckinAt = checkinAt
-	this.CheckoutAt = checkoutAt
-	this.FirstCheckoutAt = firstCheckoutAt
-	this.CheckinPhotos = checkinPhotos
-	this.RidingImage = ridingImage
-	this.Profile = profile
-	this.Skiarea = skiarea
-	this.IsInterest = isInterest
-	this.CheckinComments = checkinComments
-	this.Groups = groups
-	this.GroupMarkers = groupMarkers
-	this.GroupMemberTrektrack = groupMemberTrektrack
-	this.PremiumCouponNum = premiumCouponNum
-	this.CheckinCouponNum = checkinCouponNum
-	this.IsOffpost = isOffpost
-	this.SafetyEnable = safetyEnable
-	this.YoutubeUrl = youtubeUrl
-	this.IsViolation = isViolation
-	this.EvaluateTotal = evaluateTotal
-	this.Evaluate1 = evaluate1
-	this.Evaluate2 = evaluate2
-	this.Evaluate3 = evaluate3
-	this.Evaluate4 = evaluate4
-	this.Evaluate5 = evaluate5
-	this.Evaluate6 = evaluate6
-	this.CheckinWeather = checkinWeather
-	this.CheckinSnowState = checkinSnowState
-	this.CheckinCourceState = checkinCourceState
-	this.CheckinTemperature = checkinTemperature
-	this.CheckinSnowAccumulation = checkinSnowAccumulation
 	return &this
 }
 
@@ -133,786 +85,1040 @@ func NewCheckinModelWithDefaults() *CheckinModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CheckinModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CheckinModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *CheckinModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *CheckinModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *CheckinModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *CheckinModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *CheckinModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *CheckinModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *CheckinModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CheckinModel) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *CheckinModel) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *CheckinModel) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetMemo returns the Memo field value
+// GetMemo returns the Memo field value if set, zero value otherwise.
 func (o *CheckinModel) GetMemo() string {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		var ret string
 		return ret
 	}
-
-	return o.Memo
+	return *o.Memo
 }
 
-// GetMemoOk returns a tuple with the Memo field value
+// GetMemoOk returns a tuple with the Memo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetMemoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		return nil, false
 	}
-	return &o.Memo, true
+	return o.Memo, true
 }
 
-// SetMemo sets field value
+// HasMemo returns a boolean if a field has been set.
+func (o *CheckinModel) HasMemo() bool {
+	if o != nil && !IsNil(o.Memo) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemo gets a reference to the given string and assigns it to the Memo field.
 func (o *CheckinModel) SetMemo(v string) {
-	o.Memo = v
+	o.Memo = &v
 }
 
-// GetCommentCount returns the CommentCount field value
+// GetCommentCount returns the CommentCount field value if set, zero value otherwise.
 func (o *CheckinModel) GetCommentCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CommentCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.CommentCount
+	return *o.CommentCount
 }
 
-// GetCommentCountOk returns a tuple with the CommentCount field value
+// GetCommentCountOk returns a tuple with the CommentCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCommentCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CommentCount) {
 		return nil, false
 	}
-	return &o.CommentCount, true
+	return o.CommentCount, true
 }
 
-// SetCommentCount sets field value
+// HasCommentCount returns a boolean if a field has been set.
+func (o *CheckinModel) HasCommentCount() bool {
+	if o != nil && !IsNil(o.CommentCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommentCount gets a reference to the given int32 and assigns it to the CommentCount field.
 func (o *CheckinModel) SetCommentCount(v int32) {
-	o.CommentCount = v
+	o.CommentCount = &v
 }
 
-// GetInterestUsersCount returns the InterestUsersCount field value
+// GetInterestUsersCount returns the InterestUsersCount field value if set, zero value otherwise.
 func (o *CheckinModel) GetInterestUsersCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.InterestUsersCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.InterestUsersCount
+	return *o.InterestUsersCount
 }
 
-// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value
+// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetInterestUsersCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InterestUsersCount) {
 		return nil, false
 	}
-	return &o.InterestUsersCount, true
+	return o.InterestUsersCount, true
 }
 
-// SetInterestUsersCount sets field value
+// HasInterestUsersCount returns a boolean if a field has been set.
+func (o *CheckinModel) HasInterestUsersCount() bool {
+	if o != nil && !IsNil(o.InterestUsersCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterestUsersCount gets a reference to the given int32 and assigns it to the InterestUsersCount field.
 func (o *CheckinModel) SetInterestUsersCount(v int32) {
-	o.InterestUsersCount = v
+	o.InterestUsersCount = &v
 }
 
-// GetMaxSpeed returns the MaxSpeed field value
+// GetMaxSpeed returns the MaxSpeed field value if set, zero value otherwise.
 func (o *CheckinModel) GetMaxSpeed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSpeed) {
 		var ret int32
 		return ret
 	}
-
-	return o.MaxSpeed
+	return *o.MaxSpeed
 }
 
-// GetMaxSpeedOk returns a tuple with the MaxSpeed field value
+// GetMaxSpeedOk returns a tuple with the MaxSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetMaxSpeedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSpeed) {
 		return nil, false
 	}
-	return &o.MaxSpeed, true
+	return o.MaxSpeed, true
 }
 
-// SetMaxSpeed sets field value
+// HasMaxSpeed returns a boolean if a field has been set.
+func (o *CheckinModel) HasMaxSpeed() bool {
+	if o != nil && !IsNil(o.MaxSpeed) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxSpeed gets a reference to the given int32 and assigns it to the MaxSpeed field.
 func (o *CheckinModel) SetMaxSpeed(v int32) {
-	o.MaxSpeed = v
+	o.MaxSpeed = &v
 }
 
-// GetSlideDistance returns the SlideDistance field value
+// GetSlideDistance returns the SlideDistance field value if set, zero value otherwise.
 func (o *CheckinModel) GetSlideDistance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SlideDistance) {
 		var ret int32
 		return ret
 	}
-
-	return o.SlideDistance
+	return *o.SlideDistance
 }
 
-// GetSlideDistanceOk returns a tuple with the SlideDistance field value
+// GetSlideDistanceOk returns a tuple with the SlideDistance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetSlideDistanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SlideDistance) {
 		return nil, false
 	}
-	return &o.SlideDistance, true
+	return o.SlideDistance, true
 }
 
-// SetSlideDistance sets field value
+// HasSlideDistance returns a boolean if a field has been set.
+func (o *CheckinModel) HasSlideDistance() bool {
+	if o != nil && !IsNil(o.SlideDistance) {
+		return true
+	}
+
+	return false
+}
+
+// SetSlideDistance gets a reference to the given int32 and assigns it to the SlideDistance field.
 func (o *CheckinModel) SetSlideDistance(v int32) {
-	o.SlideDistance = v
+	o.SlideDistance = &v
 }
 
-// GetLiftCount returns the LiftCount field value
+// GetLiftCount returns the LiftCount field value if set, zero value otherwise.
 func (o *CheckinModel) GetLiftCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LiftCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.LiftCount
+	return *o.LiftCount
 }
 
-// GetLiftCountOk returns a tuple with the LiftCount field value
+// GetLiftCountOk returns a tuple with the LiftCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetLiftCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LiftCount) {
 		return nil, false
 	}
-	return &o.LiftCount, true
+	return o.LiftCount, true
 }
 
-// SetLiftCount sets field value
+// HasLiftCount returns a boolean if a field has been set.
+func (o *CheckinModel) HasLiftCount() bool {
+	if o != nil && !IsNil(o.LiftCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiftCount gets a reference to the given int32 and assigns it to the LiftCount field.
 func (o *CheckinModel) SetLiftCount(v int32) {
-	o.LiftCount = v
+	o.LiftCount = &v
 }
 
-// GetGlidingDistance returns the GlidingDistance field value
+// GetGlidingDistance returns the GlidingDistance field value if set, zero value otherwise.
 func (o *CheckinModel) GetGlidingDistance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.GlidingDistance) {
 		var ret int32
 		return ret
 	}
-
-	return o.GlidingDistance
+	return *o.GlidingDistance
 }
 
-// GetGlidingDistanceOk returns a tuple with the GlidingDistance field value
+// GetGlidingDistanceOk returns a tuple with the GlidingDistance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetGlidingDistanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GlidingDistance) {
 		return nil, false
 	}
-	return &o.GlidingDistance, true
+	return o.GlidingDistance, true
 }
 
-// SetGlidingDistance sets field value
+// HasGlidingDistance returns a boolean if a field has been set.
+func (o *CheckinModel) HasGlidingDistance() bool {
+	if o != nil && !IsNil(o.GlidingDistance) {
+		return true
+	}
+
+	return false
+}
+
+// SetGlidingDistance gets a reference to the given int32 and assigns it to the GlidingDistance field.
 func (o *CheckinModel) SetGlidingDistance(v int32) {
-	o.GlidingDistance = v
+	o.GlidingDistance = &v
 }
 
-// GetStayTime returns the StayTime field value
+// GetStayTime returns the StayTime field value if set, zero value otherwise.
 func (o *CheckinModel) GetStayTime() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.StayTime) {
 		var ret int32
 		return ret
 	}
-
-	return o.StayTime
+	return *o.StayTime
 }
 
-// GetStayTimeOk returns a tuple with the StayTime field value
+// GetStayTimeOk returns a tuple with the StayTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetStayTimeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StayTime) {
 		return nil, false
 	}
-	return &o.StayTime, true
+	return o.StayTime, true
 }
 
-// SetStayTime sets field value
+// HasStayTime returns a boolean if a field has been set.
+func (o *CheckinModel) HasStayTime() bool {
+	if o != nil && !IsNil(o.StayTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetStayTime gets a reference to the given int32 and assigns it to the StayTime field.
 func (o *CheckinModel) SetStayTime(v int32) {
-	o.StayTime = v
+	o.StayTime = &v
 }
 
-// GetOpenRange returns the OpenRange field value
+// GetOpenRange returns the OpenRange field value if set, zero value otherwise.
 func (o *CheckinModel) GetOpenRange() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.OpenRange) {
 		var ret int32
 		return ret
 	}
-
-	return o.OpenRange
+	return *o.OpenRange
 }
 
-// GetOpenRangeOk returns a tuple with the OpenRange field value
+// GetOpenRangeOk returns a tuple with the OpenRange field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetOpenRangeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OpenRange) {
 		return nil, false
 	}
-	return &o.OpenRange, true
+	return o.OpenRange, true
 }
 
-// SetOpenRange sets field value
+// HasOpenRange returns a boolean if a field has been set.
+func (o *CheckinModel) HasOpenRange() bool {
+	if o != nil && !IsNil(o.OpenRange) {
+		return true
+	}
+
+	return false
+}
+
+// SetOpenRange gets a reference to the given int32 and assigns it to the OpenRange field.
 func (o *CheckinModel) SetOpenRange(v int32) {
-	o.OpenRange = v
+	o.OpenRange = &v
 }
 
-// GetCompressGeodata returns the CompressGeodata field value
+// GetCompressGeodata returns the CompressGeodata field value if set, zero value otherwise.
 func (o *CheckinModel) GetCompressGeodata() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CompressGeodata) {
 		var ret int32
 		return ret
 	}
-
-	return o.CompressGeodata
+	return *o.CompressGeodata
 }
 
-// GetCompressGeodataOk returns a tuple with the CompressGeodata field value
+// GetCompressGeodataOk returns a tuple with the CompressGeodata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCompressGeodataOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CompressGeodata) {
 		return nil, false
 	}
-	return &o.CompressGeodata, true
+	return o.CompressGeodata, true
 }
 
-// SetCompressGeodata sets field value
+// HasCompressGeodata returns a boolean if a field has been set.
+func (o *CheckinModel) HasCompressGeodata() bool {
+	if o != nil && !IsNil(o.CompressGeodata) {
+		return true
+	}
+
+	return false
+}
+
+// SetCompressGeodata gets a reference to the given int32 and assigns it to the CompressGeodata field.
 func (o *CheckinModel) SetCompressGeodata(v int32) {
-	o.CompressGeodata = v
+	o.CompressGeodata = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CheckinModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CheckinModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *CheckinModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CheckinModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CheckinModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *CheckinModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetTimelineLayout returns the TimelineLayout field value
+// GetTimelineLayout returns the TimelineLayout field value if set, zero value otherwise.
 func (o *CheckinModel) GetTimelineLayout() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TimelineLayout) {
 		var ret int32
 		return ret
 	}
-
-	return o.TimelineLayout
+	return *o.TimelineLayout
 }
 
-// GetTimelineLayoutOk returns a tuple with the TimelineLayout field value
+// GetTimelineLayoutOk returns a tuple with the TimelineLayout field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetTimelineLayoutOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TimelineLayout) {
 		return nil, false
 	}
-	return &o.TimelineLayout, true
+	return o.TimelineLayout, true
 }
 
-// SetTimelineLayout sets field value
+// HasTimelineLayout returns a boolean if a field has been set.
+func (o *CheckinModel) HasTimelineLayout() bool {
+	if o != nil && !IsNil(o.TimelineLayout) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimelineLayout gets a reference to the given int32 and assigns it to the TimelineLayout field.
 func (o *CheckinModel) SetTimelineLayout(v int32) {
-	o.TimelineLayout = v
+	o.TimelineLayout = &v
 }
 
-// GetCheckinAt returns the CheckinAt field value
+// GetCheckinAt returns the CheckinAt field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CheckinAt
+	return *o.CheckinAt
 }
 
-// GetCheckinAtOk returns a tuple with the CheckinAt field value
+// GetCheckinAtOk returns a tuple with the CheckinAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinAt) {
 		return nil, false
 	}
-	return &o.CheckinAt, true
+	return o.CheckinAt, true
 }
 
-// SetCheckinAt sets field value
+// HasCheckinAt returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinAt() bool {
+	if o != nil && !IsNil(o.CheckinAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinAt gets a reference to the given string and assigns it to the CheckinAt field.
 func (o *CheckinModel) SetCheckinAt(v string) {
-	o.CheckinAt = v
+	o.CheckinAt = &v
 }
 
-// GetCheckoutAt returns the CheckoutAt field value
+// GetCheckoutAt returns the CheckoutAt field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckoutAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CheckoutAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CheckoutAt
+	return *o.CheckoutAt
 }
 
-// GetCheckoutAtOk returns a tuple with the CheckoutAt field value
+// GetCheckoutAtOk returns a tuple with the CheckoutAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckoutAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckoutAt) {
 		return nil, false
 	}
-	return &o.CheckoutAt, true
+	return o.CheckoutAt, true
 }
 
-// SetCheckoutAt sets field value
+// HasCheckoutAt returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckoutAt() bool {
+	if o != nil && !IsNil(o.CheckoutAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckoutAt gets a reference to the given string and assigns it to the CheckoutAt field.
 func (o *CheckinModel) SetCheckoutAt(v string) {
-	o.CheckoutAt = v
+	o.CheckoutAt = &v
 }
 
-// GetFirstCheckoutAt returns the FirstCheckoutAt field value
+// GetFirstCheckoutAt returns the FirstCheckoutAt field value if set, zero value otherwise.
 func (o *CheckinModel) GetFirstCheckoutAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.FirstCheckoutAt) {
 		var ret string
 		return ret
 	}
-
-	return o.FirstCheckoutAt
+	return *o.FirstCheckoutAt
 }
 
-// GetFirstCheckoutAtOk returns a tuple with the FirstCheckoutAt field value
+// GetFirstCheckoutAtOk returns a tuple with the FirstCheckoutAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetFirstCheckoutAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FirstCheckoutAt) {
 		return nil, false
 	}
-	return &o.FirstCheckoutAt, true
+	return o.FirstCheckoutAt, true
 }
 
-// SetFirstCheckoutAt sets field value
+// HasFirstCheckoutAt returns a boolean if a field has been set.
+func (o *CheckinModel) HasFirstCheckoutAt() bool {
+	if o != nil && !IsNil(o.FirstCheckoutAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetFirstCheckoutAt gets a reference to the given string and assigns it to the FirstCheckoutAt field.
 func (o *CheckinModel) SetFirstCheckoutAt(v string) {
-	o.FirstCheckoutAt = v
+	o.FirstCheckoutAt = &v
 }
 
-// GetCheckinPhotos returns the CheckinPhotos field value
+// GetCheckinPhotos returns the CheckinPhotos field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinPhotos() []CheckinPhotoModel {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinPhotos) {
 		var ret []CheckinPhotoModel
 		return ret
 	}
-
 	return o.CheckinPhotos
 }
 
-// GetCheckinPhotosOk returns a tuple with the CheckinPhotos field value
+// GetCheckinPhotosOk returns a tuple with the CheckinPhotos field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinPhotosOk() ([]CheckinPhotoModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinPhotos) {
 		return nil, false
 	}
 	return o.CheckinPhotos, true
 }
 
-// SetCheckinPhotos sets field value
+// HasCheckinPhotos returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinPhotos() bool {
+	if o != nil && !IsNil(o.CheckinPhotos) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinPhotos gets a reference to the given []CheckinPhotoModel and assigns it to the CheckinPhotos field.
 func (o *CheckinModel) SetCheckinPhotos(v []CheckinPhotoModel) {
 	o.CheckinPhotos = v
 }
 
-// GetRidingImage returns the RidingImage field value
+// GetRidingImage returns the RidingImage field value if set, zero value otherwise.
 func (o *CheckinModel) GetRidingImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.RidingImage) {
 		var ret string
 		return ret
 	}
-
-	return o.RidingImage
+	return *o.RidingImage
 }
 
-// GetRidingImageOk returns a tuple with the RidingImage field value
+// GetRidingImageOk returns a tuple with the RidingImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetRidingImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RidingImage) {
 		return nil, false
 	}
-	return &o.RidingImage, true
+	return o.RidingImage, true
 }
 
-// SetRidingImage sets field value
+// HasRidingImage returns a boolean if a field has been set.
+func (o *CheckinModel) HasRidingImage() bool {
+	if o != nil && !IsNil(o.RidingImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetRidingImage gets a reference to the given string and assigns it to the RidingImage field.
 func (o *CheckinModel) SetRidingImage(v string) {
-	o.RidingImage = v
+	o.RidingImage = &v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *CheckinModel) GetProfile() ProfileModel {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret ProfileModel
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetProfileOk() (*ProfileModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *CheckinModel) HasProfile() bool {
+	if o != nil && !IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given ProfileModel and assigns it to the Profile field.
 func (o *CheckinModel) SetProfile(v ProfileModel) {
-	o.Profile = v
+	o.Profile = &v
 }
 
-// GetSkiarea returns the Skiarea field value
+// GetSkiarea returns the Skiarea field value if set, zero value otherwise.
 func (o *CheckinModel) GetSkiarea() SkiareaModel {
-	if o == nil {
+	if o == nil || IsNil(o.Skiarea) {
 		var ret SkiareaModel
 		return ret
 	}
-
-	return o.Skiarea
+	return *o.Skiarea
 }
 
-// GetSkiareaOk returns a tuple with the Skiarea field value
+// GetSkiareaOk returns a tuple with the Skiarea field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetSkiareaOk() (*SkiareaModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Skiarea) {
 		return nil, false
 	}
-	return &o.Skiarea, true
+	return o.Skiarea, true
 }
 
-// SetSkiarea sets field value
+// HasSkiarea returns a boolean if a field has been set.
+func (o *CheckinModel) HasSkiarea() bool {
+	if o != nil && !IsNil(o.Skiarea) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiarea gets a reference to the given SkiareaModel and assigns it to the Skiarea field.
 func (o *CheckinModel) SetSkiarea(v SkiareaModel) {
-	o.Skiarea = v
+	o.Skiarea = &v
 }
 
-// GetIsInterest returns the IsInterest field value
+// GetIsInterest returns the IsInterest field value if set, zero value otherwise.
 func (o *CheckinModel) GetIsInterest() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsInterest) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsInterest
+	return *o.IsInterest
 }
 
-// GetIsInterestOk returns a tuple with the IsInterest field value
+// GetIsInterestOk returns a tuple with the IsInterest field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetIsInterestOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsInterest) {
 		return nil, false
 	}
-	return &o.IsInterest, true
+	return o.IsInterest, true
 }
 
-// SetIsInterest sets field value
+// HasIsInterest returns a boolean if a field has been set.
+func (o *CheckinModel) HasIsInterest() bool {
+	if o != nil && !IsNil(o.IsInterest) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsInterest gets a reference to the given bool and assigns it to the IsInterest field.
 func (o *CheckinModel) SetIsInterest(v bool) {
-	o.IsInterest = v
+	o.IsInterest = &v
 }
 
-// GetCheckinComments returns the CheckinComments field value
+// GetCheckinComments returns the CheckinComments field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinComments() []CheckinCommentModel {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinComments) {
 		var ret []CheckinCommentModel
 		return ret
 	}
-
 	return o.CheckinComments
 }
 
-// GetCheckinCommentsOk returns a tuple with the CheckinComments field value
+// GetCheckinCommentsOk returns a tuple with the CheckinComments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinCommentsOk() ([]CheckinCommentModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinComments) {
 		return nil, false
 	}
 	return o.CheckinComments, true
 }
 
-// SetCheckinComments sets field value
+// HasCheckinComments returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinComments() bool {
+	if o != nil && !IsNil(o.CheckinComments) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinComments gets a reference to the given []CheckinCommentModel and assigns it to the CheckinComments field.
 func (o *CheckinModel) SetCheckinComments(v []CheckinCommentModel) {
 	o.CheckinComments = v
 }
 
-// GetGroups returns the Groups field value
+// GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *CheckinModel) GetGroups() []GroupModel {
-	if o == nil {
+	if o == nil || IsNil(o.Groups) {
 		var ret []GroupModel
 		return ret
 	}
-
 	return o.Groups
 }
 
-// GetGroupsOk returns a tuple with the Groups field value
+// GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetGroupsOk() ([]GroupModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Groups) {
 		return nil, false
 	}
 	return o.Groups, true
 }
 
-// SetGroups sets field value
+// HasGroups returns a boolean if a field has been set.
+func (o *CheckinModel) HasGroups() bool {
+	if o != nil && !IsNil(o.Groups) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroups gets a reference to the given []GroupModel and assigns it to the Groups field.
 func (o *CheckinModel) SetGroups(v []GroupModel) {
 	o.Groups = v
 }
 
-// GetGroupMarkers returns the GroupMarkers field value
+// GetGroupMarkers returns the GroupMarkers field value if set, zero value otherwise.
 func (o *CheckinModel) GetGroupMarkers() []interface{} {
-	if o == nil {
+	if o == nil || IsNil(o.GroupMarkers) {
 		var ret []interface{}
 		return ret
 	}
-
 	return o.GroupMarkers
 }
 
-// GetGroupMarkersOk returns a tuple with the GroupMarkers field value
+// GetGroupMarkersOk returns a tuple with the GroupMarkers field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetGroupMarkersOk() ([]interface{}, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupMarkers) {
 		return nil, false
 	}
 	return o.GroupMarkers, true
 }
 
-// SetGroupMarkers sets field value
+// HasGroupMarkers returns a boolean if a field has been set.
+func (o *CheckinModel) HasGroupMarkers() bool {
+	if o != nil && !IsNil(o.GroupMarkers) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupMarkers gets a reference to the given []interface{} and assigns it to the GroupMarkers field.
 func (o *CheckinModel) SetGroupMarkers(v []interface{}) {
 	o.GroupMarkers = v
 }
 
-// GetGroupMemberTrektrack returns the GroupMemberTrektrack field value
+// GetGroupMemberTrektrack returns the GroupMemberTrektrack field value if set, zero value otherwise.
 func (o *CheckinModel) GetGroupMemberTrektrack() []GroupMemberTrektrackModel {
-	if o == nil {
+	if o == nil || IsNil(o.GroupMemberTrektrack) {
 		var ret []GroupMemberTrektrackModel
 		return ret
 	}
-
 	return o.GroupMemberTrektrack
 }
 
-// GetGroupMemberTrektrackOk returns a tuple with the GroupMemberTrektrack field value
+// GetGroupMemberTrektrackOk returns a tuple with the GroupMemberTrektrack field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetGroupMemberTrektrackOk() ([]GroupMemberTrektrackModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupMemberTrektrack) {
 		return nil, false
 	}
 	return o.GroupMemberTrektrack, true
 }
 
-// SetGroupMemberTrektrack sets field value
+// HasGroupMemberTrektrack returns a boolean if a field has been set.
+func (o *CheckinModel) HasGroupMemberTrektrack() bool {
+	if o != nil && !IsNil(o.GroupMemberTrektrack) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupMemberTrektrack gets a reference to the given []GroupMemberTrektrackModel and assigns it to the GroupMemberTrektrack field.
 func (o *CheckinModel) SetGroupMemberTrektrack(v []GroupMemberTrektrackModel) {
 	o.GroupMemberTrektrack = v
 }
 
-// GetPremiumCouponNum returns the PremiumCouponNum field value
+// GetPremiumCouponNum returns the PremiumCouponNum field value if set, zero value otherwise.
 func (o *CheckinModel) GetPremiumCouponNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PremiumCouponNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.PremiumCouponNum
+	return *o.PremiumCouponNum
 }
 
-// GetPremiumCouponNumOk returns a tuple with the PremiumCouponNum field value
+// GetPremiumCouponNumOk returns a tuple with the PremiumCouponNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetPremiumCouponNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PremiumCouponNum) {
 		return nil, false
 	}
-	return &o.PremiumCouponNum, true
+	return o.PremiumCouponNum, true
 }
 
-// SetPremiumCouponNum sets field value
+// HasPremiumCouponNum returns a boolean if a field has been set.
+func (o *CheckinModel) HasPremiumCouponNum() bool {
+	if o != nil && !IsNil(o.PremiumCouponNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetPremiumCouponNum gets a reference to the given int32 and assigns it to the PremiumCouponNum field.
 func (o *CheckinModel) SetPremiumCouponNum(v int32) {
-	o.PremiumCouponNum = v
+	o.PremiumCouponNum = &v
 }
 
-// GetCheckinCouponNum returns the CheckinCouponNum field value
+// GetCheckinCouponNum returns the CheckinCouponNum field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinCouponNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCouponNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinCouponNum
+	return *o.CheckinCouponNum
 }
 
-// GetCheckinCouponNumOk returns a tuple with the CheckinCouponNum field value
+// GetCheckinCouponNumOk returns a tuple with the CheckinCouponNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinCouponNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCouponNum) {
 		return nil, false
 	}
-	return &o.CheckinCouponNum, true
+	return o.CheckinCouponNum, true
 }
 
-// SetCheckinCouponNum sets field value
+// HasCheckinCouponNum returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinCouponNum() bool {
+	if o != nil && !IsNil(o.CheckinCouponNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinCouponNum gets a reference to the given int32 and assigns it to the CheckinCouponNum field.
 func (o *CheckinModel) SetCheckinCouponNum(v int32) {
-	o.CheckinCouponNum = v
+	o.CheckinCouponNum = &v
 }
 
-// GetIsOffpost returns the IsOffpost field value
+// GetIsOffpost returns the IsOffpost field value if set, zero value otherwise.
 func (o *CheckinModel) GetIsOffpost() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsOffpost) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsOffpost
+	return *o.IsOffpost
 }
 
-// GetIsOffpostOk returns a tuple with the IsOffpost field value
+// GetIsOffpostOk returns a tuple with the IsOffpost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetIsOffpostOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsOffpost) {
 		return nil, false
 	}
-	return &o.IsOffpost, true
+	return o.IsOffpost, true
 }
 
-// SetIsOffpost sets field value
+// HasIsOffpost returns a boolean if a field has been set.
+func (o *CheckinModel) HasIsOffpost() bool {
+	if o != nil && !IsNil(o.IsOffpost) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsOffpost gets a reference to the given int32 and assigns it to the IsOffpost field.
 func (o *CheckinModel) SetIsOffpost(v int32) {
-	o.IsOffpost = v
+	o.IsOffpost = &v
 }
 
-// GetSafetyEnable returns the SafetyEnable field value
-// If the value is explicit nil, the zero value for interface{} will be returned
+// GetSafetyEnable returns the SafetyEnable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CheckinModel) GetSafetyEnable() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
 	return o.SafetyEnable
 }
 
-// GetSafetyEnableOk returns a tuple with the SafetyEnable field value
+// GetSafetyEnableOk returns a tuple with the SafetyEnable field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *CheckinModel) GetSafetyEnableOk() (*interface{}, bool) {
@@ -922,57 +1128,82 @@ func (o *CheckinModel) GetSafetyEnableOk() (*interface{}, bool) {
 	return &o.SafetyEnable, true
 }
 
-// SetSafetyEnable sets field value
+// HasSafetyEnable returns a boolean if a field has been set.
+func (o *CheckinModel) HasSafetyEnable() bool {
+	if o != nil && !IsNil(o.SafetyEnable) {
+		return true
+	}
+
+	return false
+}
+
+// SetSafetyEnable gets a reference to the given interface{} and assigns it to the SafetyEnable field.
 func (o *CheckinModel) SetSafetyEnable(v interface{}) {
 	o.SafetyEnable = v
 }
 
-// GetYoutubeUrl returns the YoutubeUrl field value
+// GetYoutubeUrl returns the YoutubeUrl field value if set, zero value otherwise.
 func (o *CheckinModel) GetYoutubeUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.YoutubeUrl
+	return *o.YoutubeUrl
 }
 
-// GetYoutubeUrlOk returns a tuple with the YoutubeUrl field value
+// GetYoutubeUrlOk returns a tuple with the YoutubeUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetYoutubeUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeUrl) {
 		return nil, false
 	}
-	return &o.YoutubeUrl, true
+	return o.YoutubeUrl, true
 }
 
-// SetYoutubeUrl sets field value
+// HasYoutubeUrl returns a boolean if a field has been set.
+func (o *CheckinModel) HasYoutubeUrl() bool {
+	if o != nil && !IsNil(o.YoutubeUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetYoutubeUrl gets a reference to the given string and assigns it to the YoutubeUrl field.
 func (o *CheckinModel) SetYoutubeUrl(v string) {
-	o.YoutubeUrl = v
+	o.YoutubeUrl = &v
 }
 
-// GetIsViolation returns the IsViolation field value
+// GetIsViolation returns the IsViolation field value if set, zero value otherwise.
 func (o *CheckinModel) GetIsViolation() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsViolation) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsViolation
+	return *o.IsViolation
 }
 
-// GetIsViolationOk returns a tuple with the IsViolation field value
+// GetIsViolationOk returns a tuple with the IsViolation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetIsViolationOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsViolation) {
 		return nil, false
 	}
-	return &o.IsViolation, true
+	return o.IsViolation, true
 }
 
-// SetIsViolation sets field value
+// HasIsViolation returns a boolean if a field has been set.
+func (o *CheckinModel) HasIsViolation() bool {
+	if o != nil && !IsNil(o.IsViolation) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsViolation gets a reference to the given int32 and assigns it to the IsViolation field.
 func (o *CheckinModel) SetIsViolation(v int32) {
-	o.IsViolation = v
+	o.IsViolation = &v
 }
 
 // GetUserBadgeSetting returns the UserBadgeSetting field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -1018,292 +1249,388 @@ func (o *CheckinModel) UnsetUserBadgeSetting() {
 	o.UserBadgeSetting.Unset()
 }
 
-// GetEvaluateTotal returns the EvaluateTotal field value
+// GetEvaluateTotal returns the EvaluateTotal field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluateTotal() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.EvaluateTotal) {
 		var ret int32
 		return ret
 	}
-
-	return o.EvaluateTotal
+	return *o.EvaluateTotal
 }
 
-// GetEvaluateTotalOk returns a tuple with the EvaluateTotal field value
+// GetEvaluateTotalOk returns a tuple with the EvaluateTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluateTotalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EvaluateTotal) {
 		return nil, false
 	}
-	return &o.EvaluateTotal, true
+	return o.EvaluateTotal, true
 }
 
-// SetEvaluateTotal sets field value
+// HasEvaluateTotal returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluateTotal() bool {
+	if o != nil && !IsNil(o.EvaluateTotal) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluateTotal gets a reference to the given int32 and assigns it to the EvaluateTotal field.
 func (o *CheckinModel) SetEvaluateTotal(v int32) {
-	o.EvaluateTotal = v
+	o.EvaluateTotal = &v
 }
 
-// GetEvaluate1 returns the Evaluate1 field value
+// GetEvaluate1 returns the Evaluate1 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate1() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate1) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate1
+	return *o.Evaluate1
 }
 
-// GetEvaluate1Ok returns a tuple with the Evaluate1 field value
+// GetEvaluate1Ok returns a tuple with the Evaluate1 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate1Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate1) {
 		return nil, false
 	}
-	return &o.Evaluate1, true
+	return o.Evaluate1, true
 }
 
-// SetEvaluate1 sets field value
+// HasEvaluate1 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate1() bool {
+	if o != nil && !IsNil(o.Evaluate1) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate1 gets a reference to the given int32 and assigns it to the Evaluate1 field.
 func (o *CheckinModel) SetEvaluate1(v int32) {
-	o.Evaluate1 = v
+	o.Evaluate1 = &v
 }
 
-// GetEvaluate2 returns the Evaluate2 field value
+// GetEvaluate2 returns the Evaluate2 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate2() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate2) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate2
+	return *o.Evaluate2
 }
 
-// GetEvaluate2Ok returns a tuple with the Evaluate2 field value
+// GetEvaluate2Ok returns a tuple with the Evaluate2 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate2Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate2) {
 		return nil, false
 	}
-	return &o.Evaluate2, true
+	return o.Evaluate2, true
 }
 
-// SetEvaluate2 sets field value
+// HasEvaluate2 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate2() bool {
+	if o != nil && !IsNil(o.Evaluate2) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate2 gets a reference to the given int32 and assigns it to the Evaluate2 field.
 func (o *CheckinModel) SetEvaluate2(v int32) {
-	o.Evaluate2 = v
+	o.Evaluate2 = &v
 }
 
-// GetEvaluate3 returns the Evaluate3 field value
+// GetEvaluate3 returns the Evaluate3 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate3() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate3) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate3
+	return *o.Evaluate3
 }
 
-// GetEvaluate3Ok returns a tuple with the Evaluate3 field value
+// GetEvaluate3Ok returns a tuple with the Evaluate3 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate3Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate3) {
 		return nil, false
 	}
-	return &o.Evaluate3, true
+	return o.Evaluate3, true
 }
 
-// SetEvaluate3 sets field value
+// HasEvaluate3 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate3() bool {
+	if o != nil && !IsNil(o.Evaluate3) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate3 gets a reference to the given int32 and assigns it to the Evaluate3 field.
 func (o *CheckinModel) SetEvaluate3(v int32) {
-	o.Evaluate3 = v
+	o.Evaluate3 = &v
 }
 
-// GetEvaluate4 returns the Evaluate4 field value
+// GetEvaluate4 returns the Evaluate4 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate4() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate4) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate4
+	return *o.Evaluate4
 }
 
-// GetEvaluate4Ok returns a tuple with the Evaluate4 field value
+// GetEvaluate4Ok returns a tuple with the Evaluate4 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate4Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate4) {
 		return nil, false
 	}
-	return &o.Evaluate4, true
+	return o.Evaluate4, true
 }
 
-// SetEvaluate4 sets field value
+// HasEvaluate4 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate4() bool {
+	if o != nil && !IsNil(o.Evaluate4) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate4 gets a reference to the given int32 and assigns it to the Evaluate4 field.
 func (o *CheckinModel) SetEvaluate4(v int32) {
-	o.Evaluate4 = v
+	o.Evaluate4 = &v
 }
 
-// GetEvaluate5 returns the Evaluate5 field value
+// GetEvaluate5 returns the Evaluate5 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate5() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate5) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate5
+	return *o.Evaluate5
 }
 
-// GetEvaluate5Ok returns a tuple with the Evaluate5 field value
+// GetEvaluate5Ok returns a tuple with the Evaluate5 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate5Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate5) {
 		return nil, false
 	}
-	return &o.Evaluate5, true
+	return o.Evaluate5, true
 }
 
-// SetEvaluate5 sets field value
+// HasEvaluate5 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate5() bool {
+	if o != nil && !IsNil(o.Evaluate5) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate5 gets a reference to the given int32 and assigns it to the Evaluate5 field.
 func (o *CheckinModel) SetEvaluate5(v int32) {
-	o.Evaluate5 = v
+	o.Evaluate5 = &v
 }
 
-// GetEvaluate6 returns the Evaluate6 field value
+// GetEvaluate6 returns the Evaluate6 field value if set, zero value otherwise.
 func (o *CheckinModel) GetEvaluate6() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate6) {
 		var ret int32
 		return ret
 	}
-
-	return o.Evaluate6
+	return *o.Evaluate6
 }
 
-// GetEvaluate6Ok returns a tuple with the Evaluate6 field value
+// GetEvaluate6Ok returns a tuple with the Evaluate6 field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetEvaluate6Ok() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Evaluate6) {
 		return nil, false
 	}
-	return &o.Evaluate6, true
+	return o.Evaluate6, true
 }
 
-// SetEvaluate6 sets field value
+// HasEvaluate6 returns a boolean if a field has been set.
+func (o *CheckinModel) HasEvaluate6() bool {
+	if o != nil && !IsNil(o.Evaluate6) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluate6 gets a reference to the given int32 and assigns it to the Evaluate6 field.
 func (o *CheckinModel) SetEvaluate6(v int32) {
-	o.Evaluate6 = v
+	o.Evaluate6 = &v
 }
 
-// GetCheckinWeather returns the CheckinWeather field value
+// GetCheckinWeather returns the CheckinWeather field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinWeather() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinWeather) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinWeather
+	return *o.CheckinWeather
 }
 
-// GetCheckinWeatherOk returns a tuple with the CheckinWeather field value
+// GetCheckinWeatherOk returns a tuple with the CheckinWeather field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinWeatherOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinWeather) {
 		return nil, false
 	}
-	return &o.CheckinWeather, true
+	return o.CheckinWeather, true
 }
 
-// SetCheckinWeather sets field value
+// HasCheckinWeather returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinWeather() bool {
+	if o != nil && !IsNil(o.CheckinWeather) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinWeather gets a reference to the given int32 and assigns it to the CheckinWeather field.
 func (o *CheckinModel) SetCheckinWeather(v int32) {
-	o.CheckinWeather = v
+	o.CheckinWeather = &v
 }
 
-// GetCheckinSnowState returns the CheckinSnowState field value
+// GetCheckinSnowState returns the CheckinSnowState field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinSnowState() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinSnowState) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinSnowState
+	return *o.CheckinSnowState
 }
 
-// GetCheckinSnowStateOk returns a tuple with the CheckinSnowState field value
+// GetCheckinSnowStateOk returns a tuple with the CheckinSnowState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinSnowStateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinSnowState) {
 		return nil, false
 	}
-	return &o.CheckinSnowState, true
+	return o.CheckinSnowState, true
 }
 
-// SetCheckinSnowState sets field value
+// HasCheckinSnowState returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinSnowState() bool {
+	if o != nil && !IsNil(o.CheckinSnowState) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinSnowState gets a reference to the given int32 and assigns it to the CheckinSnowState field.
 func (o *CheckinModel) SetCheckinSnowState(v int32) {
-	o.CheckinSnowState = v
+	o.CheckinSnowState = &v
 }
 
-// GetCheckinCourceState returns the CheckinCourceState field value
+// GetCheckinCourceState returns the CheckinCourceState field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinCourceState() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCourceState) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinCourceState
+	return *o.CheckinCourceState
 }
 
-// GetCheckinCourceStateOk returns a tuple with the CheckinCourceState field value
+// GetCheckinCourceStateOk returns a tuple with the CheckinCourceState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinCourceStateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCourceState) {
 		return nil, false
 	}
-	return &o.CheckinCourceState, true
+	return o.CheckinCourceState, true
 }
 
-// SetCheckinCourceState sets field value
+// HasCheckinCourceState returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinCourceState() bool {
+	if o != nil && !IsNil(o.CheckinCourceState) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinCourceState gets a reference to the given int32 and assigns it to the CheckinCourceState field.
 func (o *CheckinModel) SetCheckinCourceState(v int32) {
-	o.CheckinCourceState = v
+	o.CheckinCourceState = &v
 }
 
-// GetCheckinTemperature returns the CheckinTemperature field value
+// GetCheckinTemperature returns the CheckinTemperature field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinTemperature() string {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinTemperature) {
 		var ret string
 		return ret
 	}
-
-	return o.CheckinTemperature
+	return *o.CheckinTemperature
 }
 
-// GetCheckinTemperatureOk returns a tuple with the CheckinTemperature field value
+// GetCheckinTemperatureOk returns a tuple with the CheckinTemperature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinTemperatureOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinTemperature) {
 		return nil, false
 	}
-	return &o.CheckinTemperature, true
+	return o.CheckinTemperature, true
 }
 
-// SetCheckinTemperature sets field value
+// HasCheckinTemperature returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinTemperature() bool {
+	if o != nil && !IsNil(o.CheckinTemperature) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinTemperature gets a reference to the given string and assigns it to the CheckinTemperature field.
 func (o *CheckinModel) SetCheckinTemperature(v string) {
-	o.CheckinTemperature = v
+	o.CheckinTemperature = &v
 }
 
-// GetCheckinSnowAccumulation returns the CheckinSnowAccumulation field value
+// GetCheckinSnowAccumulation returns the CheckinSnowAccumulation field value if set, zero value otherwise.
 func (o *CheckinModel) GetCheckinSnowAccumulation() string {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinSnowAccumulation) {
 		var ret string
 		return ret
 	}
-
-	return o.CheckinSnowAccumulation
+	return *o.CheckinSnowAccumulation
 }
 
-// GetCheckinSnowAccumulationOk returns a tuple with the CheckinSnowAccumulation field value
+// GetCheckinSnowAccumulationOk returns a tuple with the CheckinSnowAccumulation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinModel) GetCheckinSnowAccumulationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinSnowAccumulation) {
 		return nil, false
 	}
-	return &o.CheckinSnowAccumulation, true
+	return o.CheckinSnowAccumulation, true
 }
 
-// SetCheckinSnowAccumulation sets field value
+// HasCheckinSnowAccumulation returns a boolean if a field has been set.
+func (o *CheckinModel) HasCheckinSnowAccumulation() bool {
+	if o != nil && !IsNil(o.CheckinSnowAccumulation) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinSnowAccumulation gets a reference to the given string and assigns it to the CheckinSnowAccumulation field.
 func (o *CheckinModel) SetCheckinSnowAccumulation(v string) {
-	o.CheckinSnowAccumulation = v
+	o.CheckinSnowAccumulation = &v
 }
 
 func (o CheckinModel) MarshalJSON() ([]byte, error) {
@@ -1316,140 +1643,222 @@ func (o CheckinModel) MarshalJSON() ([]byte, error) {
 
 func (o CheckinModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["user_id"] = o.UserId
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["title"] = o.Title
-	toSerialize["memo"] = o.Memo
-	toSerialize["comment_count"] = o.CommentCount
-	toSerialize["interest_users_count"] = o.InterestUsersCount
-	toSerialize["maxSpeed"] = o.MaxSpeed
-	toSerialize["slideDistance"] = o.SlideDistance
-	toSerialize["liftCount"] = o.LiftCount
-	toSerialize["glidingDistance"] = o.GlidingDistance
-	toSerialize["stayTime"] = o.StayTime
-	toSerialize["open_range"] = o.OpenRange
-	toSerialize["compressGeodata"] = o.CompressGeodata
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["timeline_layout"] = o.TimelineLayout
-	toSerialize["checkin_at"] = o.CheckinAt
-	toSerialize["checkout_at"] = o.CheckoutAt
-	toSerialize["first_checkout_at"] = o.FirstCheckoutAt
-	toSerialize["checkin_photos"] = o.CheckinPhotos
-	toSerialize["riding_image"] = o.RidingImage
-	toSerialize["profile"] = o.Profile
-	toSerialize["skiarea"] = o.Skiarea
-	toSerialize["is_interest"] = o.IsInterest
-	toSerialize["checkin_comments"] = o.CheckinComments
-	toSerialize["groups"] = o.Groups
-	toSerialize["group_markers"] = o.GroupMarkers
-	toSerialize["group_member_trektrack"] = o.GroupMemberTrektrack
-	toSerialize["premium_coupon_num"] = o.PremiumCouponNum
-	toSerialize["checkin_coupon_num"] = o.CheckinCouponNum
-	toSerialize["is_offpost"] = o.IsOffpost
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Memo) {
+		toSerialize["memo"] = o.Memo
+	}
+	if !IsNil(o.CommentCount) {
+		toSerialize["comment_count"] = o.CommentCount
+	}
+	if !IsNil(o.InterestUsersCount) {
+		toSerialize["interest_users_count"] = o.InterestUsersCount
+	}
+	if !IsNil(o.MaxSpeed) {
+		toSerialize["maxSpeed"] = o.MaxSpeed
+	}
+	if !IsNil(o.SlideDistance) {
+		toSerialize["slideDistance"] = o.SlideDistance
+	}
+	if !IsNil(o.LiftCount) {
+		toSerialize["liftCount"] = o.LiftCount
+	}
+	if !IsNil(o.GlidingDistance) {
+		toSerialize["glidingDistance"] = o.GlidingDistance
+	}
+	if !IsNil(o.StayTime) {
+		toSerialize["stayTime"] = o.StayTime
+	}
+	if !IsNil(o.OpenRange) {
+		toSerialize["open_range"] = o.OpenRange
+	}
+	if !IsNil(o.CompressGeodata) {
+		toSerialize["compressGeodata"] = o.CompressGeodata
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.TimelineLayout) {
+		toSerialize["timeline_layout"] = o.TimelineLayout
+	}
+	if !IsNil(o.CheckinAt) {
+		toSerialize["checkin_at"] = o.CheckinAt
+	}
+	if !IsNil(o.CheckoutAt) {
+		toSerialize["checkout_at"] = o.CheckoutAt
+	}
+	if !IsNil(o.FirstCheckoutAt) {
+		toSerialize["first_checkout_at"] = o.FirstCheckoutAt
+	}
+	if !IsNil(o.CheckinPhotos) {
+		toSerialize["checkin_photos"] = o.CheckinPhotos
+	}
+	if !IsNil(o.RidingImage) {
+		toSerialize["riding_image"] = o.RidingImage
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+	if !IsNil(o.Skiarea) {
+		toSerialize["skiarea"] = o.Skiarea
+	}
+	if !IsNil(o.IsInterest) {
+		toSerialize["is_interest"] = o.IsInterest
+	}
+	if !IsNil(o.CheckinComments) {
+		toSerialize["checkin_comments"] = o.CheckinComments
+	}
+	if !IsNil(o.Groups) {
+		toSerialize["groups"] = o.Groups
+	}
+	if !IsNil(o.GroupMarkers) {
+		toSerialize["group_markers"] = o.GroupMarkers
+	}
+	if !IsNil(o.GroupMemberTrektrack) {
+		toSerialize["group_member_trektrack"] = o.GroupMemberTrektrack
+	}
+	if !IsNil(o.PremiumCouponNum) {
+		toSerialize["premium_coupon_num"] = o.PremiumCouponNum
+	}
+	if !IsNil(o.CheckinCouponNum) {
+		toSerialize["checkin_coupon_num"] = o.CheckinCouponNum
+	}
+	if !IsNil(o.IsOffpost) {
+		toSerialize["is_offpost"] = o.IsOffpost
+	}
 	if o.SafetyEnable != nil {
 		toSerialize["safety_enable"] = o.SafetyEnable
 	}
-	toSerialize["youtube_url"] = o.YoutubeUrl
-	toSerialize["is_violation"] = o.IsViolation
+	if !IsNil(o.YoutubeUrl) {
+		toSerialize["youtube_url"] = o.YoutubeUrl
+	}
+	if !IsNil(o.IsViolation) {
+		toSerialize["is_violation"] = o.IsViolation
+	}
 	if o.UserBadgeSetting.IsSet() {
 		toSerialize["user_badge_setting"] = o.UserBadgeSetting.Get()
 	}
-	toSerialize["evaluate_total"] = o.EvaluateTotal
-	toSerialize["evaluate_1"] = o.Evaluate1
-	toSerialize["evaluate_2"] = o.Evaluate2
-	toSerialize["evaluate_3"] = o.Evaluate3
-	toSerialize["evaluate_4"] = o.Evaluate4
-	toSerialize["evaluate_5"] = o.Evaluate5
-	toSerialize["evaluate_6"] = o.Evaluate6
-	toSerialize["checkin_weather"] = o.CheckinWeather
-	toSerialize["checkin_snow_state"] = o.CheckinSnowState
-	toSerialize["checkin_cource_state"] = o.CheckinCourceState
-	toSerialize["checkin_temperature"] = o.CheckinTemperature
-	toSerialize["checkin_snow_accumulation"] = o.CheckinSnowAccumulation
+	if !IsNil(o.EvaluateTotal) {
+		toSerialize["evaluate_total"] = o.EvaluateTotal
+	}
+	if !IsNil(o.Evaluate1) {
+		toSerialize["evaluate_1"] = o.Evaluate1
+	}
+	if !IsNil(o.Evaluate2) {
+		toSerialize["evaluate_2"] = o.Evaluate2
+	}
+	if !IsNil(o.Evaluate3) {
+		toSerialize["evaluate_3"] = o.Evaluate3
+	}
+	if !IsNil(o.Evaluate4) {
+		toSerialize["evaluate_4"] = o.Evaluate4
+	}
+	if !IsNil(o.Evaluate5) {
+		toSerialize["evaluate_5"] = o.Evaluate5
+	}
+	if !IsNil(o.Evaluate6) {
+		toSerialize["evaluate_6"] = o.Evaluate6
+	}
+	if !IsNil(o.CheckinWeather) {
+		toSerialize["checkin_weather"] = o.CheckinWeather
+	}
+	if !IsNil(o.CheckinSnowState) {
+		toSerialize["checkin_snow_state"] = o.CheckinSnowState
+	}
+	if !IsNil(o.CheckinCourceState) {
+		toSerialize["checkin_cource_state"] = o.CheckinCourceState
+	}
+	if !IsNil(o.CheckinTemperature) {
+		toSerialize["checkin_temperature"] = o.CheckinTemperature
+	}
+	if !IsNil(o.CheckinSnowAccumulation) {
+		toSerialize["checkin_snow_accumulation"] = o.CheckinSnowAccumulation
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *CheckinModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"user_id",
-		"skiarea_id",
-		"title",
-		"memo",
-		"comment_count",
-		"interest_users_count",
-		"maxSpeed",
-		"slideDistance",
-		"liftCount",
-		"glidingDistance",
-		"stayTime",
-		"open_range",
-		"compressGeodata",
-		"created_at",
-		"updated_at",
-		"timeline_layout",
-		"checkin_at",
-		"checkout_at",
-		"first_checkout_at",
-		"checkin_photos",
-		"riding_image",
-		"profile",
-		"skiarea",
-		"is_interest",
-		"checkin_comments",
-		"groups",
-		"group_markers",
-		"group_member_trektrack",
-		"premium_coupon_num",
-		"checkin_coupon_num",
-		"is_offpost",
-		"safety_enable",
-		"youtube_url",
-		"is_violation",
-		"evaluate_total",
-		"evaluate_1",
-		"evaluate_2",
-		"evaluate_3",
-		"evaluate_4",
-		"evaluate_5",
-		"evaluate_6",
-		"checkin_weather",
-		"checkin_snow_state",
-		"checkin_cource_state",
-		"checkin_temperature",
-		"checkin_snow_accumulation",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCheckinModel := _CheckinModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckinModel)
+	err = json.Unmarshal(data, &varCheckinModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckinModel(varCheckinModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "memo")
+		delete(additionalProperties, "comment_count")
+		delete(additionalProperties, "interest_users_count")
+		delete(additionalProperties, "maxSpeed")
+		delete(additionalProperties, "slideDistance")
+		delete(additionalProperties, "liftCount")
+		delete(additionalProperties, "glidingDistance")
+		delete(additionalProperties, "stayTime")
+		delete(additionalProperties, "open_range")
+		delete(additionalProperties, "compressGeodata")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "timeline_layout")
+		delete(additionalProperties, "checkin_at")
+		delete(additionalProperties, "checkout_at")
+		delete(additionalProperties, "first_checkout_at")
+		delete(additionalProperties, "checkin_photos")
+		delete(additionalProperties, "riding_image")
+		delete(additionalProperties, "profile")
+		delete(additionalProperties, "skiarea")
+		delete(additionalProperties, "is_interest")
+		delete(additionalProperties, "checkin_comments")
+		delete(additionalProperties, "groups")
+		delete(additionalProperties, "group_markers")
+		delete(additionalProperties, "group_member_trektrack")
+		delete(additionalProperties, "premium_coupon_num")
+		delete(additionalProperties, "checkin_coupon_num")
+		delete(additionalProperties, "is_offpost")
+		delete(additionalProperties, "safety_enable")
+		delete(additionalProperties, "youtube_url")
+		delete(additionalProperties, "is_violation")
+		delete(additionalProperties, "user_badge_setting")
+		delete(additionalProperties, "evaluate_total")
+		delete(additionalProperties, "evaluate_1")
+		delete(additionalProperties, "evaluate_2")
+		delete(additionalProperties, "evaluate_3")
+		delete(additionalProperties, "evaluate_4")
+		delete(additionalProperties, "evaluate_5")
+		delete(additionalProperties, "evaluate_6")
+		delete(additionalProperties, "checkin_weather")
+		delete(additionalProperties, "checkin_snow_state")
+		delete(additionalProperties, "checkin_cource_state")
+		delete(additionalProperties, "checkin_temperature")
+		delete(additionalProperties, "checkin_snow_accumulation")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MarkarModel type satisfies the MappedNullable interface at compile time
@@ -17,14 +15,15 @@ var _ MappedNullable = &MarkarModel{}
 
 // MarkarModel struct for MarkarModel
 type MarkarModel struct {
-	Id        int32  `json:"id"`
-	Message   string `json:"message"`
-	Imagename string `json:"imagename"`
-	GroupId   int32  `json:"group_id"`
-	UserId    int32  `json:"user_id"`
-	SkiareaId int32  `json:"skiarea_id"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
+	Id                   *int32  `json:"id,omitempty"`
+	Message              *string `json:"message,omitempty"`
+	Imagename            *string `json:"imagename,omitempty"`
+	GroupId              *int32  `json:"group_id,omitempty"`
+	UserId               *int32  `json:"user_id,omitempty"`
+	SkiareaId            *int32  `json:"skiarea_id,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MarkarModel MarkarModel
@@ -33,16 +32,8 @@ type _MarkarModel MarkarModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMarkarModel(id int32, message string, imagename string, groupId int32, userId int32, skiareaId int32, createdAt string, updatedAt string) *MarkarModel {
+func NewMarkarModel() *MarkarModel {
 	this := MarkarModel{}
-	this.Id = id
-	this.Message = message
-	this.Imagename = imagename
-	this.GroupId = groupId
-	this.UserId = userId
-	this.SkiareaId = skiareaId
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -54,196 +45,260 @@ func NewMarkarModelWithDefaults() *MarkarModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *MarkarModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *MarkarModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *MarkarModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetMessage returns the Message field value
+// GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MarkarModel) GetMessage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		var ret string
 		return ret
 	}
-
-	return o.Message
+	return *o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Message) {
 		return nil, false
 	}
-	return &o.Message, true
+	return o.Message, true
 }
 
-// SetMessage sets field value
+// HasMessage returns a boolean if a field has been set.
+func (o *MarkarModel) HasMessage() bool {
+	if o != nil && !IsNil(o.Message) {
+		return true
+	}
+
+	return false
+}
+
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *MarkarModel) SetMessage(v string) {
-	o.Message = v
+	o.Message = &v
 }
 
-// GetImagename returns the Imagename field value
+// GetImagename returns the Imagename field value if set, zero value otherwise.
 func (o *MarkarModel) GetImagename() string {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		var ret string
 		return ret
 	}
-
-	return o.Imagename
+	return *o.Imagename
 }
 
-// GetImagenameOk returns a tuple with the Imagename field value
+// GetImagenameOk returns a tuple with the Imagename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetImagenameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		return nil, false
 	}
-	return &o.Imagename, true
+	return o.Imagename, true
 }
 
-// SetImagename sets field value
+// HasImagename returns a boolean if a field has been set.
+func (o *MarkarModel) HasImagename() bool {
+	if o != nil && !IsNil(o.Imagename) {
+		return true
+	}
+
+	return false
+}
+
+// SetImagename gets a reference to the given string and assigns it to the Imagename field.
 func (o *MarkarModel) SetImagename(v string) {
-	o.Imagename = v
+	o.Imagename = &v
 }
 
-// GetGroupId returns the GroupId field value
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *MarkarModel) GetGroupId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret int32
 		return ret
 	}
-
-	return o.GroupId
+	return *o.GroupId
 }
 
-// GetGroupIdOk returns a tuple with the GroupId field value
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetGroupIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
-	return &o.GroupId, true
+	return o.GroupId, true
 }
 
-// SetGroupId sets field value
+// HasGroupId returns a boolean if a field has been set.
+func (o *MarkarModel) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
 func (o *MarkarModel) SetGroupId(v int32) {
-	o.GroupId = v
+	o.GroupId = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *MarkarModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *MarkarModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *MarkarModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *MarkarModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *MarkarModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *MarkarModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MarkarModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *MarkarModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *MarkarModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MarkarModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MarkarModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *MarkarModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *MarkarModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o MarkarModel) MarshalJSON() ([]byte, error) {
@@ -256,57 +311,62 @@ func (o MarkarModel) MarshalJSON() ([]byte, error) {
 
 func (o MarkarModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["message"] = o.Message
-	toSerialize["imagename"] = o.Imagename
-	toSerialize["group_id"] = o.GroupId
-	toSerialize["user_id"] = o.UserId
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Message) {
+		toSerialize["message"] = o.Message
+	}
+	if !IsNil(o.Imagename) {
+		toSerialize["imagename"] = o.Imagename
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *MarkarModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"message",
-		"imagename",
-		"group_id",
-		"user_id",
-		"skiarea_id",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMarkarModel := _MarkarModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMarkarModel)
+	err = json.Unmarshal(data, &varMarkarModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MarkarModel(varMarkarModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "message")
+		delete(additionalProperties, "imagename")
+		delete(additionalProperties, "group_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

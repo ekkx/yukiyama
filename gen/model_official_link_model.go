@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the OfficialLinkModel type satisfies the MappedNullable interface at compile time
@@ -17,15 +15,16 @@ var _ MappedNullable = &OfficialLinkModel{}
 
 // OfficialLinkModel struct for OfficialLinkModel
 type OfficialLinkModel struct {
-	Id           int32  `json:"id"`
-	SkiareaId    int32  `json:"skiarea_id"`
-	InstagramUrl string `json:"instagram_url"`
-	FacebookUrl  string `json:"facebook_url"`
-	TwitterUrl   string `json:"twitter_url"`
-	YoutubeUrl   string `json:"youtube_url"`
-	SurfSnowUrl  string `json:"surf_snow_url"`
-	CreatedAt    string `json:"created_at"`
-	UpdatedAt    string `json:"updated_at"`
+	Id                   *int32  `json:"id,omitempty"`
+	SkiareaId            *int32  `json:"skiarea_id,omitempty"`
+	InstagramUrl         *string `json:"instagram_url,omitempty"`
+	FacebookUrl          *string `json:"facebook_url,omitempty"`
+	TwitterUrl           *string `json:"twitter_url,omitempty"`
+	YoutubeUrl           *string `json:"youtube_url,omitempty"`
+	SurfSnowUrl          *string `json:"surf_snow_url,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _OfficialLinkModel OfficialLinkModel
@@ -34,17 +33,8 @@ type _OfficialLinkModel OfficialLinkModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewOfficialLinkModel(id int32, skiareaId int32, instagramUrl string, facebookUrl string, twitterUrl string, youtubeUrl string, surfSnowUrl string, createdAt string, updatedAt string) *OfficialLinkModel {
+func NewOfficialLinkModel() *OfficialLinkModel {
 	this := OfficialLinkModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.InstagramUrl = instagramUrl
-	this.FacebookUrl = facebookUrl
-	this.TwitterUrl = twitterUrl
-	this.YoutubeUrl = youtubeUrl
-	this.SurfSnowUrl = surfSnowUrl
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -56,220 +46,292 @@ func NewOfficialLinkModelWithDefaults() *OfficialLinkModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *OfficialLinkModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *OfficialLinkModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetInstagramUrl returns the InstagramUrl field value
+// GetInstagramUrl returns the InstagramUrl field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetInstagramUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.InstagramUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.InstagramUrl
+	return *o.InstagramUrl
 }
 
-// GetInstagramUrlOk returns a tuple with the InstagramUrl field value
+// GetInstagramUrlOk returns a tuple with the InstagramUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetInstagramUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InstagramUrl) {
 		return nil, false
 	}
-	return &o.InstagramUrl, true
+	return o.InstagramUrl, true
 }
 
-// SetInstagramUrl sets field value
+// HasInstagramUrl returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasInstagramUrl() bool {
+	if o != nil && !IsNil(o.InstagramUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetInstagramUrl gets a reference to the given string and assigns it to the InstagramUrl field.
 func (o *OfficialLinkModel) SetInstagramUrl(v string) {
-	o.InstagramUrl = v
+	o.InstagramUrl = &v
 }
 
-// GetFacebookUrl returns the FacebookUrl field value
+// GetFacebookUrl returns the FacebookUrl field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetFacebookUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.FacebookUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.FacebookUrl
+	return *o.FacebookUrl
 }
 
-// GetFacebookUrlOk returns a tuple with the FacebookUrl field value
+// GetFacebookUrlOk returns a tuple with the FacebookUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetFacebookUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FacebookUrl) {
 		return nil, false
 	}
-	return &o.FacebookUrl, true
+	return o.FacebookUrl, true
 }
 
-// SetFacebookUrl sets field value
+// HasFacebookUrl returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasFacebookUrl() bool {
+	if o != nil && !IsNil(o.FacebookUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacebookUrl gets a reference to the given string and assigns it to the FacebookUrl field.
 func (o *OfficialLinkModel) SetFacebookUrl(v string) {
-	o.FacebookUrl = v
+	o.FacebookUrl = &v
 }
 
-// GetTwitterUrl returns the TwitterUrl field value
+// GetTwitterUrl returns the TwitterUrl field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetTwitterUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.TwitterUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.TwitterUrl
+	return *o.TwitterUrl
 }
 
-// GetTwitterUrlOk returns a tuple with the TwitterUrl field value
+// GetTwitterUrlOk returns a tuple with the TwitterUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetTwitterUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TwitterUrl) {
 		return nil, false
 	}
-	return &o.TwitterUrl, true
+	return o.TwitterUrl, true
 }
 
-// SetTwitterUrl sets field value
+// HasTwitterUrl returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasTwitterUrl() bool {
+	if o != nil && !IsNil(o.TwitterUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetTwitterUrl gets a reference to the given string and assigns it to the TwitterUrl field.
 func (o *OfficialLinkModel) SetTwitterUrl(v string) {
-	o.TwitterUrl = v
+	o.TwitterUrl = &v
 }
 
-// GetYoutubeUrl returns the YoutubeUrl field value
+// GetYoutubeUrl returns the YoutubeUrl field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetYoutubeUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.YoutubeUrl
+	return *o.YoutubeUrl
 }
 
-// GetYoutubeUrlOk returns a tuple with the YoutubeUrl field value
+// GetYoutubeUrlOk returns a tuple with the YoutubeUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetYoutubeUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeUrl) {
 		return nil, false
 	}
-	return &o.YoutubeUrl, true
+	return o.YoutubeUrl, true
 }
 
-// SetYoutubeUrl sets field value
+// HasYoutubeUrl returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasYoutubeUrl() bool {
+	if o != nil && !IsNil(o.YoutubeUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetYoutubeUrl gets a reference to the given string and assigns it to the YoutubeUrl field.
 func (o *OfficialLinkModel) SetYoutubeUrl(v string) {
-	o.YoutubeUrl = v
+	o.YoutubeUrl = &v
 }
 
-// GetSurfSnowUrl returns the SurfSnowUrl field value
+// GetSurfSnowUrl returns the SurfSnowUrl field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetSurfSnowUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.SurfSnowUrl) {
 		var ret string
 		return ret
 	}
-
-	return o.SurfSnowUrl
+	return *o.SurfSnowUrl
 }
 
-// GetSurfSnowUrlOk returns a tuple with the SurfSnowUrl field value
+// GetSurfSnowUrlOk returns a tuple with the SurfSnowUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetSurfSnowUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SurfSnowUrl) {
 		return nil, false
 	}
-	return &o.SurfSnowUrl, true
+	return o.SurfSnowUrl, true
 }
 
-// SetSurfSnowUrl sets field value
+// HasSurfSnowUrl returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasSurfSnowUrl() bool {
+	if o != nil && !IsNil(o.SurfSnowUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetSurfSnowUrl gets a reference to the given string and assigns it to the SurfSnowUrl field.
 func (o *OfficialLinkModel) SetSurfSnowUrl(v string) {
-	o.SurfSnowUrl = v
+	o.SurfSnowUrl = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *OfficialLinkModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *OfficialLinkModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *OfficialLinkModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *OfficialLinkModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *OfficialLinkModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o OfficialLinkModel) MarshalJSON() ([]byte, error) {
@@ -282,59 +344,66 @@ func (o OfficialLinkModel) MarshalJSON() ([]byte, error) {
 
 func (o OfficialLinkModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["instagram_url"] = o.InstagramUrl
-	toSerialize["facebook_url"] = o.FacebookUrl
-	toSerialize["twitter_url"] = o.TwitterUrl
-	toSerialize["youtube_url"] = o.YoutubeUrl
-	toSerialize["surf_snow_url"] = o.SurfSnowUrl
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.InstagramUrl) {
+		toSerialize["instagram_url"] = o.InstagramUrl
+	}
+	if !IsNil(o.FacebookUrl) {
+		toSerialize["facebook_url"] = o.FacebookUrl
+	}
+	if !IsNil(o.TwitterUrl) {
+		toSerialize["twitter_url"] = o.TwitterUrl
+	}
+	if !IsNil(o.YoutubeUrl) {
+		toSerialize["youtube_url"] = o.YoutubeUrl
+	}
+	if !IsNil(o.SurfSnowUrl) {
+		toSerialize["surf_snow_url"] = o.SurfSnowUrl
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *OfficialLinkModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"instagram_url",
-		"facebook_url",
-		"twitter_url",
-		"youtube_url",
-		"surf_snow_url",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varOfficialLinkModel := _OfficialLinkModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varOfficialLinkModel)
+	err = json.Unmarshal(data, &varOfficialLinkModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = OfficialLinkModel(varOfficialLinkModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "instagram_url")
+		delete(additionalProperties, "facebook_url")
+		delete(additionalProperties, "twitter_url")
+		delete(additionalProperties, "youtube_url")
+		delete(additionalProperties, "surf_snow_url")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

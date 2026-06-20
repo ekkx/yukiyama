@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the MapSettingModel type satisfies the MappedNullable interface at compile time
@@ -17,15 +15,16 @@ var _ MappedNullable = &MapSettingModel{}
 
 // MapSettingModel struct for MapSettingModel
 type MapSettingModel struct {
-	IsShowShisetsu   bool  `json:"is_show_shisetsu"`
-	IsShowLift       bool  `json:"is_show_lift"`
-	IsShowCourse     bool  `json:"is_show_course"`
-	IsShowGroup      bool  `json:"is_show_group"`
-	IsShowOther      bool  `json:"is_show_other"`
-	IsShowRestaurant bool  `json:"is_show_restaurant"`
-	IsShowRental     bool  `json:"is_show_rental"`
-	IsShowHotel      bool  `json:"is_show_hotel"`
-	GroupId          int32 `json:"group_id"`
+	IsShowShisetsu       *bool  `json:"is_show_shisetsu,omitempty"`
+	IsShowLift           *bool  `json:"is_show_lift,omitempty"`
+	IsShowCourse         *bool  `json:"is_show_course,omitempty"`
+	IsShowGroup          *bool  `json:"is_show_group,omitempty"`
+	IsShowOther          *bool  `json:"is_show_other,omitempty"`
+	IsShowRestaurant     *bool  `json:"is_show_restaurant,omitempty"`
+	IsShowRental         *bool  `json:"is_show_rental,omitempty"`
+	IsShowHotel          *bool  `json:"is_show_hotel,omitempty"`
+	GroupId              *int32 `json:"group_id,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _MapSettingModel MapSettingModel
@@ -34,17 +33,8 @@ type _MapSettingModel MapSettingModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewMapSettingModel(isShowShisetsu bool, isShowLift bool, isShowCourse bool, isShowGroup bool, isShowOther bool, isShowRestaurant bool, isShowRental bool, isShowHotel bool, groupId int32) *MapSettingModel {
+func NewMapSettingModel() *MapSettingModel {
 	this := MapSettingModel{}
-	this.IsShowShisetsu = isShowShisetsu
-	this.IsShowLift = isShowLift
-	this.IsShowCourse = isShowCourse
-	this.IsShowGroup = isShowGroup
-	this.IsShowOther = isShowOther
-	this.IsShowRestaurant = isShowRestaurant
-	this.IsShowRental = isShowRental
-	this.IsShowHotel = isShowHotel
-	this.GroupId = groupId
 	return &this
 }
 
@@ -56,220 +46,292 @@ func NewMapSettingModelWithDefaults() *MapSettingModel {
 	return &this
 }
 
-// GetIsShowShisetsu returns the IsShowShisetsu field value
+// GetIsShowShisetsu returns the IsShowShisetsu field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowShisetsu() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowShisetsu) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowShisetsu
+	return *o.IsShowShisetsu
 }
 
-// GetIsShowShisetsuOk returns a tuple with the IsShowShisetsu field value
+// GetIsShowShisetsuOk returns a tuple with the IsShowShisetsu field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowShisetsuOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowShisetsu) {
 		return nil, false
 	}
-	return &o.IsShowShisetsu, true
+	return o.IsShowShisetsu, true
 }
 
-// SetIsShowShisetsu sets field value
+// HasIsShowShisetsu returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowShisetsu() bool {
+	if o != nil && !IsNil(o.IsShowShisetsu) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowShisetsu gets a reference to the given bool and assigns it to the IsShowShisetsu field.
 func (o *MapSettingModel) SetIsShowShisetsu(v bool) {
-	o.IsShowShisetsu = v
+	o.IsShowShisetsu = &v
 }
 
-// GetIsShowLift returns the IsShowLift field value
+// GetIsShowLift returns the IsShowLift field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowLift() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowLift) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowLift
+	return *o.IsShowLift
 }
 
-// GetIsShowLiftOk returns a tuple with the IsShowLift field value
+// GetIsShowLiftOk returns a tuple with the IsShowLift field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowLiftOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowLift) {
 		return nil, false
 	}
-	return &o.IsShowLift, true
+	return o.IsShowLift, true
 }
 
-// SetIsShowLift sets field value
+// HasIsShowLift returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowLift() bool {
+	if o != nil && !IsNil(o.IsShowLift) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowLift gets a reference to the given bool and assigns it to the IsShowLift field.
 func (o *MapSettingModel) SetIsShowLift(v bool) {
-	o.IsShowLift = v
+	o.IsShowLift = &v
 }
 
-// GetIsShowCourse returns the IsShowCourse field value
+// GetIsShowCourse returns the IsShowCourse field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowCourse() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowCourse) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowCourse
+	return *o.IsShowCourse
 }
 
-// GetIsShowCourseOk returns a tuple with the IsShowCourse field value
+// GetIsShowCourseOk returns a tuple with the IsShowCourse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowCourseOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowCourse) {
 		return nil, false
 	}
-	return &o.IsShowCourse, true
+	return o.IsShowCourse, true
 }
 
-// SetIsShowCourse sets field value
+// HasIsShowCourse returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowCourse() bool {
+	if o != nil && !IsNil(o.IsShowCourse) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowCourse gets a reference to the given bool and assigns it to the IsShowCourse field.
 func (o *MapSettingModel) SetIsShowCourse(v bool) {
-	o.IsShowCourse = v
+	o.IsShowCourse = &v
 }
 
-// GetIsShowGroup returns the IsShowGroup field value
+// GetIsShowGroup returns the IsShowGroup field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowGroup() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowGroup) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowGroup
+	return *o.IsShowGroup
 }
 
-// GetIsShowGroupOk returns a tuple with the IsShowGroup field value
+// GetIsShowGroupOk returns a tuple with the IsShowGroup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowGroupOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowGroup) {
 		return nil, false
 	}
-	return &o.IsShowGroup, true
+	return o.IsShowGroup, true
 }
 
-// SetIsShowGroup sets field value
+// HasIsShowGroup returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowGroup() bool {
+	if o != nil && !IsNil(o.IsShowGroup) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowGroup gets a reference to the given bool and assigns it to the IsShowGroup field.
 func (o *MapSettingModel) SetIsShowGroup(v bool) {
-	o.IsShowGroup = v
+	o.IsShowGroup = &v
 }
 
-// GetIsShowOther returns the IsShowOther field value
+// GetIsShowOther returns the IsShowOther field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowOther() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowOther) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowOther
+	return *o.IsShowOther
 }
 
-// GetIsShowOtherOk returns a tuple with the IsShowOther field value
+// GetIsShowOtherOk returns a tuple with the IsShowOther field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowOtherOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowOther) {
 		return nil, false
 	}
-	return &o.IsShowOther, true
+	return o.IsShowOther, true
 }
 
-// SetIsShowOther sets field value
+// HasIsShowOther returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowOther() bool {
+	if o != nil && !IsNil(o.IsShowOther) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowOther gets a reference to the given bool and assigns it to the IsShowOther field.
 func (o *MapSettingModel) SetIsShowOther(v bool) {
-	o.IsShowOther = v
+	o.IsShowOther = &v
 }
 
-// GetIsShowRestaurant returns the IsShowRestaurant field value
+// GetIsShowRestaurant returns the IsShowRestaurant field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowRestaurant() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowRestaurant) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowRestaurant
+	return *o.IsShowRestaurant
 }
 
-// GetIsShowRestaurantOk returns a tuple with the IsShowRestaurant field value
+// GetIsShowRestaurantOk returns a tuple with the IsShowRestaurant field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowRestaurantOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowRestaurant) {
 		return nil, false
 	}
-	return &o.IsShowRestaurant, true
+	return o.IsShowRestaurant, true
 }
 
-// SetIsShowRestaurant sets field value
+// HasIsShowRestaurant returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowRestaurant() bool {
+	if o != nil && !IsNil(o.IsShowRestaurant) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowRestaurant gets a reference to the given bool and assigns it to the IsShowRestaurant field.
 func (o *MapSettingModel) SetIsShowRestaurant(v bool) {
-	o.IsShowRestaurant = v
+	o.IsShowRestaurant = &v
 }
 
-// GetIsShowRental returns the IsShowRental field value
+// GetIsShowRental returns the IsShowRental field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowRental() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowRental) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowRental
+	return *o.IsShowRental
 }
 
-// GetIsShowRentalOk returns a tuple with the IsShowRental field value
+// GetIsShowRentalOk returns a tuple with the IsShowRental field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowRentalOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowRental) {
 		return nil, false
 	}
-	return &o.IsShowRental, true
+	return o.IsShowRental, true
 }
 
-// SetIsShowRental sets field value
+// HasIsShowRental returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowRental() bool {
+	if o != nil && !IsNil(o.IsShowRental) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowRental gets a reference to the given bool and assigns it to the IsShowRental field.
 func (o *MapSettingModel) SetIsShowRental(v bool) {
-	o.IsShowRental = v
+	o.IsShowRental = &v
 }
 
-// GetIsShowHotel returns the IsShowHotel field value
+// GetIsShowHotel returns the IsShowHotel field value if set, zero value otherwise.
 func (o *MapSettingModel) GetIsShowHotel() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowHotel) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsShowHotel
+	return *o.IsShowHotel
 }
 
-// GetIsShowHotelOk returns a tuple with the IsShowHotel field value
+// GetIsShowHotelOk returns a tuple with the IsShowHotel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetIsShowHotelOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowHotel) {
 		return nil, false
 	}
-	return &o.IsShowHotel, true
+	return o.IsShowHotel, true
 }
 
-// SetIsShowHotel sets field value
+// HasIsShowHotel returns a boolean if a field has been set.
+func (o *MapSettingModel) HasIsShowHotel() bool {
+	if o != nil && !IsNil(o.IsShowHotel) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowHotel gets a reference to the given bool and assigns it to the IsShowHotel field.
 func (o *MapSettingModel) SetIsShowHotel(v bool) {
-	o.IsShowHotel = v
+	o.IsShowHotel = &v
 }
 
-// GetGroupId returns the GroupId field value
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *MapSettingModel) GetGroupId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret int32
 		return ret
 	}
-
-	return o.GroupId
+	return *o.GroupId
 }
 
-// GetGroupIdOk returns a tuple with the GroupId field value
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *MapSettingModel) GetGroupIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
-	return &o.GroupId, true
+	return o.GroupId, true
 }
 
-// SetGroupId sets field value
+// HasGroupId returns a boolean if a field has been set.
+func (o *MapSettingModel) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
 func (o *MapSettingModel) SetGroupId(v int32) {
-	o.GroupId = v
+	o.GroupId = &v
 }
 
 func (o MapSettingModel) MarshalJSON() ([]byte, error) {
@@ -282,59 +344,66 @@ func (o MapSettingModel) MarshalJSON() ([]byte, error) {
 
 func (o MapSettingModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["is_show_shisetsu"] = o.IsShowShisetsu
-	toSerialize["is_show_lift"] = o.IsShowLift
-	toSerialize["is_show_course"] = o.IsShowCourse
-	toSerialize["is_show_group"] = o.IsShowGroup
-	toSerialize["is_show_other"] = o.IsShowOther
-	toSerialize["is_show_restaurant"] = o.IsShowRestaurant
-	toSerialize["is_show_rental"] = o.IsShowRental
-	toSerialize["is_show_hotel"] = o.IsShowHotel
-	toSerialize["group_id"] = o.GroupId
+	if !IsNil(o.IsShowShisetsu) {
+		toSerialize["is_show_shisetsu"] = o.IsShowShisetsu
+	}
+	if !IsNil(o.IsShowLift) {
+		toSerialize["is_show_lift"] = o.IsShowLift
+	}
+	if !IsNil(o.IsShowCourse) {
+		toSerialize["is_show_course"] = o.IsShowCourse
+	}
+	if !IsNil(o.IsShowGroup) {
+		toSerialize["is_show_group"] = o.IsShowGroup
+	}
+	if !IsNil(o.IsShowOther) {
+		toSerialize["is_show_other"] = o.IsShowOther
+	}
+	if !IsNil(o.IsShowRestaurant) {
+		toSerialize["is_show_restaurant"] = o.IsShowRestaurant
+	}
+	if !IsNil(o.IsShowRental) {
+		toSerialize["is_show_rental"] = o.IsShowRental
+	}
+	if !IsNil(o.IsShowHotel) {
+		toSerialize["is_show_hotel"] = o.IsShowHotel
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *MapSettingModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"is_show_shisetsu",
-		"is_show_lift",
-		"is_show_course",
-		"is_show_group",
-		"is_show_other",
-		"is_show_restaurant",
-		"is_show_rental",
-		"is_show_hotel",
-		"group_id",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varMapSettingModel := _MapSettingModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varMapSettingModel)
+	err = json.Unmarshal(data, &varMapSettingModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = MapSettingModel(varMapSettingModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "is_show_shisetsu")
+		delete(additionalProperties, "is_show_lift")
+		delete(additionalProperties, "is_show_course")
+		delete(additionalProperties, "is_show_group")
+		delete(additionalProperties, "is_show_other")
+		delete(additionalProperties, "is_show_restaurant")
+		delete(additionalProperties, "is_show_rental")
+		delete(additionalProperties, "is_show_hotel")
+		delete(additionalProperties, "group_id")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

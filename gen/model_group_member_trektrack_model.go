@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GroupMemberTrektrackModel type satisfies the MappedNullable interface at compile time
@@ -17,17 +15,18 @@ var _ MappedNullable = &GroupMemberTrektrackModel{}
 
 // GroupMemberTrektrackModel struct for GroupMemberTrektrackModel
 type GroupMemberTrektrackModel struct {
-	Id         int32  `json:"id"`
-	GroupId    int32  `json:"group_id"`
-	Nickname   string `json:"nickname"`
-	DeviceCode string `json:"device_code"`
-	IconImg    string `json:"icon_img"`
-	Lat        int32  `json:"lat"`
-	Lng        int32  `json:"lng"`
-	Alt        int32  `json:"alt"`
-	CreateTime string `json:"create_time"`
-	CreatedAt  string `json:"created_at"`
-	UpdatedAt  string `json:"updated_at"`
+	Id                   *int32  `json:"id,omitempty"`
+	GroupId              *int32  `json:"group_id,omitempty"`
+	Nickname             *string `json:"nickname,omitempty"`
+	DeviceCode           *string `json:"device_code,omitempty"`
+	IconImg              *string `json:"icon_img,omitempty"`
+	Lat                  *int32  `json:"lat,omitempty"`
+	Lng                  *int32  `json:"lng,omitempty"`
+	Alt                  *int32  `json:"alt,omitempty"`
+	CreateTime           *string `json:"create_time,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupMemberTrektrackModel GroupMemberTrektrackModel
@@ -36,19 +35,8 @@ type _GroupMemberTrektrackModel GroupMemberTrektrackModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupMemberTrektrackModel(id int32, groupId int32, nickname string, deviceCode string, iconImg string, lat int32, lng int32, alt int32, createTime string, createdAt string, updatedAt string) *GroupMemberTrektrackModel {
+func NewGroupMemberTrektrackModel() *GroupMemberTrektrackModel {
 	this := GroupMemberTrektrackModel{}
-	this.Id = id
-	this.GroupId = groupId
-	this.Nickname = nickname
-	this.DeviceCode = deviceCode
-	this.IconImg = iconImg
-	this.Lat = lat
-	this.Lng = lng
-	this.Alt = alt
-	this.CreateTime = createTime
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -60,268 +48,356 @@ func NewGroupMemberTrektrackModelWithDefaults() *GroupMemberTrektrackModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *GroupMemberTrektrackModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetGroupId returns the GroupId field value
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetGroupId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret int32
 		return ret
 	}
-
-	return o.GroupId
+	return *o.GroupId
 }
 
-// GetGroupIdOk returns a tuple with the GroupId field value
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetGroupIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
-	return &o.GroupId, true
+	return o.GroupId, true
 }
 
-// SetGroupId sets field value
+// HasGroupId returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
 func (o *GroupMemberTrektrackModel) SetGroupId(v int32) {
-	o.GroupId = v
+	o.GroupId = &v
 }
 
-// GetNickname returns the Nickname field value
+// GetNickname returns the Nickname field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetNickname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		var ret string
 		return ret
 	}
-
-	return o.Nickname
+	return *o.Nickname
 }
 
-// GetNicknameOk returns a tuple with the Nickname field value
+// GetNicknameOk returns a tuple with the Nickname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetNicknameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		return nil, false
 	}
-	return &o.Nickname, true
+	return o.Nickname, true
 }
 
-// SetNickname sets field value
+// HasNickname returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasNickname() bool {
+	if o != nil && !IsNil(o.Nickname) {
+		return true
+	}
+
+	return false
+}
+
+// SetNickname gets a reference to the given string and assigns it to the Nickname field.
 func (o *GroupMemberTrektrackModel) SetNickname(v string) {
-	o.Nickname = v
+	o.Nickname = &v
 }
 
-// GetDeviceCode returns the DeviceCode field value
+// GetDeviceCode returns the DeviceCode field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetDeviceCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceCode) {
 		var ret string
 		return ret
 	}
-
-	return o.DeviceCode
+	return *o.DeviceCode
 }
 
-// GetDeviceCodeOk returns a tuple with the DeviceCode field value
+// GetDeviceCodeOk returns a tuple with the DeviceCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetDeviceCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DeviceCode) {
 		return nil, false
 	}
-	return &o.DeviceCode, true
+	return o.DeviceCode, true
 }
 
-// SetDeviceCode sets field value
+// HasDeviceCode returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasDeviceCode() bool {
+	if o != nil && !IsNil(o.DeviceCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetDeviceCode gets a reference to the given string and assigns it to the DeviceCode field.
 func (o *GroupMemberTrektrackModel) SetDeviceCode(v string) {
-	o.DeviceCode = v
+	o.DeviceCode = &v
 }
 
-// GetIconImg returns the IconImg field value
+// GetIconImg returns the IconImg field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetIconImg() string {
-	if o == nil {
+	if o == nil || IsNil(o.IconImg) {
 		var ret string
 		return ret
 	}
-
-	return o.IconImg
+	return *o.IconImg
 }
 
-// GetIconImgOk returns a tuple with the IconImg field value
+// GetIconImgOk returns a tuple with the IconImg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetIconImgOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IconImg) {
 		return nil, false
 	}
-	return &o.IconImg, true
+	return o.IconImg, true
 }
 
-// SetIconImg sets field value
+// HasIconImg returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasIconImg() bool {
+	if o != nil && !IsNil(o.IconImg) {
+		return true
+	}
+
+	return false
+}
+
+// SetIconImg gets a reference to the given string and assigns it to the IconImg field.
 func (o *GroupMemberTrektrackModel) SetIconImg(v string) {
-	o.IconImg = v
+	o.IconImg = &v
 }
 
-// GetLat returns the Lat field value
+// GetLat returns the Lat field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetLat() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Lat) {
 		var ret int32
 		return ret
 	}
-
-	return o.Lat
+	return *o.Lat
 }
 
-// GetLatOk returns a tuple with the Lat field value
+// GetLatOk returns a tuple with the Lat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetLatOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Lat) {
 		return nil, false
 	}
-	return &o.Lat, true
+	return o.Lat, true
 }
 
-// SetLat sets field value
+// HasLat returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasLat() bool {
+	if o != nil && !IsNil(o.Lat) {
+		return true
+	}
+
+	return false
+}
+
+// SetLat gets a reference to the given int32 and assigns it to the Lat field.
 func (o *GroupMemberTrektrackModel) SetLat(v int32) {
-	o.Lat = v
+	o.Lat = &v
 }
 
-// GetLng returns the Lng field value
+// GetLng returns the Lng field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetLng() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Lng) {
 		var ret int32
 		return ret
 	}
-
-	return o.Lng
+	return *o.Lng
 }
 
-// GetLngOk returns a tuple with the Lng field value
+// GetLngOk returns a tuple with the Lng field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetLngOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Lng) {
 		return nil, false
 	}
-	return &o.Lng, true
+	return o.Lng, true
 }
 
-// SetLng sets field value
+// HasLng returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasLng() bool {
+	if o != nil && !IsNil(o.Lng) {
+		return true
+	}
+
+	return false
+}
+
+// SetLng gets a reference to the given int32 and assigns it to the Lng field.
 func (o *GroupMemberTrektrackModel) SetLng(v int32) {
-	o.Lng = v
+	o.Lng = &v
 }
 
-// GetAlt returns the Alt field value
+// GetAlt returns the Alt field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetAlt() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Alt) {
 		var ret int32
 		return ret
 	}
-
-	return o.Alt
+	return *o.Alt
 }
 
-// GetAltOk returns a tuple with the Alt field value
+// GetAltOk returns a tuple with the Alt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetAltOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Alt) {
 		return nil, false
 	}
-	return &o.Alt, true
+	return o.Alt, true
 }
 
-// SetAlt sets field value
+// HasAlt returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasAlt() bool {
+	if o != nil && !IsNil(o.Alt) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlt gets a reference to the given int32 and assigns it to the Alt field.
 func (o *GroupMemberTrektrackModel) SetAlt(v int32) {
-	o.Alt = v
+	o.Alt = &v
 }
 
-// GetCreateTime returns the CreateTime field value
+// GetCreateTime returns the CreateTime field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetCreateTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreateTime) {
 		var ret string
 		return ret
 	}
-
-	return o.CreateTime
+	return *o.CreateTime
 }
 
-// GetCreateTimeOk returns a tuple with the CreateTime field value
+// GetCreateTimeOk returns a tuple with the CreateTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetCreateTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreateTime) {
 		return nil, false
 	}
-	return &o.CreateTime, true
+	return o.CreateTime, true
 }
 
-// SetCreateTime sets field value
+// HasCreateTime returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasCreateTime() bool {
+	if o != nil && !IsNil(o.CreateTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreateTime gets a reference to the given string and assigns it to the CreateTime field.
 func (o *GroupMemberTrektrackModel) SetCreateTime(v string) {
-	o.CreateTime = v
+	o.CreateTime = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *GroupMemberTrektrackModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GroupMemberTrektrackModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberTrektrackModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *GroupMemberTrektrackModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *GroupMemberTrektrackModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o GroupMemberTrektrackModel) MarshalJSON() ([]byte, error) {
@@ -334,63 +410,74 @@ func (o GroupMemberTrektrackModel) MarshalJSON() ([]byte, error) {
 
 func (o GroupMemberTrektrackModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["group_id"] = o.GroupId
-	toSerialize["nickname"] = o.Nickname
-	toSerialize["device_code"] = o.DeviceCode
-	toSerialize["icon_img"] = o.IconImg
-	toSerialize["lat"] = o.Lat
-	toSerialize["lng"] = o.Lng
-	toSerialize["alt"] = o.Alt
-	toSerialize["create_time"] = o.CreateTime
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.Nickname) {
+		toSerialize["nickname"] = o.Nickname
+	}
+	if !IsNil(o.DeviceCode) {
+		toSerialize["device_code"] = o.DeviceCode
+	}
+	if !IsNil(o.IconImg) {
+		toSerialize["icon_img"] = o.IconImg
+	}
+	if !IsNil(o.Lat) {
+		toSerialize["lat"] = o.Lat
+	}
+	if !IsNil(o.Lng) {
+		toSerialize["lng"] = o.Lng
+	}
+	if !IsNil(o.Alt) {
+		toSerialize["alt"] = o.Alt
+	}
+	if !IsNil(o.CreateTime) {
+		toSerialize["create_time"] = o.CreateTime
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *GroupMemberTrektrackModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"group_id",
-		"nickname",
-		"device_code",
-		"icon_img",
-		"lat",
-		"lng",
-		"alt",
-		"create_time",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGroupMemberTrektrackModel := _GroupMemberTrektrackModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupMemberTrektrackModel)
+	err = json.Unmarshal(data, &varGroupMemberTrektrackModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupMemberTrektrackModel(varGroupMemberTrektrackModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "group_id")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "device_code")
+		delete(additionalProperties, "icon_img")
+		delete(additionalProperties, "lat")
+		delete(additionalProperties, "lng")
+		delete(additionalProperties, "alt")
+		delete(additionalProperties, "create_time")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

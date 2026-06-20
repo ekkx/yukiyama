@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CouponDistributionModel type satisfies the MappedNullable interface at compile time
@@ -17,16 +15,17 @@ var _ MappedNullable = &CouponDistributionModel{}
 
 // CouponDistributionModel struct for CouponDistributionModel
 type CouponDistributionModel struct {
-	Id               int32       `json:"id"`
-	CouponId         int32       `json:"coupon_id"`
-	CheckinId        int32       `json:"checkin_id"`
-	UserId           int32       `json:"user_id"`
-	IsViewed         int32       `json:"is_viewed"`
-	DistributionDate string      `json:"distribution_date"`
-	UseDate          string      `json:"use_date"`
-	CreatedAt        string      `json:"created_at"`
-	UpdatedAt        string      `json:"updated_at"`
-	Coupon           CouponModel `json:"coupon"`
+	Id                   *int32       `json:"id,omitempty"`
+	CouponId             *int32       `json:"coupon_id,omitempty"`
+	CheckinId            *int32       `json:"checkin_id,omitempty"`
+	UserId               *int32       `json:"user_id,omitempty"`
+	IsViewed             *int32       `json:"is_viewed,omitempty"`
+	DistributionDate     *string      `json:"distribution_date,omitempty"`
+	UseDate              *string      `json:"use_date,omitempty"`
+	CreatedAt            *string      `json:"created_at,omitempty"`
+	UpdatedAt            *string      `json:"updated_at,omitempty"`
+	Coupon               *CouponModel `json:"coupon,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CouponDistributionModel CouponDistributionModel
@@ -35,18 +34,8 @@ type _CouponDistributionModel CouponDistributionModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCouponDistributionModel(id int32, couponId int32, checkinId int32, userId int32, isViewed int32, distributionDate string, useDate string, createdAt string, updatedAt string, coupon CouponModel) *CouponDistributionModel {
+func NewCouponDistributionModel() *CouponDistributionModel {
 	this := CouponDistributionModel{}
-	this.Id = id
-	this.CouponId = couponId
-	this.CheckinId = checkinId
-	this.UserId = userId
-	this.IsViewed = isViewed
-	this.DistributionDate = distributionDate
-	this.UseDate = useDate
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.Coupon = coupon
 	return &this
 }
 
@@ -58,244 +47,324 @@ func NewCouponDistributionModelWithDefaults() *CouponDistributionModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *CouponDistributionModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetCouponId returns the CouponId field value
+// GetCouponId returns the CouponId field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetCouponId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CouponId) {
 		var ret int32
 		return ret
 	}
-
-	return o.CouponId
+	return *o.CouponId
 }
 
-// GetCouponIdOk returns a tuple with the CouponId field value
+// GetCouponIdOk returns a tuple with the CouponId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetCouponIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CouponId) {
 		return nil, false
 	}
-	return &o.CouponId, true
+	return o.CouponId, true
 }
 
-// SetCouponId sets field value
+// HasCouponId returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasCouponId() bool {
+	if o != nil && !IsNil(o.CouponId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponId gets a reference to the given int32 and assigns it to the CouponId field.
 func (o *CouponDistributionModel) SetCouponId(v int32) {
-	o.CouponId = v
+	o.CouponId = &v
 }
 
-// GetCheckinId returns the CheckinId field value
+// GetCheckinId returns the CheckinId field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetCheckinId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinId
+	return *o.CheckinId
 }
 
-// GetCheckinIdOk returns a tuple with the CheckinId field value
+// GetCheckinIdOk returns a tuple with the CheckinId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetCheckinIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		return nil, false
 	}
-	return &o.CheckinId, true
+	return o.CheckinId, true
 }
 
-// SetCheckinId sets field value
+// HasCheckinId returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasCheckinId() bool {
+	if o != nil && !IsNil(o.CheckinId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinId gets a reference to the given int32 and assigns it to the CheckinId field.
 func (o *CouponDistributionModel) SetCheckinId(v int32) {
-	o.CheckinId = v
+	o.CheckinId = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *CouponDistributionModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetIsViewed returns the IsViewed field value
+// GetIsViewed returns the IsViewed field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetIsViewed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsViewed) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsViewed
+	return *o.IsViewed
 }
 
-// GetIsViewedOk returns a tuple with the IsViewed field value
+// GetIsViewedOk returns a tuple with the IsViewed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetIsViewedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsViewed) {
 		return nil, false
 	}
-	return &o.IsViewed, true
+	return o.IsViewed, true
 }
 
-// SetIsViewed sets field value
+// HasIsViewed returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasIsViewed() bool {
+	if o != nil && !IsNil(o.IsViewed) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsViewed gets a reference to the given int32 and assigns it to the IsViewed field.
 func (o *CouponDistributionModel) SetIsViewed(v int32) {
-	o.IsViewed = v
+	o.IsViewed = &v
 }
 
-// GetDistributionDate returns the DistributionDate field value
+// GetDistributionDate returns the DistributionDate field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetDistributionDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.DistributionDate) {
 		var ret string
 		return ret
 	}
-
-	return o.DistributionDate
+	return *o.DistributionDate
 }
 
-// GetDistributionDateOk returns a tuple with the DistributionDate field value
+// GetDistributionDateOk returns a tuple with the DistributionDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetDistributionDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DistributionDate) {
 		return nil, false
 	}
-	return &o.DistributionDate, true
+	return o.DistributionDate, true
 }
 
-// SetDistributionDate sets field value
+// HasDistributionDate returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasDistributionDate() bool {
+	if o != nil && !IsNil(o.DistributionDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetDistributionDate gets a reference to the given string and assigns it to the DistributionDate field.
 func (o *CouponDistributionModel) SetDistributionDate(v string) {
-	o.DistributionDate = v
+	o.DistributionDate = &v
 }
 
-// GetUseDate returns the UseDate field value
+// GetUseDate returns the UseDate field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetUseDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.UseDate) {
 		var ret string
 		return ret
 	}
-
-	return o.UseDate
+	return *o.UseDate
 }
 
-// GetUseDateOk returns a tuple with the UseDate field value
+// GetUseDateOk returns a tuple with the UseDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetUseDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UseDate) {
 		return nil, false
 	}
-	return &o.UseDate, true
+	return o.UseDate, true
 }
 
-// SetUseDate sets field value
+// HasUseDate returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasUseDate() bool {
+	if o != nil && !IsNil(o.UseDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetUseDate gets a reference to the given string and assigns it to the UseDate field.
 func (o *CouponDistributionModel) SetUseDate(v string) {
-	o.UseDate = v
+	o.UseDate = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *CouponDistributionModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *CouponDistributionModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetCoupon returns the Coupon field value
+// GetCoupon returns the Coupon field value if set, zero value otherwise.
 func (o *CouponDistributionModel) GetCoupon() CouponModel {
-	if o == nil {
+	if o == nil || IsNil(o.Coupon) {
 		var ret CouponModel
 		return ret
 	}
-
-	return o.Coupon
+	return *o.Coupon
 }
 
-// GetCouponOk returns a tuple with the Coupon field value
+// GetCouponOk returns a tuple with the Coupon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CouponDistributionModel) GetCouponOk() (*CouponModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Coupon) {
 		return nil, false
 	}
-	return &o.Coupon, true
+	return o.Coupon, true
 }
 
-// SetCoupon sets field value
+// HasCoupon returns a boolean if a field has been set.
+func (o *CouponDistributionModel) HasCoupon() bool {
+	if o != nil && !IsNil(o.Coupon) {
+		return true
+	}
+
+	return false
+}
+
+// SetCoupon gets a reference to the given CouponModel and assigns it to the Coupon field.
 func (o *CouponDistributionModel) SetCoupon(v CouponModel) {
-	o.Coupon = v
+	o.Coupon = &v
 }
 
 func (o CouponDistributionModel) MarshalJSON() ([]byte, error) {
@@ -308,61 +377,70 @@ func (o CouponDistributionModel) MarshalJSON() ([]byte, error) {
 
 func (o CouponDistributionModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["coupon_id"] = o.CouponId
-	toSerialize["checkin_id"] = o.CheckinId
-	toSerialize["user_id"] = o.UserId
-	toSerialize["is_viewed"] = o.IsViewed
-	toSerialize["distribution_date"] = o.DistributionDate
-	toSerialize["use_date"] = o.UseDate
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["coupon"] = o.Coupon
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CouponId) {
+		toSerialize["coupon_id"] = o.CouponId
+	}
+	if !IsNil(o.CheckinId) {
+		toSerialize["checkin_id"] = o.CheckinId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.IsViewed) {
+		toSerialize["is_viewed"] = o.IsViewed
+	}
+	if !IsNil(o.DistributionDate) {
+		toSerialize["distribution_date"] = o.DistributionDate
+	}
+	if !IsNil(o.UseDate) {
+		toSerialize["use_date"] = o.UseDate
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Coupon) {
+		toSerialize["coupon"] = o.Coupon
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *CouponDistributionModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"coupon_id",
-		"checkin_id",
-		"user_id",
-		"is_viewed",
-		"distribution_date",
-		"use_date",
-		"created_at",
-		"updated_at",
-		"coupon",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCouponDistributionModel := _CouponDistributionModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCouponDistributionModel)
+	err = json.Unmarshal(data, &varCouponDistributionModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CouponDistributionModel(varCouponDistributionModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "coupon_id")
+		delete(additionalProperties, "checkin_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "is_viewed")
+		delete(additionalProperties, "distribution_date")
+		delete(additionalProperties, "use_date")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "coupon")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CheckinCommentModel type satisfies the MappedNullable interface at compile time
@@ -17,21 +15,22 @@ var _ MappedNullable = &CheckinCommentModel{}
 
 // CheckinCommentModel struct for CheckinCommentModel
 type CheckinCommentModel struct {
-	Id                      int32                 `json:"id"`
-	CheckinId               int32                 `json:"checkin_id"`
-	UserId                  int32                 `json:"user_id"`
-	Comment                 string                `json:"comment"`
-	ReplyCommentId          int32                 `json:"reply_comment_id"`
-	CreatedAt               string                `json:"created_at"`
-	UpdatedAt               string                `json:"updated_at"`
-	IconImage               string                `json:"icon_image"`
-	Nickname                string                `json:"nickname"`
-	UserName                string                `json:"userName"`
-	UserType                int32                 `json:"user_type"`
-	IsSupporter             int32                 `json:"is_supporter"`
-	SupporterExpirationDate string                `json:"supporter_expiration_date"`
-	IsShowSupporterLabel    int32                 `json:"is_show_supporter_label"`
-	ReplyCheckinComments    []CheckinCommentModel `json:"reply_checkin_comments"`
+	Id                      *int32                `json:"id,omitempty"`
+	CheckinId               *int32                `json:"checkin_id,omitempty"`
+	UserId                  *int32                `json:"user_id,omitempty"`
+	Comment                 *string               `json:"comment,omitempty"`
+	ReplyCommentId          *int32                `json:"reply_comment_id,omitempty"`
+	CreatedAt               *string               `json:"created_at,omitempty"`
+	UpdatedAt               *string               `json:"updated_at,omitempty"`
+	IconImage               *string               `json:"icon_image,omitempty"`
+	Nickname                *string               `json:"nickname,omitempty"`
+	UserName                *string               `json:"userName,omitempty"`
+	UserType                *int32                `json:"user_type,omitempty"`
+	IsSupporter             *int32                `json:"is_supporter,omitempty"`
+	SupporterExpirationDate *string               `json:"supporter_expiration_date,omitempty"`
+	IsShowSupporterLabel    *int32                `json:"is_show_supporter_label,omitempty"`
+	ReplyCheckinComments    []CheckinCommentModel `json:"reply_checkin_comments,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _CheckinCommentModel CheckinCommentModel
@@ -40,23 +39,8 @@ type _CheckinCommentModel CheckinCommentModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckinCommentModel(id int32, checkinId int32, userId int32, comment string, replyCommentId int32, createdAt string, updatedAt string, iconImage string, nickname string, userName string, userType int32, isSupporter int32, supporterExpirationDate string, isShowSupporterLabel int32, replyCheckinComments []CheckinCommentModel) *CheckinCommentModel {
+func NewCheckinCommentModel() *CheckinCommentModel {
 	this := CheckinCommentModel{}
-	this.Id = id
-	this.CheckinId = checkinId
-	this.UserId = userId
-	this.Comment = comment
-	this.ReplyCommentId = replyCommentId
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.IconImage = iconImage
-	this.Nickname = nickname
-	this.UserName = userName
-	this.UserType = userType
-	this.IsSupporter = isSupporter
-	this.SupporterExpirationDate = supporterExpirationDate
-	this.IsShowSupporterLabel = isShowSupporterLabel
-	this.ReplyCheckinComments = replyCheckinComments
 	return &this
 }
 
@@ -68,362 +52,482 @@ func NewCheckinCommentModelWithDefaults() *CheckinCommentModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *CheckinCommentModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetCheckinId returns the CheckinId field value
+// GetCheckinId returns the CheckinId field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetCheckinId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinId
+	return *o.CheckinId
 }
 
-// GetCheckinIdOk returns a tuple with the CheckinId field value
+// GetCheckinIdOk returns a tuple with the CheckinId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetCheckinIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		return nil, false
 	}
-	return &o.CheckinId, true
+	return o.CheckinId, true
 }
 
-// SetCheckinId sets field value
+// HasCheckinId returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasCheckinId() bool {
+	if o != nil && !IsNil(o.CheckinId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinId gets a reference to the given int32 and assigns it to the CheckinId field.
 func (o *CheckinCommentModel) SetCheckinId(v int32) {
-	o.CheckinId = v
+	o.CheckinId = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *CheckinCommentModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetComment returns the Comment field value
+// GetComment returns the Comment field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetComment() string {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
-
-	return o.Comment
+	return *o.Comment
 }
 
-// GetCommentOk returns a tuple with the Comment field value
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetCommentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
-	return &o.Comment, true
+	return o.Comment, true
 }
 
-// SetComment sets field value
+// HasComment returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
 func (o *CheckinCommentModel) SetComment(v string) {
-	o.Comment = v
+	o.Comment = &v
 }
 
-// GetReplyCommentId returns the ReplyCommentId field value
+// GetReplyCommentId returns the ReplyCommentId field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetReplyCommentId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ReplyCommentId) {
 		var ret int32
 		return ret
 	}
-
-	return o.ReplyCommentId
+	return *o.ReplyCommentId
 }
 
-// GetReplyCommentIdOk returns a tuple with the ReplyCommentId field value
+// GetReplyCommentIdOk returns a tuple with the ReplyCommentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetReplyCommentIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReplyCommentId) {
 		return nil, false
 	}
-	return &o.ReplyCommentId, true
+	return o.ReplyCommentId, true
 }
 
-// SetReplyCommentId sets field value
+// HasReplyCommentId returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasReplyCommentId() bool {
+	if o != nil && !IsNil(o.ReplyCommentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplyCommentId gets a reference to the given int32 and assigns it to the ReplyCommentId field.
 func (o *CheckinCommentModel) SetReplyCommentId(v int32) {
-	o.ReplyCommentId = v
+	o.ReplyCommentId = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *CheckinCommentModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *CheckinCommentModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetIconImage returns the IconImage field value
+// GetIconImage returns the IconImage field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetIconImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.IconImage) {
 		var ret string
 		return ret
 	}
-
-	return o.IconImage
+	return *o.IconImage
 }
 
-// GetIconImageOk returns a tuple with the IconImage field value
+// GetIconImageOk returns a tuple with the IconImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetIconImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IconImage) {
 		return nil, false
 	}
-	return &o.IconImage, true
+	return o.IconImage, true
 }
 
-// SetIconImage sets field value
+// HasIconImage returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasIconImage() bool {
+	if o != nil && !IsNil(o.IconImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetIconImage gets a reference to the given string and assigns it to the IconImage field.
 func (o *CheckinCommentModel) SetIconImage(v string) {
-	o.IconImage = v
+	o.IconImage = &v
 }
 
-// GetNickname returns the Nickname field value
+// GetNickname returns the Nickname field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetNickname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		var ret string
 		return ret
 	}
-
-	return o.Nickname
+	return *o.Nickname
 }
 
-// GetNicknameOk returns a tuple with the Nickname field value
+// GetNicknameOk returns a tuple with the Nickname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetNicknameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		return nil, false
 	}
-	return &o.Nickname, true
+	return o.Nickname, true
 }
 
-// SetNickname sets field value
+// HasNickname returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasNickname() bool {
+	if o != nil && !IsNil(o.Nickname) {
+		return true
+	}
+
+	return false
+}
+
+// SetNickname gets a reference to the given string and assigns it to the Nickname field.
 func (o *CheckinCommentModel) SetNickname(v string) {
-	o.Nickname = v
+	o.Nickname = &v
 }
 
-// GetUserName returns the UserName field value
+// GetUserName returns the UserName field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetUserName() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserName) {
 		var ret string
 		return ret
 	}
-
-	return o.UserName
+	return *o.UserName
 }
 
-// GetUserNameOk returns a tuple with the UserName field value
+// GetUserNameOk returns a tuple with the UserName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetUserNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserName) {
 		return nil, false
 	}
-	return &o.UserName, true
+	return o.UserName, true
 }
 
-// SetUserName sets field value
+// HasUserName returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasUserName() bool {
+	if o != nil && !IsNil(o.UserName) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserName gets a reference to the given string and assigns it to the UserName field.
 func (o *CheckinCommentModel) SetUserName(v string) {
-	o.UserName = v
+	o.UserName = &v
 }
 
-// GetUserType returns the UserType field value
+// GetUserType returns the UserType field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetUserType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserType) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserType
+	return *o.UserType
 }
 
-// GetUserTypeOk returns a tuple with the UserType field value
+// GetUserTypeOk returns a tuple with the UserType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetUserTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserType) {
 		return nil, false
 	}
-	return &o.UserType, true
+	return o.UserType, true
 }
 
-// SetUserType sets field value
+// HasUserType returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasUserType() bool {
+	if o != nil && !IsNil(o.UserType) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserType gets a reference to the given int32 and assigns it to the UserType field.
 func (o *CheckinCommentModel) SetUserType(v int32) {
-	o.UserType = v
+	o.UserType = &v
 }
 
-// GetIsSupporter returns the IsSupporter field value
+// GetIsSupporter returns the IsSupporter field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetIsSupporter() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsSupporter) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsSupporter
+	return *o.IsSupporter
 }
 
-// GetIsSupporterOk returns a tuple with the IsSupporter field value
+// GetIsSupporterOk returns a tuple with the IsSupporter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetIsSupporterOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsSupporter) {
 		return nil, false
 	}
-	return &o.IsSupporter, true
+	return o.IsSupporter, true
 }
 
-// SetIsSupporter sets field value
+// HasIsSupporter returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasIsSupporter() bool {
+	if o != nil && !IsNil(o.IsSupporter) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSupporter gets a reference to the given int32 and assigns it to the IsSupporter field.
 func (o *CheckinCommentModel) SetIsSupporter(v int32) {
-	o.IsSupporter = v
+	o.IsSupporter = &v
 }
 
-// GetSupporterExpirationDate returns the SupporterExpirationDate field value
+// GetSupporterExpirationDate returns the SupporterExpirationDate field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetSupporterExpirationDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.SupporterExpirationDate) {
 		var ret string
 		return ret
 	}
-
-	return o.SupporterExpirationDate
+	return *o.SupporterExpirationDate
 }
 
-// GetSupporterExpirationDateOk returns a tuple with the SupporterExpirationDate field value
+// GetSupporterExpirationDateOk returns a tuple with the SupporterExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetSupporterExpirationDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SupporterExpirationDate) {
 		return nil, false
 	}
-	return &o.SupporterExpirationDate, true
+	return o.SupporterExpirationDate, true
 }
 
-// SetSupporterExpirationDate sets field value
+// HasSupporterExpirationDate returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasSupporterExpirationDate() bool {
+	if o != nil && !IsNil(o.SupporterExpirationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetSupporterExpirationDate gets a reference to the given string and assigns it to the SupporterExpirationDate field.
 func (o *CheckinCommentModel) SetSupporterExpirationDate(v string) {
-	o.SupporterExpirationDate = v
+	o.SupporterExpirationDate = &v
 }
 
-// GetIsShowSupporterLabel returns the IsShowSupporterLabel field value
+// GetIsShowSupporterLabel returns the IsShowSupporterLabel field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetIsShowSupporterLabel() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowSupporterLabel) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsShowSupporterLabel
+	return *o.IsShowSupporterLabel
 }
 
-// GetIsShowSupporterLabelOk returns a tuple with the IsShowSupporterLabel field value
+// GetIsShowSupporterLabelOk returns a tuple with the IsShowSupporterLabel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetIsShowSupporterLabelOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsShowSupporterLabel) {
 		return nil, false
 	}
-	return &o.IsShowSupporterLabel, true
+	return o.IsShowSupporterLabel, true
 }
 
-// SetIsShowSupporterLabel sets field value
+// HasIsShowSupporterLabel returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasIsShowSupporterLabel() bool {
+	if o != nil && !IsNil(o.IsShowSupporterLabel) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsShowSupporterLabel gets a reference to the given int32 and assigns it to the IsShowSupporterLabel field.
 func (o *CheckinCommentModel) SetIsShowSupporterLabel(v int32) {
-	o.IsShowSupporterLabel = v
+	o.IsShowSupporterLabel = &v
 }
 
-// GetReplyCheckinComments returns the ReplyCheckinComments field value
+// GetReplyCheckinComments returns the ReplyCheckinComments field value if set, zero value otherwise.
 func (o *CheckinCommentModel) GetReplyCheckinComments() []CheckinCommentModel {
-	if o == nil {
+	if o == nil || IsNil(o.ReplyCheckinComments) {
 		var ret []CheckinCommentModel
 		return ret
 	}
-
 	return o.ReplyCheckinComments
 }
 
-// GetReplyCheckinCommentsOk returns a tuple with the ReplyCheckinComments field value
+// GetReplyCheckinCommentsOk returns a tuple with the ReplyCheckinComments field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinCommentModel) GetReplyCheckinCommentsOk() ([]CheckinCommentModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ReplyCheckinComments) {
 		return nil, false
 	}
 	return o.ReplyCheckinComments, true
 }
 
-// SetReplyCheckinComments sets field value
+// HasReplyCheckinComments returns a boolean if a field has been set.
+func (o *CheckinCommentModel) HasReplyCheckinComments() bool {
+	if o != nil && !IsNil(o.ReplyCheckinComments) {
+		return true
+	}
+
+	return false
+}
+
+// SetReplyCheckinComments gets a reference to the given []CheckinCommentModel and assigns it to the ReplyCheckinComments field.
 func (o *CheckinCommentModel) SetReplyCheckinComments(v []CheckinCommentModel) {
 	o.ReplyCheckinComments = v
 }
@@ -438,71 +542,90 @@ func (o CheckinCommentModel) MarshalJSON() ([]byte, error) {
 
 func (o CheckinCommentModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["checkin_id"] = o.CheckinId
-	toSerialize["user_id"] = o.UserId
-	toSerialize["comment"] = o.Comment
-	toSerialize["reply_comment_id"] = o.ReplyCommentId
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["icon_image"] = o.IconImage
-	toSerialize["nickname"] = o.Nickname
-	toSerialize["userName"] = o.UserName
-	toSerialize["user_type"] = o.UserType
-	toSerialize["is_supporter"] = o.IsSupporter
-	toSerialize["supporter_expiration_date"] = o.SupporterExpirationDate
-	toSerialize["is_show_supporter_label"] = o.IsShowSupporterLabel
-	toSerialize["reply_checkin_comments"] = o.ReplyCheckinComments
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CheckinId) {
+		toSerialize["checkin_id"] = o.CheckinId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.ReplyCommentId) {
+		toSerialize["reply_comment_id"] = o.ReplyCommentId
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.IconImage) {
+		toSerialize["icon_image"] = o.IconImage
+	}
+	if !IsNil(o.Nickname) {
+		toSerialize["nickname"] = o.Nickname
+	}
+	if !IsNil(o.UserName) {
+		toSerialize["userName"] = o.UserName
+	}
+	if !IsNil(o.UserType) {
+		toSerialize["user_type"] = o.UserType
+	}
+	if !IsNil(o.IsSupporter) {
+		toSerialize["is_supporter"] = o.IsSupporter
+	}
+	if !IsNil(o.SupporterExpirationDate) {
+		toSerialize["supporter_expiration_date"] = o.SupporterExpirationDate
+	}
+	if !IsNil(o.IsShowSupporterLabel) {
+		toSerialize["is_show_supporter_label"] = o.IsShowSupporterLabel
+	}
+	if !IsNil(o.ReplyCheckinComments) {
+		toSerialize["reply_checkin_comments"] = o.ReplyCheckinComments
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *CheckinCommentModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"checkin_id",
-		"user_id",
-		"comment",
-		"reply_comment_id",
-		"created_at",
-		"updated_at",
-		"icon_image",
-		"nickname",
-		"userName",
-		"user_type",
-		"is_supporter",
-		"supporter_expiration_date",
-		"is_show_supporter_label",
-		"reply_checkin_comments",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCheckinCommentModel := _CheckinCommentModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckinCommentModel)
+	err = json.Unmarshal(data, &varCheckinCommentModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckinCommentModel(varCheckinCommentModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "checkin_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "reply_comment_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "icon_image")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "userName")
+		delete(additionalProperties, "user_type")
+		delete(additionalProperties, "is_supporter")
+		delete(additionalProperties, "supporter_expiration_date")
+		delete(additionalProperties, "is_show_supporter_label")
+		delete(additionalProperties, "reply_checkin_comments")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

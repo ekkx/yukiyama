@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the GroupMemberModel type satisfies the MappedNullable interface at compile time
@@ -17,12 +15,13 @@ var _ MappedNullable = &GroupMemberModel{}
 
 // GroupMemberModel struct for GroupMemberModel
 type GroupMemberModel struct {
-	Id        int32        `json:"id"`
-	GroupId   int32        `json:"group_id"`
-	UserId    int32        `json:"user_id"`
-	CreatedAt string       `json:"created_at"`
-	UpdatedAt string       `json:"updated_at"`
-	Profile   ProfileModel `json:"profile"`
+	Id                   *int32        `json:"id,omitempty"`
+	GroupId              *int32        `json:"group_id,omitempty"`
+	UserId               *int32        `json:"user_id,omitempty"`
+	CreatedAt            *string       `json:"created_at,omitempty"`
+	UpdatedAt            *string       `json:"updated_at,omitempty"`
+	Profile              *ProfileModel `json:"profile,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _GroupMemberModel GroupMemberModel
@@ -31,14 +30,8 @@ type _GroupMemberModel GroupMemberModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewGroupMemberModel(id int32, groupId int32, userId int32, createdAt string, updatedAt string, profile ProfileModel) *GroupMemberModel {
+func NewGroupMemberModel() *GroupMemberModel {
 	this := GroupMemberModel{}
-	this.Id = id
-	this.GroupId = groupId
-	this.UserId = userId
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.Profile = profile
 	return &this
 }
 
@@ -50,148 +43,196 @@ func NewGroupMemberModelWithDefaults() *GroupMemberModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *GroupMemberModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetGroupId returns the GroupId field value
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetGroupId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		var ret int32
 		return ret
 	}
-
-	return o.GroupId
+	return *o.GroupId
 }
 
-// GetGroupIdOk returns a tuple with the GroupId field value
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetGroupIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GroupId) {
 		return nil, false
 	}
-	return &o.GroupId, true
+	return o.GroupId, true
 }
 
-// SetGroupId sets field value
+// HasGroupId returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given int32 and assigns it to the GroupId field.
 func (o *GroupMemberModel) SetGroupId(v int32) {
-	o.GroupId = v
+	o.GroupId = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *GroupMemberModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *GroupMemberModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *GroupMemberModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetProfile returns the Profile field value
+// GetProfile returns the Profile field value if set, zero value otherwise.
 func (o *GroupMemberModel) GetProfile() ProfileModel {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		var ret ProfileModel
 		return ret
 	}
-
-	return o.Profile
+	return *o.Profile
 }
 
-// GetProfileOk returns a tuple with the Profile field value
+// GetProfileOk returns a tuple with the Profile field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GroupMemberModel) GetProfileOk() (*ProfileModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Profile) {
 		return nil, false
 	}
-	return &o.Profile, true
+	return o.Profile, true
 }
 
-// SetProfile sets field value
+// HasProfile returns a boolean if a field has been set.
+func (o *GroupMemberModel) HasProfile() bool {
+	if o != nil && !IsNil(o.Profile) {
+		return true
+	}
+
+	return false
+}
+
+// SetProfile gets a reference to the given ProfileModel and assigns it to the Profile field.
 func (o *GroupMemberModel) SetProfile(v ProfileModel) {
-	o.Profile = v
+	o.Profile = &v
 }
 
 func (o GroupMemberModel) MarshalJSON() ([]byte, error) {
@@ -204,53 +245,54 @@ func (o GroupMemberModel) MarshalJSON() ([]byte, error) {
 
 func (o GroupMemberModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["group_id"] = o.GroupId
-	toSerialize["user_id"] = o.UserId
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["profile"] = o.Profile
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Profile) {
+		toSerialize["profile"] = o.Profile
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *GroupMemberModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"group_id",
-		"user_id",
-		"created_at",
-		"updated_at",
-		"profile",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varGroupMemberModel := _GroupMemberModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varGroupMemberModel)
+	err = json.Unmarshal(data, &varGroupMemberModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = GroupMemberModel(varGroupMemberModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "group_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "profile")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

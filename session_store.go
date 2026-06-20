@@ -16,7 +16,7 @@ import (
 // Load() at most once during NewClient (when WithAutoLoadSession is enabled,
 // which is the default) and Save() after each successful Login (including the
 // transparent re-login triggered by error_code 103). Clear() is called from
-// Logout().
+// client.User.Logout().
 //
 // Returning a nil PersistedSession with a nil error from Load indicates "no
 // saved session" — this is the normal first-run state and is not an error.

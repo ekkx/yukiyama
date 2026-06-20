@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the FacilityModel type satisfies the MappedNullable interface at compile time
@@ -17,31 +15,32 @@ var _ MappedNullable = &FacilityModel{}
 
 // FacilityModel struct for FacilityModel
 type FacilityModel struct {
-	Id               int32               `json:"id"`
-	SkiareaId        int32               `json:"skiarea_id"`
-	Name             string              `json:"name"`
-	FacilityType     int32               `json:"facility_type"`
-	Description      string              `json:"description"`
-	Imagename        string              `json:"imagename"`
-	ParkMapImage     string              `json:"park_map_image"`
-	LocationLat      int32               `json:"location_lat"`
-	LocationLog      int32               `json:"location_log"`
-	SortKey          int32               `json:"sort_key"`
-	DigitalMapX      int32               `json:"digital_map_x"`
-	DigitalMapY      int32               `json:"digital_map_y"`
-	CreatedAt        string              `json:"created_at"`
-	UpdatedAt        string              `json:"updated_at"`
-	YoutubeLink      string              `json:"youtube_link"`
-	Link             string              `json:"link"`
-	LimitNumber      int32               `json:"limit_number"`
-	LiftSpeed        int32               `json:"lift_speed"`
-	LiftTime         string              `json:"lift_time"`
-	CourseDifficulty string              `json:"course_difficulty"`
-	CourseSize       string              `json:"course_size"`
-	ExistToilet      int32               `json:"exist_toilet"`
-	CanUseCard       int32               `json:"can_use_card"`
-	AverageCost      string              `json:"average_cost"`
-	FacilityStatus   FacilityStatusModel `json:"facility_status"`
+	Id                   *int32               `json:"id,omitempty"`
+	SkiareaId            *int32               `json:"skiarea_id,omitempty"`
+	Name                 *string              `json:"name,omitempty"`
+	FacilityType         *int32               `json:"facility_type,omitempty"`
+	Description          *string              `json:"description,omitempty"`
+	Imagename            *string              `json:"imagename,omitempty"`
+	ParkMapImage         *string              `json:"park_map_image,omitempty"`
+	LocationLat          *int32               `json:"location_lat,omitempty"`
+	LocationLog          *int32               `json:"location_log,omitempty"`
+	SortKey              *int32               `json:"sort_key,omitempty"`
+	DigitalMapX          *int32               `json:"digital_map_x,omitempty"`
+	DigitalMapY          *int32               `json:"digital_map_y,omitempty"`
+	CreatedAt            *string              `json:"created_at,omitempty"`
+	UpdatedAt            *string              `json:"updated_at,omitempty"`
+	YoutubeLink          *string              `json:"youtube_link,omitempty"`
+	Link                 *string              `json:"link,omitempty"`
+	LimitNumber          *int32               `json:"limit_number,omitempty"`
+	LiftSpeed            *int32               `json:"lift_speed,omitempty"`
+	LiftTime             *string              `json:"lift_time,omitempty"`
+	CourseDifficulty     *string              `json:"course_difficulty,omitempty"`
+	CourseSize           *string              `json:"course_size,omitempty"`
+	ExistToilet          *int32               `json:"exist_toilet,omitempty"`
+	CanUseCard           *int32               `json:"can_use_card,omitempty"`
+	AverageCost          *string              `json:"average_cost,omitempty"`
+	FacilityStatus       *FacilityStatusModel `json:"facility_status,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _FacilityModel FacilityModel
@@ -50,33 +49,8 @@ type _FacilityModel FacilityModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFacilityModel(id int32, skiareaId int32, name string, facilityType int32, description string, imagename string, parkMapImage string, locationLat int32, locationLog int32, sortKey int32, digitalMapX int32, digitalMapY int32, createdAt string, updatedAt string, youtubeLink string, link string, limitNumber int32, liftSpeed int32, liftTime string, courseDifficulty string, courseSize string, existToilet int32, canUseCard int32, averageCost string, facilityStatus FacilityStatusModel) *FacilityModel {
+func NewFacilityModel() *FacilityModel {
 	this := FacilityModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.Name = name
-	this.FacilityType = facilityType
-	this.Description = description
-	this.Imagename = imagename
-	this.ParkMapImage = parkMapImage
-	this.LocationLat = locationLat
-	this.LocationLog = locationLog
-	this.SortKey = sortKey
-	this.DigitalMapX = digitalMapX
-	this.DigitalMapY = digitalMapY
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.YoutubeLink = youtubeLink
-	this.Link = link
-	this.LimitNumber = limitNumber
-	this.LiftSpeed = liftSpeed
-	this.LiftTime = liftTime
-	this.CourseDifficulty = courseDifficulty
-	this.CourseSize = courseSize
-	this.ExistToilet = existToilet
-	this.CanUseCard = canUseCard
-	this.AverageCost = averageCost
-	this.FacilityStatus = facilityStatus
 	return &this
 }
 
@@ -88,604 +62,804 @@ func NewFacilityModelWithDefaults() *FacilityModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *FacilityModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *FacilityModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *FacilityModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *FacilityModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *FacilityModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *FacilityModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *FacilityModel) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *FacilityModel) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *FacilityModel) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetFacilityType returns the FacilityType field value
+// GetFacilityType returns the FacilityType field value if set, zero value otherwise.
 func (o *FacilityModel) GetFacilityType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityType) {
 		var ret int32
 		return ret
 	}
-
-	return o.FacilityType
+	return *o.FacilityType
 }
 
-// GetFacilityTypeOk returns a tuple with the FacilityType field value
+// GetFacilityTypeOk returns a tuple with the FacilityType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetFacilityTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityType) {
 		return nil, false
 	}
-	return &o.FacilityType, true
+	return o.FacilityType, true
 }
 
-// SetFacilityType sets field value
+// HasFacilityType returns a boolean if a field has been set.
+func (o *FacilityModel) HasFacilityType() bool {
+	if o != nil && !IsNil(o.FacilityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacilityType gets a reference to the given int32 and assigns it to the FacilityType field.
 func (o *FacilityModel) SetFacilityType(v int32) {
-	o.FacilityType = v
+	o.FacilityType = &v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *FacilityModel) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *FacilityModel) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *FacilityModel) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
-// GetImagename returns the Imagename field value
+// GetImagename returns the Imagename field value if set, zero value otherwise.
 func (o *FacilityModel) GetImagename() string {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		var ret string
 		return ret
 	}
-
-	return o.Imagename
+	return *o.Imagename
 }
 
-// GetImagenameOk returns a tuple with the Imagename field value
+// GetImagenameOk returns a tuple with the Imagename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetImagenameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		return nil, false
 	}
-	return &o.Imagename, true
+	return o.Imagename, true
 }
 
-// SetImagename sets field value
+// HasImagename returns a boolean if a field has been set.
+func (o *FacilityModel) HasImagename() bool {
+	if o != nil && !IsNil(o.Imagename) {
+		return true
+	}
+
+	return false
+}
+
+// SetImagename gets a reference to the given string and assigns it to the Imagename field.
 func (o *FacilityModel) SetImagename(v string) {
-	o.Imagename = v
+	o.Imagename = &v
 }
 
-// GetParkMapImage returns the ParkMapImage field value
+// GetParkMapImage returns the ParkMapImage field value if set, zero value otherwise.
 func (o *FacilityModel) GetParkMapImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.ParkMapImage) {
 		var ret string
 		return ret
 	}
-
-	return o.ParkMapImage
+	return *o.ParkMapImage
 }
 
-// GetParkMapImageOk returns a tuple with the ParkMapImage field value
+// GetParkMapImageOk returns a tuple with the ParkMapImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetParkMapImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ParkMapImage) {
 		return nil, false
 	}
-	return &o.ParkMapImage, true
+	return o.ParkMapImage, true
 }
 
-// SetParkMapImage sets field value
+// HasParkMapImage returns a boolean if a field has been set.
+func (o *FacilityModel) HasParkMapImage() bool {
+	if o != nil && !IsNil(o.ParkMapImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetParkMapImage gets a reference to the given string and assigns it to the ParkMapImage field.
 func (o *FacilityModel) SetParkMapImage(v string) {
-	o.ParkMapImage = v
+	o.ParkMapImage = &v
 }
 
-// GetLocationLat returns the LocationLat field value
+// GetLocationLat returns the LocationLat field value if set, zero value otherwise.
 func (o *FacilityModel) GetLocationLat() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLat) {
 		var ret int32
 		return ret
 	}
-
-	return o.LocationLat
+	return *o.LocationLat
 }
 
-// GetLocationLatOk returns a tuple with the LocationLat field value
+// GetLocationLatOk returns a tuple with the LocationLat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLocationLatOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLat) {
 		return nil, false
 	}
-	return &o.LocationLat, true
+	return o.LocationLat, true
 }
 
-// SetLocationLat sets field value
+// HasLocationLat returns a boolean if a field has been set.
+func (o *FacilityModel) HasLocationLat() bool {
+	if o != nil && !IsNil(o.LocationLat) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocationLat gets a reference to the given int32 and assigns it to the LocationLat field.
 func (o *FacilityModel) SetLocationLat(v int32) {
-	o.LocationLat = v
+	o.LocationLat = &v
 }
 
-// GetLocationLog returns the LocationLog field value
+// GetLocationLog returns the LocationLog field value if set, zero value otherwise.
 func (o *FacilityModel) GetLocationLog() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLog) {
 		var ret int32
 		return ret
 	}
-
-	return o.LocationLog
+	return *o.LocationLog
 }
 
-// GetLocationLogOk returns a tuple with the LocationLog field value
+// GetLocationLogOk returns a tuple with the LocationLog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLocationLogOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLog) {
 		return nil, false
 	}
-	return &o.LocationLog, true
+	return o.LocationLog, true
 }
 
-// SetLocationLog sets field value
+// HasLocationLog returns a boolean if a field has been set.
+func (o *FacilityModel) HasLocationLog() bool {
+	if o != nil && !IsNil(o.LocationLog) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocationLog gets a reference to the given int32 and assigns it to the LocationLog field.
 func (o *FacilityModel) SetLocationLog(v int32) {
-	o.LocationLog = v
+	o.LocationLog = &v
 }
 
-// GetSortKey returns the SortKey field value
+// GetSortKey returns the SortKey field value if set, zero value otherwise.
 func (o *FacilityModel) GetSortKey() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SortKey) {
 		var ret int32
 		return ret
 	}
-
-	return o.SortKey
+	return *o.SortKey
 }
 
-// GetSortKeyOk returns a tuple with the SortKey field value
+// GetSortKeyOk returns a tuple with the SortKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetSortKeyOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SortKey) {
 		return nil, false
 	}
-	return &o.SortKey, true
+	return o.SortKey, true
 }
 
-// SetSortKey sets field value
+// HasSortKey returns a boolean if a field has been set.
+func (o *FacilityModel) HasSortKey() bool {
+	if o != nil && !IsNil(o.SortKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetSortKey gets a reference to the given int32 and assigns it to the SortKey field.
 func (o *FacilityModel) SetSortKey(v int32) {
-	o.SortKey = v
+	o.SortKey = &v
 }
 
-// GetDigitalMapX returns the DigitalMapX field value
+// GetDigitalMapX returns the DigitalMapX field value if set, zero value otherwise.
 func (o *FacilityModel) GetDigitalMapX() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapX) {
 		var ret int32
 		return ret
 	}
-
-	return o.DigitalMapX
+	return *o.DigitalMapX
 }
 
-// GetDigitalMapXOk returns a tuple with the DigitalMapX field value
+// GetDigitalMapXOk returns a tuple with the DigitalMapX field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetDigitalMapXOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapX) {
 		return nil, false
 	}
-	return &o.DigitalMapX, true
+	return o.DigitalMapX, true
 }
 
-// SetDigitalMapX sets field value
+// HasDigitalMapX returns a boolean if a field has been set.
+func (o *FacilityModel) HasDigitalMapX() bool {
+	if o != nil && !IsNil(o.DigitalMapX) {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalMapX gets a reference to the given int32 and assigns it to the DigitalMapX field.
 func (o *FacilityModel) SetDigitalMapX(v int32) {
-	o.DigitalMapX = v
+	o.DigitalMapX = &v
 }
 
-// GetDigitalMapY returns the DigitalMapY field value
+// GetDigitalMapY returns the DigitalMapY field value if set, zero value otherwise.
 func (o *FacilityModel) GetDigitalMapY() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapY) {
 		var ret int32
 		return ret
 	}
-
-	return o.DigitalMapY
+	return *o.DigitalMapY
 }
 
-// GetDigitalMapYOk returns a tuple with the DigitalMapY field value
+// GetDigitalMapYOk returns a tuple with the DigitalMapY field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetDigitalMapYOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapY) {
 		return nil, false
 	}
-	return &o.DigitalMapY, true
+	return o.DigitalMapY, true
 }
 
-// SetDigitalMapY sets field value
+// HasDigitalMapY returns a boolean if a field has been set.
+func (o *FacilityModel) HasDigitalMapY() bool {
+	if o != nil && !IsNil(o.DigitalMapY) {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalMapY gets a reference to the given int32 and assigns it to the DigitalMapY field.
 func (o *FacilityModel) SetDigitalMapY(v int32) {
-	o.DigitalMapY = v
+	o.DigitalMapY = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FacilityModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *FacilityModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *FacilityModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FacilityModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *FacilityModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *FacilityModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetYoutubeLink returns the YoutubeLink field value
+// GetYoutubeLink returns the YoutubeLink field value if set, zero value otherwise.
 func (o *FacilityModel) GetYoutubeLink() string {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeLink) {
 		var ret string
 		return ret
 	}
-
-	return o.YoutubeLink
+	return *o.YoutubeLink
 }
 
-// GetYoutubeLinkOk returns a tuple with the YoutubeLink field value
+// GetYoutubeLinkOk returns a tuple with the YoutubeLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetYoutubeLinkOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.YoutubeLink) {
 		return nil, false
 	}
-	return &o.YoutubeLink, true
+	return o.YoutubeLink, true
 }
 
-// SetYoutubeLink sets field value
+// HasYoutubeLink returns a boolean if a field has been set.
+func (o *FacilityModel) HasYoutubeLink() bool {
+	if o != nil && !IsNil(o.YoutubeLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetYoutubeLink gets a reference to the given string and assigns it to the YoutubeLink field.
 func (o *FacilityModel) SetYoutubeLink(v string) {
-	o.YoutubeLink = v
+	o.YoutubeLink = &v
 }
 
-// GetLink returns the Link field value
+// GetLink returns the Link field value if set, zero value otherwise.
 func (o *FacilityModel) GetLink() string {
-	if o == nil {
+	if o == nil || IsNil(o.Link) {
 		var ret string
 		return ret
 	}
-
-	return o.Link
+	return *o.Link
 }
 
-// GetLinkOk returns a tuple with the Link field value
+// GetLinkOk returns a tuple with the Link field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLinkOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Link) {
 		return nil, false
 	}
-	return &o.Link, true
+	return o.Link, true
 }
 
-// SetLink sets field value
+// HasLink returns a boolean if a field has been set.
+func (o *FacilityModel) HasLink() bool {
+	if o != nil && !IsNil(o.Link) {
+		return true
+	}
+
+	return false
+}
+
+// SetLink gets a reference to the given string and assigns it to the Link field.
 func (o *FacilityModel) SetLink(v string) {
-	o.Link = v
+	o.Link = &v
 }
 
-// GetLimitNumber returns the LimitNumber field value
+// GetLimitNumber returns the LimitNumber field value if set, zero value otherwise.
 func (o *FacilityModel) GetLimitNumber() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LimitNumber) {
 		var ret int32
 		return ret
 	}
-
-	return o.LimitNumber
+	return *o.LimitNumber
 }
 
-// GetLimitNumberOk returns a tuple with the LimitNumber field value
+// GetLimitNumberOk returns a tuple with the LimitNumber field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLimitNumberOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LimitNumber) {
 		return nil, false
 	}
-	return &o.LimitNumber, true
+	return o.LimitNumber, true
 }
 
-// SetLimitNumber sets field value
+// HasLimitNumber returns a boolean if a field has been set.
+func (o *FacilityModel) HasLimitNumber() bool {
+	if o != nil && !IsNil(o.LimitNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetLimitNumber gets a reference to the given int32 and assigns it to the LimitNumber field.
 func (o *FacilityModel) SetLimitNumber(v int32) {
-	o.LimitNumber = v
+	o.LimitNumber = &v
 }
 
-// GetLiftSpeed returns the LiftSpeed field value
+// GetLiftSpeed returns the LiftSpeed field value if set, zero value otherwise.
 func (o *FacilityModel) GetLiftSpeed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LiftSpeed) {
 		var ret int32
 		return ret
 	}
-
-	return o.LiftSpeed
+	return *o.LiftSpeed
 }
 
-// GetLiftSpeedOk returns a tuple with the LiftSpeed field value
+// GetLiftSpeedOk returns a tuple with the LiftSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLiftSpeedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LiftSpeed) {
 		return nil, false
 	}
-	return &o.LiftSpeed, true
+	return o.LiftSpeed, true
 }
 
-// SetLiftSpeed sets field value
+// HasLiftSpeed returns a boolean if a field has been set.
+func (o *FacilityModel) HasLiftSpeed() bool {
+	if o != nil && !IsNil(o.LiftSpeed) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiftSpeed gets a reference to the given int32 and assigns it to the LiftSpeed field.
 func (o *FacilityModel) SetLiftSpeed(v int32) {
-	o.LiftSpeed = v
+	o.LiftSpeed = &v
 }
 
-// GetLiftTime returns the LiftTime field value
+// GetLiftTime returns the LiftTime field value if set, zero value otherwise.
 func (o *FacilityModel) GetLiftTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTime) {
 		var ret string
 		return ret
 	}
-
-	return o.LiftTime
+	return *o.LiftTime
 }
 
-// GetLiftTimeOk returns a tuple with the LiftTime field value
+// GetLiftTimeOk returns a tuple with the LiftTime field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetLiftTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTime) {
 		return nil, false
 	}
-	return &o.LiftTime, true
+	return o.LiftTime, true
 }
 
-// SetLiftTime sets field value
+// HasLiftTime returns a boolean if a field has been set.
+func (o *FacilityModel) HasLiftTime() bool {
+	if o != nil && !IsNil(o.LiftTime) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiftTime gets a reference to the given string and assigns it to the LiftTime field.
 func (o *FacilityModel) SetLiftTime(v string) {
-	o.LiftTime = v
+	o.LiftTime = &v
 }
 
-// GetCourseDifficulty returns the CourseDifficulty field value
+// GetCourseDifficulty returns the CourseDifficulty field value if set, zero value otherwise.
 func (o *FacilityModel) GetCourseDifficulty() string {
-	if o == nil {
+	if o == nil || IsNil(o.CourseDifficulty) {
 		var ret string
 		return ret
 	}
-
-	return o.CourseDifficulty
+	return *o.CourseDifficulty
 }
 
-// GetCourseDifficultyOk returns a tuple with the CourseDifficulty field value
+// GetCourseDifficultyOk returns a tuple with the CourseDifficulty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetCourseDifficultyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CourseDifficulty) {
 		return nil, false
 	}
-	return &o.CourseDifficulty, true
+	return o.CourseDifficulty, true
 }
 
-// SetCourseDifficulty sets field value
+// HasCourseDifficulty returns a boolean if a field has been set.
+func (o *FacilityModel) HasCourseDifficulty() bool {
+	if o != nil && !IsNil(o.CourseDifficulty) {
+		return true
+	}
+
+	return false
+}
+
+// SetCourseDifficulty gets a reference to the given string and assigns it to the CourseDifficulty field.
 func (o *FacilityModel) SetCourseDifficulty(v string) {
-	o.CourseDifficulty = v
+	o.CourseDifficulty = &v
 }
 
-// GetCourseSize returns the CourseSize field value
+// GetCourseSize returns the CourseSize field value if set, zero value otherwise.
 func (o *FacilityModel) GetCourseSize() string {
-	if o == nil {
+	if o == nil || IsNil(o.CourseSize) {
 		var ret string
 		return ret
 	}
-
-	return o.CourseSize
+	return *o.CourseSize
 }
 
-// GetCourseSizeOk returns a tuple with the CourseSize field value
+// GetCourseSizeOk returns a tuple with the CourseSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetCourseSizeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CourseSize) {
 		return nil, false
 	}
-	return &o.CourseSize, true
+	return o.CourseSize, true
 }
 
-// SetCourseSize sets field value
+// HasCourseSize returns a boolean if a field has been set.
+func (o *FacilityModel) HasCourseSize() bool {
+	if o != nil && !IsNil(o.CourseSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetCourseSize gets a reference to the given string and assigns it to the CourseSize field.
 func (o *FacilityModel) SetCourseSize(v string) {
-	o.CourseSize = v
+	o.CourseSize = &v
 }
 
-// GetExistToilet returns the ExistToilet field value
+// GetExistToilet returns the ExistToilet field value if set, zero value otherwise.
 func (o *FacilityModel) GetExistToilet() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistToilet) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistToilet
+	return *o.ExistToilet
 }
 
-// GetExistToiletOk returns a tuple with the ExistToilet field value
+// GetExistToiletOk returns a tuple with the ExistToilet field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetExistToiletOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistToilet) {
 		return nil, false
 	}
-	return &o.ExistToilet, true
+	return o.ExistToilet, true
 }
 
-// SetExistToilet sets field value
+// HasExistToilet returns a boolean if a field has been set.
+func (o *FacilityModel) HasExistToilet() bool {
+	if o != nil && !IsNil(o.ExistToilet) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistToilet gets a reference to the given int32 and assigns it to the ExistToilet field.
 func (o *FacilityModel) SetExistToilet(v int32) {
-	o.ExistToilet = v
+	o.ExistToilet = &v
 }
 
-// GetCanUseCard returns the CanUseCard field value
+// GetCanUseCard returns the CanUseCard field value if set, zero value otherwise.
 func (o *FacilityModel) GetCanUseCard() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CanUseCard) {
 		var ret int32
 		return ret
 	}
-
-	return o.CanUseCard
+	return *o.CanUseCard
 }
 
-// GetCanUseCardOk returns a tuple with the CanUseCard field value
+// GetCanUseCardOk returns a tuple with the CanUseCard field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetCanUseCardOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CanUseCard) {
 		return nil, false
 	}
-	return &o.CanUseCard, true
+	return o.CanUseCard, true
 }
 
-// SetCanUseCard sets field value
+// HasCanUseCard returns a boolean if a field has been set.
+func (o *FacilityModel) HasCanUseCard() bool {
+	if o != nil && !IsNil(o.CanUseCard) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanUseCard gets a reference to the given int32 and assigns it to the CanUseCard field.
 func (o *FacilityModel) SetCanUseCard(v int32) {
-	o.CanUseCard = v
+	o.CanUseCard = &v
 }
 
-// GetAverageCost returns the AverageCost field value
+// GetAverageCost returns the AverageCost field value if set, zero value otherwise.
 func (o *FacilityModel) GetAverageCost() string {
-	if o == nil {
+	if o == nil || IsNil(o.AverageCost) {
 		var ret string
 		return ret
 	}
-
-	return o.AverageCost
+	return *o.AverageCost
 }
 
-// GetAverageCostOk returns a tuple with the AverageCost field value
+// GetAverageCostOk returns a tuple with the AverageCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetAverageCostOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.AverageCost) {
 		return nil, false
 	}
-	return &o.AverageCost, true
+	return o.AverageCost, true
 }
 
-// SetAverageCost sets field value
+// HasAverageCost returns a boolean if a field has been set.
+func (o *FacilityModel) HasAverageCost() bool {
+	if o != nil && !IsNil(o.AverageCost) {
+		return true
+	}
+
+	return false
+}
+
+// SetAverageCost gets a reference to the given string and assigns it to the AverageCost field.
 func (o *FacilityModel) SetAverageCost(v string) {
-	o.AverageCost = v
+	o.AverageCost = &v
 }
 
-// GetFacilityStatus returns the FacilityStatus field value
+// GetFacilityStatus returns the FacilityStatus field value if set, zero value otherwise.
 func (o *FacilityModel) GetFacilityStatus() FacilityStatusModel {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityStatus) {
 		var ret FacilityStatusModel
 		return ret
 	}
-
-	return o.FacilityStatus
+	return *o.FacilityStatus
 }
 
-// GetFacilityStatusOk returns a tuple with the FacilityStatus field value
+// GetFacilityStatusOk returns a tuple with the FacilityStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *FacilityModel) GetFacilityStatusOk() (*FacilityStatusModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityStatus) {
 		return nil, false
 	}
-	return &o.FacilityStatus, true
+	return o.FacilityStatus, true
 }
 
-// SetFacilityStatus sets field value
+// HasFacilityStatus returns a boolean if a field has been set.
+func (o *FacilityModel) HasFacilityStatus() bool {
+	if o != nil && !IsNil(o.FacilityStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacilityStatus gets a reference to the given FacilityStatusModel and assigns it to the FacilityStatus field.
 func (o *FacilityModel) SetFacilityStatus(v FacilityStatusModel) {
-	o.FacilityStatus = v
+	o.FacilityStatus = &v
 }
 
 func (o FacilityModel) MarshalJSON() ([]byte, error) {
@@ -698,91 +872,130 @@ func (o FacilityModel) MarshalJSON() ([]byte, error) {
 
 func (o FacilityModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["name"] = o.Name
-	toSerialize["facility_type"] = o.FacilityType
-	toSerialize["description"] = o.Description
-	toSerialize["imagename"] = o.Imagename
-	toSerialize["park_map_image"] = o.ParkMapImage
-	toSerialize["location_lat"] = o.LocationLat
-	toSerialize["location_log"] = o.LocationLog
-	toSerialize["sort_key"] = o.SortKey
-	toSerialize["digital_map_x"] = o.DigitalMapX
-	toSerialize["digital_map_y"] = o.DigitalMapY
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["youtube_link"] = o.YoutubeLink
-	toSerialize["link"] = o.Link
-	toSerialize["limit_number"] = o.LimitNumber
-	toSerialize["lift_speed"] = o.LiftSpeed
-	toSerialize["lift_time"] = o.LiftTime
-	toSerialize["course_difficulty"] = o.CourseDifficulty
-	toSerialize["course_size"] = o.CourseSize
-	toSerialize["exist_toilet"] = o.ExistToilet
-	toSerialize["can_use_card"] = o.CanUseCard
-	toSerialize["average_cost"] = o.AverageCost
-	toSerialize["facility_status"] = o.FacilityStatus
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.FacilityType) {
+		toSerialize["facility_type"] = o.FacilityType
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.Imagename) {
+		toSerialize["imagename"] = o.Imagename
+	}
+	if !IsNil(o.ParkMapImage) {
+		toSerialize["park_map_image"] = o.ParkMapImage
+	}
+	if !IsNil(o.LocationLat) {
+		toSerialize["location_lat"] = o.LocationLat
+	}
+	if !IsNil(o.LocationLog) {
+		toSerialize["location_log"] = o.LocationLog
+	}
+	if !IsNil(o.SortKey) {
+		toSerialize["sort_key"] = o.SortKey
+	}
+	if !IsNil(o.DigitalMapX) {
+		toSerialize["digital_map_x"] = o.DigitalMapX
+	}
+	if !IsNil(o.DigitalMapY) {
+		toSerialize["digital_map_y"] = o.DigitalMapY
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.YoutubeLink) {
+		toSerialize["youtube_link"] = o.YoutubeLink
+	}
+	if !IsNil(o.Link) {
+		toSerialize["link"] = o.Link
+	}
+	if !IsNil(o.LimitNumber) {
+		toSerialize["limit_number"] = o.LimitNumber
+	}
+	if !IsNil(o.LiftSpeed) {
+		toSerialize["lift_speed"] = o.LiftSpeed
+	}
+	if !IsNil(o.LiftTime) {
+		toSerialize["lift_time"] = o.LiftTime
+	}
+	if !IsNil(o.CourseDifficulty) {
+		toSerialize["course_difficulty"] = o.CourseDifficulty
+	}
+	if !IsNil(o.CourseSize) {
+		toSerialize["course_size"] = o.CourseSize
+	}
+	if !IsNil(o.ExistToilet) {
+		toSerialize["exist_toilet"] = o.ExistToilet
+	}
+	if !IsNil(o.CanUseCard) {
+		toSerialize["can_use_card"] = o.CanUseCard
+	}
+	if !IsNil(o.AverageCost) {
+		toSerialize["average_cost"] = o.AverageCost
+	}
+	if !IsNil(o.FacilityStatus) {
+		toSerialize["facility_status"] = o.FacilityStatus
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *FacilityModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"name",
-		"facility_type",
-		"description",
-		"imagename",
-		"park_map_image",
-		"location_lat",
-		"location_log",
-		"sort_key",
-		"digital_map_x",
-		"digital_map_y",
-		"created_at",
-		"updated_at",
-		"youtube_link",
-		"link",
-		"limit_number",
-		"lift_speed",
-		"lift_time",
-		"course_difficulty",
-		"course_size",
-		"exist_toilet",
-		"can_use_card",
-		"average_cost",
-		"facility_status",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varFacilityModel := _FacilityModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varFacilityModel)
+	err = json.Unmarshal(data, &varFacilityModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = FacilityModel(varFacilityModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "facility_type")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "imagename")
+		delete(additionalProperties, "park_map_image")
+		delete(additionalProperties, "location_lat")
+		delete(additionalProperties, "location_log")
+		delete(additionalProperties, "sort_key")
+		delete(additionalProperties, "digital_map_x")
+		delete(additionalProperties, "digital_map_y")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "youtube_link")
+		delete(additionalProperties, "link")
+		delete(additionalProperties, "limit_number")
+		delete(additionalProperties, "lift_speed")
+		delete(additionalProperties, "lift_time")
+		delete(additionalProperties, "course_difficulty")
+		delete(additionalProperties, "course_size")
+		delete(additionalProperties, "exist_toilet")
+		delete(additionalProperties, "can_use_card")
+		delete(additionalProperties, "average_cost")
+		delete(additionalProperties, "facility_status")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

@@ -49,16 +49,29 @@ func main() {
 
     // FileSessionStore hydrates from disk; second run skips Login.
     if !client.IsAuthenticated() {
-        if err := client.Login(ctx); err != nil {
+        if err := client.User.Login(ctx); err != nil {
             log.Fatal(err)
         }
     }
 
-    profile, err := client.GetMyProfile(ctx)
+    // Read: own profile.
+    profile, err := client.User.GetMyUserProfile(ctx)
     if err != nil {
         log.Fatal(err)
     }
     log.Printf("hello, %s", profile.GetProfile().GetUserName())
+
+    // Read: ski areas near a point.
+    areas, err := client.Skiarea.SearchSkiareasByLocation(ctx, 36.7, 138.0, yukiyama.SearchSkiareasByLocationOptions{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    log.Printf("areas: status=%v", areas.GetStatus())
+
+    // Mutation: like a checkin.
+    if err := client.Checkin.LikeCheckin(ctx, 12345); err != nil {
+        log.Fatal(err)
+    }
 }
 ```
 
@@ -66,31 +79,25 @@ func main() {
 
 | | |
 | --- | --- |
-| **Flat API** | Every operation is promoted directly onto `*Client` — no service-tag prefix needed. `client.GetMaster(ctx).Execute()` just works. |
-| **Session lifecycle** | `Login` / `Logout` / `Withdraw` with the underlying `(user_id, token)` cached automatically. |
+| **Service-grouped API** | Operations live on `client.User`, `client.Checkin`, `client.Common`, `client.Skiarea`, `client.Ranking`, `client.Safety`. The session-lifecycle trio (`User.Login`, `User.Logout`, `User.Withdraw`) groups with the other `/user/*` ops; in-memory state inspection (`IsAuthenticated`, `CurrentUserID`, `CurrentToken`, `SetSession`) stays on `*Client`. |
+| **Session lifecycle** | `client.User.Login` / `client.User.Logout` / `client.User.Withdraw` with the underlying `(user_id, token)` cached automatically. |
 | **Pluggable persistence** | Built-in `FileSessionStore` (atomic write, mode `0600`), or implement the `SessionStore` interface for Redis / Keychain / etc. |
 | **Transparent re-login** | `error_code: 103` is detected, the cached session is cleared, `Login` runs again, and the original request is retried once. |
 | **Typed Options** | Endpoints with many optional filters take an `Options` struct of pointer fields so omission and the empty string never get confused. |
-| **Wire corrections built in** | Wire-naming quirks (caller/target reversals, content-schema `version` selectors, username-as-`user_id`, etc.) are handled by the handwritten facades so callers don't repeat them. |
+| **Wire corrections built in** | Wire-naming quirks (caller/target reversals, content-schema `version` selectors, username-as-`user_id`, etc.) are handled by the service methods so callers don't repeat them. |
 
 ## Low-level access
 
-Operations without a handwritten facade are still flat:
+For endpoints not yet wrapped by a service method, drop down to the
+generated client via `Gen()`:
 
 ```go
-client.GetMaster(ctx).Execute()
-client.ListMyCoupons(ctx).Execute()
-client.GetUnreadCount(ctx).Execute()
+res, _, err := client.Gen().CommonAPI.SomeNewOp(ctx).Execute()
 ```
 
-When a facade and a generated method share a name (e.g. `GetHomeData`), Go's
-method resolution picks the facade. Reach for the unwrapped gen builder via
-the embedded field name or via `Gen()`:
-
-```go
-client.CommonAPIService.GetHomeData(ctx).Execute()
-client.Gen().CommonAPI.GetHomeData(ctx).Execute()
-```
+`user_id` / `token` / `version` are still injected by the transport on
+this path; only the service-level rename and Options ergonomics are
+skipped.
 
 ## Documentation
 

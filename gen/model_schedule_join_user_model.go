@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the ScheduleJoinUserModel type satisfies the MappedNullable interface at compile time
@@ -17,13 +15,14 @@ var _ MappedNullable = &ScheduleJoinUserModel{}
 
 // ScheduleJoinUserModel struct for ScheduleJoinUserModel
 type ScheduleJoinUserModel struct {
-	Id             int32  `json:"id"`
-	UserScheduleId int32  `json:"user_schedule_id"`
-	UserId         int32  `json:"user_id"`
-	Nickname       string `json:"nickname"`
-	UserName       string `json:"userName"`
-	IconImage      string `json:"icon_image"`
-	UserType       int32  `json:"user_type"`
+	Id                   *int32  `json:"id,omitempty"`
+	UserScheduleId       *int32  `json:"user_schedule_id,omitempty"`
+	UserId               *int32  `json:"user_id,omitempty"`
+	Nickname             *string `json:"nickname,omitempty"`
+	UserName             *string `json:"userName,omitempty"`
+	IconImage            *string `json:"icon_image,omitempty"`
+	UserType             *int32  `json:"user_type,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _ScheduleJoinUserModel ScheduleJoinUserModel
@@ -32,15 +31,8 @@ type _ScheduleJoinUserModel ScheduleJoinUserModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewScheduleJoinUserModel(id int32, userScheduleId int32, userId int32, nickname string, userName string, iconImage string, userType int32) *ScheduleJoinUserModel {
+func NewScheduleJoinUserModel() *ScheduleJoinUserModel {
 	this := ScheduleJoinUserModel{}
-	this.Id = id
-	this.UserScheduleId = userScheduleId
-	this.UserId = userId
-	this.Nickname = nickname
-	this.UserName = userName
-	this.IconImage = iconImage
-	this.UserType = userType
 	return &this
 }
 
@@ -52,172 +44,228 @@ func NewScheduleJoinUserModelWithDefaults() *ScheduleJoinUserModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *ScheduleJoinUserModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetUserScheduleId returns the UserScheduleId field value
+// GetUserScheduleId returns the UserScheduleId field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetUserScheduleId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserScheduleId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserScheduleId
+	return *o.UserScheduleId
 }
 
-// GetUserScheduleIdOk returns a tuple with the UserScheduleId field value
+// GetUserScheduleIdOk returns a tuple with the UserScheduleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetUserScheduleIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserScheduleId) {
 		return nil, false
 	}
-	return &o.UserScheduleId, true
+	return o.UserScheduleId, true
 }
 
-// SetUserScheduleId sets field value
+// HasUserScheduleId returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasUserScheduleId() bool {
+	if o != nil && !IsNil(o.UserScheduleId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserScheduleId gets a reference to the given int32 and assigns it to the UserScheduleId field.
 func (o *ScheduleJoinUserModel) SetUserScheduleId(v int32) {
-	o.UserScheduleId = v
+	o.UserScheduleId = &v
 }
 
-// GetUserId returns the UserId field value
+// GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetUserId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserId
+	return *o.UserId
 }
 
-// GetUserIdOk returns a tuple with the UserId field value
+// GetUserIdOk returns a tuple with the UserId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetUserIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserId) {
 		return nil, false
 	}
-	return &o.UserId, true
+	return o.UserId, true
 }
 
-// SetUserId sets field value
+// HasUserId returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasUserId() bool {
+	if o != nil && !IsNil(o.UserId) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserId gets a reference to the given int32 and assigns it to the UserId field.
 func (o *ScheduleJoinUserModel) SetUserId(v int32) {
-	o.UserId = v
+	o.UserId = &v
 }
 
-// GetNickname returns the Nickname field value
+// GetNickname returns the Nickname field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetNickname() string {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		var ret string
 		return ret
 	}
-
-	return o.Nickname
+	return *o.Nickname
 }
 
-// GetNicknameOk returns a tuple with the Nickname field value
+// GetNicknameOk returns a tuple with the Nickname field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetNicknameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Nickname) {
 		return nil, false
 	}
-	return &o.Nickname, true
+	return o.Nickname, true
 }
 
-// SetNickname sets field value
+// HasNickname returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasNickname() bool {
+	if o != nil && !IsNil(o.Nickname) {
+		return true
+	}
+
+	return false
+}
+
+// SetNickname gets a reference to the given string and assigns it to the Nickname field.
 func (o *ScheduleJoinUserModel) SetNickname(v string) {
-	o.Nickname = v
+	o.Nickname = &v
 }
 
-// GetUserName returns the UserName field value
+// GetUserName returns the UserName field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetUserName() string {
-	if o == nil {
+	if o == nil || IsNil(o.UserName) {
 		var ret string
 		return ret
 	}
-
-	return o.UserName
+	return *o.UserName
 }
 
-// GetUserNameOk returns a tuple with the UserName field value
+// GetUserNameOk returns a tuple with the UserName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetUserNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserName) {
 		return nil, false
 	}
-	return &o.UserName, true
+	return o.UserName, true
 }
 
-// SetUserName sets field value
+// HasUserName returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasUserName() bool {
+	if o != nil && !IsNil(o.UserName) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserName gets a reference to the given string and assigns it to the UserName field.
 func (o *ScheduleJoinUserModel) SetUserName(v string) {
-	o.UserName = v
+	o.UserName = &v
 }
 
-// GetIconImage returns the IconImage field value
+// GetIconImage returns the IconImage field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetIconImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.IconImage) {
 		var ret string
 		return ret
 	}
-
-	return o.IconImage
+	return *o.IconImage
 }
 
-// GetIconImageOk returns a tuple with the IconImage field value
+// GetIconImageOk returns a tuple with the IconImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetIconImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IconImage) {
 		return nil, false
 	}
-	return &o.IconImage, true
+	return o.IconImage, true
 }
 
-// SetIconImage sets field value
+// HasIconImage returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasIconImage() bool {
+	if o != nil && !IsNil(o.IconImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetIconImage gets a reference to the given string and assigns it to the IconImage field.
 func (o *ScheduleJoinUserModel) SetIconImage(v string) {
-	o.IconImage = v
+	o.IconImage = &v
 }
 
-// GetUserType returns the UserType field value
+// GetUserType returns the UserType field value if set, zero value otherwise.
 func (o *ScheduleJoinUserModel) GetUserType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.UserType) {
 		var ret int32
 		return ret
 	}
-
-	return o.UserType
+	return *o.UserType
 }
 
-// GetUserTypeOk returns a tuple with the UserType field value
+// GetUserTypeOk returns a tuple with the UserType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ScheduleJoinUserModel) GetUserTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UserType) {
 		return nil, false
 	}
-	return &o.UserType, true
+	return o.UserType, true
 }
 
-// SetUserType sets field value
+// HasUserType returns a boolean if a field has been set.
+func (o *ScheduleJoinUserModel) HasUserType() bool {
+	if o != nil && !IsNil(o.UserType) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserType gets a reference to the given int32 and assigns it to the UserType field.
 func (o *ScheduleJoinUserModel) SetUserType(v int32) {
-	o.UserType = v
+	o.UserType = &v
 }
 
 func (o ScheduleJoinUserModel) MarshalJSON() ([]byte, error) {
@@ -230,55 +278,58 @@ func (o ScheduleJoinUserModel) MarshalJSON() ([]byte, error) {
 
 func (o ScheduleJoinUserModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["user_schedule_id"] = o.UserScheduleId
-	toSerialize["user_id"] = o.UserId
-	toSerialize["nickname"] = o.Nickname
-	toSerialize["userName"] = o.UserName
-	toSerialize["icon_image"] = o.IconImage
-	toSerialize["user_type"] = o.UserType
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.UserScheduleId) {
+		toSerialize["user_schedule_id"] = o.UserScheduleId
+	}
+	if !IsNil(o.UserId) {
+		toSerialize["user_id"] = o.UserId
+	}
+	if !IsNil(o.Nickname) {
+		toSerialize["nickname"] = o.Nickname
+	}
+	if !IsNil(o.UserName) {
+		toSerialize["userName"] = o.UserName
+	}
+	if !IsNil(o.IconImage) {
+		toSerialize["icon_image"] = o.IconImage
+	}
+	if !IsNil(o.UserType) {
+		toSerialize["user_type"] = o.UserType
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *ScheduleJoinUserModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"user_schedule_id",
-		"user_id",
-		"nickname",
-		"userName",
-		"icon_image",
-		"user_type",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varScheduleJoinUserModel := _ScheduleJoinUserModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varScheduleJoinUserModel)
+	err = json.Unmarshal(data, &varScheduleJoinUserModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = ScheduleJoinUserModel(varScheduleJoinUserModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "user_schedule_id")
+		delete(additionalProperties, "user_id")
+		delete(additionalProperties, "nickname")
+		delete(additionalProperties, "userName")
+		delete(additionalProperties, "icon_image")
+		delete(additionalProperties, "user_type")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

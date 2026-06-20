@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SkiareaModel type satisfies the MappedNullable interface at compile time
@@ -17,103 +15,104 @@ var _ MappedNullable = &SkiareaModel{}
 
 // SkiareaModel struct for SkiareaModel
 type SkiareaModel struct {
-	Id                      int32                     `json:"id"`
-	Code                    int32                     `json:"code"`
-	Name                    string                    `json:"name"`
-	NameKana                string                    `json:"name_kana"`
-	Address                 string                    `json:"address"`
-	LogoImage               string                    `json:"logo_image"`
-	LocationLat             int32                     `json:"location_lat"`
-	LocationLog             int32                     `json:"location_log"`
-	Tel                     string                    `json:"tel"`
-	BusinessPlanPeriod      string                    `json:"business_plan_period"`
-	Holiday                 string                    `json:"holiday"`
-	SnowboardCondition      string                    `json:"snowboard_condition"`
-	BusinessHour            string                    `json:"business_hour"`
-	LiftTicket              string                    `json:"lift_ticket"`
-	ParkingLot              string                    `json:"parking_lot"`
-	RentalInfo              string                    `json:"rental_info"`
-	SchoolInfo              string                    `json:"school_info"`
-	NurseryInfo             string                    `json:"nursery_info"`
-	NapInfo                 string                    `json:"nap_info"`
-	EventInfo               string                    `json:"event_info"`
-	Description             string                    `json:"description"`
-	LiftTotal               int32                     `json:"lift_total"`
-	PisteTotal              int32                     `json:"piste_total"`
-	PisteDifficulty         string                    `json:"piste_difficulty"`
-	SnowboardSpecialCourse  string                    `json:"snowboard_special_course"`
-	Elevation               string                    `json:"elevation"`
-	MaxSlopeAngle           int32                     `json:"max_slope_angle"`
-	PisteHolidayifficulty   string                    `json:"piste_holidayifficulty"`
-	Image                   string                    `json:"image"`
-	GpsmapImage             string                    `json:"gpsmap_image"`
-	ImageLocationTop        int32                     `json:"image_location_top"`
-	ImageLocationBottom     int32                     `json:"image_location_bottom"`
-	ImageLocationLeft       int32                     `json:"image_location_left"`
-	ImageLocationRight      int32                     `json:"image_location_right"`
-	WideGpsmapId            int32                     `json:"wide_gpsmap_id"`
-	WideGpsmapImage         string                    `json:"wide_gpsmap_image"`
-	WideImageLocationTop    int32                     `json:"wide_image_location_top"`
-	WideImageLocationBottom int32                     `json:"wide_image_location_bottom"`
-	WideImageLocationLeft   int32                     `json:"wide_image_location_left"`
-	WideImageLocationRight  int32                     `json:"wide_image_location_right"`
-	DigitalMapImage         string                    `json:"digital_map_image"`
-	DigitalMapImageEn       string                    `json:"digital_map_image_en"`
-	ForAdvance              int32                     `json:"for_advance"`
-	ForBeginner             int32                     `json:"for_beginner"`
-	ForCoupple              int32                     `json:"for_coupple"`
-	ForFamily               int32                     `json:"for_family"`
-	IsHighlevelSunnyrate    int32                     `json:"is_highlevel_sunnyrate"`
-	IsLongcource            int32                     `json:"is_longcource"`
-	IsLowlevelCongestion    int32                     `json:"is_lowlevel_congestion"`
-	IsMorning               int32                     `json:"is_morning"`
-	IsNearSpa               int32                     `json:"is_near_spa"`
-	IsNighter               int32                     `json:"is_nighter"`
-	IsWidecource            int32                     `json:"is_widecource"`
-	IsKindForGirl           int32                     `json:"is_kind_for_girl"`
-	IsGoodAccess            int32                     `json:"is_good_access"`
-	IsAdjacentHotel         int32                     `json:"is_adjacent_hotel"`
-	IsPowSra                int32                     `json:"is_pow_sra"`
-	ExistBackcountry        int32                     `json:"exist_backcountry"`
-	ExistDelivery           int32                     `json:"exist_delivery"`
-	ExistKidspark           int32                     `json:"exist_kidspark"`
-	ExistNap                int32                     `json:"exist_nap"`
-	ExistNursery            int32                     `json:"exist_nursery"`
-	ExistOffpiste           int32                     `json:"exist_offpiste"`
-	ExistYukiyamaCoupon     int32                     `json:"exist_yukiyama_coupon"`
-	ExistYukiyamaGps        int32                     `json:"exist_yukiyama_gps"`
-	ExistTreeZone           int32                     `json:"exist_tree_zone"`
-	ExistSnowPark           int32                     `json:"exist_snow_park"`
-	ExistSpecialtyCourse    int32                     `json:"exist_specialty_course"`
-	ExistShootingSpot       int32                     `json:"exist_shooting_spot"`
-	ExistKidCourse          int32                     `json:"exist_kid_course"`
-	ExistFreePaking         int32                     `json:"exist_free_paking"`
-	ExistSchool             int32                     `json:"exist_school"`
-	IsGoodCafe              int32                     `json:"is_good_cafe"`
-	IsGoodMogul             int32                     `json:"is_good_mogul"`
-	IsGoodPaking            int32                     `json:"is_good_paking"`
-	IsGoodRental            int32                     `json:"is_good_rental"`
-	IsGoodSnowboardpark     int32                     `json:"is_good_snowboardpark"`
-	IsGoodActivity          int32                     `json:"is_good_activity"`
-	CanSlide                int32                     `json:"can_slide"`
-	CanSpringSki            int32                     `json:"can_spring_ski"`
-	Visible                 int32                     `json:"visible"`
-	IsDebug                 int32                     `json:"is_debug"`
-	IsOffpost               int32                     `json:"is_offpost"`
-	IsContract              int32                     `json:"is_contract"`
-	IsVisit                 int32                     `json:"is_visit"`
-	FacilityList            []FacilityModel           `json:"facility_list"`
-	SkiareaStatus           SkiareaStatusModel        `json:"skiarea_status"`
-	OfficialLink            OfficialLinkModel         `json:"official_link"`
-	StaticLink              StaticLinkModel           `json:"static_link"`
-	CustomBannerList        []CustomBannerModel       `json:"custom_banner_list"`
-	IsFavorite              bool                      `json:"is_favorite"`
-	EventList               []EventModel              `json:"event_list"`
-	CouponList              []CouponModel             `json:"coupon_list"`
-	PremiumTicketList       []CouponDistributionModel `json:"premium_ticket_list"`
-	CheckinCouponList       []CouponDistributionModel `json:"checkin_coupon_list"`
-	EvaluateTotal           int32                     `json:"evaluate_total"`
-	PrefCode                int32                     `json:"pref_code"`
+	Id                      *int32                    `json:"id,omitempty"`
+	Code                    *int32                    `json:"code,omitempty"`
+	Name                    *string                   `json:"name,omitempty"`
+	NameKana                *string                   `json:"name_kana,omitempty"`
+	Address                 *string                   `json:"address,omitempty"`
+	LogoImage               *string                   `json:"logo_image,omitempty"`
+	LocationLat             *int32                    `json:"location_lat,omitempty"`
+	LocationLog             *int32                    `json:"location_log,omitempty"`
+	Tel                     *string                   `json:"tel,omitempty"`
+	BusinessPlanPeriod      *string                   `json:"business_plan_period,omitempty"`
+	Holiday                 *string                   `json:"holiday,omitempty"`
+	SnowboardCondition      *string                   `json:"snowboard_condition,omitempty"`
+	BusinessHour            *string                   `json:"business_hour,omitempty"`
+	LiftTicket              *string                   `json:"lift_ticket,omitempty"`
+	ParkingLot              *string                   `json:"parking_lot,omitempty"`
+	RentalInfo              *string                   `json:"rental_info,omitempty"`
+	SchoolInfo              *string                   `json:"school_info,omitempty"`
+	NurseryInfo             *string                   `json:"nursery_info,omitempty"`
+	NapInfo                 *string                   `json:"nap_info,omitempty"`
+	EventInfo               *string                   `json:"event_info,omitempty"`
+	Description             *string                   `json:"description,omitempty"`
+	LiftTotal               *int32                    `json:"lift_total,omitempty"`
+	PisteTotal              *int32                    `json:"piste_total,omitempty"`
+	PisteDifficulty         *string                   `json:"piste_difficulty,omitempty"`
+	SnowboardSpecialCourse  *string                   `json:"snowboard_special_course,omitempty"`
+	Elevation               *string                   `json:"elevation,omitempty"`
+	MaxSlopeAngle           *int32                    `json:"max_slope_angle,omitempty"`
+	PisteHolidayifficulty   *string                   `json:"piste_holidayifficulty,omitempty"`
+	Image                   *string                   `json:"image,omitempty"`
+	GpsmapImage             *string                   `json:"gpsmap_image,omitempty"`
+	ImageLocationTop        *int32                    `json:"image_location_top,omitempty"`
+	ImageLocationBottom     *int32                    `json:"image_location_bottom,omitempty"`
+	ImageLocationLeft       *int32                    `json:"image_location_left,omitempty"`
+	ImageLocationRight      *int32                    `json:"image_location_right,omitempty"`
+	WideGpsmapId            *int32                    `json:"wide_gpsmap_id,omitempty"`
+	WideGpsmapImage         *string                   `json:"wide_gpsmap_image,omitempty"`
+	WideImageLocationTop    *int32                    `json:"wide_image_location_top,omitempty"`
+	WideImageLocationBottom *int32                    `json:"wide_image_location_bottom,omitempty"`
+	WideImageLocationLeft   *int32                    `json:"wide_image_location_left,omitempty"`
+	WideImageLocationRight  *int32                    `json:"wide_image_location_right,omitempty"`
+	DigitalMapImage         *string                   `json:"digital_map_image,omitempty"`
+	DigitalMapImageEn       *string                   `json:"digital_map_image_en,omitempty"`
+	ForAdvance              *int32                    `json:"for_advance,omitempty"`
+	ForBeginner             *int32                    `json:"for_beginner,omitempty"`
+	ForCoupple              *int32                    `json:"for_coupple,omitempty"`
+	ForFamily               *int32                    `json:"for_family,omitempty"`
+	IsHighlevelSunnyrate    *int32                    `json:"is_highlevel_sunnyrate,omitempty"`
+	IsLongcource            *int32                    `json:"is_longcource,omitempty"`
+	IsLowlevelCongestion    *int32                    `json:"is_lowlevel_congestion,omitempty"`
+	IsMorning               *int32                    `json:"is_morning,omitempty"`
+	IsNearSpa               *int32                    `json:"is_near_spa,omitempty"`
+	IsNighter               *int32                    `json:"is_nighter,omitempty"`
+	IsWidecource            *int32                    `json:"is_widecource,omitempty"`
+	IsKindForGirl           *int32                    `json:"is_kind_for_girl,omitempty"`
+	IsGoodAccess            *int32                    `json:"is_good_access,omitempty"`
+	IsAdjacentHotel         *int32                    `json:"is_adjacent_hotel,omitempty"`
+	IsPowSra                *int32                    `json:"is_pow_sra,omitempty"`
+	ExistBackcountry        *int32                    `json:"exist_backcountry,omitempty"`
+	ExistDelivery           *int32                    `json:"exist_delivery,omitempty"`
+	ExistKidspark           *int32                    `json:"exist_kidspark,omitempty"`
+	ExistNap                *int32                    `json:"exist_nap,omitempty"`
+	ExistNursery            *int32                    `json:"exist_nursery,omitempty"`
+	ExistOffpiste           *int32                    `json:"exist_offpiste,omitempty"`
+	ExistYukiyamaCoupon     *int32                    `json:"exist_yukiyama_coupon,omitempty"`
+	ExistYukiyamaGps        *int32                    `json:"exist_yukiyama_gps,omitempty"`
+	ExistTreeZone           *int32                    `json:"exist_tree_zone,omitempty"`
+	ExistSnowPark           *int32                    `json:"exist_snow_park,omitempty"`
+	ExistSpecialtyCourse    *int32                    `json:"exist_specialty_course,omitempty"`
+	ExistShootingSpot       *int32                    `json:"exist_shooting_spot,omitempty"`
+	ExistKidCourse          *int32                    `json:"exist_kid_course,omitempty"`
+	ExistFreePaking         *int32                    `json:"exist_free_paking,omitempty"`
+	ExistSchool             *int32                    `json:"exist_school,omitempty"`
+	IsGoodCafe              *int32                    `json:"is_good_cafe,omitempty"`
+	IsGoodMogul             *int32                    `json:"is_good_mogul,omitempty"`
+	IsGoodPaking            *int32                    `json:"is_good_paking,omitempty"`
+	IsGoodRental            *int32                    `json:"is_good_rental,omitempty"`
+	IsGoodSnowboardpark     *int32                    `json:"is_good_snowboardpark,omitempty"`
+	IsGoodActivity          *int32                    `json:"is_good_activity,omitempty"`
+	CanSlide                *int32                    `json:"can_slide,omitempty"`
+	CanSpringSki            *int32                    `json:"can_spring_ski,omitempty"`
+	Visible                 *int32                    `json:"visible,omitempty"`
+	IsDebug                 *int32                    `json:"is_debug,omitempty"`
+	IsOffpost               *int32                    `json:"is_offpost,omitempty"`
+	IsContract              *int32                    `json:"is_contract,omitempty"`
+	IsVisit                 *int32                    `json:"is_visit,omitempty"`
+	FacilityList            []FacilityModel           `json:"facility_list,omitempty"`
+	SkiareaStatus           *SkiareaStatusModel       `json:"skiarea_status,omitempty"`
+	OfficialLink            *OfficialLinkModel        `json:"official_link,omitempty"`
+	StaticLink              *StaticLinkModel          `json:"static_link,omitempty"`
+	CustomBannerList        []CustomBannerModel       `json:"custom_banner_list,omitempty"`
+	IsFavorite              *bool                     `json:"is_favorite,omitempty"`
+	EventList               []EventModel              `json:"event_list,omitempty"`
+	CouponList              []CouponModel             `json:"coupon_list,omitempty"`
+	PremiumTicketList       []CouponDistributionModel `json:"premium_ticket_list,omitempty"`
+	CheckinCouponList       []CouponDistributionModel `json:"checkin_coupon_list,omitempty"`
+	EvaluateTotal           *int32                    `json:"evaluate_total,omitempty"`
+	PrefCode                *int32                    `json:"pref_code,omitempty"`
+	AdditionalProperties    map[string]interface{}
 }
 
 type _SkiareaModel SkiareaModel
@@ -122,105 +121,8 @@ type _SkiareaModel SkiareaModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSkiareaModel(id int32, code int32, name string, nameKana string, address string, logoImage string, locationLat int32, locationLog int32, tel string, businessPlanPeriod string, holiday string, snowboardCondition string, businessHour string, liftTicket string, parkingLot string, rentalInfo string, schoolInfo string, nurseryInfo string, napInfo string, eventInfo string, description string, liftTotal int32, pisteTotal int32, pisteDifficulty string, snowboardSpecialCourse string, elevation string, maxSlopeAngle int32, pisteHolidayifficulty string, image string, gpsmapImage string, imageLocationTop int32, imageLocationBottom int32, imageLocationLeft int32, imageLocationRight int32, wideGpsmapId int32, wideGpsmapImage string, wideImageLocationTop int32, wideImageLocationBottom int32, wideImageLocationLeft int32, wideImageLocationRight int32, digitalMapImage string, digitalMapImageEn string, forAdvance int32, forBeginner int32, forCoupple int32, forFamily int32, isHighlevelSunnyrate int32, isLongcource int32, isLowlevelCongestion int32, isMorning int32, isNearSpa int32, isNighter int32, isWidecource int32, isKindForGirl int32, isGoodAccess int32, isAdjacentHotel int32, isPowSra int32, existBackcountry int32, existDelivery int32, existKidspark int32, existNap int32, existNursery int32, existOffpiste int32, existYukiyamaCoupon int32, existYukiyamaGps int32, existTreeZone int32, existSnowPark int32, existSpecialtyCourse int32, existShootingSpot int32, existKidCourse int32, existFreePaking int32, existSchool int32, isGoodCafe int32, isGoodMogul int32, isGoodPaking int32, isGoodRental int32, isGoodSnowboardpark int32, isGoodActivity int32, canSlide int32, canSpringSki int32, visible int32, isDebug int32, isOffpost int32, isContract int32, isVisit int32, facilityList []FacilityModel, skiareaStatus SkiareaStatusModel, officialLink OfficialLinkModel, staticLink StaticLinkModel, customBannerList []CustomBannerModel, isFavorite bool, eventList []EventModel, couponList []CouponModel, premiumTicketList []CouponDistributionModel, checkinCouponList []CouponDistributionModel, evaluateTotal int32, prefCode int32) *SkiareaModel {
+func NewSkiareaModel() *SkiareaModel {
 	this := SkiareaModel{}
-	this.Id = id
-	this.Code = code
-	this.Name = name
-	this.NameKana = nameKana
-	this.Address = address
-	this.LogoImage = logoImage
-	this.LocationLat = locationLat
-	this.LocationLog = locationLog
-	this.Tel = tel
-	this.BusinessPlanPeriod = businessPlanPeriod
-	this.Holiday = holiday
-	this.SnowboardCondition = snowboardCondition
-	this.BusinessHour = businessHour
-	this.LiftTicket = liftTicket
-	this.ParkingLot = parkingLot
-	this.RentalInfo = rentalInfo
-	this.SchoolInfo = schoolInfo
-	this.NurseryInfo = nurseryInfo
-	this.NapInfo = napInfo
-	this.EventInfo = eventInfo
-	this.Description = description
-	this.LiftTotal = liftTotal
-	this.PisteTotal = pisteTotal
-	this.PisteDifficulty = pisteDifficulty
-	this.SnowboardSpecialCourse = snowboardSpecialCourse
-	this.Elevation = elevation
-	this.MaxSlopeAngle = maxSlopeAngle
-	this.PisteHolidayifficulty = pisteHolidayifficulty
-	this.Image = image
-	this.GpsmapImage = gpsmapImage
-	this.ImageLocationTop = imageLocationTop
-	this.ImageLocationBottom = imageLocationBottom
-	this.ImageLocationLeft = imageLocationLeft
-	this.ImageLocationRight = imageLocationRight
-	this.WideGpsmapId = wideGpsmapId
-	this.WideGpsmapImage = wideGpsmapImage
-	this.WideImageLocationTop = wideImageLocationTop
-	this.WideImageLocationBottom = wideImageLocationBottom
-	this.WideImageLocationLeft = wideImageLocationLeft
-	this.WideImageLocationRight = wideImageLocationRight
-	this.DigitalMapImage = digitalMapImage
-	this.DigitalMapImageEn = digitalMapImageEn
-	this.ForAdvance = forAdvance
-	this.ForBeginner = forBeginner
-	this.ForCoupple = forCoupple
-	this.ForFamily = forFamily
-	this.IsHighlevelSunnyrate = isHighlevelSunnyrate
-	this.IsLongcource = isLongcource
-	this.IsLowlevelCongestion = isLowlevelCongestion
-	this.IsMorning = isMorning
-	this.IsNearSpa = isNearSpa
-	this.IsNighter = isNighter
-	this.IsWidecource = isWidecource
-	this.IsKindForGirl = isKindForGirl
-	this.IsGoodAccess = isGoodAccess
-	this.IsAdjacentHotel = isAdjacentHotel
-	this.IsPowSra = isPowSra
-	this.ExistBackcountry = existBackcountry
-	this.ExistDelivery = existDelivery
-	this.ExistKidspark = existKidspark
-	this.ExistNap = existNap
-	this.ExistNursery = existNursery
-	this.ExistOffpiste = existOffpiste
-	this.ExistYukiyamaCoupon = existYukiyamaCoupon
-	this.ExistYukiyamaGps = existYukiyamaGps
-	this.ExistTreeZone = existTreeZone
-	this.ExistSnowPark = existSnowPark
-	this.ExistSpecialtyCourse = existSpecialtyCourse
-	this.ExistShootingSpot = existShootingSpot
-	this.ExistKidCourse = existKidCourse
-	this.ExistFreePaking = existFreePaking
-	this.ExistSchool = existSchool
-	this.IsGoodCafe = isGoodCafe
-	this.IsGoodMogul = isGoodMogul
-	this.IsGoodPaking = isGoodPaking
-	this.IsGoodRental = isGoodRental
-	this.IsGoodSnowboardpark = isGoodSnowboardpark
-	this.IsGoodActivity = isGoodActivity
-	this.CanSlide = canSlide
-	this.CanSpringSki = canSpringSki
-	this.Visible = visible
-	this.IsDebug = isDebug
-	this.IsOffpost = isOffpost
-	this.IsContract = isContract
-	this.IsVisit = isVisit
-	this.FacilityList = facilityList
-	this.SkiareaStatus = skiareaStatus
-	this.OfficialLink = officialLink
-	this.StaticLink = staticLink
-	this.CustomBannerList = customBannerList
-	this.IsFavorite = isFavorite
-	this.EventList = eventList
-	this.CouponList = couponList
-	this.PremiumTicketList = premiumTicketList
-	this.CheckinCouponList = checkinCouponList
-	this.EvaluateTotal = evaluateTotal
-	this.PrefCode = prefCode
 	return &this
 }
 
@@ -232,2332 +134,3108 @@ func NewSkiareaModelWithDefaults() *SkiareaModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *SkiareaModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *SkiareaModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *SkiareaModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetCode returns the Code field value
+// GetCode returns the Code field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCode() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		var ret int32
 		return ret
 	}
-
-	return o.Code
+	return *o.Code
 }
 
-// GetCodeOk returns a tuple with the Code field value
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Code) {
 		return nil, false
 	}
-	return &o.Code, true
+	return o.Code, true
 }
 
-// SetCode sets field value
+// HasCode returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCode() bool {
+	if o != nil && !IsNil(o.Code) {
+		return true
+	}
+
+	return false
+}
+
+// SetCode gets a reference to the given int32 and assigns it to the Code field.
 func (o *SkiareaModel) SetCode(v int32) {
-	o.Code = v
+	o.Code = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *SkiareaModel) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *SkiareaModel) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SkiareaModel) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetNameKana returns the NameKana field value
+// GetNameKana returns the NameKana field value if set, zero value otherwise.
 func (o *SkiareaModel) GetNameKana() string {
-	if o == nil {
+	if o == nil || IsNil(o.NameKana) {
 		var ret string
 		return ret
 	}
-
-	return o.NameKana
+	return *o.NameKana
 }
 
-// GetNameKanaOk returns a tuple with the NameKana field value
+// GetNameKanaOk returns a tuple with the NameKana field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetNameKanaOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NameKana) {
 		return nil, false
 	}
-	return &o.NameKana, true
+	return o.NameKana, true
 }
 
-// SetNameKana sets field value
+// HasNameKana returns a boolean if a field has been set.
+func (o *SkiareaModel) HasNameKana() bool {
+	if o != nil && !IsNil(o.NameKana) {
+		return true
+	}
+
+	return false
+}
+
+// SetNameKana gets a reference to the given string and assigns it to the NameKana field.
 func (o *SkiareaModel) SetNameKana(v string) {
-	o.NameKana = v
+	o.NameKana = &v
 }
 
-// GetAddress returns the Address field value
+// GetAddress returns the Address field value if set, zero value otherwise.
 func (o *SkiareaModel) GetAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		var ret string
 		return ret
 	}
-
-	return o.Address
+	return *o.Address
 }
 
-// GetAddressOk returns a tuple with the Address field value
+// GetAddressOk returns a tuple with the Address field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Address) {
 		return nil, false
 	}
-	return &o.Address, true
+	return o.Address, true
 }
 
-// SetAddress sets field value
+// HasAddress returns a boolean if a field has been set.
+func (o *SkiareaModel) HasAddress() bool {
+	if o != nil && !IsNil(o.Address) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddress gets a reference to the given string and assigns it to the Address field.
 func (o *SkiareaModel) SetAddress(v string) {
-	o.Address = v
+	o.Address = &v
 }
 
-// GetLogoImage returns the LogoImage field value
+// GetLogoImage returns the LogoImage field value if set, zero value otherwise.
 func (o *SkiareaModel) GetLogoImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.LogoImage) {
 		var ret string
 		return ret
 	}
-
-	return o.LogoImage
+	return *o.LogoImage
 }
 
-// GetLogoImageOk returns a tuple with the LogoImage field value
+// GetLogoImageOk returns a tuple with the LogoImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetLogoImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LogoImage) {
 		return nil, false
 	}
-	return &o.LogoImage, true
+	return o.LogoImage, true
 }
 
-// SetLogoImage sets field value
+// HasLogoImage returns a boolean if a field has been set.
+func (o *SkiareaModel) HasLogoImage() bool {
+	if o != nil && !IsNil(o.LogoImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetLogoImage gets a reference to the given string and assigns it to the LogoImage field.
 func (o *SkiareaModel) SetLogoImage(v string) {
-	o.LogoImage = v
+	o.LogoImage = &v
 }
 
-// GetLocationLat returns the LocationLat field value
+// GetLocationLat returns the LocationLat field value if set, zero value otherwise.
 func (o *SkiareaModel) GetLocationLat() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLat) {
 		var ret int32
 		return ret
 	}
-
-	return o.LocationLat
+	return *o.LocationLat
 }
 
-// GetLocationLatOk returns a tuple with the LocationLat field value
+// GetLocationLatOk returns a tuple with the LocationLat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetLocationLatOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLat) {
 		return nil, false
 	}
-	return &o.LocationLat, true
+	return o.LocationLat, true
 }
 
-// SetLocationLat sets field value
+// HasLocationLat returns a boolean if a field has been set.
+func (o *SkiareaModel) HasLocationLat() bool {
+	if o != nil && !IsNil(o.LocationLat) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocationLat gets a reference to the given int32 and assigns it to the LocationLat field.
 func (o *SkiareaModel) SetLocationLat(v int32) {
-	o.LocationLat = v
+	o.LocationLat = &v
 }
 
-// GetLocationLog returns the LocationLog field value
+// GetLocationLog returns the LocationLog field value if set, zero value otherwise.
 func (o *SkiareaModel) GetLocationLog() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLog) {
 		var ret int32
 		return ret
 	}
-
-	return o.LocationLog
+	return *o.LocationLog
 }
 
-// GetLocationLogOk returns a tuple with the LocationLog field value
+// GetLocationLogOk returns a tuple with the LocationLog field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetLocationLogOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LocationLog) {
 		return nil, false
 	}
-	return &o.LocationLog, true
+	return o.LocationLog, true
 }
 
-// SetLocationLog sets field value
+// HasLocationLog returns a boolean if a field has been set.
+func (o *SkiareaModel) HasLocationLog() bool {
+	if o != nil && !IsNil(o.LocationLog) {
+		return true
+	}
+
+	return false
+}
+
+// SetLocationLog gets a reference to the given int32 and assigns it to the LocationLog field.
 func (o *SkiareaModel) SetLocationLog(v int32) {
-	o.LocationLog = v
+	o.LocationLog = &v
 }
 
-// GetTel returns the Tel field value
+// GetTel returns the Tel field value if set, zero value otherwise.
 func (o *SkiareaModel) GetTel() string {
-	if o == nil {
+	if o == nil || IsNil(o.Tel) {
 		var ret string
 		return ret
 	}
-
-	return o.Tel
+	return *o.Tel
 }
 
-// GetTelOk returns a tuple with the Tel field value
+// GetTelOk returns a tuple with the Tel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetTelOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Tel) {
 		return nil, false
 	}
-	return &o.Tel, true
+	return o.Tel, true
 }
 
-// SetTel sets field value
+// HasTel returns a boolean if a field has been set.
+func (o *SkiareaModel) HasTel() bool {
+	if o != nil && !IsNil(o.Tel) {
+		return true
+	}
+
+	return false
+}
+
+// SetTel gets a reference to the given string and assigns it to the Tel field.
 func (o *SkiareaModel) SetTel(v string) {
-	o.Tel = v
+	o.Tel = &v
 }
 
-// GetBusinessPlanPeriod returns the BusinessPlanPeriod field value
+// GetBusinessPlanPeriod returns the BusinessPlanPeriod field value if set, zero value otherwise.
 func (o *SkiareaModel) GetBusinessPlanPeriod() string {
-	if o == nil {
+	if o == nil || IsNil(o.BusinessPlanPeriod) {
 		var ret string
 		return ret
 	}
-
-	return o.BusinessPlanPeriod
+	return *o.BusinessPlanPeriod
 }
 
-// GetBusinessPlanPeriodOk returns a tuple with the BusinessPlanPeriod field value
+// GetBusinessPlanPeriodOk returns a tuple with the BusinessPlanPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetBusinessPlanPeriodOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BusinessPlanPeriod) {
 		return nil, false
 	}
-	return &o.BusinessPlanPeriod, true
+	return o.BusinessPlanPeriod, true
 }
 
-// SetBusinessPlanPeriod sets field value
+// HasBusinessPlanPeriod returns a boolean if a field has been set.
+func (o *SkiareaModel) HasBusinessPlanPeriod() bool {
+	if o != nil && !IsNil(o.BusinessPlanPeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetBusinessPlanPeriod gets a reference to the given string and assigns it to the BusinessPlanPeriod field.
 func (o *SkiareaModel) SetBusinessPlanPeriod(v string) {
-	o.BusinessPlanPeriod = v
+	o.BusinessPlanPeriod = &v
 }
 
-// GetHoliday returns the Holiday field value
+// GetHoliday returns the Holiday field value if set, zero value otherwise.
 func (o *SkiareaModel) GetHoliday() string {
-	if o == nil {
+	if o == nil || IsNil(o.Holiday) {
 		var ret string
 		return ret
 	}
-
-	return o.Holiday
+	return *o.Holiday
 }
 
-// GetHolidayOk returns a tuple with the Holiday field value
+// GetHolidayOk returns a tuple with the Holiday field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetHolidayOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Holiday) {
 		return nil, false
 	}
-	return &o.Holiday, true
+	return o.Holiday, true
 }
 
-// SetHoliday sets field value
+// HasHoliday returns a boolean if a field has been set.
+func (o *SkiareaModel) HasHoliday() bool {
+	if o != nil && !IsNil(o.Holiday) {
+		return true
+	}
+
+	return false
+}
+
+// SetHoliday gets a reference to the given string and assigns it to the Holiday field.
 func (o *SkiareaModel) SetHoliday(v string) {
-	o.Holiday = v
+	o.Holiday = &v
 }
 
-// GetSnowboardCondition returns the SnowboardCondition field value
+// GetSnowboardCondition returns the SnowboardCondition field value if set, zero value otherwise.
 func (o *SkiareaModel) GetSnowboardCondition() string {
-	if o == nil {
+	if o == nil || IsNil(o.SnowboardCondition) {
 		var ret string
 		return ret
 	}
-
-	return o.SnowboardCondition
+	return *o.SnowboardCondition
 }
 
-// GetSnowboardConditionOk returns a tuple with the SnowboardCondition field value
+// GetSnowboardConditionOk returns a tuple with the SnowboardCondition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetSnowboardConditionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowboardCondition) {
 		return nil, false
 	}
-	return &o.SnowboardCondition, true
+	return o.SnowboardCondition, true
 }
 
-// SetSnowboardCondition sets field value
+// HasSnowboardCondition returns a boolean if a field has been set.
+func (o *SkiareaModel) HasSnowboardCondition() bool {
+	if o != nil && !IsNil(o.SnowboardCondition) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowboardCondition gets a reference to the given string and assigns it to the SnowboardCondition field.
 func (o *SkiareaModel) SetSnowboardCondition(v string) {
-	o.SnowboardCondition = v
+	o.SnowboardCondition = &v
 }
 
-// GetBusinessHour returns the BusinessHour field value
+// GetBusinessHour returns the BusinessHour field value if set, zero value otherwise.
 func (o *SkiareaModel) GetBusinessHour() string {
-	if o == nil {
+	if o == nil || IsNil(o.BusinessHour) {
 		var ret string
 		return ret
 	}
-
-	return o.BusinessHour
+	return *o.BusinessHour
 }
 
-// GetBusinessHourOk returns a tuple with the BusinessHour field value
+// GetBusinessHourOk returns a tuple with the BusinessHour field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetBusinessHourOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BusinessHour) {
 		return nil, false
 	}
-	return &o.BusinessHour, true
+	return o.BusinessHour, true
 }
 
-// SetBusinessHour sets field value
+// HasBusinessHour returns a boolean if a field has been set.
+func (o *SkiareaModel) HasBusinessHour() bool {
+	if o != nil && !IsNil(o.BusinessHour) {
+		return true
+	}
+
+	return false
+}
+
+// SetBusinessHour gets a reference to the given string and assigns it to the BusinessHour field.
 func (o *SkiareaModel) SetBusinessHour(v string) {
-	o.BusinessHour = v
+	o.BusinessHour = &v
 }
 
-// GetLiftTicket returns the LiftTicket field value
+// GetLiftTicket returns the LiftTicket field value if set, zero value otherwise.
 func (o *SkiareaModel) GetLiftTicket() string {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTicket) {
 		var ret string
 		return ret
 	}
-
-	return o.LiftTicket
+	return *o.LiftTicket
 }
 
-// GetLiftTicketOk returns a tuple with the LiftTicket field value
+// GetLiftTicketOk returns a tuple with the LiftTicket field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetLiftTicketOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTicket) {
 		return nil, false
 	}
-	return &o.LiftTicket, true
+	return o.LiftTicket, true
 }
 
-// SetLiftTicket sets field value
+// HasLiftTicket returns a boolean if a field has been set.
+func (o *SkiareaModel) HasLiftTicket() bool {
+	if o != nil && !IsNil(o.LiftTicket) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiftTicket gets a reference to the given string and assigns it to the LiftTicket field.
 func (o *SkiareaModel) SetLiftTicket(v string) {
-	o.LiftTicket = v
+	o.LiftTicket = &v
 }
 
-// GetParkingLot returns the ParkingLot field value
+// GetParkingLot returns the ParkingLot field value if set, zero value otherwise.
 func (o *SkiareaModel) GetParkingLot() string {
-	if o == nil {
+	if o == nil || IsNil(o.ParkingLot) {
 		var ret string
 		return ret
 	}
-
-	return o.ParkingLot
+	return *o.ParkingLot
 }
 
-// GetParkingLotOk returns a tuple with the ParkingLot field value
+// GetParkingLotOk returns a tuple with the ParkingLot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetParkingLotOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ParkingLot) {
 		return nil, false
 	}
-	return &o.ParkingLot, true
+	return o.ParkingLot, true
 }
 
-// SetParkingLot sets field value
+// HasParkingLot returns a boolean if a field has been set.
+func (o *SkiareaModel) HasParkingLot() bool {
+	if o != nil && !IsNil(o.ParkingLot) {
+		return true
+	}
+
+	return false
+}
+
+// SetParkingLot gets a reference to the given string and assigns it to the ParkingLot field.
 func (o *SkiareaModel) SetParkingLot(v string) {
-	o.ParkingLot = v
+	o.ParkingLot = &v
 }
 
-// GetRentalInfo returns the RentalInfo field value
+// GetRentalInfo returns the RentalInfo field value if set, zero value otherwise.
 func (o *SkiareaModel) GetRentalInfo() string {
-	if o == nil {
+	if o == nil || IsNil(o.RentalInfo) {
 		var ret string
 		return ret
 	}
-
-	return o.RentalInfo
+	return *o.RentalInfo
 }
 
-// GetRentalInfoOk returns a tuple with the RentalInfo field value
+// GetRentalInfoOk returns a tuple with the RentalInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetRentalInfoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.RentalInfo) {
 		return nil, false
 	}
-	return &o.RentalInfo, true
+	return o.RentalInfo, true
 }
 
-// SetRentalInfo sets field value
+// HasRentalInfo returns a boolean if a field has been set.
+func (o *SkiareaModel) HasRentalInfo() bool {
+	if o != nil && !IsNil(o.RentalInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetRentalInfo gets a reference to the given string and assigns it to the RentalInfo field.
 func (o *SkiareaModel) SetRentalInfo(v string) {
-	o.RentalInfo = v
+	o.RentalInfo = &v
 }
 
-// GetSchoolInfo returns the SchoolInfo field value
+// GetSchoolInfo returns the SchoolInfo field value if set, zero value otherwise.
 func (o *SkiareaModel) GetSchoolInfo() string {
-	if o == nil {
+	if o == nil || IsNil(o.SchoolInfo) {
 		var ret string
 		return ret
 	}
-
-	return o.SchoolInfo
+	return *o.SchoolInfo
 }
 
-// GetSchoolInfoOk returns a tuple with the SchoolInfo field value
+// GetSchoolInfoOk returns a tuple with the SchoolInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetSchoolInfoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SchoolInfo) {
 		return nil, false
 	}
-	return &o.SchoolInfo, true
+	return o.SchoolInfo, true
 }
 
-// SetSchoolInfo sets field value
+// HasSchoolInfo returns a boolean if a field has been set.
+func (o *SkiareaModel) HasSchoolInfo() bool {
+	if o != nil && !IsNil(o.SchoolInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetSchoolInfo gets a reference to the given string and assigns it to the SchoolInfo field.
 func (o *SkiareaModel) SetSchoolInfo(v string) {
-	o.SchoolInfo = v
+	o.SchoolInfo = &v
 }
 
-// GetNurseryInfo returns the NurseryInfo field value
+// GetNurseryInfo returns the NurseryInfo field value if set, zero value otherwise.
 func (o *SkiareaModel) GetNurseryInfo() string {
-	if o == nil {
+	if o == nil || IsNil(o.NurseryInfo) {
 		var ret string
 		return ret
 	}
-
-	return o.NurseryInfo
+	return *o.NurseryInfo
 }
 
-// GetNurseryInfoOk returns a tuple with the NurseryInfo field value
+// GetNurseryInfoOk returns a tuple with the NurseryInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetNurseryInfoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NurseryInfo) {
 		return nil, false
 	}
-	return &o.NurseryInfo, true
+	return o.NurseryInfo, true
 }
 
-// SetNurseryInfo sets field value
+// HasNurseryInfo returns a boolean if a field has been set.
+func (o *SkiareaModel) HasNurseryInfo() bool {
+	if o != nil && !IsNil(o.NurseryInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetNurseryInfo gets a reference to the given string and assigns it to the NurseryInfo field.
 func (o *SkiareaModel) SetNurseryInfo(v string) {
-	o.NurseryInfo = v
+	o.NurseryInfo = &v
 }
 
-// GetNapInfo returns the NapInfo field value
+// GetNapInfo returns the NapInfo field value if set, zero value otherwise.
 func (o *SkiareaModel) GetNapInfo() string {
-	if o == nil {
+	if o == nil || IsNil(o.NapInfo) {
 		var ret string
 		return ret
 	}
-
-	return o.NapInfo
+	return *o.NapInfo
 }
 
-// GetNapInfoOk returns a tuple with the NapInfo field value
+// GetNapInfoOk returns a tuple with the NapInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetNapInfoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NapInfo) {
 		return nil, false
 	}
-	return &o.NapInfo, true
+	return o.NapInfo, true
 }
 
-// SetNapInfo sets field value
+// HasNapInfo returns a boolean if a field has been set.
+func (o *SkiareaModel) HasNapInfo() bool {
+	if o != nil && !IsNil(o.NapInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetNapInfo gets a reference to the given string and assigns it to the NapInfo field.
 func (o *SkiareaModel) SetNapInfo(v string) {
-	o.NapInfo = v
+	o.NapInfo = &v
 }
 
-// GetEventInfo returns the EventInfo field value
+// GetEventInfo returns the EventInfo field value if set, zero value otherwise.
 func (o *SkiareaModel) GetEventInfo() string {
-	if o == nil {
+	if o == nil || IsNil(o.EventInfo) {
 		var ret string
 		return ret
 	}
-
-	return o.EventInfo
+	return *o.EventInfo
 }
 
-// GetEventInfoOk returns a tuple with the EventInfo field value
+// GetEventInfoOk returns a tuple with the EventInfo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetEventInfoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EventInfo) {
 		return nil, false
 	}
-	return &o.EventInfo, true
+	return o.EventInfo, true
 }
 
-// SetEventInfo sets field value
+// HasEventInfo returns a boolean if a field has been set.
+func (o *SkiareaModel) HasEventInfo() bool {
+	if o != nil && !IsNil(o.EventInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventInfo gets a reference to the given string and assigns it to the EventInfo field.
 func (o *SkiareaModel) SetEventInfo(v string) {
-	o.EventInfo = v
+	o.EventInfo = &v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SkiareaModel) GetDescription() string {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		var ret string
 		return ret
 	}
-
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Description) {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value
+// HasDescription returns a boolean if a field has been set.
+func (o *SkiareaModel) HasDescription() bool {
+	if o != nil && !IsNil(o.Description) {
+		return true
+	}
+
+	return false
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *SkiareaModel) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
 }
 
-// GetLiftTotal returns the LiftTotal field value
+// GetLiftTotal returns the LiftTotal field value if set, zero value otherwise.
 func (o *SkiareaModel) GetLiftTotal() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTotal) {
 		var ret int32
 		return ret
 	}
-
-	return o.LiftTotal
+	return *o.LiftTotal
 }
 
-// GetLiftTotalOk returns a tuple with the LiftTotal field value
+// GetLiftTotalOk returns a tuple with the LiftTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetLiftTotalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.LiftTotal) {
 		return nil, false
 	}
-	return &o.LiftTotal, true
+	return o.LiftTotal, true
 }
 
-// SetLiftTotal sets field value
+// HasLiftTotal returns a boolean if a field has been set.
+func (o *SkiareaModel) HasLiftTotal() bool {
+	if o != nil && !IsNil(o.LiftTotal) {
+		return true
+	}
+
+	return false
+}
+
+// SetLiftTotal gets a reference to the given int32 and assigns it to the LiftTotal field.
 func (o *SkiareaModel) SetLiftTotal(v int32) {
-	o.LiftTotal = v
+	o.LiftTotal = &v
 }
 
-// GetPisteTotal returns the PisteTotal field value
+// GetPisteTotal returns the PisteTotal field value if set, zero value otherwise.
 func (o *SkiareaModel) GetPisteTotal() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PisteTotal) {
 		var ret int32
 		return ret
 	}
-
-	return o.PisteTotal
+	return *o.PisteTotal
 }
 
-// GetPisteTotalOk returns a tuple with the PisteTotal field value
+// GetPisteTotalOk returns a tuple with the PisteTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetPisteTotalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PisteTotal) {
 		return nil, false
 	}
-	return &o.PisteTotal, true
+	return o.PisteTotal, true
 }
 
-// SetPisteTotal sets field value
+// HasPisteTotal returns a boolean if a field has been set.
+func (o *SkiareaModel) HasPisteTotal() bool {
+	if o != nil && !IsNil(o.PisteTotal) {
+		return true
+	}
+
+	return false
+}
+
+// SetPisteTotal gets a reference to the given int32 and assigns it to the PisteTotal field.
 func (o *SkiareaModel) SetPisteTotal(v int32) {
-	o.PisteTotal = v
+	o.PisteTotal = &v
 }
 
-// GetPisteDifficulty returns the PisteDifficulty field value
+// GetPisteDifficulty returns the PisteDifficulty field value if set, zero value otherwise.
 func (o *SkiareaModel) GetPisteDifficulty() string {
-	if o == nil {
+	if o == nil || IsNil(o.PisteDifficulty) {
 		var ret string
 		return ret
 	}
-
-	return o.PisteDifficulty
+	return *o.PisteDifficulty
 }
 
-// GetPisteDifficultyOk returns a tuple with the PisteDifficulty field value
+// GetPisteDifficultyOk returns a tuple with the PisteDifficulty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetPisteDifficultyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PisteDifficulty) {
 		return nil, false
 	}
-	return &o.PisteDifficulty, true
+	return o.PisteDifficulty, true
 }
 
-// SetPisteDifficulty sets field value
+// HasPisteDifficulty returns a boolean if a field has been set.
+func (o *SkiareaModel) HasPisteDifficulty() bool {
+	if o != nil && !IsNil(o.PisteDifficulty) {
+		return true
+	}
+
+	return false
+}
+
+// SetPisteDifficulty gets a reference to the given string and assigns it to the PisteDifficulty field.
 func (o *SkiareaModel) SetPisteDifficulty(v string) {
-	o.PisteDifficulty = v
+	o.PisteDifficulty = &v
 }
 
-// GetSnowboardSpecialCourse returns the SnowboardSpecialCourse field value
+// GetSnowboardSpecialCourse returns the SnowboardSpecialCourse field value if set, zero value otherwise.
 func (o *SkiareaModel) GetSnowboardSpecialCourse() string {
-	if o == nil {
+	if o == nil || IsNil(o.SnowboardSpecialCourse) {
 		var ret string
 		return ret
 	}
-
-	return o.SnowboardSpecialCourse
+	return *o.SnowboardSpecialCourse
 }
 
-// GetSnowboardSpecialCourseOk returns a tuple with the SnowboardSpecialCourse field value
+// GetSnowboardSpecialCourseOk returns a tuple with the SnowboardSpecialCourse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetSnowboardSpecialCourseOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowboardSpecialCourse) {
 		return nil, false
 	}
-	return &o.SnowboardSpecialCourse, true
+	return o.SnowboardSpecialCourse, true
 }
 
-// SetSnowboardSpecialCourse sets field value
+// HasSnowboardSpecialCourse returns a boolean if a field has been set.
+func (o *SkiareaModel) HasSnowboardSpecialCourse() bool {
+	if o != nil && !IsNil(o.SnowboardSpecialCourse) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowboardSpecialCourse gets a reference to the given string and assigns it to the SnowboardSpecialCourse field.
 func (o *SkiareaModel) SetSnowboardSpecialCourse(v string) {
-	o.SnowboardSpecialCourse = v
+	o.SnowboardSpecialCourse = &v
 }
 
-// GetElevation returns the Elevation field value
+// GetElevation returns the Elevation field value if set, zero value otherwise.
 func (o *SkiareaModel) GetElevation() string {
-	if o == nil {
+	if o == nil || IsNil(o.Elevation) {
 		var ret string
 		return ret
 	}
-
-	return o.Elevation
+	return *o.Elevation
 }
 
-// GetElevationOk returns a tuple with the Elevation field value
+// GetElevationOk returns a tuple with the Elevation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetElevationOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Elevation) {
 		return nil, false
 	}
-	return &o.Elevation, true
+	return o.Elevation, true
 }
 
-// SetElevation sets field value
+// HasElevation returns a boolean if a field has been set.
+func (o *SkiareaModel) HasElevation() bool {
+	if o != nil && !IsNil(o.Elevation) {
+		return true
+	}
+
+	return false
+}
+
+// SetElevation gets a reference to the given string and assigns it to the Elevation field.
 func (o *SkiareaModel) SetElevation(v string) {
-	o.Elevation = v
+	o.Elevation = &v
 }
 
-// GetMaxSlopeAngle returns the MaxSlopeAngle field value
+// GetMaxSlopeAngle returns the MaxSlopeAngle field value if set, zero value otherwise.
 func (o *SkiareaModel) GetMaxSlopeAngle() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSlopeAngle) {
 		var ret int32
 		return ret
 	}
-
-	return o.MaxSlopeAngle
+	return *o.MaxSlopeAngle
 }
 
-// GetMaxSlopeAngleOk returns a tuple with the MaxSlopeAngle field value
+// GetMaxSlopeAngleOk returns a tuple with the MaxSlopeAngle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetMaxSlopeAngleOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.MaxSlopeAngle) {
 		return nil, false
 	}
-	return &o.MaxSlopeAngle, true
+	return o.MaxSlopeAngle, true
 }
 
-// SetMaxSlopeAngle sets field value
+// HasMaxSlopeAngle returns a boolean if a field has been set.
+func (o *SkiareaModel) HasMaxSlopeAngle() bool {
+	if o != nil && !IsNil(o.MaxSlopeAngle) {
+		return true
+	}
+
+	return false
+}
+
+// SetMaxSlopeAngle gets a reference to the given int32 and assigns it to the MaxSlopeAngle field.
 func (o *SkiareaModel) SetMaxSlopeAngle(v int32) {
-	o.MaxSlopeAngle = v
+	o.MaxSlopeAngle = &v
 }
 
-// GetPisteHolidayifficulty returns the PisteHolidayifficulty field value
+// GetPisteHolidayifficulty returns the PisteHolidayifficulty field value if set, zero value otherwise.
 func (o *SkiareaModel) GetPisteHolidayifficulty() string {
-	if o == nil {
+	if o == nil || IsNil(o.PisteHolidayifficulty) {
 		var ret string
 		return ret
 	}
-
-	return o.PisteHolidayifficulty
+	return *o.PisteHolidayifficulty
 }
 
-// GetPisteHolidayifficultyOk returns a tuple with the PisteHolidayifficulty field value
+// GetPisteHolidayifficultyOk returns a tuple with the PisteHolidayifficulty field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetPisteHolidayifficultyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PisteHolidayifficulty) {
 		return nil, false
 	}
-	return &o.PisteHolidayifficulty, true
+	return o.PisteHolidayifficulty, true
 }
 
-// SetPisteHolidayifficulty sets field value
+// HasPisteHolidayifficulty returns a boolean if a field has been set.
+func (o *SkiareaModel) HasPisteHolidayifficulty() bool {
+	if o != nil && !IsNil(o.PisteHolidayifficulty) {
+		return true
+	}
+
+	return false
+}
+
+// SetPisteHolidayifficulty gets a reference to the given string and assigns it to the PisteHolidayifficulty field.
 func (o *SkiareaModel) SetPisteHolidayifficulty(v string) {
-	o.PisteHolidayifficulty = v
+	o.PisteHolidayifficulty = &v
 }
 
-// GetImage returns the Image field value
+// GetImage returns the Image field value if set, zero value otherwise.
 func (o *SkiareaModel) GetImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		var ret string
 		return ret
 	}
-
-	return o.Image
+	return *o.Image
 }
 
-// GetImageOk returns a tuple with the Image field value
+// GetImageOk returns a tuple with the Image field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Image) {
 		return nil, false
 	}
-	return &o.Image, true
+	return o.Image, true
 }
 
-// SetImage sets field value
+// HasImage returns a boolean if a field has been set.
+func (o *SkiareaModel) HasImage() bool {
+	if o != nil && !IsNil(o.Image) {
+		return true
+	}
+
+	return false
+}
+
+// SetImage gets a reference to the given string and assigns it to the Image field.
 func (o *SkiareaModel) SetImage(v string) {
-	o.Image = v
+	o.Image = &v
 }
 
-// GetGpsmapImage returns the GpsmapImage field value
+// GetGpsmapImage returns the GpsmapImage field value if set, zero value otherwise.
 func (o *SkiareaModel) GetGpsmapImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.GpsmapImage) {
 		var ret string
 		return ret
 	}
-
-	return o.GpsmapImage
+	return *o.GpsmapImage
 }
 
-// GetGpsmapImageOk returns a tuple with the GpsmapImage field value
+// GetGpsmapImageOk returns a tuple with the GpsmapImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetGpsmapImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.GpsmapImage) {
 		return nil, false
 	}
-	return &o.GpsmapImage, true
+	return o.GpsmapImage, true
 }
 
-// SetGpsmapImage sets field value
+// HasGpsmapImage returns a boolean if a field has been set.
+func (o *SkiareaModel) HasGpsmapImage() bool {
+	if o != nil && !IsNil(o.GpsmapImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetGpsmapImage gets a reference to the given string and assigns it to the GpsmapImage field.
 func (o *SkiareaModel) SetGpsmapImage(v string) {
-	o.GpsmapImage = v
+	o.GpsmapImage = &v
 }
 
-// GetImageLocationTop returns the ImageLocationTop field value
+// GetImageLocationTop returns the ImageLocationTop field value if set, zero value otherwise.
 func (o *SkiareaModel) GetImageLocationTop() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationTop) {
 		var ret int32
 		return ret
 	}
-
-	return o.ImageLocationTop
+	return *o.ImageLocationTop
 }
 
-// GetImageLocationTopOk returns a tuple with the ImageLocationTop field value
+// GetImageLocationTopOk returns a tuple with the ImageLocationTop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetImageLocationTopOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationTop) {
 		return nil, false
 	}
-	return &o.ImageLocationTop, true
+	return o.ImageLocationTop, true
 }
 
-// SetImageLocationTop sets field value
+// HasImageLocationTop returns a boolean if a field has been set.
+func (o *SkiareaModel) HasImageLocationTop() bool {
+	if o != nil && !IsNil(o.ImageLocationTop) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageLocationTop gets a reference to the given int32 and assigns it to the ImageLocationTop field.
 func (o *SkiareaModel) SetImageLocationTop(v int32) {
-	o.ImageLocationTop = v
+	o.ImageLocationTop = &v
 }
 
-// GetImageLocationBottom returns the ImageLocationBottom field value
+// GetImageLocationBottom returns the ImageLocationBottom field value if set, zero value otherwise.
 func (o *SkiareaModel) GetImageLocationBottom() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationBottom) {
 		var ret int32
 		return ret
 	}
-
-	return o.ImageLocationBottom
+	return *o.ImageLocationBottom
 }
 
-// GetImageLocationBottomOk returns a tuple with the ImageLocationBottom field value
+// GetImageLocationBottomOk returns a tuple with the ImageLocationBottom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetImageLocationBottomOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationBottom) {
 		return nil, false
 	}
-	return &o.ImageLocationBottom, true
+	return o.ImageLocationBottom, true
 }
 
-// SetImageLocationBottom sets field value
+// HasImageLocationBottom returns a boolean if a field has been set.
+func (o *SkiareaModel) HasImageLocationBottom() bool {
+	if o != nil && !IsNil(o.ImageLocationBottom) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageLocationBottom gets a reference to the given int32 and assigns it to the ImageLocationBottom field.
 func (o *SkiareaModel) SetImageLocationBottom(v int32) {
-	o.ImageLocationBottom = v
+	o.ImageLocationBottom = &v
 }
 
-// GetImageLocationLeft returns the ImageLocationLeft field value
+// GetImageLocationLeft returns the ImageLocationLeft field value if set, zero value otherwise.
 func (o *SkiareaModel) GetImageLocationLeft() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationLeft) {
 		var ret int32
 		return ret
 	}
-
-	return o.ImageLocationLeft
+	return *o.ImageLocationLeft
 }
 
-// GetImageLocationLeftOk returns a tuple with the ImageLocationLeft field value
+// GetImageLocationLeftOk returns a tuple with the ImageLocationLeft field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetImageLocationLeftOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationLeft) {
 		return nil, false
 	}
-	return &o.ImageLocationLeft, true
+	return o.ImageLocationLeft, true
 }
 
-// SetImageLocationLeft sets field value
+// HasImageLocationLeft returns a boolean if a field has been set.
+func (o *SkiareaModel) HasImageLocationLeft() bool {
+	if o != nil && !IsNil(o.ImageLocationLeft) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageLocationLeft gets a reference to the given int32 and assigns it to the ImageLocationLeft field.
 func (o *SkiareaModel) SetImageLocationLeft(v int32) {
-	o.ImageLocationLeft = v
+	o.ImageLocationLeft = &v
 }
 
-// GetImageLocationRight returns the ImageLocationRight field value
+// GetImageLocationRight returns the ImageLocationRight field value if set, zero value otherwise.
 func (o *SkiareaModel) GetImageLocationRight() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationRight) {
 		var ret int32
 		return ret
 	}
-
-	return o.ImageLocationRight
+	return *o.ImageLocationRight
 }
 
-// GetImageLocationRightOk returns a tuple with the ImageLocationRight field value
+// GetImageLocationRightOk returns a tuple with the ImageLocationRight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetImageLocationRightOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ImageLocationRight) {
 		return nil, false
 	}
-	return &o.ImageLocationRight, true
+	return o.ImageLocationRight, true
 }
 
-// SetImageLocationRight sets field value
+// HasImageLocationRight returns a boolean if a field has been set.
+func (o *SkiareaModel) HasImageLocationRight() bool {
+	if o != nil && !IsNil(o.ImageLocationRight) {
+		return true
+	}
+
+	return false
+}
+
+// SetImageLocationRight gets a reference to the given int32 and assigns it to the ImageLocationRight field.
 func (o *SkiareaModel) SetImageLocationRight(v int32) {
-	o.ImageLocationRight = v
+	o.ImageLocationRight = &v
 }
 
-// GetWideGpsmapId returns the WideGpsmapId field value
+// GetWideGpsmapId returns the WideGpsmapId field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideGpsmapId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WideGpsmapId) {
 		var ret int32
 		return ret
 	}
-
-	return o.WideGpsmapId
+	return *o.WideGpsmapId
 }
 
-// GetWideGpsmapIdOk returns a tuple with the WideGpsmapId field value
+// GetWideGpsmapIdOk returns a tuple with the WideGpsmapId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideGpsmapIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideGpsmapId) {
 		return nil, false
 	}
-	return &o.WideGpsmapId, true
+	return o.WideGpsmapId, true
 }
 
-// SetWideGpsmapId sets field value
+// HasWideGpsmapId returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideGpsmapId() bool {
+	if o != nil && !IsNil(o.WideGpsmapId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideGpsmapId gets a reference to the given int32 and assigns it to the WideGpsmapId field.
 func (o *SkiareaModel) SetWideGpsmapId(v int32) {
-	o.WideGpsmapId = v
+	o.WideGpsmapId = &v
 }
 
-// GetWideGpsmapImage returns the WideGpsmapImage field value
+// GetWideGpsmapImage returns the WideGpsmapImage field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideGpsmapImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.WideGpsmapImage) {
 		var ret string
 		return ret
 	}
-
-	return o.WideGpsmapImage
+	return *o.WideGpsmapImage
 }
 
-// GetWideGpsmapImageOk returns a tuple with the WideGpsmapImage field value
+// GetWideGpsmapImageOk returns a tuple with the WideGpsmapImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideGpsmapImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideGpsmapImage) {
 		return nil, false
 	}
-	return &o.WideGpsmapImage, true
+	return o.WideGpsmapImage, true
 }
 
-// SetWideGpsmapImage sets field value
+// HasWideGpsmapImage returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideGpsmapImage() bool {
+	if o != nil && !IsNil(o.WideGpsmapImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideGpsmapImage gets a reference to the given string and assigns it to the WideGpsmapImage field.
 func (o *SkiareaModel) SetWideGpsmapImage(v string) {
-	o.WideGpsmapImage = v
+	o.WideGpsmapImage = &v
 }
 
-// GetWideImageLocationTop returns the WideImageLocationTop field value
+// GetWideImageLocationTop returns the WideImageLocationTop field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideImageLocationTop() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationTop) {
 		var ret int32
 		return ret
 	}
-
-	return o.WideImageLocationTop
+	return *o.WideImageLocationTop
 }
 
-// GetWideImageLocationTopOk returns a tuple with the WideImageLocationTop field value
+// GetWideImageLocationTopOk returns a tuple with the WideImageLocationTop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideImageLocationTopOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationTop) {
 		return nil, false
 	}
-	return &o.WideImageLocationTop, true
+	return o.WideImageLocationTop, true
 }
 
-// SetWideImageLocationTop sets field value
+// HasWideImageLocationTop returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideImageLocationTop() bool {
+	if o != nil && !IsNil(o.WideImageLocationTop) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideImageLocationTop gets a reference to the given int32 and assigns it to the WideImageLocationTop field.
 func (o *SkiareaModel) SetWideImageLocationTop(v int32) {
-	o.WideImageLocationTop = v
+	o.WideImageLocationTop = &v
 }
 
-// GetWideImageLocationBottom returns the WideImageLocationBottom field value
+// GetWideImageLocationBottom returns the WideImageLocationBottom field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideImageLocationBottom() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationBottom) {
 		var ret int32
 		return ret
 	}
-
-	return o.WideImageLocationBottom
+	return *o.WideImageLocationBottom
 }
 
-// GetWideImageLocationBottomOk returns a tuple with the WideImageLocationBottom field value
+// GetWideImageLocationBottomOk returns a tuple with the WideImageLocationBottom field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideImageLocationBottomOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationBottom) {
 		return nil, false
 	}
-	return &o.WideImageLocationBottom, true
+	return o.WideImageLocationBottom, true
 }
 
-// SetWideImageLocationBottom sets field value
+// HasWideImageLocationBottom returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideImageLocationBottom() bool {
+	if o != nil && !IsNil(o.WideImageLocationBottom) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideImageLocationBottom gets a reference to the given int32 and assigns it to the WideImageLocationBottom field.
 func (o *SkiareaModel) SetWideImageLocationBottom(v int32) {
-	o.WideImageLocationBottom = v
+	o.WideImageLocationBottom = &v
 }
 
-// GetWideImageLocationLeft returns the WideImageLocationLeft field value
+// GetWideImageLocationLeft returns the WideImageLocationLeft field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideImageLocationLeft() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationLeft) {
 		var ret int32
 		return ret
 	}
-
-	return o.WideImageLocationLeft
+	return *o.WideImageLocationLeft
 }
 
-// GetWideImageLocationLeftOk returns a tuple with the WideImageLocationLeft field value
+// GetWideImageLocationLeftOk returns a tuple with the WideImageLocationLeft field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideImageLocationLeftOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationLeft) {
 		return nil, false
 	}
-	return &o.WideImageLocationLeft, true
+	return o.WideImageLocationLeft, true
 }
 
-// SetWideImageLocationLeft sets field value
+// HasWideImageLocationLeft returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideImageLocationLeft() bool {
+	if o != nil && !IsNil(o.WideImageLocationLeft) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideImageLocationLeft gets a reference to the given int32 and assigns it to the WideImageLocationLeft field.
 func (o *SkiareaModel) SetWideImageLocationLeft(v int32) {
-	o.WideImageLocationLeft = v
+	o.WideImageLocationLeft = &v
 }
 
-// GetWideImageLocationRight returns the WideImageLocationRight field value
+// GetWideImageLocationRight returns the WideImageLocationRight field value if set, zero value otherwise.
 func (o *SkiareaModel) GetWideImageLocationRight() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationRight) {
 		var ret int32
 		return ret
 	}
-
-	return o.WideImageLocationRight
+	return *o.WideImageLocationRight
 }
 
-// GetWideImageLocationRightOk returns a tuple with the WideImageLocationRight field value
+// GetWideImageLocationRightOk returns a tuple with the WideImageLocationRight field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetWideImageLocationRightOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WideImageLocationRight) {
 		return nil, false
 	}
-	return &o.WideImageLocationRight, true
+	return o.WideImageLocationRight, true
 }
 
-// SetWideImageLocationRight sets field value
+// HasWideImageLocationRight returns a boolean if a field has been set.
+func (o *SkiareaModel) HasWideImageLocationRight() bool {
+	if o != nil && !IsNil(o.WideImageLocationRight) {
+		return true
+	}
+
+	return false
+}
+
+// SetWideImageLocationRight gets a reference to the given int32 and assigns it to the WideImageLocationRight field.
 func (o *SkiareaModel) SetWideImageLocationRight(v int32) {
-	o.WideImageLocationRight = v
+	o.WideImageLocationRight = &v
 }
 
-// GetDigitalMapImage returns the DigitalMapImage field value
+// GetDigitalMapImage returns the DigitalMapImage field value if set, zero value otherwise.
 func (o *SkiareaModel) GetDigitalMapImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapImage) {
 		var ret string
 		return ret
 	}
-
-	return o.DigitalMapImage
+	return *o.DigitalMapImage
 }
 
-// GetDigitalMapImageOk returns a tuple with the DigitalMapImage field value
+// GetDigitalMapImageOk returns a tuple with the DigitalMapImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetDigitalMapImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapImage) {
 		return nil, false
 	}
-	return &o.DigitalMapImage, true
+	return o.DigitalMapImage, true
 }
 
-// SetDigitalMapImage sets field value
+// HasDigitalMapImage returns a boolean if a field has been set.
+func (o *SkiareaModel) HasDigitalMapImage() bool {
+	if o != nil && !IsNil(o.DigitalMapImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalMapImage gets a reference to the given string and assigns it to the DigitalMapImage field.
 func (o *SkiareaModel) SetDigitalMapImage(v string) {
-	o.DigitalMapImage = v
+	o.DigitalMapImage = &v
 }
 
-// GetDigitalMapImageEn returns the DigitalMapImageEn field value
+// GetDigitalMapImageEn returns the DigitalMapImageEn field value if set, zero value otherwise.
 func (o *SkiareaModel) GetDigitalMapImageEn() string {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapImageEn) {
 		var ret string
 		return ret
 	}
-
-	return o.DigitalMapImageEn
+	return *o.DigitalMapImageEn
 }
 
-// GetDigitalMapImageEnOk returns a tuple with the DigitalMapImageEn field value
+// GetDigitalMapImageEnOk returns a tuple with the DigitalMapImageEn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetDigitalMapImageEnOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DigitalMapImageEn) {
 		return nil, false
 	}
-	return &o.DigitalMapImageEn, true
+	return o.DigitalMapImageEn, true
 }
 
-// SetDigitalMapImageEn sets field value
+// HasDigitalMapImageEn returns a boolean if a field has been set.
+func (o *SkiareaModel) HasDigitalMapImageEn() bool {
+	if o != nil && !IsNil(o.DigitalMapImageEn) {
+		return true
+	}
+
+	return false
+}
+
+// SetDigitalMapImageEn gets a reference to the given string and assigns it to the DigitalMapImageEn field.
 func (o *SkiareaModel) SetDigitalMapImageEn(v string) {
-	o.DigitalMapImageEn = v
+	o.DigitalMapImageEn = &v
 }
 
-// GetForAdvance returns the ForAdvance field value
+// GetForAdvance returns the ForAdvance field value if set, zero value otherwise.
 func (o *SkiareaModel) GetForAdvance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ForAdvance) {
 		var ret int32
 		return ret
 	}
-
-	return o.ForAdvance
+	return *o.ForAdvance
 }
 
-// GetForAdvanceOk returns a tuple with the ForAdvance field value
+// GetForAdvanceOk returns a tuple with the ForAdvance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetForAdvanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ForAdvance) {
 		return nil, false
 	}
-	return &o.ForAdvance, true
+	return o.ForAdvance, true
 }
 
-// SetForAdvance sets field value
+// HasForAdvance returns a boolean if a field has been set.
+func (o *SkiareaModel) HasForAdvance() bool {
+	if o != nil && !IsNil(o.ForAdvance) {
+		return true
+	}
+
+	return false
+}
+
+// SetForAdvance gets a reference to the given int32 and assigns it to the ForAdvance field.
 func (o *SkiareaModel) SetForAdvance(v int32) {
-	o.ForAdvance = v
+	o.ForAdvance = &v
 }
 
-// GetForBeginner returns the ForBeginner field value
+// GetForBeginner returns the ForBeginner field value if set, zero value otherwise.
 func (o *SkiareaModel) GetForBeginner() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ForBeginner) {
 		var ret int32
 		return ret
 	}
-
-	return o.ForBeginner
+	return *o.ForBeginner
 }
 
-// GetForBeginnerOk returns a tuple with the ForBeginner field value
+// GetForBeginnerOk returns a tuple with the ForBeginner field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetForBeginnerOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ForBeginner) {
 		return nil, false
 	}
-	return &o.ForBeginner, true
+	return o.ForBeginner, true
 }
 
-// SetForBeginner sets field value
+// HasForBeginner returns a boolean if a field has been set.
+func (o *SkiareaModel) HasForBeginner() bool {
+	if o != nil && !IsNil(o.ForBeginner) {
+		return true
+	}
+
+	return false
+}
+
+// SetForBeginner gets a reference to the given int32 and assigns it to the ForBeginner field.
 func (o *SkiareaModel) SetForBeginner(v int32) {
-	o.ForBeginner = v
+	o.ForBeginner = &v
 }
 
-// GetForCoupple returns the ForCoupple field value
+// GetForCoupple returns the ForCoupple field value if set, zero value otherwise.
 func (o *SkiareaModel) GetForCoupple() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ForCoupple) {
 		var ret int32
 		return ret
 	}
-
-	return o.ForCoupple
+	return *o.ForCoupple
 }
 
-// GetForCouppleOk returns a tuple with the ForCoupple field value
+// GetForCouppleOk returns a tuple with the ForCoupple field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetForCouppleOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ForCoupple) {
 		return nil, false
 	}
-	return &o.ForCoupple, true
+	return o.ForCoupple, true
 }
 
-// SetForCoupple sets field value
+// HasForCoupple returns a boolean if a field has been set.
+func (o *SkiareaModel) HasForCoupple() bool {
+	if o != nil && !IsNil(o.ForCoupple) {
+		return true
+	}
+
+	return false
+}
+
+// SetForCoupple gets a reference to the given int32 and assigns it to the ForCoupple field.
 func (o *SkiareaModel) SetForCoupple(v int32) {
-	o.ForCoupple = v
+	o.ForCoupple = &v
 }
 
-// GetForFamily returns the ForFamily field value
+// GetForFamily returns the ForFamily field value if set, zero value otherwise.
 func (o *SkiareaModel) GetForFamily() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ForFamily) {
 		var ret int32
 		return ret
 	}
-
-	return o.ForFamily
+	return *o.ForFamily
 }
 
-// GetForFamilyOk returns a tuple with the ForFamily field value
+// GetForFamilyOk returns a tuple with the ForFamily field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetForFamilyOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ForFamily) {
 		return nil, false
 	}
-	return &o.ForFamily, true
+	return o.ForFamily, true
 }
 
-// SetForFamily sets field value
+// HasForFamily returns a boolean if a field has been set.
+func (o *SkiareaModel) HasForFamily() bool {
+	if o != nil && !IsNil(o.ForFamily) {
+		return true
+	}
+
+	return false
+}
+
+// SetForFamily gets a reference to the given int32 and assigns it to the ForFamily field.
 func (o *SkiareaModel) SetForFamily(v int32) {
-	o.ForFamily = v
+	o.ForFamily = &v
 }
 
-// GetIsHighlevelSunnyrate returns the IsHighlevelSunnyrate field value
+// GetIsHighlevelSunnyrate returns the IsHighlevelSunnyrate field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsHighlevelSunnyrate() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsHighlevelSunnyrate) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsHighlevelSunnyrate
+	return *o.IsHighlevelSunnyrate
 }
 
-// GetIsHighlevelSunnyrateOk returns a tuple with the IsHighlevelSunnyrate field value
+// GetIsHighlevelSunnyrateOk returns a tuple with the IsHighlevelSunnyrate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsHighlevelSunnyrateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsHighlevelSunnyrate) {
 		return nil, false
 	}
-	return &o.IsHighlevelSunnyrate, true
+	return o.IsHighlevelSunnyrate, true
 }
 
-// SetIsHighlevelSunnyrate sets field value
+// HasIsHighlevelSunnyrate returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsHighlevelSunnyrate() bool {
+	if o != nil && !IsNil(o.IsHighlevelSunnyrate) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsHighlevelSunnyrate gets a reference to the given int32 and assigns it to the IsHighlevelSunnyrate field.
 func (o *SkiareaModel) SetIsHighlevelSunnyrate(v int32) {
-	o.IsHighlevelSunnyrate = v
+	o.IsHighlevelSunnyrate = &v
 }
 
-// GetIsLongcource returns the IsLongcource field value
+// GetIsLongcource returns the IsLongcource field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsLongcource() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsLongcource) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsLongcource
+	return *o.IsLongcource
 }
 
-// GetIsLongcourceOk returns a tuple with the IsLongcource field value
+// GetIsLongcourceOk returns a tuple with the IsLongcource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsLongcourceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsLongcource) {
 		return nil, false
 	}
-	return &o.IsLongcource, true
+	return o.IsLongcource, true
 }
 
-// SetIsLongcource sets field value
+// HasIsLongcource returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsLongcource() bool {
+	if o != nil && !IsNil(o.IsLongcource) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsLongcource gets a reference to the given int32 and assigns it to the IsLongcource field.
 func (o *SkiareaModel) SetIsLongcource(v int32) {
-	o.IsLongcource = v
+	o.IsLongcource = &v
 }
 
-// GetIsLowlevelCongestion returns the IsLowlevelCongestion field value
+// GetIsLowlevelCongestion returns the IsLowlevelCongestion field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsLowlevelCongestion() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsLowlevelCongestion) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsLowlevelCongestion
+	return *o.IsLowlevelCongestion
 }
 
-// GetIsLowlevelCongestionOk returns a tuple with the IsLowlevelCongestion field value
+// GetIsLowlevelCongestionOk returns a tuple with the IsLowlevelCongestion field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsLowlevelCongestionOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsLowlevelCongestion) {
 		return nil, false
 	}
-	return &o.IsLowlevelCongestion, true
+	return o.IsLowlevelCongestion, true
 }
 
-// SetIsLowlevelCongestion sets field value
+// HasIsLowlevelCongestion returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsLowlevelCongestion() bool {
+	if o != nil && !IsNil(o.IsLowlevelCongestion) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsLowlevelCongestion gets a reference to the given int32 and assigns it to the IsLowlevelCongestion field.
 func (o *SkiareaModel) SetIsLowlevelCongestion(v int32) {
-	o.IsLowlevelCongestion = v
+	o.IsLowlevelCongestion = &v
 }
 
-// GetIsMorning returns the IsMorning field value
+// GetIsMorning returns the IsMorning field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsMorning() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsMorning) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsMorning
+	return *o.IsMorning
 }
 
-// GetIsMorningOk returns a tuple with the IsMorning field value
+// GetIsMorningOk returns a tuple with the IsMorning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsMorningOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsMorning) {
 		return nil, false
 	}
-	return &o.IsMorning, true
+	return o.IsMorning, true
 }
 
-// SetIsMorning sets field value
+// HasIsMorning returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsMorning() bool {
+	if o != nil && !IsNil(o.IsMorning) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsMorning gets a reference to the given int32 and assigns it to the IsMorning field.
 func (o *SkiareaModel) SetIsMorning(v int32) {
-	o.IsMorning = v
+	o.IsMorning = &v
 }
 
-// GetIsNearSpa returns the IsNearSpa field value
+// GetIsNearSpa returns the IsNearSpa field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsNearSpa() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsNearSpa) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsNearSpa
+	return *o.IsNearSpa
 }
 
-// GetIsNearSpaOk returns a tuple with the IsNearSpa field value
+// GetIsNearSpaOk returns a tuple with the IsNearSpa field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsNearSpaOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsNearSpa) {
 		return nil, false
 	}
-	return &o.IsNearSpa, true
+	return o.IsNearSpa, true
 }
 
-// SetIsNearSpa sets field value
+// HasIsNearSpa returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsNearSpa() bool {
+	if o != nil && !IsNil(o.IsNearSpa) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsNearSpa gets a reference to the given int32 and assigns it to the IsNearSpa field.
 func (o *SkiareaModel) SetIsNearSpa(v int32) {
-	o.IsNearSpa = v
+	o.IsNearSpa = &v
 }
 
-// GetIsNighter returns the IsNighter field value
+// GetIsNighter returns the IsNighter field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsNighter() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsNighter) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsNighter
+	return *o.IsNighter
 }
 
-// GetIsNighterOk returns a tuple with the IsNighter field value
+// GetIsNighterOk returns a tuple with the IsNighter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsNighterOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsNighter) {
 		return nil, false
 	}
-	return &o.IsNighter, true
+	return o.IsNighter, true
 }
 
-// SetIsNighter sets field value
+// HasIsNighter returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsNighter() bool {
+	if o != nil && !IsNil(o.IsNighter) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsNighter gets a reference to the given int32 and assigns it to the IsNighter field.
 func (o *SkiareaModel) SetIsNighter(v int32) {
-	o.IsNighter = v
+	o.IsNighter = &v
 }
 
-// GetIsWidecource returns the IsWidecource field value
+// GetIsWidecource returns the IsWidecource field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsWidecource() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsWidecource) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsWidecource
+	return *o.IsWidecource
 }
 
-// GetIsWidecourceOk returns a tuple with the IsWidecource field value
+// GetIsWidecourceOk returns a tuple with the IsWidecource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsWidecourceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsWidecource) {
 		return nil, false
 	}
-	return &o.IsWidecource, true
+	return o.IsWidecource, true
 }
 
-// SetIsWidecource sets field value
+// HasIsWidecource returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsWidecource() bool {
+	if o != nil && !IsNil(o.IsWidecource) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsWidecource gets a reference to the given int32 and assigns it to the IsWidecource field.
 func (o *SkiareaModel) SetIsWidecource(v int32) {
-	o.IsWidecource = v
+	o.IsWidecource = &v
 }
 
-// GetIsKindForGirl returns the IsKindForGirl field value
+// GetIsKindForGirl returns the IsKindForGirl field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsKindForGirl() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsKindForGirl) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsKindForGirl
+	return *o.IsKindForGirl
 }
 
-// GetIsKindForGirlOk returns a tuple with the IsKindForGirl field value
+// GetIsKindForGirlOk returns a tuple with the IsKindForGirl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsKindForGirlOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsKindForGirl) {
 		return nil, false
 	}
-	return &o.IsKindForGirl, true
+	return o.IsKindForGirl, true
 }
 
-// SetIsKindForGirl sets field value
+// HasIsKindForGirl returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsKindForGirl() bool {
+	if o != nil && !IsNil(o.IsKindForGirl) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsKindForGirl gets a reference to the given int32 and assigns it to the IsKindForGirl field.
 func (o *SkiareaModel) SetIsKindForGirl(v int32) {
-	o.IsKindForGirl = v
+	o.IsKindForGirl = &v
 }
 
-// GetIsGoodAccess returns the IsGoodAccess field value
+// GetIsGoodAccess returns the IsGoodAccess field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodAccess() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodAccess) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodAccess
+	return *o.IsGoodAccess
 }
 
-// GetIsGoodAccessOk returns a tuple with the IsGoodAccess field value
+// GetIsGoodAccessOk returns a tuple with the IsGoodAccess field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodAccessOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodAccess) {
 		return nil, false
 	}
-	return &o.IsGoodAccess, true
+	return o.IsGoodAccess, true
 }
 
-// SetIsGoodAccess sets field value
+// HasIsGoodAccess returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodAccess() bool {
+	if o != nil && !IsNil(o.IsGoodAccess) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodAccess gets a reference to the given int32 and assigns it to the IsGoodAccess field.
 func (o *SkiareaModel) SetIsGoodAccess(v int32) {
-	o.IsGoodAccess = v
+	o.IsGoodAccess = &v
 }
 
-// GetIsAdjacentHotel returns the IsAdjacentHotel field value
+// GetIsAdjacentHotel returns the IsAdjacentHotel field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsAdjacentHotel() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsAdjacentHotel) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsAdjacentHotel
+	return *o.IsAdjacentHotel
 }
 
-// GetIsAdjacentHotelOk returns a tuple with the IsAdjacentHotel field value
+// GetIsAdjacentHotelOk returns a tuple with the IsAdjacentHotel field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsAdjacentHotelOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsAdjacentHotel) {
 		return nil, false
 	}
-	return &o.IsAdjacentHotel, true
+	return o.IsAdjacentHotel, true
 }
 
-// SetIsAdjacentHotel sets field value
+// HasIsAdjacentHotel returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsAdjacentHotel() bool {
+	if o != nil && !IsNil(o.IsAdjacentHotel) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsAdjacentHotel gets a reference to the given int32 and assigns it to the IsAdjacentHotel field.
 func (o *SkiareaModel) SetIsAdjacentHotel(v int32) {
-	o.IsAdjacentHotel = v
+	o.IsAdjacentHotel = &v
 }
 
-// GetIsPowSra returns the IsPowSra field value
+// GetIsPowSra returns the IsPowSra field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsPowSra() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsPowSra) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsPowSra
+	return *o.IsPowSra
 }
 
-// GetIsPowSraOk returns a tuple with the IsPowSra field value
+// GetIsPowSraOk returns a tuple with the IsPowSra field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsPowSraOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsPowSra) {
 		return nil, false
 	}
-	return &o.IsPowSra, true
+	return o.IsPowSra, true
 }
 
-// SetIsPowSra sets field value
+// HasIsPowSra returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsPowSra() bool {
+	if o != nil && !IsNil(o.IsPowSra) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsPowSra gets a reference to the given int32 and assigns it to the IsPowSra field.
 func (o *SkiareaModel) SetIsPowSra(v int32) {
-	o.IsPowSra = v
+	o.IsPowSra = &v
 }
 
-// GetExistBackcountry returns the ExistBackcountry field value
+// GetExistBackcountry returns the ExistBackcountry field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistBackcountry() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistBackcountry) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistBackcountry
+	return *o.ExistBackcountry
 }
 
-// GetExistBackcountryOk returns a tuple with the ExistBackcountry field value
+// GetExistBackcountryOk returns a tuple with the ExistBackcountry field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistBackcountryOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistBackcountry) {
 		return nil, false
 	}
-	return &o.ExistBackcountry, true
+	return o.ExistBackcountry, true
 }
 
-// SetExistBackcountry sets field value
+// HasExistBackcountry returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistBackcountry() bool {
+	if o != nil && !IsNil(o.ExistBackcountry) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistBackcountry gets a reference to the given int32 and assigns it to the ExistBackcountry field.
 func (o *SkiareaModel) SetExistBackcountry(v int32) {
-	o.ExistBackcountry = v
+	o.ExistBackcountry = &v
 }
 
-// GetExistDelivery returns the ExistDelivery field value
+// GetExistDelivery returns the ExistDelivery field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistDelivery() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistDelivery) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistDelivery
+	return *o.ExistDelivery
 }
 
-// GetExistDeliveryOk returns a tuple with the ExistDelivery field value
+// GetExistDeliveryOk returns a tuple with the ExistDelivery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistDeliveryOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistDelivery) {
 		return nil, false
 	}
-	return &o.ExistDelivery, true
+	return o.ExistDelivery, true
 }
 
-// SetExistDelivery sets field value
+// HasExistDelivery returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistDelivery() bool {
+	if o != nil && !IsNil(o.ExistDelivery) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistDelivery gets a reference to the given int32 and assigns it to the ExistDelivery field.
 func (o *SkiareaModel) SetExistDelivery(v int32) {
-	o.ExistDelivery = v
+	o.ExistDelivery = &v
 }
 
-// GetExistKidspark returns the ExistKidspark field value
+// GetExistKidspark returns the ExistKidspark field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistKidspark() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistKidspark) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistKidspark
+	return *o.ExistKidspark
 }
 
-// GetExistKidsparkOk returns a tuple with the ExistKidspark field value
+// GetExistKidsparkOk returns a tuple with the ExistKidspark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistKidsparkOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistKidspark) {
 		return nil, false
 	}
-	return &o.ExistKidspark, true
+	return o.ExistKidspark, true
 }
 
-// SetExistKidspark sets field value
+// HasExistKidspark returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistKidspark() bool {
+	if o != nil && !IsNil(o.ExistKidspark) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistKidspark gets a reference to the given int32 and assigns it to the ExistKidspark field.
 func (o *SkiareaModel) SetExistKidspark(v int32) {
-	o.ExistKidspark = v
+	o.ExistKidspark = &v
 }
 
-// GetExistNap returns the ExistNap field value
+// GetExistNap returns the ExistNap field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistNap() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistNap) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistNap
+	return *o.ExistNap
 }
 
-// GetExistNapOk returns a tuple with the ExistNap field value
+// GetExistNapOk returns a tuple with the ExistNap field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistNapOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistNap) {
 		return nil, false
 	}
-	return &o.ExistNap, true
+	return o.ExistNap, true
 }
 
-// SetExistNap sets field value
+// HasExistNap returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistNap() bool {
+	if o != nil && !IsNil(o.ExistNap) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistNap gets a reference to the given int32 and assigns it to the ExistNap field.
 func (o *SkiareaModel) SetExistNap(v int32) {
-	o.ExistNap = v
+	o.ExistNap = &v
 }
 
-// GetExistNursery returns the ExistNursery field value
+// GetExistNursery returns the ExistNursery field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistNursery() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistNursery) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistNursery
+	return *o.ExistNursery
 }
 
-// GetExistNurseryOk returns a tuple with the ExistNursery field value
+// GetExistNurseryOk returns a tuple with the ExistNursery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistNurseryOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistNursery) {
 		return nil, false
 	}
-	return &o.ExistNursery, true
+	return o.ExistNursery, true
 }
 
-// SetExistNursery sets field value
+// HasExistNursery returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistNursery() bool {
+	if o != nil && !IsNil(o.ExistNursery) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistNursery gets a reference to the given int32 and assigns it to the ExistNursery field.
 func (o *SkiareaModel) SetExistNursery(v int32) {
-	o.ExistNursery = v
+	o.ExistNursery = &v
 }
 
-// GetExistOffpiste returns the ExistOffpiste field value
+// GetExistOffpiste returns the ExistOffpiste field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistOffpiste() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistOffpiste) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistOffpiste
+	return *o.ExistOffpiste
 }
 
-// GetExistOffpisteOk returns a tuple with the ExistOffpiste field value
+// GetExistOffpisteOk returns a tuple with the ExistOffpiste field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistOffpisteOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistOffpiste) {
 		return nil, false
 	}
-	return &o.ExistOffpiste, true
+	return o.ExistOffpiste, true
 }
 
-// SetExistOffpiste sets field value
+// HasExistOffpiste returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistOffpiste() bool {
+	if o != nil && !IsNil(o.ExistOffpiste) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistOffpiste gets a reference to the given int32 and assigns it to the ExistOffpiste field.
 func (o *SkiareaModel) SetExistOffpiste(v int32) {
-	o.ExistOffpiste = v
+	o.ExistOffpiste = &v
 }
 
-// GetExistYukiyamaCoupon returns the ExistYukiyamaCoupon field value
+// GetExistYukiyamaCoupon returns the ExistYukiyamaCoupon field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistYukiyamaCoupon() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistYukiyamaCoupon) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistYukiyamaCoupon
+	return *o.ExistYukiyamaCoupon
 }
 
-// GetExistYukiyamaCouponOk returns a tuple with the ExistYukiyamaCoupon field value
+// GetExistYukiyamaCouponOk returns a tuple with the ExistYukiyamaCoupon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistYukiyamaCouponOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistYukiyamaCoupon) {
 		return nil, false
 	}
-	return &o.ExistYukiyamaCoupon, true
+	return o.ExistYukiyamaCoupon, true
 }
 
-// SetExistYukiyamaCoupon sets field value
+// HasExistYukiyamaCoupon returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistYukiyamaCoupon() bool {
+	if o != nil && !IsNil(o.ExistYukiyamaCoupon) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistYukiyamaCoupon gets a reference to the given int32 and assigns it to the ExistYukiyamaCoupon field.
 func (o *SkiareaModel) SetExistYukiyamaCoupon(v int32) {
-	o.ExistYukiyamaCoupon = v
+	o.ExistYukiyamaCoupon = &v
 }
 
-// GetExistYukiyamaGps returns the ExistYukiyamaGps field value
+// GetExistYukiyamaGps returns the ExistYukiyamaGps field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistYukiyamaGps() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistYukiyamaGps) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistYukiyamaGps
+	return *o.ExistYukiyamaGps
 }
 
-// GetExistYukiyamaGpsOk returns a tuple with the ExistYukiyamaGps field value
+// GetExistYukiyamaGpsOk returns a tuple with the ExistYukiyamaGps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistYukiyamaGpsOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistYukiyamaGps) {
 		return nil, false
 	}
-	return &o.ExistYukiyamaGps, true
+	return o.ExistYukiyamaGps, true
 }
 
-// SetExistYukiyamaGps sets field value
+// HasExistYukiyamaGps returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistYukiyamaGps() bool {
+	if o != nil && !IsNil(o.ExistYukiyamaGps) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistYukiyamaGps gets a reference to the given int32 and assigns it to the ExistYukiyamaGps field.
 func (o *SkiareaModel) SetExistYukiyamaGps(v int32) {
-	o.ExistYukiyamaGps = v
+	o.ExistYukiyamaGps = &v
 }
 
-// GetExistTreeZone returns the ExistTreeZone field value
+// GetExistTreeZone returns the ExistTreeZone field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistTreeZone() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistTreeZone) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistTreeZone
+	return *o.ExistTreeZone
 }
 
-// GetExistTreeZoneOk returns a tuple with the ExistTreeZone field value
+// GetExistTreeZoneOk returns a tuple with the ExistTreeZone field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistTreeZoneOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistTreeZone) {
 		return nil, false
 	}
-	return &o.ExistTreeZone, true
+	return o.ExistTreeZone, true
 }
 
-// SetExistTreeZone sets field value
+// HasExistTreeZone returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistTreeZone() bool {
+	if o != nil && !IsNil(o.ExistTreeZone) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistTreeZone gets a reference to the given int32 and assigns it to the ExistTreeZone field.
 func (o *SkiareaModel) SetExistTreeZone(v int32) {
-	o.ExistTreeZone = v
+	o.ExistTreeZone = &v
 }
 
-// GetExistSnowPark returns the ExistSnowPark field value
+// GetExistSnowPark returns the ExistSnowPark field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistSnowPark() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSnowPark) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistSnowPark
+	return *o.ExistSnowPark
 }
 
-// GetExistSnowParkOk returns a tuple with the ExistSnowPark field value
+// GetExistSnowParkOk returns a tuple with the ExistSnowPark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistSnowParkOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSnowPark) {
 		return nil, false
 	}
-	return &o.ExistSnowPark, true
+	return o.ExistSnowPark, true
 }
 
-// SetExistSnowPark sets field value
+// HasExistSnowPark returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistSnowPark() bool {
+	if o != nil && !IsNil(o.ExistSnowPark) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistSnowPark gets a reference to the given int32 and assigns it to the ExistSnowPark field.
 func (o *SkiareaModel) SetExistSnowPark(v int32) {
-	o.ExistSnowPark = v
+	o.ExistSnowPark = &v
 }
 
-// GetExistSpecialtyCourse returns the ExistSpecialtyCourse field value
+// GetExistSpecialtyCourse returns the ExistSpecialtyCourse field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistSpecialtyCourse() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSpecialtyCourse) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistSpecialtyCourse
+	return *o.ExistSpecialtyCourse
 }
 
-// GetExistSpecialtyCourseOk returns a tuple with the ExistSpecialtyCourse field value
+// GetExistSpecialtyCourseOk returns a tuple with the ExistSpecialtyCourse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistSpecialtyCourseOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSpecialtyCourse) {
 		return nil, false
 	}
-	return &o.ExistSpecialtyCourse, true
+	return o.ExistSpecialtyCourse, true
 }
 
-// SetExistSpecialtyCourse sets field value
+// HasExistSpecialtyCourse returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistSpecialtyCourse() bool {
+	if o != nil && !IsNil(o.ExistSpecialtyCourse) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistSpecialtyCourse gets a reference to the given int32 and assigns it to the ExistSpecialtyCourse field.
 func (o *SkiareaModel) SetExistSpecialtyCourse(v int32) {
-	o.ExistSpecialtyCourse = v
+	o.ExistSpecialtyCourse = &v
 }
 
-// GetExistShootingSpot returns the ExistShootingSpot field value
+// GetExistShootingSpot returns the ExistShootingSpot field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistShootingSpot() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistShootingSpot) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistShootingSpot
+	return *o.ExistShootingSpot
 }
 
-// GetExistShootingSpotOk returns a tuple with the ExistShootingSpot field value
+// GetExistShootingSpotOk returns a tuple with the ExistShootingSpot field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistShootingSpotOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistShootingSpot) {
 		return nil, false
 	}
-	return &o.ExistShootingSpot, true
+	return o.ExistShootingSpot, true
 }
 
-// SetExistShootingSpot sets field value
+// HasExistShootingSpot returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistShootingSpot() bool {
+	if o != nil && !IsNil(o.ExistShootingSpot) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistShootingSpot gets a reference to the given int32 and assigns it to the ExistShootingSpot field.
 func (o *SkiareaModel) SetExistShootingSpot(v int32) {
-	o.ExistShootingSpot = v
+	o.ExistShootingSpot = &v
 }
 
-// GetExistKidCourse returns the ExistKidCourse field value
+// GetExistKidCourse returns the ExistKidCourse field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistKidCourse() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistKidCourse) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistKidCourse
+	return *o.ExistKidCourse
 }
 
-// GetExistKidCourseOk returns a tuple with the ExistKidCourse field value
+// GetExistKidCourseOk returns a tuple with the ExistKidCourse field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistKidCourseOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistKidCourse) {
 		return nil, false
 	}
-	return &o.ExistKidCourse, true
+	return o.ExistKidCourse, true
 }
 
-// SetExistKidCourse sets field value
+// HasExistKidCourse returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistKidCourse() bool {
+	if o != nil && !IsNil(o.ExistKidCourse) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistKidCourse gets a reference to the given int32 and assigns it to the ExistKidCourse field.
 func (o *SkiareaModel) SetExistKidCourse(v int32) {
-	o.ExistKidCourse = v
+	o.ExistKidCourse = &v
 }
 
-// GetExistFreePaking returns the ExistFreePaking field value
+// GetExistFreePaking returns the ExistFreePaking field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistFreePaking() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistFreePaking) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistFreePaking
+	return *o.ExistFreePaking
 }
 
-// GetExistFreePakingOk returns a tuple with the ExistFreePaking field value
+// GetExistFreePakingOk returns a tuple with the ExistFreePaking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistFreePakingOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistFreePaking) {
 		return nil, false
 	}
-	return &o.ExistFreePaking, true
+	return o.ExistFreePaking, true
 }
 
-// SetExistFreePaking sets field value
+// HasExistFreePaking returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistFreePaking() bool {
+	if o != nil && !IsNil(o.ExistFreePaking) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistFreePaking gets a reference to the given int32 and assigns it to the ExistFreePaking field.
 func (o *SkiareaModel) SetExistFreePaking(v int32) {
-	o.ExistFreePaking = v
+	o.ExistFreePaking = &v
 }
 
-// GetExistSchool returns the ExistSchool field value
+// GetExistSchool returns the ExistSchool field value if set, zero value otherwise.
 func (o *SkiareaModel) GetExistSchool() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSchool) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExistSchool
+	return *o.ExistSchool
 }
 
-// GetExistSchoolOk returns a tuple with the ExistSchool field value
+// GetExistSchoolOk returns a tuple with the ExistSchool field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetExistSchoolOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExistSchool) {
 		return nil, false
 	}
-	return &o.ExistSchool, true
+	return o.ExistSchool, true
 }
 
-// SetExistSchool sets field value
+// HasExistSchool returns a boolean if a field has been set.
+func (o *SkiareaModel) HasExistSchool() bool {
+	if o != nil && !IsNil(o.ExistSchool) {
+		return true
+	}
+
+	return false
+}
+
+// SetExistSchool gets a reference to the given int32 and assigns it to the ExistSchool field.
 func (o *SkiareaModel) SetExistSchool(v int32) {
-	o.ExistSchool = v
+	o.ExistSchool = &v
 }
 
-// GetIsGoodCafe returns the IsGoodCafe field value
+// GetIsGoodCafe returns the IsGoodCafe field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodCafe() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodCafe) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodCafe
+	return *o.IsGoodCafe
 }
 
-// GetIsGoodCafeOk returns a tuple with the IsGoodCafe field value
+// GetIsGoodCafeOk returns a tuple with the IsGoodCafe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodCafeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodCafe) {
 		return nil, false
 	}
-	return &o.IsGoodCafe, true
+	return o.IsGoodCafe, true
 }
 
-// SetIsGoodCafe sets field value
+// HasIsGoodCafe returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodCafe() bool {
+	if o != nil && !IsNil(o.IsGoodCafe) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodCafe gets a reference to the given int32 and assigns it to the IsGoodCafe field.
 func (o *SkiareaModel) SetIsGoodCafe(v int32) {
-	o.IsGoodCafe = v
+	o.IsGoodCafe = &v
 }
 
-// GetIsGoodMogul returns the IsGoodMogul field value
+// GetIsGoodMogul returns the IsGoodMogul field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodMogul() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodMogul) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodMogul
+	return *o.IsGoodMogul
 }
 
-// GetIsGoodMogulOk returns a tuple with the IsGoodMogul field value
+// GetIsGoodMogulOk returns a tuple with the IsGoodMogul field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodMogulOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodMogul) {
 		return nil, false
 	}
-	return &o.IsGoodMogul, true
+	return o.IsGoodMogul, true
 }
 
-// SetIsGoodMogul sets field value
+// HasIsGoodMogul returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodMogul() bool {
+	if o != nil && !IsNil(o.IsGoodMogul) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodMogul gets a reference to the given int32 and assigns it to the IsGoodMogul field.
 func (o *SkiareaModel) SetIsGoodMogul(v int32) {
-	o.IsGoodMogul = v
+	o.IsGoodMogul = &v
 }
 
-// GetIsGoodPaking returns the IsGoodPaking field value
+// GetIsGoodPaking returns the IsGoodPaking field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodPaking() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodPaking) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodPaking
+	return *o.IsGoodPaking
 }
 
-// GetIsGoodPakingOk returns a tuple with the IsGoodPaking field value
+// GetIsGoodPakingOk returns a tuple with the IsGoodPaking field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodPakingOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodPaking) {
 		return nil, false
 	}
-	return &o.IsGoodPaking, true
+	return o.IsGoodPaking, true
 }
 
-// SetIsGoodPaking sets field value
+// HasIsGoodPaking returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodPaking() bool {
+	if o != nil && !IsNil(o.IsGoodPaking) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodPaking gets a reference to the given int32 and assigns it to the IsGoodPaking field.
 func (o *SkiareaModel) SetIsGoodPaking(v int32) {
-	o.IsGoodPaking = v
+	o.IsGoodPaking = &v
 }
 
-// GetIsGoodRental returns the IsGoodRental field value
+// GetIsGoodRental returns the IsGoodRental field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodRental() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodRental) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodRental
+	return *o.IsGoodRental
 }
 
-// GetIsGoodRentalOk returns a tuple with the IsGoodRental field value
+// GetIsGoodRentalOk returns a tuple with the IsGoodRental field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodRentalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodRental) {
 		return nil, false
 	}
-	return &o.IsGoodRental, true
+	return o.IsGoodRental, true
 }
 
-// SetIsGoodRental sets field value
+// HasIsGoodRental returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodRental() bool {
+	if o != nil && !IsNil(o.IsGoodRental) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodRental gets a reference to the given int32 and assigns it to the IsGoodRental field.
 func (o *SkiareaModel) SetIsGoodRental(v int32) {
-	o.IsGoodRental = v
+	o.IsGoodRental = &v
 }
 
-// GetIsGoodSnowboardpark returns the IsGoodSnowboardpark field value
+// GetIsGoodSnowboardpark returns the IsGoodSnowboardpark field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodSnowboardpark() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodSnowboardpark) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodSnowboardpark
+	return *o.IsGoodSnowboardpark
 }
 
-// GetIsGoodSnowboardparkOk returns a tuple with the IsGoodSnowboardpark field value
+// GetIsGoodSnowboardparkOk returns a tuple with the IsGoodSnowboardpark field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodSnowboardparkOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodSnowboardpark) {
 		return nil, false
 	}
-	return &o.IsGoodSnowboardpark, true
+	return o.IsGoodSnowboardpark, true
 }
 
-// SetIsGoodSnowboardpark sets field value
+// HasIsGoodSnowboardpark returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodSnowboardpark() bool {
+	if o != nil && !IsNil(o.IsGoodSnowboardpark) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodSnowboardpark gets a reference to the given int32 and assigns it to the IsGoodSnowboardpark field.
 func (o *SkiareaModel) SetIsGoodSnowboardpark(v int32) {
-	o.IsGoodSnowboardpark = v
+	o.IsGoodSnowboardpark = &v
 }
 
-// GetIsGoodActivity returns the IsGoodActivity field value
+// GetIsGoodActivity returns the IsGoodActivity field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsGoodActivity() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodActivity) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsGoodActivity
+	return *o.IsGoodActivity
 }
 
-// GetIsGoodActivityOk returns a tuple with the IsGoodActivity field value
+// GetIsGoodActivityOk returns a tuple with the IsGoodActivity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsGoodActivityOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsGoodActivity) {
 		return nil, false
 	}
-	return &o.IsGoodActivity, true
+	return o.IsGoodActivity, true
 }
 
-// SetIsGoodActivity sets field value
+// HasIsGoodActivity returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsGoodActivity() bool {
+	if o != nil && !IsNil(o.IsGoodActivity) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsGoodActivity gets a reference to the given int32 and assigns it to the IsGoodActivity field.
 func (o *SkiareaModel) SetIsGoodActivity(v int32) {
-	o.IsGoodActivity = v
+	o.IsGoodActivity = &v
 }
 
-// GetCanSlide returns the CanSlide field value
+// GetCanSlide returns the CanSlide field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCanSlide() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CanSlide) {
 		var ret int32
 		return ret
 	}
-
-	return o.CanSlide
+	return *o.CanSlide
 }
 
-// GetCanSlideOk returns a tuple with the CanSlide field value
+// GetCanSlideOk returns a tuple with the CanSlide field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCanSlideOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CanSlide) {
 		return nil, false
 	}
-	return &o.CanSlide, true
+	return o.CanSlide, true
 }
 
-// SetCanSlide sets field value
+// HasCanSlide returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCanSlide() bool {
+	if o != nil && !IsNil(o.CanSlide) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanSlide gets a reference to the given int32 and assigns it to the CanSlide field.
 func (o *SkiareaModel) SetCanSlide(v int32) {
-	o.CanSlide = v
+	o.CanSlide = &v
 }
 
-// GetCanSpringSki returns the CanSpringSki field value
+// GetCanSpringSki returns the CanSpringSki field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCanSpringSki() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CanSpringSki) {
 		var ret int32
 		return ret
 	}
-
-	return o.CanSpringSki
+	return *o.CanSpringSki
 }
 
-// GetCanSpringSkiOk returns a tuple with the CanSpringSki field value
+// GetCanSpringSkiOk returns a tuple with the CanSpringSki field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCanSpringSkiOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CanSpringSki) {
 		return nil, false
 	}
-	return &o.CanSpringSki, true
+	return o.CanSpringSki, true
 }
 
-// SetCanSpringSki sets field value
+// HasCanSpringSki returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCanSpringSki() bool {
+	if o != nil && !IsNil(o.CanSpringSki) {
+		return true
+	}
+
+	return false
+}
+
+// SetCanSpringSki gets a reference to the given int32 and assigns it to the CanSpringSki field.
 func (o *SkiareaModel) SetCanSpringSki(v int32) {
-	o.CanSpringSki = v
+	o.CanSpringSki = &v
 }
 
-// GetVisible returns the Visible field value
+// GetVisible returns the Visible field value if set, zero value otherwise.
 func (o *SkiareaModel) GetVisible() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Visible) {
 		var ret int32
 		return ret
 	}
-
-	return o.Visible
+	return *o.Visible
 }
 
-// GetVisibleOk returns a tuple with the Visible field value
+// GetVisibleOk returns a tuple with the Visible field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetVisibleOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Visible) {
 		return nil, false
 	}
-	return &o.Visible, true
+	return o.Visible, true
 }
 
-// SetVisible sets field value
+// HasVisible returns a boolean if a field has been set.
+func (o *SkiareaModel) HasVisible() bool {
+	if o != nil && !IsNil(o.Visible) {
+		return true
+	}
+
+	return false
+}
+
+// SetVisible gets a reference to the given int32 and assigns it to the Visible field.
 func (o *SkiareaModel) SetVisible(v int32) {
-	o.Visible = v
+	o.Visible = &v
 }
 
-// GetIsDebug returns the IsDebug field value
+// GetIsDebug returns the IsDebug field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsDebug() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsDebug) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsDebug
+	return *o.IsDebug
 }
 
-// GetIsDebugOk returns a tuple with the IsDebug field value
+// GetIsDebugOk returns a tuple with the IsDebug field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsDebugOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsDebug) {
 		return nil, false
 	}
-	return &o.IsDebug, true
+	return o.IsDebug, true
 }
 
-// SetIsDebug sets field value
+// HasIsDebug returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsDebug() bool {
+	if o != nil && !IsNil(o.IsDebug) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsDebug gets a reference to the given int32 and assigns it to the IsDebug field.
 func (o *SkiareaModel) SetIsDebug(v int32) {
-	o.IsDebug = v
+	o.IsDebug = &v
 }
 
-// GetIsOffpost returns the IsOffpost field value
+// GetIsOffpost returns the IsOffpost field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsOffpost() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsOffpost) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsOffpost
+	return *o.IsOffpost
 }
 
-// GetIsOffpostOk returns a tuple with the IsOffpost field value
+// GetIsOffpostOk returns a tuple with the IsOffpost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsOffpostOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsOffpost) {
 		return nil, false
 	}
-	return &o.IsOffpost, true
+	return o.IsOffpost, true
 }
 
-// SetIsOffpost sets field value
+// HasIsOffpost returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsOffpost() bool {
+	if o != nil && !IsNil(o.IsOffpost) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsOffpost gets a reference to the given int32 and assigns it to the IsOffpost field.
 func (o *SkiareaModel) SetIsOffpost(v int32) {
-	o.IsOffpost = v
+	o.IsOffpost = &v
 }
 
-// GetIsContract returns the IsContract field value
+// GetIsContract returns the IsContract field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsContract() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsContract) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsContract
+	return *o.IsContract
 }
 
-// GetIsContractOk returns a tuple with the IsContract field value
+// GetIsContractOk returns a tuple with the IsContract field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsContractOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsContract) {
 		return nil, false
 	}
-	return &o.IsContract, true
+	return o.IsContract, true
 }
 
-// SetIsContract sets field value
+// HasIsContract returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsContract() bool {
+	if o != nil && !IsNil(o.IsContract) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsContract gets a reference to the given int32 and assigns it to the IsContract field.
 func (o *SkiareaModel) SetIsContract(v int32) {
-	o.IsContract = v
+	o.IsContract = &v
 }
 
-// GetIsVisit returns the IsVisit field value
+// GetIsVisit returns the IsVisit field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsVisit() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsVisit) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsVisit
+	return *o.IsVisit
 }
 
-// GetIsVisitOk returns a tuple with the IsVisit field value
+// GetIsVisitOk returns a tuple with the IsVisit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsVisitOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsVisit) {
 		return nil, false
 	}
-	return &o.IsVisit, true
+	return o.IsVisit, true
 }
 
-// SetIsVisit sets field value
+// HasIsVisit returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsVisit() bool {
+	if o != nil && !IsNil(o.IsVisit) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsVisit gets a reference to the given int32 and assigns it to the IsVisit field.
 func (o *SkiareaModel) SetIsVisit(v int32) {
-	o.IsVisit = v
+	o.IsVisit = &v
 }
 
-// GetFacilityList returns the FacilityList field value
+// GetFacilityList returns the FacilityList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetFacilityList() []FacilityModel {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityList) {
 		var ret []FacilityModel
 		return ret
 	}
-
 	return o.FacilityList
 }
 
-// GetFacilityListOk returns a tuple with the FacilityList field value
+// GetFacilityListOk returns a tuple with the FacilityList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetFacilityListOk() ([]FacilityModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.FacilityList) {
 		return nil, false
 	}
 	return o.FacilityList, true
 }
 
-// SetFacilityList sets field value
+// HasFacilityList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasFacilityList() bool {
+	if o != nil && !IsNil(o.FacilityList) {
+		return true
+	}
+
+	return false
+}
+
+// SetFacilityList gets a reference to the given []FacilityModel and assigns it to the FacilityList field.
 func (o *SkiareaModel) SetFacilityList(v []FacilityModel) {
 	o.FacilityList = v
 }
 
-// GetSkiareaStatus returns the SkiareaStatus field value
+// GetSkiareaStatus returns the SkiareaStatus field value if set, zero value otherwise.
 func (o *SkiareaModel) GetSkiareaStatus() SkiareaStatusModel {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaStatus) {
 		var ret SkiareaStatusModel
 		return ret
 	}
-
-	return o.SkiareaStatus
+	return *o.SkiareaStatus
 }
 
-// GetSkiareaStatusOk returns a tuple with the SkiareaStatus field value
+// GetSkiareaStatusOk returns a tuple with the SkiareaStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetSkiareaStatusOk() (*SkiareaStatusModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaStatus) {
 		return nil, false
 	}
-	return &o.SkiareaStatus, true
+	return o.SkiareaStatus, true
 }
 
-// SetSkiareaStatus sets field value
+// HasSkiareaStatus returns a boolean if a field has been set.
+func (o *SkiareaModel) HasSkiareaStatus() bool {
+	if o != nil && !IsNil(o.SkiareaStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaStatus gets a reference to the given SkiareaStatusModel and assigns it to the SkiareaStatus field.
 func (o *SkiareaModel) SetSkiareaStatus(v SkiareaStatusModel) {
-	o.SkiareaStatus = v
+	o.SkiareaStatus = &v
 }
 
-// GetOfficialLink returns the OfficialLink field value
+// GetOfficialLink returns the OfficialLink field value if set, zero value otherwise.
 func (o *SkiareaModel) GetOfficialLink() OfficialLinkModel {
-	if o == nil {
+	if o == nil || IsNil(o.OfficialLink) {
 		var ret OfficialLinkModel
 		return ret
 	}
-
-	return o.OfficialLink
+	return *o.OfficialLink
 }
 
-// GetOfficialLinkOk returns a tuple with the OfficialLink field value
+// GetOfficialLinkOk returns a tuple with the OfficialLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetOfficialLinkOk() (*OfficialLinkModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OfficialLink) {
 		return nil, false
 	}
-	return &o.OfficialLink, true
+	return o.OfficialLink, true
 }
 
-// SetOfficialLink sets field value
+// HasOfficialLink returns a boolean if a field has been set.
+func (o *SkiareaModel) HasOfficialLink() bool {
+	if o != nil && !IsNil(o.OfficialLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetOfficialLink gets a reference to the given OfficialLinkModel and assigns it to the OfficialLink field.
 func (o *SkiareaModel) SetOfficialLink(v OfficialLinkModel) {
-	o.OfficialLink = v
+	o.OfficialLink = &v
 }
 
-// GetStaticLink returns the StaticLink field value
+// GetStaticLink returns the StaticLink field value if set, zero value otherwise.
 func (o *SkiareaModel) GetStaticLink() StaticLinkModel {
-	if o == nil {
+	if o == nil || IsNil(o.StaticLink) {
 		var ret StaticLinkModel
 		return ret
 	}
-
-	return o.StaticLink
+	return *o.StaticLink
 }
 
-// GetStaticLinkOk returns a tuple with the StaticLink field value
+// GetStaticLinkOk returns a tuple with the StaticLink field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetStaticLinkOk() (*StaticLinkModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StaticLink) {
 		return nil, false
 	}
-	return &o.StaticLink, true
+	return o.StaticLink, true
 }
 
-// SetStaticLink sets field value
+// HasStaticLink returns a boolean if a field has been set.
+func (o *SkiareaModel) HasStaticLink() bool {
+	if o != nil && !IsNil(o.StaticLink) {
+		return true
+	}
+
+	return false
+}
+
+// SetStaticLink gets a reference to the given StaticLinkModel and assigns it to the StaticLink field.
 func (o *SkiareaModel) SetStaticLink(v StaticLinkModel) {
-	o.StaticLink = v
+	o.StaticLink = &v
 }
 
-// GetCustomBannerList returns the CustomBannerList field value
+// GetCustomBannerList returns the CustomBannerList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCustomBannerList() []CustomBannerModel {
-	if o == nil {
+	if o == nil || IsNil(o.CustomBannerList) {
 		var ret []CustomBannerModel
 		return ret
 	}
-
 	return o.CustomBannerList
 }
 
-// GetCustomBannerListOk returns a tuple with the CustomBannerList field value
+// GetCustomBannerListOk returns a tuple with the CustomBannerList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCustomBannerListOk() ([]CustomBannerModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustomBannerList) {
 		return nil, false
 	}
 	return o.CustomBannerList, true
 }
 
-// SetCustomBannerList sets field value
+// HasCustomBannerList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCustomBannerList() bool {
+	if o != nil && !IsNil(o.CustomBannerList) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomBannerList gets a reference to the given []CustomBannerModel and assigns it to the CustomBannerList field.
 func (o *SkiareaModel) SetCustomBannerList(v []CustomBannerModel) {
 	o.CustomBannerList = v
 }
 
-// GetIsFavorite returns the IsFavorite field value
+// GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
 func (o *SkiareaModel) GetIsFavorite() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsFavorite) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsFavorite
+	return *o.IsFavorite
 }
 
-// GetIsFavoriteOk returns a tuple with the IsFavorite field value
+// GetIsFavoriteOk returns a tuple with the IsFavorite field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetIsFavoriteOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsFavorite) {
 		return nil, false
 	}
-	return &o.IsFavorite, true
+	return o.IsFavorite, true
 }
 
-// SetIsFavorite sets field value
+// HasIsFavorite returns a boolean if a field has been set.
+func (o *SkiareaModel) HasIsFavorite() bool {
+	if o != nil && !IsNil(o.IsFavorite) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
 func (o *SkiareaModel) SetIsFavorite(v bool) {
-	o.IsFavorite = v
+	o.IsFavorite = &v
 }
 
-// GetEventList returns the EventList field value
+// GetEventList returns the EventList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetEventList() []EventModel {
-	if o == nil {
+	if o == nil || IsNil(o.EventList) {
 		var ret []EventModel
 		return ret
 	}
-
 	return o.EventList
 }
 
-// GetEventListOk returns a tuple with the EventList field value
+// GetEventListOk returns a tuple with the EventList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetEventListOk() ([]EventModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EventList) {
 		return nil, false
 	}
 	return o.EventList, true
 }
 
-// SetEventList sets field value
+// HasEventList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasEventList() bool {
+	if o != nil && !IsNil(o.EventList) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventList gets a reference to the given []EventModel and assigns it to the EventList field.
 func (o *SkiareaModel) SetEventList(v []EventModel) {
 	o.EventList = v
 }
 
-// GetCouponList returns the CouponList field value
+// GetCouponList returns the CouponList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCouponList() []CouponModel {
-	if o == nil {
+	if o == nil || IsNil(o.CouponList) {
 		var ret []CouponModel
 		return ret
 	}
-
 	return o.CouponList
 }
 
-// GetCouponListOk returns a tuple with the CouponList field value
+// GetCouponListOk returns a tuple with the CouponList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCouponListOk() ([]CouponModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CouponList) {
 		return nil, false
 	}
 	return o.CouponList, true
 }
 
-// SetCouponList sets field value
+// HasCouponList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCouponList() bool {
+	if o != nil && !IsNil(o.CouponList) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponList gets a reference to the given []CouponModel and assigns it to the CouponList field.
 func (o *SkiareaModel) SetCouponList(v []CouponModel) {
 	o.CouponList = v
 }
 
-// GetPremiumTicketList returns the PremiumTicketList field value
+// GetPremiumTicketList returns the PremiumTicketList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetPremiumTicketList() []CouponDistributionModel {
-	if o == nil {
+	if o == nil || IsNil(o.PremiumTicketList) {
 		var ret []CouponDistributionModel
 		return ret
 	}
-
 	return o.PremiumTicketList
 }
 
-// GetPremiumTicketListOk returns a tuple with the PremiumTicketList field value
+// GetPremiumTicketListOk returns a tuple with the PremiumTicketList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetPremiumTicketListOk() ([]CouponDistributionModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PremiumTicketList) {
 		return nil, false
 	}
 	return o.PremiumTicketList, true
 }
 
-// SetPremiumTicketList sets field value
+// HasPremiumTicketList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasPremiumTicketList() bool {
+	if o != nil && !IsNil(o.PremiumTicketList) {
+		return true
+	}
+
+	return false
+}
+
+// SetPremiumTicketList gets a reference to the given []CouponDistributionModel and assigns it to the PremiumTicketList field.
 func (o *SkiareaModel) SetPremiumTicketList(v []CouponDistributionModel) {
 	o.PremiumTicketList = v
 }
 
-// GetCheckinCouponList returns the CheckinCouponList field value
+// GetCheckinCouponList returns the CheckinCouponList field value if set, zero value otherwise.
 func (o *SkiareaModel) GetCheckinCouponList() []CouponDistributionModel {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCouponList) {
 		var ret []CouponDistributionModel
 		return ret
 	}
-
 	return o.CheckinCouponList
 }
 
-// GetCheckinCouponListOk returns a tuple with the CheckinCouponList field value
+// GetCheckinCouponListOk returns a tuple with the CheckinCouponList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetCheckinCouponListOk() ([]CouponDistributionModel, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinCouponList) {
 		return nil, false
 	}
 	return o.CheckinCouponList, true
 }
 
-// SetCheckinCouponList sets field value
+// HasCheckinCouponList returns a boolean if a field has been set.
+func (o *SkiareaModel) HasCheckinCouponList() bool {
+	if o != nil && !IsNil(o.CheckinCouponList) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinCouponList gets a reference to the given []CouponDistributionModel and assigns it to the CheckinCouponList field.
 func (o *SkiareaModel) SetCheckinCouponList(v []CouponDistributionModel) {
 	o.CheckinCouponList = v
 }
 
-// GetEvaluateTotal returns the EvaluateTotal field value
+// GetEvaluateTotal returns the EvaluateTotal field value if set, zero value otherwise.
 func (o *SkiareaModel) GetEvaluateTotal() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.EvaluateTotal) {
 		var ret int32
 		return ret
 	}
-
-	return o.EvaluateTotal
+	return *o.EvaluateTotal
 }
 
-// GetEvaluateTotalOk returns a tuple with the EvaluateTotal field value
+// GetEvaluateTotalOk returns a tuple with the EvaluateTotal field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetEvaluateTotalOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EvaluateTotal) {
 		return nil, false
 	}
-	return &o.EvaluateTotal, true
+	return o.EvaluateTotal, true
 }
 
-// SetEvaluateTotal sets field value
+// HasEvaluateTotal returns a boolean if a field has been set.
+func (o *SkiareaModel) HasEvaluateTotal() bool {
+	if o != nil && !IsNil(o.EvaluateTotal) {
+		return true
+	}
+
+	return false
+}
+
+// SetEvaluateTotal gets a reference to the given int32 and assigns it to the EvaluateTotal field.
 func (o *SkiareaModel) SetEvaluateTotal(v int32) {
-	o.EvaluateTotal = v
+	o.EvaluateTotal = &v
 }
 
-// GetPrefCode returns the PrefCode field value
+// GetPrefCode returns the PrefCode field value if set, zero value otherwise.
 func (o *SkiareaModel) GetPrefCode() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PrefCode) {
 		var ret int32
 		return ret
 	}
-
-	return o.PrefCode
+	return *o.PrefCode
 }
 
-// GetPrefCodeOk returns a tuple with the PrefCode field value
+// GetPrefCodeOk returns a tuple with the PrefCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaModel) GetPrefCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrefCode) {
 		return nil, false
 	}
-	return &o.PrefCode, true
+	return o.PrefCode, true
 }
 
-// SetPrefCode sets field value
+// HasPrefCode returns a boolean if a field has been set.
+func (o *SkiareaModel) HasPrefCode() bool {
+	if o != nil && !IsNil(o.PrefCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrefCode gets a reference to the given int32 and assigns it to the PrefCode field.
 func (o *SkiareaModel) SetPrefCode(v int32) {
-	o.PrefCode = v
+	o.PrefCode = &v
 }
 
 func (o SkiareaModel) MarshalJSON() ([]byte, error) {
@@ -2570,235 +3248,418 @@ func (o SkiareaModel) MarshalJSON() ([]byte, error) {
 
 func (o SkiareaModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["code"] = o.Code
-	toSerialize["name"] = o.Name
-	toSerialize["name_kana"] = o.NameKana
-	toSerialize["address"] = o.Address
-	toSerialize["logo_image"] = o.LogoImage
-	toSerialize["location_lat"] = o.LocationLat
-	toSerialize["location_log"] = o.LocationLog
-	toSerialize["tel"] = o.Tel
-	toSerialize["business_plan_period"] = o.BusinessPlanPeriod
-	toSerialize["holiday"] = o.Holiday
-	toSerialize["snowboard_condition"] = o.SnowboardCondition
-	toSerialize["business_hour"] = o.BusinessHour
-	toSerialize["lift_ticket"] = o.LiftTicket
-	toSerialize["parking_lot"] = o.ParkingLot
-	toSerialize["rental_info"] = o.RentalInfo
-	toSerialize["school_info"] = o.SchoolInfo
-	toSerialize["nursery_info"] = o.NurseryInfo
-	toSerialize["nap_info"] = o.NapInfo
-	toSerialize["event_info"] = o.EventInfo
-	toSerialize["description"] = o.Description
-	toSerialize["lift_total"] = o.LiftTotal
-	toSerialize["piste_total"] = o.PisteTotal
-	toSerialize["piste_difficulty"] = o.PisteDifficulty
-	toSerialize["snowboard_special_course"] = o.SnowboardSpecialCourse
-	toSerialize["elevation"] = o.Elevation
-	toSerialize["max_slope_angle"] = o.MaxSlopeAngle
-	toSerialize["piste_holidayifficulty"] = o.PisteHolidayifficulty
-	toSerialize["image"] = o.Image
-	toSerialize["gpsmap_image"] = o.GpsmapImage
-	toSerialize["image_location_top"] = o.ImageLocationTop
-	toSerialize["image_location_bottom"] = o.ImageLocationBottom
-	toSerialize["image_location_left"] = o.ImageLocationLeft
-	toSerialize["image_location_right"] = o.ImageLocationRight
-	toSerialize["wide_gpsmap_id"] = o.WideGpsmapId
-	toSerialize["wide_gpsmap_image"] = o.WideGpsmapImage
-	toSerialize["wide_image_location_top"] = o.WideImageLocationTop
-	toSerialize["wide_image_location_bottom"] = o.WideImageLocationBottom
-	toSerialize["wide_image_location_left"] = o.WideImageLocationLeft
-	toSerialize["wide_image_location_right"] = o.WideImageLocationRight
-	toSerialize["digital_map_image"] = o.DigitalMapImage
-	toSerialize["digital_map_image_en"] = o.DigitalMapImageEn
-	toSerialize["for_advance"] = o.ForAdvance
-	toSerialize["for_beginner"] = o.ForBeginner
-	toSerialize["for_coupple"] = o.ForCoupple
-	toSerialize["for_family"] = o.ForFamily
-	toSerialize["is_highlevel_sunnyrate"] = o.IsHighlevelSunnyrate
-	toSerialize["is_longcource"] = o.IsLongcource
-	toSerialize["is_lowlevel_congestion"] = o.IsLowlevelCongestion
-	toSerialize["is_morning"] = o.IsMorning
-	toSerialize["is_near_spa"] = o.IsNearSpa
-	toSerialize["is_nighter"] = o.IsNighter
-	toSerialize["is_widecource"] = o.IsWidecource
-	toSerialize["is_kind_for_girl"] = o.IsKindForGirl
-	toSerialize["is_good_access"] = o.IsGoodAccess
-	toSerialize["is_adjacent_hotel"] = o.IsAdjacentHotel
-	toSerialize["is_pow_sra"] = o.IsPowSra
-	toSerialize["exist_backcountry"] = o.ExistBackcountry
-	toSerialize["exist_delivery"] = o.ExistDelivery
-	toSerialize["exist_kidspark"] = o.ExistKidspark
-	toSerialize["exist_nap"] = o.ExistNap
-	toSerialize["exist_nursery"] = o.ExistNursery
-	toSerialize["exist_offpiste"] = o.ExistOffpiste
-	toSerialize["exist_yukiyama_coupon"] = o.ExistYukiyamaCoupon
-	toSerialize["exist_yukiyama_gps"] = o.ExistYukiyamaGps
-	toSerialize["exist_tree_zone"] = o.ExistTreeZone
-	toSerialize["exist_snow_park"] = o.ExistSnowPark
-	toSerialize["exist_specialty_course"] = o.ExistSpecialtyCourse
-	toSerialize["exist_shooting_spot"] = o.ExistShootingSpot
-	toSerialize["exist_kid_course"] = o.ExistKidCourse
-	toSerialize["exist_free_paking"] = o.ExistFreePaking
-	toSerialize["exist_school"] = o.ExistSchool
-	toSerialize["is_good_cafe"] = o.IsGoodCafe
-	toSerialize["is_good_mogul"] = o.IsGoodMogul
-	toSerialize["is_good_paking"] = o.IsGoodPaking
-	toSerialize["is_good_rental"] = o.IsGoodRental
-	toSerialize["is_good_snowboardpark"] = o.IsGoodSnowboardpark
-	toSerialize["is_good_activity"] = o.IsGoodActivity
-	toSerialize["can_slide"] = o.CanSlide
-	toSerialize["can_spring_ski"] = o.CanSpringSki
-	toSerialize["visible"] = o.Visible
-	toSerialize["is_debug"] = o.IsDebug
-	toSerialize["is_offpost"] = o.IsOffpost
-	toSerialize["is_contract"] = o.IsContract
-	toSerialize["is_visit"] = o.IsVisit
-	toSerialize["facility_list"] = o.FacilityList
-	toSerialize["skiarea_status"] = o.SkiareaStatus
-	toSerialize["official_link"] = o.OfficialLink
-	toSerialize["static_link"] = o.StaticLink
-	toSerialize["custom_banner_list"] = o.CustomBannerList
-	toSerialize["is_favorite"] = o.IsFavorite
-	toSerialize["event_list"] = o.EventList
-	toSerialize["coupon_list"] = o.CouponList
-	toSerialize["premium_ticket_list"] = o.PremiumTicketList
-	toSerialize["checkin_coupon_list"] = o.CheckinCouponList
-	toSerialize["evaluate_total"] = o.EvaluateTotal
-	toSerialize["pref_code"] = o.PrefCode
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Code) {
+		toSerialize["code"] = o.Code
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.NameKana) {
+		toSerialize["name_kana"] = o.NameKana
+	}
+	if !IsNil(o.Address) {
+		toSerialize["address"] = o.Address
+	}
+	if !IsNil(o.LogoImage) {
+		toSerialize["logo_image"] = o.LogoImage
+	}
+	if !IsNil(o.LocationLat) {
+		toSerialize["location_lat"] = o.LocationLat
+	}
+	if !IsNil(o.LocationLog) {
+		toSerialize["location_log"] = o.LocationLog
+	}
+	if !IsNil(o.Tel) {
+		toSerialize["tel"] = o.Tel
+	}
+	if !IsNil(o.BusinessPlanPeriod) {
+		toSerialize["business_plan_period"] = o.BusinessPlanPeriod
+	}
+	if !IsNil(o.Holiday) {
+		toSerialize["holiday"] = o.Holiday
+	}
+	if !IsNil(o.SnowboardCondition) {
+		toSerialize["snowboard_condition"] = o.SnowboardCondition
+	}
+	if !IsNil(o.BusinessHour) {
+		toSerialize["business_hour"] = o.BusinessHour
+	}
+	if !IsNil(o.LiftTicket) {
+		toSerialize["lift_ticket"] = o.LiftTicket
+	}
+	if !IsNil(o.ParkingLot) {
+		toSerialize["parking_lot"] = o.ParkingLot
+	}
+	if !IsNil(o.RentalInfo) {
+		toSerialize["rental_info"] = o.RentalInfo
+	}
+	if !IsNil(o.SchoolInfo) {
+		toSerialize["school_info"] = o.SchoolInfo
+	}
+	if !IsNil(o.NurseryInfo) {
+		toSerialize["nursery_info"] = o.NurseryInfo
+	}
+	if !IsNil(o.NapInfo) {
+		toSerialize["nap_info"] = o.NapInfo
+	}
+	if !IsNil(o.EventInfo) {
+		toSerialize["event_info"] = o.EventInfo
+	}
+	if !IsNil(o.Description) {
+		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.LiftTotal) {
+		toSerialize["lift_total"] = o.LiftTotal
+	}
+	if !IsNil(o.PisteTotal) {
+		toSerialize["piste_total"] = o.PisteTotal
+	}
+	if !IsNil(o.PisteDifficulty) {
+		toSerialize["piste_difficulty"] = o.PisteDifficulty
+	}
+	if !IsNil(o.SnowboardSpecialCourse) {
+		toSerialize["snowboard_special_course"] = o.SnowboardSpecialCourse
+	}
+	if !IsNil(o.Elevation) {
+		toSerialize["elevation"] = o.Elevation
+	}
+	if !IsNil(o.MaxSlopeAngle) {
+		toSerialize["max_slope_angle"] = o.MaxSlopeAngle
+	}
+	if !IsNil(o.PisteHolidayifficulty) {
+		toSerialize["piste_holidayifficulty"] = o.PisteHolidayifficulty
+	}
+	if !IsNil(o.Image) {
+		toSerialize["image"] = o.Image
+	}
+	if !IsNil(o.GpsmapImage) {
+		toSerialize["gpsmap_image"] = o.GpsmapImage
+	}
+	if !IsNil(o.ImageLocationTop) {
+		toSerialize["image_location_top"] = o.ImageLocationTop
+	}
+	if !IsNil(o.ImageLocationBottom) {
+		toSerialize["image_location_bottom"] = o.ImageLocationBottom
+	}
+	if !IsNil(o.ImageLocationLeft) {
+		toSerialize["image_location_left"] = o.ImageLocationLeft
+	}
+	if !IsNil(o.ImageLocationRight) {
+		toSerialize["image_location_right"] = o.ImageLocationRight
+	}
+	if !IsNil(o.WideGpsmapId) {
+		toSerialize["wide_gpsmap_id"] = o.WideGpsmapId
+	}
+	if !IsNil(o.WideGpsmapImage) {
+		toSerialize["wide_gpsmap_image"] = o.WideGpsmapImage
+	}
+	if !IsNil(o.WideImageLocationTop) {
+		toSerialize["wide_image_location_top"] = o.WideImageLocationTop
+	}
+	if !IsNil(o.WideImageLocationBottom) {
+		toSerialize["wide_image_location_bottom"] = o.WideImageLocationBottom
+	}
+	if !IsNil(o.WideImageLocationLeft) {
+		toSerialize["wide_image_location_left"] = o.WideImageLocationLeft
+	}
+	if !IsNil(o.WideImageLocationRight) {
+		toSerialize["wide_image_location_right"] = o.WideImageLocationRight
+	}
+	if !IsNil(o.DigitalMapImage) {
+		toSerialize["digital_map_image"] = o.DigitalMapImage
+	}
+	if !IsNil(o.DigitalMapImageEn) {
+		toSerialize["digital_map_image_en"] = o.DigitalMapImageEn
+	}
+	if !IsNil(o.ForAdvance) {
+		toSerialize["for_advance"] = o.ForAdvance
+	}
+	if !IsNil(o.ForBeginner) {
+		toSerialize["for_beginner"] = o.ForBeginner
+	}
+	if !IsNil(o.ForCoupple) {
+		toSerialize["for_coupple"] = o.ForCoupple
+	}
+	if !IsNil(o.ForFamily) {
+		toSerialize["for_family"] = o.ForFamily
+	}
+	if !IsNil(o.IsHighlevelSunnyrate) {
+		toSerialize["is_highlevel_sunnyrate"] = o.IsHighlevelSunnyrate
+	}
+	if !IsNil(o.IsLongcource) {
+		toSerialize["is_longcource"] = o.IsLongcource
+	}
+	if !IsNil(o.IsLowlevelCongestion) {
+		toSerialize["is_lowlevel_congestion"] = o.IsLowlevelCongestion
+	}
+	if !IsNil(o.IsMorning) {
+		toSerialize["is_morning"] = o.IsMorning
+	}
+	if !IsNil(o.IsNearSpa) {
+		toSerialize["is_near_spa"] = o.IsNearSpa
+	}
+	if !IsNil(o.IsNighter) {
+		toSerialize["is_nighter"] = o.IsNighter
+	}
+	if !IsNil(o.IsWidecource) {
+		toSerialize["is_widecource"] = o.IsWidecource
+	}
+	if !IsNil(o.IsKindForGirl) {
+		toSerialize["is_kind_for_girl"] = o.IsKindForGirl
+	}
+	if !IsNil(o.IsGoodAccess) {
+		toSerialize["is_good_access"] = o.IsGoodAccess
+	}
+	if !IsNil(o.IsAdjacentHotel) {
+		toSerialize["is_adjacent_hotel"] = o.IsAdjacentHotel
+	}
+	if !IsNil(o.IsPowSra) {
+		toSerialize["is_pow_sra"] = o.IsPowSra
+	}
+	if !IsNil(o.ExistBackcountry) {
+		toSerialize["exist_backcountry"] = o.ExistBackcountry
+	}
+	if !IsNil(o.ExistDelivery) {
+		toSerialize["exist_delivery"] = o.ExistDelivery
+	}
+	if !IsNil(o.ExistKidspark) {
+		toSerialize["exist_kidspark"] = o.ExistKidspark
+	}
+	if !IsNil(o.ExistNap) {
+		toSerialize["exist_nap"] = o.ExistNap
+	}
+	if !IsNil(o.ExistNursery) {
+		toSerialize["exist_nursery"] = o.ExistNursery
+	}
+	if !IsNil(o.ExistOffpiste) {
+		toSerialize["exist_offpiste"] = o.ExistOffpiste
+	}
+	if !IsNil(o.ExistYukiyamaCoupon) {
+		toSerialize["exist_yukiyama_coupon"] = o.ExistYukiyamaCoupon
+	}
+	if !IsNil(o.ExistYukiyamaGps) {
+		toSerialize["exist_yukiyama_gps"] = o.ExistYukiyamaGps
+	}
+	if !IsNil(o.ExistTreeZone) {
+		toSerialize["exist_tree_zone"] = o.ExistTreeZone
+	}
+	if !IsNil(o.ExistSnowPark) {
+		toSerialize["exist_snow_park"] = o.ExistSnowPark
+	}
+	if !IsNil(o.ExistSpecialtyCourse) {
+		toSerialize["exist_specialty_course"] = o.ExistSpecialtyCourse
+	}
+	if !IsNil(o.ExistShootingSpot) {
+		toSerialize["exist_shooting_spot"] = o.ExistShootingSpot
+	}
+	if !IsNil(o.ExistKidCourse) {
+		toSerialize["exist_kid_course"] = o.ExistKidCourse
+	}
+	if !IsNil(o.ExistFreePaking) {
+		toSerialize["exist_free_paking"] = o.ExistFreePaking
+	}
+	if !IsNil(o.ExistSchool) {
+		toSerialize["exist_school"] = o.ExistSchool
+	}
+	if !IsNil(o.IsGoodCafe) {
+		toSerialize["is_good_cafe"] = o.IsGoodCafe
+	}
+	if !IsNil(o.IsGoodMogul) {
+		toSerialize["is_good_mogul"] = o.IsGoodMogul
+	}
+	if !IsNil(o.IsGoodPaking) {
+		toSerialize["is_good_paking"] = o.IsGoodPaking
+	}
+	if !IsNil(o.IsGoodRental) {
+		toSerialize["is_good_rental"] = o.IsGoodRental
+	}
+	if !IsNil(o.IsGoodSnowboardpark) {
+		toSerialize["is_good_snowboardpark"] = o.IsGoodSnowboardpark
+	}
+	if !IsNil(o.IsGoodActivity) {
+		toSerialize["is_good_activity"] = o.IsGoodActivity
+	}
+	if !IsNil(o.CanSlide) {
+		toSerialize["can_slide"] = o.CanSlide
+	}
+	if !IsNil(o.CanSpringSki) {
+		toSerialize["can_spring_ski"] = o.CanSpringSki
+	}
+	if !IsNil(o.Visible) {
+		toSerialize["visible"] = o.Visible
+	}
+	if !IsNil(o.IsDebug) {
+		toSerialize["is_debug"] = o.IsDebug
+	}
+	if !IsNil(o.IsOffpost) {
+		toSerialize["is_offpost"] = o.IsOffpost
+	}
+	if !IsNil(o.IsContract) {
+		toSerialize["is_contract"] = o.IsContract
+	}
+	if !IsNil(o.IsVisit) {
+		toSerialize["is_visit"] = o.IsVisit
+	}
+	if !IsNil(o.FacilityList) {
+		toSerialize["facility_list"] = o.FacilityList
+	}
+	if !IsNil(o.SkiareaStatus) {
+		toSerialize["skiarea_status"] = o.SkiareaStatus
+	}
+	if !IsNil(o.OfficialLink) {
+		toSerialize["official_link"] = o.OfficialLink
+	}
+	if !IsNil(o.StaticLink) {
+		toSerialize["static_link"] = o.StaticLink
+	}
+	if !IsNil(o.CustomBannerList) {
+		toSerialize["custom_banner_list"] = o.CustomBannerList
+	}
+	if !IsNil(o.IsFavorite) {
+		toSerialize["is_favorite"] = o.IsFavorite
+	}
+	if !IsNil(o.EventList) {
+		toSerialize["event_list"] = o.EventList
+	}
+	if !IsNil(o.CouponList) {
+		toSerialize["coupon_list"] = o.CouponList
+	}
+	if !IsNil(o.PremiumTicketList) {
+		toSerialize["premium_ticket_list"] = o.PremiumTicketList
+	}
+	if !IsNil(o.CheckinCouponList) {
+		toSerialize["checkin_coupon_list"] = o.CheckinCouponList
+	}
+	if !IsNil(o.EvaluateTotal) {
+		toSerialize["evaluate_total"] = o.EvaluateTotal
+	}
+	if !IsNil(o.PrefCode) {
+		toSerialize["pref_code"] = o.PrefCode
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *SkiareaModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"code",
-		"name",
-		"name_kana",
-		"address",
-		"logo_image",
-		"location_lat",
-		"location_log",
-		"tel",
-		"business_plan_period",
-		"holiday",
-		"snowboard_condition",
-		"business_hour",
-		"lift_ticket",
-		"parking_lot",
-		"rental_info",
-		"school_info",
-		"nursery_info",
-		"nap_info",
-		"event_info",
-		"description",
-		"lift_total",
-		"piste_total",
-		"piste_difficulty",
-		"snowboard_special_course",
-		"elevation",
-		"max_slope_angle",
-		"piste_holidayifficulty",
-		"image",
-		"gpsmap_image",
-		"image_location_top",
-		"image_location_bottom",
-		"image_location_left",
-		"image_location_right",
-		"wide_gpsmap_id",
-		"wide_gpsmap_image",
-		"wide_image_location_top",
-		"wide_image_location_bottom",
-		"wide_image_location_left",
-		"wide_image_location_right",
-		"digital_map_image",
-		"digital_map_image_en",
-		"for_advance",
-		"for_beginner",
-		"for_coupple",
-		"for_family",
-		"is_highlevel_sunnyrate",
-		"is_longcource",
-		"is_lowlevel_congestion",
-		"is_morning",
-		"is_near_spa",
-		"is_nighter",
-		"is_widecource",
-		"is_kind_for_girl",
-		"is_good_access",
-		"is_adjacent_hotel",
-		"is_pow_sra",
-		"exist_backcountry",
-		"exist_delivery",
-		"exist_kidspark",
-		"exist_nap",
-		"exist_nursery",
-		"exist_offpiste",
-		"exist_yukiyama_coupon",
-		"exist_yukiyama_gps",
-		"exist_tree_zone",
-		"exist_snow_park",
-		"exist_specialty_course",
-		"exist_shooting_spot",
-		"exist_kid_course",
-		"exist_free_paking",
-		"exist_school",
-		"is_good_cafe",
-		"is_good_mogul",
-		"is_good_paking",
-		"is_good_rental",
-		"is_good_snowboardpark",
-		"is_good_activity",
-		"can_slide",
-		"can_spring_ski",
-		"visible",
-		"is_debug",
-		"is_offpost",
-		"is_contract",
-		"is_visit",
-		"facility_list",
-		"skiarea_status",
-		"official_link",
-		"static_link",
-		"custom_banner_list",
-		"is_favorite",
-		"event_list",
-		"coupon_list",
-		"premium_ticket_list",
-		"checkin_coupon_list",
-		"evaluate_total",
-		"pref_code",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSkiareaModel := _SkiareaModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSkiareaModel)
+	err = json.Unmarshal(data, &varSkiareaModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SkiareaModel(varSkiareaModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "code")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "name_kana")
+		delete(additionalProperties, "address")
+		delete(additionalProperties, "logo_image")
+		delete(additionalProperties, "location_lat")
+		delete(additionalProperties, "location_log")
+		delete(additionalProperties, "tel")
+		delete(additionalProperties, "business_plan_period")
+		delete(additionalProperties, "holiday")
+		delete(additionalProperties, "snowboard_condition")
+		delete(additionalProperties, "business_hour")
+		delete(additionalProperties, "lift_ticket")
+		delete(additionalProperties, "parking_lot")
+		delete(additionalProperties, "rental_info")
+		delete(additionalProperties, "school_info")
+		delete(additionalProperties, "nursery_info")
+		delete(additionalProperties, "nap_info")
+		delete(additionalProperties, "event_info")
+		delete(additionalProperties, "description")
+		delete(additionalProperties, "lift_total")
+		delete(additionalProperties, "piste_total")
+		delete(additionalProperties, "piste_difficulty")
+		delete(additionalProperties, "snowboard_special_course")
+		delete(additionalProperties, "elevation")
+		delete(additionalProperties, "max_slope_angle")
+		delete(additionalProperties, "piste_holidayifficulty")
+		delete(additionalProperties, "image")
+		delete(additionalProperties, "gpsmap_image")
+		delete(additionalProperties, "image_location_top")
+		delete(additionalProperties, "image_location_bottom")
+		delete(additionalProperties, "image_location_left")
+		delete(additionalProperties, "image_location_right")
+		delete(additionalProperties, "wide_gpsmap_id")
+		delete(additionalProperties, "wide_gpsmap_image")
+		delete(additionalProperties, "wide_image_location_top")
+		delete(additionalProperties, "wide_image_location_bottom")
+		delete(additionalProperties, "wide_image_location_left")
+		delete(additionalProperties, "wide_image_location_right")
+		delete(additionalProperties, "digital_map_image")
+		delete(additionalProperties, "digital_map_image_en")
+		delete(additionalProperties, "for_advance")
+		delete(additionalProperties, "for_beginner")
+		delete(additionalProperties, "for_coupple")
+		delete(additionalProperties, "for_family")
+		delete(additionalProperties, "is_highlevel_sunnyrate")
+		delete(additionalProperties, "is_longcource")
+		delete(additionalProperties, "is_lowlevel_congestion")
+		delete(additionalProperties, "is_morning")
+		delete(additionalProperties, "is_near_spa")
+		delete(additionalProperties, "is_nighter")
+		delete(additionalProperties, "is_widecource")
+		delete(additionalProperties, "is_kind_for_girl")
+		delete(additionalProperties, "is_good_access")
+		delete(additionalProperties, "is_adjacent_hotel")
+		delete(additionalProperties, "is_pow_sra")
+		delete(additionalProperties, "exist_backcountry")
+		delete(additionalProperties, "exist_delivery")
+		delete(additionalProperties, "exist_kidspark")
+		delete(additionalProperties, "exist_nap")
+		delete(additionalProperties, "exist_nursery")
+		delete(additionalProperties, "exist_offpiste")
+		delete(additionalProperties, "exist_yukiyama_coupon")
+		delete(additionalProperties, "exist_yukiyama_gps")
+		delete(additionalProperties, "exist_tree_zone")
+		delete(additionalProperties, "exist_snow_park")
+		delete(additionalProperties, "exist_specialty_course")
+		delete(additionalProperties, "exist_shooting_spot")
+		delete(additionalProperties, "exist_kid_course")
+		delete(additionalProperties, "exist_free_paking")
+		delete(additionalProperties, "exist_school")
+		delete(additionalProperties, "is_good_cafe")
+		delete(additionalProperties, "is_good_mogul")
+		delete(additionalProperties, "is_good_paking")
+		delete(additionalProperties, "is_good_rental")
+		delete(additionalProperties, "is_good_snowboardpark")
+		delete(additionalProperties, "is_good_activity")
+		delete(additionalProperties, "can_slide")
+		delete(additionalProperties, "can_spring_ski")
+		delete(additionalProperties, "visible")
+		delete(additionalProperties, "is_debug")
+		delete(additionalProperties, "is_offpost")
+		delete(additionalProperties, "is_contract")
+		delete(additionalProperties, "is_visit")
+		delete(additionalProperties, "facility_list")
+		delete(additionalProperties, "skiarea_status")
+		delete(additionalProperties, "official_link")
+		delete(additionalProperties, "static_link")
+		delete(additionalProperties, "custom_banner_list")
+		delete(additionalProperties, "is_favorite")
+		delete(additionalProperties, "event_list")
+		delete(additionalProperties, "coupon_list")
+		delete(additionalProperties, "premium_ticket_list")
+		delete(additionalProperties, "checkin_coupon_list")
+		delete(additionalProperties, "evaluate_total")
+		delete(additionalProperties, "pref_code")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

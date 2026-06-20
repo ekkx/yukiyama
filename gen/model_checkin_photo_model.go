@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the CheckinPhotoModel type satisfies the MappedNullable interface at compile time
@@ -17,14 +15,15 @@ var _ MappedNullable = &CheckinPhotoModel{}
 
 // CheckinPhotoModel struct for CheckinPhotoModel
 type CheckinPhotoModel struct {
-	Id        int32  `json:"id"`
-	CheckinId int32  `json:"checkin_id"`
-	Imagename string `json:"imagename"`
-	Memo      string `json:"memo"`
-	IsMain    int32  `json:"is_main"`
-	CreatedAt string `json:"created_at"`
-	UpdatedAt string `json:"updated_at"`
-	Url       string `json:"url"`
+	Id                   *int32  `json:"id,omitempty"`
+	CheckinId            *int32  `json:"checkin_id,omitempty"`
+	Imagename            *string `json:"imagename,omitempty"`
+	Memo                 *string `json:"memo,omitempty"`
+	IsMain               *int32  `json:"is_main,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	Url                  *string `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _CheckinPhotoModel CheckinPhotoModel
@@ -33,16 +32,8 @@ type _CheckinPhotoModel CheckinPhotoModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewCheckinPhotoModel(id int32, checkinId int32, imagename string, memo string, isMain int32, createdAt string, updatedAt string, url string) *CheckinPhotoModel {
+func NewCheckinPhotoModel() *CheckinPhotoModel {
 	this := CheckinPhotoModel{}
-	this.Id = id
-	this.CheckinId = checkinId
-	this.Imagename = imagename
-	this.Memo = memo
-	this.IsMain = isMain
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.Url = url
 	return &this
 }
 
@@ -54,196 +45,260 @@ func NewCheckinPhotoModelWithDefaults() *CheckinPhotoModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *CheckinPhotoModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetCheckinId returns the CheckinId field value
+// GetCheckinId returns the CheckinId field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetCheckinId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		var ret int32
 		return ret
 	}
-
-	return o.CheckinId
+	return *o.CheckinId
 }
 
-// GetCheckinIdOk returns a tuple with the CheckinId field value
+// GetCheckinIdOk returns a tuple with the CheckinId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetCheckinIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CheckinId) {
 		return nil, false
 	}
-	return &o.CheckinId, true
+	return o.CheckinId, true
 }
 
-// SetCheckinId sets field value
+// HasCheckinId returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasCheckinId() bool {
+	if o != nil && !IsNil(o.CheckinId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckinId gets a reference to the given int32 and assigns it to the CheckinId field.
 func (o *CheckinPhotoModel) SetCheckinId(v int32) {
-	o.CheckinId = v
+	o.CheckinId = &v
 }
 
-// GetImagename returns the Imagename field value
+// GetImagename returns the Imagename field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetImagename() string {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		var ret string
 		return ret
 	}
-
-	return o.Imagename
+	return *o.Imagename
 }
 
-// GetImagenameOk returns a tuple with the Imagename field value
+// GetImagenameOk returns a tuple with the Imagename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetImagenameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		return nil, false
 	}
-	return &o.Imagename, true
+	return o.Imagename, true
 }
 
-// SetImagename sets field value
+// HasImagename returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasImagename() bool {
+	if o != nil && !IsNil(o.Imagename) {
+		return true
+	}
+
+	return false
+}
+
+// SetImagename gets a reference to the given string and assigns it to the Imagename field.
 func (o *CheckinPhotoModel) SetImagename(v string) {
-	o.Imagename = v
+	o.Imagename = &v
 }
 
-// GetMemo returns the Memo field value
+// GetMemo returns the Memo field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetMemo() string {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		var ret string
 		return ret
 	}
-
-	return o.Memo
+	return *o.Memo
 }
 
-// GetMemoOk returns a tuple with the Memo field value
+// GetMemoOk returns a tuple with the Memo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetMemoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		return nil, false
 	}
-	return &o.Memo, true
+	return o.Memo, true
 }
 
-// SetMemo sets field value
+// HasMemo returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasMemo() bool {
+	if o != nil && !IsNil(o.Memo) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemo gets a reference to the given string and assigns it to the Memo field.
 func (o *CheckinPhotoModel) SetMemo(v string) {
-	o.Memo = v
+	o.Memo = &v
 }
 
-// GetIsMain returns the IsMain field value
+// GetIsMain returns the IsMain field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetIsMain() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsMain) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsMain
+	return *o.IsMain
 }
 
-// GetIsMainOk returns a tuple with the IsMain field value
+// GetIsMainOk returns a tuple with the IsMain field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetIsMainOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsMain) {
 		return nil, false
 	}
-	return &o.IsMain, true
+	return o.IsMain, true
 }
 
-// SetIsMain sets field value
+// HasIsMain returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasIsMain() bool {
+	if o != nil && !IsNil(o.IsMain) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsMain gets a reference to the given int32 and assigns it to the IsMain field.
 func (o *CheckinPhotoModel) SetIsMain(v int32) {
-	o.IsMain = v
+	o.IsMain = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *CheckinPhotoModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *CheckinPhotoModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value if set, zero value otherwise.
 func (o *CheckinPhotoModel) GetUrl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		var ret string
 		return ret
 	}
-
-	return o.Url
+	return *o.Url
 }
 
-// GetUrlOk returns a tuple with the Url field value
+// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CheckinPhotoModel) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Url) {
 		return nil, false
 	}
-	return &o.Url, true
+	return o.Url, true
 }
 
-// SetUrl sets field value
+// HasUrl returns a boolean if a field has been set.
+func (o *CheckinPhotoModel) HasUrl() bool {
+	if o != nil && !IsNil(o.Url) {
+		return true
+	}
+
+	return false
+}
+
+// SetUrl gets a reference to the given string and assigns it to the Url field.
 func (o *CheckinPhotoModel) SetUrl(v string) {
-	o.Url = v
+	o.Url = &v
 }
 
 func (o CheckinPhotoModel) MarshalJSON() ([]byte, error) {
@@ -256,57 +311,62 @@ func (o CheckinPhotoModel) MarshalJSON() ([]byte, error) {
 
 func (o CheckinPhotoModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["checkin_id"] = o.CheckinId
-	toSerialize["imagename"] = o.Imagename
-	toSerialize["memo"] = o.Memo
-	toSerialize["is_main"] = o.IsMain
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["url"] = o.Url
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.CheckinId) {
+		toSerialize["checkin_id"] = o.CheckinId
+	}
+	if !IsNil(o.Imagename) {
+		toSerialize["imagename"] = o.Imagename
+	}
+	if !IsNil(o.Memo) {
+		toSerialize["memo"] = o.Memo
+	}
+	if !IsNil(o.IsMain) {
+		toSerialize["is_main"] = o.IsMain
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.Url) {
+		toSerialize["url"] = o.Url
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *CheckinPhotoModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"checkin_id",
-		"imagename",
-		"memo",
-		"is_main",
-		"created_at",
-		"updated_at",
-		"url",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varCheckinPhotoModel := _CheckinPhotoModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varCheckinPhotoModel)
+	err = json.Unmarshal(data, &varCheckinPhotoModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = CheckinPhotoModel(varCheckinPhotoModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "checkin_id")
+		delete(additionalProperties, "imagename")
+		delete(additionalProperties, "memo")
+		delete(additionalProperties, "is_main")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "url")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

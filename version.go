@@ -5,4 +5,4 @@ package yukiyama
 const APIVersionName = "10.3.3"
 
 // SDKVersion is the version of this Go SDK package.
-const SDKVersion = "0.1.5"
+const SDKVersion = "0.2.0"

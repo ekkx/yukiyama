@@ -12,52 +12,52 @@
 //   - Optionally persists the session to disk (or any custom SessionStore) so
 //     a restarted process can skip the Login round-trip entirely.
 //
-// # Quick start (six lines, with disk persistence and a facade call)
+// # Quick start (six lines, with disk persistence and a service call)
 //
 //	store := yukiyama.NewFileSessionStore("") // default ~/.config/yukiyama/session.json
 //	client, _ := yukiyama.NewClient(yukiyama.WithSessionStore(store))
 //	if !client.IsAuthenticated() {
-//	    _ = client.Login(ctx) // first run only; subsequent runs hydrate from disk
+//	    _ = client.User.Login(ctx) // first run only; subsequent runs hydrate from disk
 //	}
-//	profile, err := client.GetMyProfile(ctx)
+//	profile, err := client.User.GetMyUserProfile(ctx)
 //
-// # Low-level access
+// # Service-grouped operations
 //
-// Every generated operation is promoted directly onto *Client via embedded
-// service pointers, so endpoints with no handwritten facade are flat too:
+// Domain operations are grouped onto service-typed accessors hanging off
+// the client:
 //
-//	res, _, err := client.GetMaster(ctx).Execute()
-//	res, _, err := client.ListMyCoupons(ctx).Execute()
-//	res, _, err := client.GetUnreadCount(ctx).Execute()
+//	client.User.GetMyUserProfile(ctx)
+//	client.Checkin.LikeCheckin(ctx, checkinID)
+//	client.Skiarea.SearchSkiareasByLocation(ctx, lat, lng, yukiyama.SearchSkiareasByLocationOptions{})
+//	client.Common.GetHomeData(ctx)
+//	client.Ranking.GetRankingList(ctx, yukiyama.GetRankingListOptions{})
+//	client.Safety.ListMySafetyHistory(ctx, yukiyama.ListMySafetyHistoryOptions{})
 //
-// When a facade and a generated operation share a name (e.g. GetHomeData),
-// Go's method-resolution rules pick the facade. Reach for the unwrapped
-// gen builder via the embedded field name if you need it:
+// For endpoints the services do not yet wrap, Gen() returns the raw
+// generated client as an escape hatch:
 //
-//	res, _, err := client.CommonAPIService.GetHomeData(ctx).Execute()
-//
-// Or use Gen() for the whole *gen.APIClient as an escape hatch.
+//	res, _, err := client.Gen().CommonAPI.SomeNewOp(ctx).Execute()
 //
 // Login is also called lazily on the first authenticated request when
 // WithAutoLogin(true) (the default) is in effect.
 //
-// # Facades
+// # Wire corrections
 //
-// Handwritten facade methods exist where they add value over the raw gen
-// builder: wire-naming corrections, caller/target reversals, content-schema
-// version pinning, SessionStore lifecycle, and Options bundling. See each
-// method's godoc for the specific wire-shape caveat it handles.
+// Service methods exist where they add value over the raw gen builder:
+// wire-naming corrections, caller/target reversals, content-schema version
+// pinning, and Options bundling. See each method's godoc for the specific
+// wire-shape caveat it handles.
 //
 // Auth-triple injection (user_id, token, version) on the transport is
-// "fill if missing" — any value a caller or facade sets on the gen builder
+// "fill if missing" — any value a caller or service sets on the gen builder
 // wins. The 103 → re-login retry path wipes stale auth before reinjection
 // so the post-relogin session lands on retries.
 //
 // # Session persistence
 //
 // Pass a SessionStore via WithSessionStore() and NewClient hydrates the
-// in-memory session at construction time. Login() Save()s the new session,
-// Logout() Clear()s it. Built-ins:
+// in-memory session at construction time. client.User.Login() Save()s the
+// new session, client.User.Logout() Clear()s it. Built-ins:
 //
 //   - NoopSessionStore (default; no persistence).
 //   - FileSessionStore (JSON file, mode 0600, atomic temp+rename writes).

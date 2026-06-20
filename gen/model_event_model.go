@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the EventModel type satisfies the MappedNullable interface at compile time
@@ -17,23 +15,24 @@ var _ MappedNullable = &EventModel{}
 
 // EventModel struct for EventModel
 type EventModel struct {
-	Id                 int32  `json:"id"`
-	SkiareaId          int32  `json:"skiarea_id"`
-	Title              string `json:"title"`
-	Category           int32  `json:"category"`
-	Detail             string `json:"detail"`
-	Imagename          string `json:"imagename"`
-	Linkurl            string `json:"linkurl"`
-	InterestUsersCount int32  `json:"interest_users_count"`
-	CommentCount       int32  `json:"comment_count"`
-	StartDate          string `json:"start_date"`
-	EndDate            string `json:"end_date"`
-	CreatedAt          string `json:"created_at"`
-	UpdatedAt          string `json:"updated_at"`
-	SkiareaName        string `json:"skiarea_name"`
-	SkiareaAddress     string `json:"skiarea_address"`
-	SkiareaIcon        string `json:"skiarea_icon"`
-	SkiareaImage       string `json:"skiarea_image"`
+	Id                   *int32  `json:"id,omitempty"`
+	SkiareaId            *int32  `json:"skiarea_id,omitempty"`
+	Title                *string `json:"title,omitempty"`
+	Category             *int32  `json:"category,omitempty"`
+	Detail               *string `json:"detail,omitempty"`
+	Imagename            *string `json:"imagename,omitempty"`
+	Linkurl              *string `json:"linkurl,omitempty"`
+	InterestUsersCount   *int32  `json:"interest_users_count,omitempty"`
+	CommentCount         *int32  `json:"comment_count,omitempty"`
+	StartDate            *string `json:"start_date,omitempty"`
+	EndDate              *string `json:"end_date,omitempty"`
+	CreatedAt            *string `json:"created_at,omitempty"`
+	UpdatedAt            *string `json:"updated_at,omitempty"`
+	SkiareaName          *string `json:"skiarea_name,omitempty"`
+	SkiareaAddress       *string `json:"skiarea_address,omitempty"`
+	SkiareaIcon          *string `json:"skiarea_icon,omitempty"`
+	SkiareaImage         *string `json:"skiarea_image,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _EventModel EventModel
@@ -42,25 +41,8 @@ type _EventModel EventModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewEventModel(id int32, skiareaId int32, title string, category int32, detail string, imagename string, linkurl string, interestUsersCount int32, commentCount int32, startDate string, endDate string, createdAt string, updatedAt string, skiareaName string, skiareaAddress string, skiareaIcon string, skiareaImage string) *EventModel {
+func NewEventModel() *EventModel {
 	this := EventModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.Title = title
-	this.Category = category
-	this.Detail = detail
-	this.Imagename = imagename
-	this.Linkurl = linkurl
-	this.InterestUsersCount = interestUsersCount
-	this.CommentCount = commentCount
-	this.StartDate = startDate
-	this.EndDate = endDate
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
-	this.SkiareaName = skiareaName
-	this.SkiareaAddress = skiareaAddress
-	this.SkiareaIcon = skiareaIcon
-	this.SkiareaImage = skiareaImage
 	return &this
 }
 
@@ -72,412 +54,548 @@ func NewEventModelWithDefaults() *EventModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *EventModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *EventModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *EventModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *EventModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *EventModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *EventModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventModel) GetTitle() string {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		var ret string
 		return ret
 	}
-
-	return o.Title
+	return *o.Title
 }
 
-// GetTitleOk returns a tuple with the Title field value
+// GetTitleOk returns a tuple with the Title field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Title) {
 		return nil, false
 	}
-	return &o.Title, true
+	return o.Title, true
 }
 
-// SetTitle sets field value
+// HasTitle returns a boolean if a field has been set.
+func (o *EventModel) HasTitle() bool {
+	if o != nil && !IsNil(o.Title) {
+		return true
+	}
+
+	return false
+}
+
+// SetTitle gets a reference to the given string and assigns it to the Title field.
 func (o *EventModel) SetTitle(v string) {
-	o.Title = v
+	o.Title = &v
 }
 
-// GetCategory returns the Category field value
+// GetCategory returns the Category field value if set, zero value otherwise.
 func (o *EventModel) GetCategory() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Category) {
 		var ret int32
 		return ret
 	}
-
-	return o.Category
+	return *o.Category
 }
 
-// GetCategoryOk returns a tuple with the Category field value
+// GetCategoryOk returns a tuple with the Category field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetCategoryOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Category) {
 		return nil, false
 	}
-	return &o.Category, true
+	return o.Category, true
 }
 
-// SetCategory sets field value
+// HasCategory returns a boolean if a field has been set.
+func (o *EventModel) HasCategory() bool {
+	if o != nil && !IsNil(o.Category) {
+		return true
+	}
+
+	return false
+}
+
+// SetCategory gets a reference to the given int32 and assigns it to the Category field.
 func (o *EventModel) SetCategory(v int32) {
-	o.Category = v
+	o.Category = &v
 }
 
-// GetDetail returns the Detail field value
+// GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *EventModel) GetDetail() string {
-	if o == nil {
+	if o == nil || IsNil(o.Detail) {
 		var ret string
 		return ret
 	}
-
-	return o.Detail
+	return *o.Detail
 }
 
-// GetDetailOk returns a tuple with the Detail field value
+// GetDetailOk returns a tuple with the Detail field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetDetailOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Detail) {
 		return nil, false
 	}
-	return &o.Detail, true
+	return o.Detail, true
 }
 
-// SetDetail sets field value
+// HasDetail returns a boolean if a field has been set.
+func (o *EventModel) HasDetail() bool {
+	if o != nil && !IsNil(o.Detail) {
+		return true
+	}
+
+	return false
+}
+
+// SetDetail gets a reference to the given string and assigns it to the Detail field.
 func (o *EventModel) SetDetail(v string) {
-	o.Detail = v
+	o.Detail = &v
 }
 
-// GetImagename returns the Imagename field value
+// GetImagename returns the Imagename field value if set, zero value otherwise.
 func (o *EventModel) GetImagename() string {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		var ret string
 		return ret
 	}
-
-	return o.Imagename
+	return *o.Imagename
 }
 
-// GetImagenameOk returns a tuple with the Imagename field value
+// GetImagenameOk returns a tuple with the Imagename field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetImagenameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Imagename) {
 		return nil, false
 	}
-	return &o.Imagename, true
+	return o.Imagename, true
 }
 
-// SetImagename sets field value
+// HasImagename returns a boolean if a field has been set.
+func (o *EventModel) HasImagename() bool {
+	if o != nil && !IsNil(o.Imagename) {
+		return true
+	}
+
+	return false
+}
+
+// SetImagename gets a reference to the given string and assigns it to the Imagename field.
 func (o *EventModel) SetImagename(v string) {
-	o.Imagename = v
+	o.Imagename = &v
 }
 
-// GetLinkurl returns the Linkurl field value
+// GetLinkurl returns the Linkurl field value if set, zero value otherwise.
 func (o *EventModel) GetLinkurl() string {
-	if o == nil {
+	if o == nil || IsNil(o.Linkurl) {
 		var ret string
 		return ret
 	}
-
-	return o.Linkurl
+	return *o.Linkurl
 }
 
-// GetLinkurlOk returns a tuple with the Linkurl field value
+// GetLinkurlOk returns a tuple with the Linkurl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetLinkurlOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Linkurl) {
 		return nil, false
 	}
-	return &o.Linkurl, true
+	return o.Linkurl, true
 }
 
-// SetLinkurl sets field value
+// HasLinkurl returns a boolean if a field has been set.
+func (o *EventModel) HasLinkurl() bool {
+	if o != nil && !IsNil(o.Linkurl) {
+		return true
+	}
+
+	return false
+}
+
+// SetLinkurl gets a reference to the given string and assigns it to the Linkurl field.
 func (o *EventModel) SetLinkurl(v string) {
-	o.Linkurl = v
+	o.Linkurl = &v
 }
 
-// GetInterestUsersCount returns the InterestUsersCount field value
+// GetInterestUsersCount returns the InterestUsersCount field value if set, zero value otherwise.
 func (o *EventModel) GetInterestUsersCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.InterestUsersCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.InterestUsersCount
+	return *o.InterestUsersCount
 }
 
-// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value
+// GetInterestUsersCountOk returns a tuple with the InterestUsersCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetInterestUsersCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InterestUsersCount) {
 		return nil, false
 	}
-	return &o.InterestUsersCount, true
+	return o.InterestUsersCount, true
 }
 
-// SetInterestUsersCount sets field value
+// HasInterestUsersCount returns a boolean if a field has been set.
+func (o *EventModel) HasInterestUsersCount() bool {
+	if o != nil && !IsNil(o.InterestUsersCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInterestUsersCount gets a reference to the given int32 and assigns it to the InterestUsersCount field.
 func (o *EventModel) SetInterestUsersCount(v int32) {
-	o.InterestUsersCount = v
+	o.InterestUsersCount = &v
 }
 
-// GetCommentCount returns the CommentCount field value
+// GetCommentCount returns the CommentCount field value if set, zero value otherwise.
 func (o *EventModel) GetCommentCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CommentCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.CommentCount
+	return *o.CommentCount
 }
 
-// GetCommentCountOk returns a tuple with the CommentCount field value
+// GetCommentCountOk returns a tuple with the CommentCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetCommentCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CommentCount) {
 		return nil, false
 	}
-	return &o.CommentCount, true
+	return o.CommentCount, true
 }
 
-// SetCommentCount sets field value
+// HasCommentCount returns a boolean if a field has been set.
+func (o *EventModel) HasCommentCount() bool {
+	if o != nil && !IsNil(o.CommentCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommentCount gets a reference to the given int32 and assigns it to the CommentCount field.
 func (o *EventModel) SetCommentCount(v int32) {
-	o.CommentCount = v
+	o.CommentCount = &v
 }
 
-// GetStartDate returns the StartDate field value
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *EventModel) GetStartDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret string
 		return ret
 	}
-
-	return o.StartDate
+	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetStartDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
-	return &o.StartDate, true
+	return o.StartDate, true
 }
 
-// SetStartDate sets field value
+// HasStartDate returns a boolean if a field has been set.
+func (o *EventModel) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
 func (o *EventModel) SetStartDate(v string) {
-	o.StartDate = v
+	o.StartDate = &v
 }
 
-// GetEndDate returns the EndDate field value
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *EventModel) GetEndDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.EndDate) {
 		var ret string
 		return ret
 	}
-
-	return o.EndDate
+	return *o.EndDate
 }
 
-// GetEndDateOk returns a tuple with the EndDate field value
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetEndDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EndDate) {
 		return nil, false
 	}
-	return &o.EndDate, true
+	return o.EndDate, true
 }
 
-// SetEndDate sets field value
+// HasEndDate returns a boolean if a field has been set.
+func (o *EventModel) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
 func (o *EventModel) SetEndDate(v string) {
-	o.EndDate = v
+	o.EndDate = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *EventModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *EventModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *EventModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *EventModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *EventModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *EventModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
-// GetSkiareaName returns the SkiareaName field value
+// GetSkiareaName returns the SkiareaName field value if set, zero value otherwise.
 func (o *EventModel) GetSkiareaName() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaName) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaName
+	return *o.SkiareaName
 }
 
-// GetSkiareaNameOk returns a tuple with the SkiareaName field value
+// GetSkiareaNameOk returns a tuple with the SkiareaName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetSkiareaNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaName) {
 		return nil, false
 	}
-	return &o.SkiareaName, true
+	return o.SkiareaName, true
 }
 
-// SetSkiareaName sets field value
+// HasSkiareaName returns a boolean if a field has been set.
+func (o *EventModel) HasSkiareaName() bool {
+	if o != nil && !IsNil(o.SkiareaName) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaName gets a reference to the given string and assigns it to the SkiareaName field.
 func (o *EventModel) SetSkiareaName(v string) {
-	o.SkiareaName = v
+	o.SkiareaName = &v
 }
 
-// GetSkiareaAddress returns the SkiareaAddress field value
+// GetSkiareaAddress returns the SkiareaAddress field value if set, zero value otherwise.
 func (o *EventModel) GetSkiareaAddress() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaAddress) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaAddress
+	return *o.SkiareaAddress
 }
 
-// GetSkiareaAddressOk returns a tuple with the SkiareaAddress field value
+// GetSkiareaAddressOk returns a tuple with the SkiareaAddress field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetSkiareaAddressOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaAddress) {
 		return nil, false
 	}
-	return &o.SkiareaAddress, true
+	return o.SkiareaAddress, true
 }
 
-// SetSkiareaAddress sets field value
+// HasSkiareaAddress returns a boolean if a field has been set.
+func (o *EventModel) HasSkiareaAddress() bool {
+	if o != nil && !IsNil(o.SkiareaAddress) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaAddress gets a reference to the given string and assigns it to the SkiareaAddress field.
 func (o *EventModel) SetSkiareaAddress(v string) {
-	o.SkiareaAddress = v
+	o.SkiareaAddress = &v
 }
 
-// GetSkiareaIcon returns the SkiareaIcon field value
+// GetSkiareaIcon returns the SkiareaIcon field value if set, zero value otherwise.
 func (o *EventModel) GetSkiareaIcon() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaIcon) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaIcon
+	return *o.SkiareaIcon
 }
 
-// GetSkiareaIconOk returns a tuple with the SkiareaIcon field value
+// GetSkiareaIconOk returns a tuple with the SkiareaIcon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetSkiareaIconOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaIcon) {
 		return nil, false
 	}
-	return &o.SkiareaIcon, true
+	return o.SkiareaIcon, true
 }
 
-// SetSkiareaIcon sets field value
+// HasSkiareaIcon returns a boolean if a field has been set.
+func (o *EventModel) HasSkiareaIcon() bool {
+	if o != nil && !IsNil(o.SkiareaIcon) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaIcon gets a reference to the given string and assigns it to the SkiareaIcon field.
 func (o *EventModel) SetSkiareaIcon(v string) {
-	o.SkiareaIcon = v
+	o.SkiareaIcon = &v
 }
 
-// GetSkiareaImage returns the SkiareaImage field value
+// GetSkiareaImage returns the SkiareaImage field value if set, zero value otherwise.
 func (o *EventModel) GetSkiareaImage() string {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaImage) {
 		var ret string
 		return ret
 	}
-
-	return o.SkiareaImage
+	return *o.SkiareaImage
 }
 
-// GetSkiareaImageOk returns a tuple with the SkiareaImage field value
+// GetSkiareaImageOk returns a tuple with the SkiareaImage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *EventModel) GetSkiareaImageOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaImage) {
 		return nil, false
 	}
-	return &o.SkiareaImage, true
+	return o.SkiareaImage, true
 }
 
-// SetSkiareaImage sets field value
+// HasSkiareaImage returns a boolean if a field has been set.
+func (o *EventModel) HasSkiareaImage() bool {
+	if o != nil && !IsNil(o.SkiareaImage) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaImage gets a reference to the given string and assigns it to the SkiareaImage field.
 func (o *EventModel) SetSkiareaImage(v string) {
-	o.SkiareaImage = v
+	o.SkiareaImage = &v
 }
 
 func (o EventModel) MarshalJSON() ([]byte, error) {
@@ -490,75 +608,98 @@ func (o EventModel) MarshalJSON() ([]byte, error) {
 
 func (o EventModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["title"] = o.Title
-	toSerialize["category"] = o.Category
-	toSerialize["detail"] = o.Detail
-	toSerialize["imagename"] = o.Imagename
-	toSerialize["linkurl"] = o.Linkurl
-	toSerialize["interest_users_count"] = o.InterestUsersCount
-	toSerialize["comment_count"] = o.CommentCount
-	toSerialize["start_date"] = o.StartDate
-	toSerialize["end_date"] = o.EndDate
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
-	toSerialize["skiarea_name"] = o.SkiareaName
-	toSerialize["skiarea_address"] = o.SkiareaAddress
-	toSerialize["skiarea_icon"] = o.SkiareaIcon
-	toSerialize["skiarea_image"] = o.SkiareaImage
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.Title) {
+		toSerialize["title"] = o.Title
+	}
+	if !IsNil(o.Category) {
+		toSerialize["category"] = o.Category
+	}
+	if !IsNil(o.Detail) {
+		toSerialize["detail"] = o.Detail
+	}
+	if !IsNil(o.Imagename) {
+		toSerialize["imagename"] = o.Imagename
+	}
+	if !IsNil(o.Linkurl) {
+		toSerialize["linkurl"] = o.Linkurl
+	}
+	if !IsNil(o.InterestUsersCount) {
+		toSerialize["interest_users_count"] = o.InterestUsersCount
+	}
+	if !IsNil(o.CommentCount) {
+		toSerialize["comment_count"] = o.CommentCount
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
+	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.SkiareaName) {
+		toSerialize["skiarea_name"] = o.SkiareaName
+	}
+	if !IsNil(o.SkiareaAddress) {
+		toSerialize["skiarea_address"] = o.SkiareaAddress
+	}
+	if !IsNil(o.SkiareaIcon) {
+		toSerialize["skiarea_icon"] = o.SkiareaIcon
+	}
+	if !IsNil(o.SkiareaImage) {
+		toSerialize["skiarea_image"] = o.SkiareaImage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *EventModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"title",
-		"category",
-		"detail",
-		"imagename",
-		"linkurl",
-		"interest_users_count",
-		"comment_count",
-		"start_date",
-		"end_date",
-		"created_at",
-		"updated_at",
-		"skiarea_name",
-		"skiarea_address",
-		"skiarea_icon",
-		"skiarea_image",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varEventModel := _EventModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varEventModel)
+	err = json.Unmarshal(data, &varEventModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = EventModel(varEventModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "title")
+		delete(additionalProperties, "category")
+		delete(additionalProperties, "detail")
+		delete(additionalProperties, "imagename")
+		delete(additionalProperties, "linkurl")
+		delete(additionalProperties, "interest_users_count")
+		delete(additionalProperties, "comment_count")
+		delete(additionalProperties, "start_date")
+		delete(additionalProperties, "end_date")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		delete(additionalProperties, "skiarea_name")
+		delete(additionalProperties, "skiarea_address")
+		delete(additionalProperties, "skiarea_icon")
+		delete(additionalProperties, "skiarea_image")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

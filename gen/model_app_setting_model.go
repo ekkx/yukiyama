@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the AppSettingModel type satisfies the MappedNullable interface at compile time
@@ -17,17 +15,18 @@ var _ MappedNullable = &AppSettingModel{}
 
 // AppSettingModel struct for AppSettingModel
 type AppSettingModel struct {
-	IsReadTutorial        bool     `json:"is_read_tutorial"`
-	IsCheckinForceOpen    bool     `json:"is_checkin_force_open"`
-	IsSaveLanguage        bool     `json:"is_save_language"`
-	IsSupporter           bool     `json:"is_supporter"`
-	PlanType              int32    `json:"plan_type"`
-	ExpirationDate        string   `json:"expiration_date"`
-	PurchaseDate          string   `json:"purchase_date"`
-	Receipt               string   `json:"receipt"`
-	TransactionId         string   `json:"transactionId"`
-	OriginalTransactionId string   `json:"originalTransactionId"`
-	Language              Language `json:"language"`
+	IsReadTutorial        *bool     `json:"is_read_tutorial,omitempty"`
+	IsCheckinForceOpen    *bool     `json:"is_checkin_force_open,omitempty"`
+	IsSaveLanguage        *bool     `json:"is_save_language,omitempty"`
+	IsSupporter           *bool     `json:"is_supporter,omitempty"`
+	PlanType              *int32    `json:"plan_type,omitempty"`
+	ExpirationDate        *string   `json:"expiration_date,omitempty"`
+	PurchaseDate          *string   `json:"purchase_date,omitempty"`
+	Receipt               *string   `json:"receipt,omitempty"`
+	TransactionId         *string   `json:"transactionId,omitempty"`
+	OriginalTransactionId *string   `json:"originalTransactionId,omitempty"`
+	Language              *Language `json:"language,omitempty"`
+	AdditionalProperties  map[string]interface{}
 }
 
 type _AppSettingModel AppSettingModel
@@ -36,19 +35,8 @@ type _AppSettingModel AppSettingModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewAppSettingModel(isReadTutorial bool, isCheckinForceOpen bool, isSaveLanguage bool, isSupporter bool, planType int32, expirationDate string, purchaseDate string, receipt string, transactionId string, originalTransactionId string, language Language) *AppSettingModel {
+func NewAppSettingModel() *AppSettingModel {
 	this := AppSettingModel{}
-	this.IsReadTutorial = isReadTutorial
-	this.IsCheckinForceOpen = isCheckinForceOpen
-	this.IsSaveLanguage = isSaveLanguage
-	this.IsSupporter = isSupporter
-	this.PlanType = planType
-	this.ExpirationDate = expirationDate
-	this.PurchaseDate = purchaseDate
-	this.Receipt = receipt
-	this.TransactionId = transactionId
-	this.OriginalTransactionId = originalTransactionId
-	this.Language = language
 	return &this
 }
 
@@ -60,268 +48,356 @@ func NewAppSettingModelWithDefaults() *AppSettingModel {
 	return &this
 }
 
-// GetIsReadTutorial returns the IsReadTutorial field value
+// GetIsReadTutorial returns the IsReadTutorial field value if set, zero value otherwise.
 func (o *AppSettingModel) GetIsReadTutorial() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsReadTutorial) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsReadTutorial
+	return *o.IsReadTutorial
 }
 
-// GetIsReadTutorialOk returns a tuple with the IsReadTutorial field value
+// GetIsReadTutorialOk returns a tuple with the IsReadTutorial field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetIsReadTutorialOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsReadTutorial) {
 		return nil, false
 	}
-	return &o.IsReadTutorial, true
+	return o.IsReadTutorial, true
 }
 
-// SetIsReadTutorial sets field value
+// HasIsReadTutorial returns a boolean if a field has been set.
+func (o *AppSettingModel) HasIsReadTutorial() bool {
+	if o != nil && !IsNil(o.IsReadTutorial) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsReadTutorial gets a reference to the given bool and assigns it to the IsReadTutorial field.
 func (o *AppSettingModel) SetIsReadTutorial(v bool) {
-	o.IsReadTutorial = v
+	o.IsReadTutorial = &v
 }
 
-// GetIsCheckinForceOpen returns the IsCheckinForceOpen field value
+// GetIsCheckinForceOpen returns the IsCheckinForceOpen field value if set, zero value otherwise.
 func (o *AppSettingModel) GetIsCheckinForceOpen() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsCheckinForceOpen) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsCheckinForceOpen
+	return *o.IsCheckinForceOpen
 }
 
-// GetIsCheckinForceOpenOk returns a tuple with the IsCheckinForceOpen field value
+// GetIsCheckinForceOpenOk returns a tuple with the IsCheckinForceOpen field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetIsCheckinForceOpenOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsCheckinForceOpen) {
 		return nil, false
 	}
-	return &o.IsCheckinForceOpen, true
+	return o.IsCheckinForceOpen, true
 }
 
-// SetIsCheckinForceOpen sets field value
+// HasIsCheckinForceOpen returns a boolean if a field has been set.
+func (o *AppSettingModel) HasIsCheckinForceOpen() bool {
+	if o != nil && !IsNil(o.IsCheckinForceOpen) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsCheckinForceOpen gets a reference to the given bool and assigns it to the IsCheckinForceOpen field.
 func (o *AppSettingModel) SetIsCheckinForceOpen(v bool) {
-	o.IsCheckinForceOpen = v
+	o.IsCheckinForceOpen = &v
 }
 
-// GetIsSaveLanguage returns the IsSaveLanguage field value
+// GetIsSaveLanguage returns the IsSaveLanguage field value if set, zero value otherwise.
 func (o *AppSettingModel) GetIsSaveLanguage() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsSaveLanguage) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsSaveLanguage
+	return *o.IsSaveLanguage
 }
 
-// GetIsSaveLanguageOk returns a tuple with the IsSaveLanguage field value
+// GetIsSaveLanguageOk returns a tuple with the IsSaveLanguage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetIsSaveLanguageOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsSaveLanguage) {
 		return nil, false
 	}
-	return &o.IsSaveLanguage, true
+	return o.IsSaveLanguage, true
 }
 
-// SetIsSaveLanguage sets field value
+// HasIsSaveLanguage returns a boolean if a field has been set.
+func (o *AppSettingModel) HasIsSaveLanguage() bool {
+	if o != nil && !IsNil(o.IsSaveLanguage) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSaveLanguage gets a reference to the given bool and assigns it to the IsSaveLanguage field.
 func (o *AppSettingModel) SetIsSaveLanguage(v bool) {
-	o.IsSaveLanguage = v
+	o.IsSaveLanguage = &v
 }
 
-// GetIsSupporter returns the IsSupporter field value
+// GetIsSupporter returns the IsSupporter field value if set, zero value otherwise.
 func (o *AppSettingModel) GetIsSupporter() bool {
-	if o == nil {
+	if o == nil || IsNil(o.IsSupporter) {
 		var ret bool
 		return ret
 	}
-
-	return o.IsSupporter
+	return *o.IsSupporter
 }
 
-// GetIsSupporterOk returns a tuple with the IsSupporter field value
+// GetIsSupporterOk returns a tuple with the IsSupporter field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetIsSupporterOk() (*bool, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsSupporter) {
 		return nil, false
 	}
-	return &o.IsSupporter, true
+	return o.IsSupporter, true
 }
 
-// SetIsSupporter sets field value
+// HasIsSupporter returns a boolean if a field has been set.
+func (o *AppSettingModel) HasIsSupporter() bool {
+	if o != nil && !IsNil(o.IsSupporter) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsSupporter gets a reference to the given bool and assigns it to the IsSupporter field.
 func (o *AppSettingModel) SetIsSupporter(v bool) {
-	o.IsSupporter = v
+	o.IsSupporter = &v
 }
 
-// GetPlanType returns the PlanType field value
+// GetPlanType returns the PlanType field value if set, zero value otherwise.
 func (o *AppSettingModel) GetPlanType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PlanType) {
 		var ret int32
 		return ret
 	}
-
-	return o.PlanType
+	return *o.PlanType
 }
 
-// GetPlanTypeOk returns a tuple with the PlanType field value
+// GetPlanTypeOk returns a tuple with the PlanType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetPlanTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PlanType) {
 		return nil, false
 	}
-	return &o.PlanType, true
+	return o.PlanType, true
 }
 
-// SetPlanType sets field value
+// HasPlanType returns a boolean if a field has been set.
+func (o *AppSettingModel) HasPlanType() bool {
+	if o != nil && !IsNil(o.PlanType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanType gets a reference to the given int32 and assigns it to the PlanType field.
 func (o *AppSettingModel) SetPlanType(v int32) {
-	o.PlanType = v
+	o.PlanType = &v
 }
 
-// GetExpirationDate returns the ExpirationDate field value
+// GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise.
 func (o *AppSettingModel) GetExpirationDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.ExpirationDate) {
 		var ret string
 		return ret
 	}
-
-	return o.ExpirationDate
+	return *o.ExpirationDate
 }
 
-// GetExpirationDateOk returns a tuple with the ExpirationDate field value
+// GetExpirationDateOk returns a tuple with the ExpirationDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetExpirationDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExpirationDate) {
 		return nil, false
 	}
-	return &o.ExpirationDate, true
+	return o.ExpirationDate, true
 }
 
-// SetExpirationDate sets field value
+// HasExpirationDate returns a boolean if a field has been set.
+func (o *AppSettingModel) HasExpirationDate() bool {
+	if o != nil && !IsNil(o.ExpirationDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpirationDate gets a reference to the given string and assigns it to the ExpirationDate field.
 func (o *AppSettingModel) SetExpirationDate(v string) {
-	o.ExpirationDate = v
+	o.ExpirationDate = &v
 }
 
-// GetPurchaseDate returns the PurchaseDate field value
+// GetPurchaseDate returns the PurchaseDate field value if set, zero value otherwise.
 func (o *AppSettingModel) GetPurchaseDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.PurchaseDate) {
 		var ret string
 		return ret
 	}
-
-	return o.PurchaseDate
+	return *o.PurchaseDate
 }
 
-// GetPurchaseDateOk returns a tuple with the PurchaseDate field value
+// GetPurchaseDateOk returns a tuple with the PurchaseDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetPurchaseDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PurchaseDate) {
 		return nil, false
 	}
-	return &o.PurchaseDate, true
+	return o.PurchaseDate, true
 }
 
-// SetPurchaseDate sets field value
+// HasPurchaseDate returns a boolean if a field has been set.
+func (o *AppSettingModel) HasPurchaseDate() bool {
+	if o != nil && !IsNil(o.PurchaseDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetPurchaseDate gets a reference to the given string and assigns it to the PurchaseDate field.
 func (o *AppSettingModel) SetPurchaseDate(v string) {
-	o.PurchaseDate = v
+	o.PurchaseDate = &v
 }
 
-// GetReceipt returns the Receipt field value
+// GetReceipt returns the Receipt field value if set, zero value otherwise.
 func (o *AppSettingModel) GetReceipt() string {
-	if o == nil {
+	if o == nil || IsNil(o.Receipt) {
 		var ret string
 		return ret
 	}
-
-	return o.Receipt
+	return *o.Receipt
 }
 
-// GetReceiptOk returns a tuple with the Receipt field value
+// GetReceiptOk returns a tuple with the Receipt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetReceiptOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Receipt) {
 		return nil, false
 	}
-	return &o.Receipt, true
+	return o.Receipt, true
 }
 
-// SetReceipt sets field value
+// HasReceipt returns a boolean if a field has been set.
+func (o *AppSettingModel) HasReceipt() bool {
+	if o != nil && !IsNil(o.Receipt) {
+		return true
+	}
+
+	return false
+}
+
+// SetReceipt gets a reference to the given string and assigns it to the Receipt field.
 func (o *AppSettingModel) SetReceipt(v string) {
-	o.Receipt = v
+	o.Receipt = &v
 }
 
-// GetTransactionId returns the TransactionId field value
+// GetTransactionId returns the TransactionId field value if set, zero value otherwise.
 func (o *AppSettingModel) GetTransactionId() string {
-	if o == nil {
+	if o == nil || IsNil(o.TransactionId) {
 		var ret string
 		return ret
 	}
-
-	return o.TransactionId
+	return *o.TransactionId
 }
 
-// GetTransactionIdOk returns a tuple with the TransactionId field value
+// GetTransactionIdOk returns a tuple with the TransactionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetTransactionIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TransactionId) {
 		return nil, false
 	}
-	return &o.TransactionId, true
+	return o.TransactionId, true
 }
 
-// SetTransactionId sets field value
+// HasTransactionId returns a boolean if a field has been set.
+func (o *AppSettingModel) HasTransactionId() bool {
+	if o != nil && !IsNil(o.TransactionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransactionId gets a reference to the given string and assigns it to the TransactionId field.
 func (o *AppSettingModel) SetTransactionId(v string) {
-	o.TransactionId = v
+	o.TransactionId = &v
 }
 
-// GetOriginalTransactionId returns the OriginalTransactionId field value
+// GetOriginalTransactionId returns the OriginalTransactionId field value if set, zero value otherwise.
 func (o *AppSettingModel) GetOriginalTransactionId() string {
-	if o == nil {
+	if o == nil || IsNil(o.OriginalTransactionId) {
 		var ret string
 		return ret
 	}
-
-	return o.OriginalTransactionId
+	return *o.OriginalTransactionId
 }
 
-// GetOriginalTransactionIdOk returns a tuple with the OriginalTransactionId field value
+// GetOriginalTransactionIdOk returns a tuple with the OriginalTransactionId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetOriginalTransactionIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.OriginalTransactionId) {
 		return nil, false
 	}
-	return &o.OriginalTransactionId, true
+	return o.OriginalTransactionId, true
 }
 
-// SetOriginalTransactionId sets field value
+// HasOriginalTransactionId returns a boolean if a field has been set.
+func (o *AppSettingModel) HasOriginalTransactionId() bool {
+	if o != nil && !IsNil(o.OriginalTransactionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetOriginalTransactionId gets a reference to the given string and assigns it to the OriginalTransactionId field.
 func (o *AppSettingModel) SetOriginalTransactionId(v string) {
-	o.OriginalTransactionId = v
+	o.OriginalTransactionId = &v
 }
 
-// GetLanguage returns the Language field value
+// GetLanguage returns the Language field value if set, zero value otherwise.
 func (o *AppSettingModel) GetLanguage() Language {
-	if o == nil {
+	if o == nil || IsNil(o.Language) {
 		var ret Language
 		return ret
 	}
-
-	return o.Language
+	return *o.Language
 }
 
-// GetLanguageOk returns a tuple with the Language field value
+// GetLanguageOk returns a tuple with the Language field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *AppSettingModel) GetLanguageOk() (*Language, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Language) {
 		return nil, false
 	}
-	return &o.Language, true
+	return o.Language, true
 }
 
-// SetLanguage sets field value
+// HasLanguage returns a boolean if a field has been set.
+func (o *AppSettingModel) HasLanguage() bool {
+	if o != nil && !IsNil(o.Language) {
+		return true
+	}
+
+	return false
+}
+
+// SetLanguage gets a reference to the given Language and assigns it to the Language field.
 func (o *AppSettingModel) SetLanguage(v Language) {
-	o.Language = v
+	o.Language = &v
 }
 
 func (o AppSettingModel) MarshalJSON() ([]byte, error) {
@@ -334,63 +410,74 @@ func (o AppSettingModel) MarshalJSON() ([]byte, error) {
 
 func (o AppSettingModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["is_read_tutorial"] = o.IsReadTutorial
-	toSerialize["is_checkin_force_open"] = o.IsCheckinForceOpen
-	toSerialize["is_save_language"] = o.IsSaveLanguage
-	toSerialize["is_supporter"] = o.IsSupporter
-	toSerialize["plan_type"] = o.PlanType
-	toSerialize["expiration_date"] = o.ExpirationDate
-	toSerialize["purchase_date"] = o.PurchaseDate
-	toSerialize["receipt"] = o.Receipt
-	toSerialize["transactionId"] = o.TransactionId
-	toSerialize["originalTransactionId"] = o.OriginalTransactionId
-	toSerialize["language"] = o.Language
+	if !IsNil(o.IsReadTutorial) {
+		toSerialize["is_read_tutorial"] = o.IsReadTutorial
+	}
+	if !IsNil(o.IsCheckinForceOpen) {
+		toSerialize["is_checkin_force_open"] = o.IsCheckinForceOpen
+	}
+	if !IsNil(o.IsSaveLanguage) {
+		toSerialize["is_save_language"] = o.IsSaveLanguage
+	}
+	if !IsNil(o.IsSupporter) {
+		toSerialize["is_supporter"] = o.IsSupporter
+	}
+	if !IsNil(o.PlanType) {
+		toSerialize["plan_type"] = o.PlanType
+	}
+	if !IsNil(o.ExpirationDate) {
+		toSerialize["expiration_date"] = o.ExpirationDate
+	}
+	if !IsNil(o.PurchaseDate) {
+		toSerialize["purchase_date"] = o.PurchaseDate
+	}
+	if !IsNil(o.Receipt) {
+		toSerialize["receipt"] = o.Receipt
+	}
+	if !IsNil(o.TransactionId) {
+		toSerialize["transactionId"] = o.TransactionId
+	}
+	if !IsNil(o.OriginalTransactionId) {
+		toSerialize["originalTransactionId"] = o.OriginalTransactionId
+	}
+	if !IsNil(o.Language) {
+		toSerialize["language"] = o.Language
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *AppSettingModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"is_read_tutorial",
-		"is_checkin_force_open",
-		"is_save_language",
-		"is_supporter",
-		"plan_type",
-		"expiration_date",
-		"purchase_date",
-		"receipt",
-		"transactionId",
-		"originalTransactionId",
-		"language",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varAppSettingModel := _AppSettingModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varAppSettingModel)
+	err = json.Unmarshal(data, &varAppSettingModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = AppSettingModel(varAppSettingModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "is_read_tutorial")
+		delete(additionalProperties, "is_checkin_force_open")
+		delete(additionalProperties, "is_save_language")
+		delete(additionalProperties, "is_supporter")
+		delete(additionalProperties, "plan_type")
+		delete(additionalProperties, "expiration_date")
+		delete(additionalProperties, "purchase_date")
+		delete(additionalProperties, "receipt")
+		delete(additionalProperties, "transactionId")
+		delete(additionalProperties, "originalTransactionId")
+		delete(additionalProperties, "language")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

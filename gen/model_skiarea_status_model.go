@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the SkiareaStatusModel type satisfies the MappedNullable interface at compile time
@@ -17,25 +15,26 @@ var _ MappedNullable = &SkiareaStatusModel{}
 
 // SkiareaStatusModel struct for SkiareaStatusModel
 type SkiareaStatusModel struct {
-	Id                         int32  `json:"id"`
-	SkiareaId                  int32  `json:"skiarea_id"`
-	Name                       string `json:"name"`
-	Weather                    int32  `json:"weather"`
-	WeatherCodeId              int32  `json:"weather_code_id"`
-	WeatherFlg                 int32  `json:"weather_flg"`
-	Temperature                int32  `json:"temperature"`
-	TemperatureFlg             int32  `json:"temperature_flg"`
-	SnowAccumulation           int32  `json:"snow_accumulation"`
-	SnowAccumulationDifference int32  `json:"snow_accumulation_difference"`
-	SnowAccumulationFlg        int32  `json:"snow_accumulation_flg"`
-	CourceState                int32  `json:"cource_state"`
-	CourceStateFlg             int32  `json:"cource_state_flg"`
-	SnowState                  int32  `json:"snow_state"`
-	SnowStateFlg               int32  `json:"snow_state_flg"`
-	WindSpeed                  string `json:"wind_speed"`
-	Comment                    string `json:"comment"`
-	CreatedAt                  string `json:"created_at"`
-	UpdatedAt                  string `json:"updated_at"`
+	Id                         *int32  `json:"id,omitempty"`
+	SkiareaId                  *int32  `json:"skiarea_id,omitempty"`
+	Name                       *string `json:"name,omitempty"`
+	Weather                    *int32  `json:"weather,omitempty"`
+	WeatherCodeId              *int32  `json:"weather_code_id,omitempty"`
+	WeatherFlg                 *int32  `json:"weather_flg,omitempty"`
+	Temperature                *int32  `json:"temperature,omitempty"`
+	TemperatureFlg             *int32  `json:"temperature_flg,omitempty"`
+	SnowAccumulation           *int32  `json:"snow_accumulation,omitempty"`
+	SnowAccumulationDifference *int32  `json:"snow_accumulation_difference,omitempty"`
+	SnowAccumulationFlg        *int32  `json:"snow_accumulation_flg,omitempty"`
+	CourceState                *int32  `json:"cource_state,omitempty"`
+	CourceStateFlg             *int32  `json:"cource_state_flg,omitempty"`
+	SnowState                  *int32  `json:"snow_state,omitempty"`
+	SnowStateFlg               *int32  `json:"snow_state_flg,omitempty"`
+	WindSpeed                  *string `json:"wind_speed,omitempty"`
+	Comment                    *string `json:"comment,omitempty"`
+	CreatedAt                  *string `json:"created_at,omitempty"`
+	UpdatedAt                  *string `json:"updated_at,omitempty"`
+	AdditionalProperties       map[string]interface{}
 }
 
 type _SkiareaStatusModel SkiareaStatusModel
@@ -44,27 +43,8 @@ type _SkiareaStatusModel SkiareaStatusModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSkiareaStatusModel(id int32, skiareaId int32, name string, weather int32, weatherCodeId int32, weatherFlg int32, temperature int32, temperatureFlg int32, snowAccumulation int32, snowAccumulationDifference int32, snowAccumulationFlg int32, courceState int32, courceStateFlg int32, snowState int32, snowStateFlg int32, windSpeed string, comment string, createdAt string, updatedAt string) *SkiareaStatusModel {
+func NewSkiareaStatusModel() *SkiareaStatusModel {
 	this := SkiareaStatusModel{}
-	this.Id = id
-	this.SkiareaId = skiareaId
-	this.Name = name
-	this.Weather = weather
-	this.WeatherCodeId = weatherCodeId
-	this.WeatherFlg = weatherFlg
-	this.Temperature = temperature
-	this.TemperatureFlg = temperatureFlg
-	this.SnowAccumulation = snowAccumulation
-	this.SnowAccumulationDifference = snowAccumulationDifference
-	this.SnowAccumulationFlg = snowAccumulationFlg
-	this.CourceState = courceState
-	this.CourceStateFlg = courceStateFlg
-	this.SnowState = snowState
-	this.SnowStateFlg = snowStateFlg
-	this.WindSpeed = windSpeed
-	this.Comment = comment
-	this.CreatedAt = createdAt
-	this.UpdatedAt = updatedAt
 	return &this
 }
 
@@ -76,460 +56,612 @@ func NewSkiareaStatusModelWithDefaults() *SkiareaStatusModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *SkiareaStatusModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetSkiareaId returns the SkiareaId field value
+// GetSkiareaId returns the SkiareaId field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSkiareaId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		var ret int32
 		return ret
 	}
-
-	return o.SkiareaId
+	return *o.SkiareaId
 }
 
-// GetSkiareaIdOk returns a tuple with the SkiareaId field value
+// GetSkiareaIdOk returns a tuple with the SkiareaId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSkiareaIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SkiareaId) {
 		return nil, false
 	}
-	return &o.SkiareaId, true
+	return o.SkiareaId, true
 }
 
-// SetSkiareaId sets field value
+// HasSkiareaId returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSkiareaId() bool {
+	if o != nil && !IsNil(o.SkiareaId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkiareaId gets a reference to the given int32 and assigns it to the SkiareaId field.
 func (o *SkiareaStatusModel) SetSkiareaId(v int32) {
-	o.SkiareaId = v
+	o.SkiareaId = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetName() string {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		var ret string
 		return ret
 	}
-
-	return o.Name
+	return *o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Name) {
 		return nil, false
 	}
-	return &o.Name, true
+	return o.Name, true
 }
 
-// SetName sets field value
+// HasName returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
 func (o *SkiareaStatusModel) SetName(v string) {
-	o.Name = v
+	o.Name = &v
 }
 
-// GetWeather returns the Weather field value
+// GetWeather returns the Weather field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetWeather() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Weather) {
 		var ret int32
 		return ret
 	}
-
-	return o.Weather
+	return *o.Weather
 }
 
-// GetWeatherOk returns a tuple with the Weather field value
+// GetWeatherOk returns a tuple with the Weather field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetWeatherOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Weather) {
 		return nil, false
 	}
-	return &o.Weather, true
+	return o.Weather, true
 }
 
-// SetWeather sets field value
+// HasWeather returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasWeather() bool {
+	if o != nil && !IsNil(o.Weather) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeather gets a reference to the given int32 and assigns it to the Weather field.
 func (o *SkiareaStatusModel) SetWeather(v int32) {
-	o.Weather = v
+	o.Weather = &v
 }
 
-// GetWeatherCodeId returns the WeatherCodeId field value
+// GetWeatherCodeId returns the WeatherCodeId field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetWeatherCodeId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WeatherCodeId) {
 		var ret int32
 		return ret
 	}
-
-	return o.WeatherCodeId
+	return *o.WeatherCodeId
 }
 
-// GetWeatherCodeIdOk returns a tuple with the WeatherCodeId field value
+// GetWeatherCodeIdOk returns a tuple with the WeatherCodeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetWeatherCodeIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WeatherCodeId) {
 		return nil, false
 	}
-	return &o.WeatherCodeId, true
+	return o.WeatherCodeId, true
 }
 
-// SetWeatherCodeId sets field value
+// HasWeatherCodeId returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasWeatherCodeId() bool {
+	if o != nil && !IsNil(o.WeatherCodeId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeatherCodeId gets a reference to the given int32 and assigns it to the WeatherCodeId field.
 func (o *SkiareaStatusModel) SetWeatherCodeId(v int32) {
-	o.WeatherCodeId = v
+	o.WeatherCodeId = &v
 }
 
-// GetWeatherFlg returns the WeatherFlg field value
+// GetWeatherFlg returns the WeatherFlg field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetWeatherFlg() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.WeatherFlg) {
 		var ret int32
 		return ret
 	}
-
-	return o.WeatherFlg
+	return *o.WeatherFlg
 }
 
-// GetWeatherFlgOk returns a tuple with the WeatherFlg field value
+// GetWeatherFlgOk returns a tuple with the WeatherFlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetWeatherFlgOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WeatherFlg) {
 		return nil, false
 	}
-	return &o.WeatherFlg, true
+	return o.WeatherFlg, true
 }
 
-// SetWeatherFlg sets field value
+// HasWeatherFlg returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasWeatherFlg() bool {
+	if o != nil && !IsNil(o.WeatherFlg) {
+		return true
+	}
+
+	return false
+}
+
+// SetWeatherFlg gets a reference to the given int32 and assigns it to the WeatherFlg field.
 func (o *SkiareaStatusModel) SetWeatherFlg(v int32) {
-	o.WeatherFlg = v
+	o.WeatherFlg = &v
 }
 
-// GetTemperature returns the Temperature field value
+// GetTemperature returns the Temperature field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetTemperature() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Temperature) {
 		var ret int32
 		return ret
 	}
-
-	return o.Temperature
+	return *o.Temperature
 }
 
-// GetTemperatureOk returns a tuple with the Temperature field value
+// GetTemperatureOk returns a tuple with the Temperature field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetTemperatureOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Temperature) {
 		return nil, false
 	}
-	return &o.Temperature, true
+	return o.Temperature, true
 }
 
-// SetTemperature sets field value
+// HasTemperature returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasTemperature() bool {
+	if o != nil && !IsNil(o.Temperature) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemperature gets a reference to the given int32 and assigns it to the Temperature field.
 func (o *SkiareaStatusModel) SetTemperature(v int32) {
-	o.Temperature = v
+	o.Temperature = &v
 }
 
-// GetTemperatureFlg returns the TemperatureFlg field value
+// GetTemperatureFlg returns the TemperatureFlg field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetTemperatureFlg() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.TemperatureFlg) {
 		var ret int32
 		return ret
 	}
-
-	return o.TemperatureFlg
+	return *o.TemperatureFlg
 }
 
-// GetTemperatureFlgOk returns a tuple with the TemperatureFlg field value
+// GetTemperatureFlgOk returns a tuple with the TemperatureFlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetTemperatureFlgOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.TemperatureFlg) {
 		return nil, false
 	}
-	return &o.TemperatureFlg, true
+	return o.TemperatureFlg, true
 }
 
-// SetTemperatureFlg sets field value
+// HasTemperatureFlg returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasTemperatureFlg() bool {
+	if o != nil && !IsNil(o.TemperatureFlg) {
+		return true
+	}
+
+	return false
+}
+
+// SetTemperatureFlg gets a reference to the given int32 and assigns it to the TemperatureFlg field.
 func (o *SkiareaStatusModel) SetTemperatureFlg(v int32) {
-	o.TemperatureFlg = v
+	o.TemperatureFlg = &v
 }
 
-// GetSnowAccumulation returns the SnowAccumulation field value
+// GetSnowAccumulation returns the SnowAccumulation field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSnowAccumulation() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulation) {
 		var ret int32
 		return ret
 	}
-
-	return o.SnowAccumulation
+	return *o.SnowAccumulation
 }
 
-// GetSnowAccumulationOk returns a tuple with the SnowAccumulation field value
+// GetSnowAccumulationOk returns a tuple with the SnowAccumulation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSnowAccumulationOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulation) {
 		return nil, false
 	}
-	return &o.SnowAccumulation, true
+	return o.SnowAccumulation, true
 }
 
-// SetSnowAccumulation sets field value
+// HasSnowAccumulation returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSnowAccumulation() bool {
+	if o != nil && !IsNil(o.SnowAccumulation) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowAccumulation gets a reference to the given int32 and assigns it to the SnowAccumulation field.
 func (o *SkiareaStatusModel) SetSnowAccumulation(v int32) {
-	o.SnowAccumulation = v
+	o.SnowAccumulation = &v
 }
 
-// GetSnowAccumulationDifference returns the SnowAccumulationDifference field value
+// GetSnowAccumulationDifference returns the SnowAccumulationDifference field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSnowAccumulationDifference() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulationDifference) {
 		var ret int32
 		return ret
 	}
-
-	return o.SnowAccumulationDifference
+	return *o.SnowAccumulationDifference
 }
 
-// GetSnowAccumulationDifferenceOk returns a tuple with the SnowAccumulationDifference field value
+// GetSnowAccumulationDifferenceOk returns a tuple with the SnowAccumulationDifference field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSnowAccumulationDifferenceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulationDifference) {
 		return nil, false
 	}
-	return &o.SnowAccumulationDifference, true
+	return o.SnowAccumulationDifference, true
 }
 
-// SetSnowAccumulationDifference sets field value
+// HasSnowAccumulationDifference returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSnowAccumulationDifference() bool {
+	if o != nil && !IsNil(o.SnowAccumulationDifference) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowAccumulationDifference gets a reference to the given int32 and assigns it to the SnowAccumulationDifference field.
 func (o *SkiareaStatusModel) SetSnowAccumulationDifference(v int32) {
-	o.SnowAccumulationDifference = v
+	o.SnowAccumulationDifference = &v
 }
 
-// GetSnowAccumulationFlg returns the SnowAccumulationFlg field value
+// GetSnowAccumulationFlg returns the SnowAccumulationFlg field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSnowAccumulationFlg() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulationFlg) {
 		var ret int32
 		return ret
 	}
-
-	return o.SnowAccumulationFlg
+	return *o.SnowAccumulationFlg
 }
 
-// GetSnowAccumulationFlgOk returns a tuple with the SnowAccumulationFlg field value
+// GetSnowAccumulationFlgOk returns a tuple with the SnowAccumulationFlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSnowAccumulationFlgOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowAccumulationFlg) {
 		return nil, false
 	}
-	return &o.SnowAccumulationFlg, true
+	return o.SnowAccumulationFlg, true
 }
 
-// SetSnowAccumulationFlg sets field value
+// HasSnowAccumulationFlg returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSnowAccumulationFlg() bool {
+	if o != nil && !IsNil(o.SnowAccumulationFlg) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowAccumulationFlg gets a reference to the given int32 and assigns it to the SnowAccumulationFlg field.
 func (o *SkiareaStatusModel) SetSnowAccumulationFlg(v int32) {
-	o.SnowAccumulationFlg = v
+	o.SnowAccumulationFlg = &v
 }
 
-// GetCourceState returns the CourceState field value
+// GetCourceState returns the CourceState field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetCourceState() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CourceState) {
 		var ret int32
 		return ret
 	}
-
-	return o.CourceState
+	return *o.CourceState
 }
 
-// GetCourceStateOk returns a tuple with the CourceState field value
+// GetCourceStateOk returns a tuple with the CourceState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetCourceStateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CourceState) {
 		return nil, false
 	}
-	return &o.CourceState, true
+	return o.CourceState, true
 }
 
-// SetCourceState sets field value
+// HasCourceState returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasCourceState() bool {
+	if o != nil && !IsNil(o.CourceState) {
+		return true
+	}
+
+	return false
+}
+
+// SetCourceState gets a reference to the given int32 and assigns it to the CourceState field.
 func (o *SkiareaStatusModel) SetCourceState(v int32) {
-	o.CourceState = v
+	o.CourceState = &v
 }
 
-// GetCourceStateFlg returns the CourceStateFlg field value
+// GetCourceStateFlg returns the CourceStateFlg field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetCourceStateFlg() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.CourceStateFlg) {
 		var ret int32
 		return ret
 	}
-
-	return o.CourceStateFlg
+	return *o.CourceStateFlg
 }
 
-// GetCourceStateFlgOk returns a tuple with the CourceStateFlg field value
+// GetCourceStateFlgOk returns a tuple with the CourceStateFlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetCourceStateFlgOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CourceStateFlg) {
 		return nil, false
 	}
-	return &o.CourceStateFlg, true
+	return o.CourceStateFlg, true
 }
 
-// SetCourceStateFlg sets field value
+// HasCourceStateFlg returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasCourceStateFlg() bool {
+	if o != nil && !IsNil(o.CourceStateFlg) {
+		return true
+	}
+
+	return false
+}
+
+// SetCourceStateFlg gets a reference to the given int32 and assigns it to the CourceStateFlg field.
 func (o *SkiareaStatusModel) SetCourceStateFlg(v int32) {
-	o.CourceStateFlg = v
+	o.CourceStateFlg = &v
 }
 
-// GetSnowState returns the SnowState field value
+// GetSnowState returns the SnowState field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSnowState() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SnowState) {
 		var ret int32
 		return ret
 	}
-
-	return o.SnowState
+	return *o.SnowState
 }
 
-// GetSnowStateOk returns a tuple with the SnowState field value
+// GetSnowStateOk returns a tuple with the SnowState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSnowStateOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowState) {
 		return nil, false
 	}
-	return &o.SnowState, true
+	return o.SnowState, true
 }
 
-// SetSnowState sets field value
+// HasSnowState returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSnowState() bool {
+	if o != nil && !IsNil(o.SnowState) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowState gets a reference to the given int32 and assigns it to the SnowState field.
 func (o *SkiareaStatusModel) SetSnowState(v int32) {
-	o.SnowState = v
+	o.SnowState = &v
 }
 
-// GetSnowStateFlg returns the SnowStateFlg field value
+// GetSnowStateFlg returns the SnowStateFlg field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetSnowStateFlg() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SnowStateFlg) {
 		var ret int32
 		return ret
 	}
-
-	return o.SnowStateFlg
+	return *o.SnowStateFlg
 }
 
-// GetSnowStateFlgOk returns a tuple with the SnowStateFlg field value
+// GetSnowStateFlgOk returns a tuple with the SnowStateFlg field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetSnowStateFlgOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SnowStateFlg) {
 		return nil, false
 	}
-	return &o.SnowStateFlg, true
+	return o.SnowStateFlg, true
 }
 
-// SetSnowStateFlg sets field value
+// HasSnowStateFlg returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasSnowStateFlg() bool {
+	if o != nil && !IsNil(o.SnowStateFlg) {
+		return true
+	}
+
+	return false
+}
+
+// SetSnowStateFlg gets a reference to the given int32 and assigns it to the SnowStateFlg field.
 func (o *SkiareaStatusModel) SetSnowStateFlg(v int32) {
-	o.SnowStateFlg = v
+	o.SnowStateFlg = &v
 }
 
-// GetWindSpeed returns the WindSpeed field value
+// GetWindSpeed returns the WindSpeed field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetWindSpeed() string {
-	if o == nil {
+	if o == nil || IsNil(o.WindSpeed) {
 		var ret string
 		return ret
 	}
-
-	return o.WindSpeed
+	return *o.WindSpeed
 }
 
-// GetWindSpeedOk returns a tuple with the WindSpeed field value
+// GetWindSpeedOk returns a tuple with the WindSpeed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetWindSpeedOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.WindSpeed) {
 		return nil, false
 	}
-	return &o.WindSpeed, true
+	return o.WindSpeed, true
 }
 
-// SetWindSpeed sets field value
+// HasWindSpeed returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasWindSpeed() bool {
+	if o != nil && !IsNil(o.WindSpeed) {
+		return true
+	}
+
+	return false
+}
+
+// SetWindSpeed gets a reference to the given string and assigns it to the WindSpeed field.
 func (o *SkiareaStatusModel) SetWindSpeed(v string) {
-	o.WindSpeed = v
+	o.WindSpeed = &v
 }
 
-// GetComment returns the Comment field value
+// GetComment returns the Comment field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetComment() string {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		var ret string
 		return ret
 	}
-
-	return o.Comment
+	return *o.Comment
 }
 
-// GetCommentOk returns a tuple with the Comment field value
+// GetCommentOk returns a tuple with the Comment field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetCommentOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Comment) {
 		return nil, false
 	}
-	return &o.Comment, true
+	return o.Comment, true
 }
 
-// SetComment sets field value
+// HasComment returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasComment() bool {
+	if o != nil && !IsNil(o.Comment) {
+		return true
+	}
+
+	return false
+}
+
+// SetComment gets a reference to the given string and assigns it to the Comment field.
 func (o *SkiareaStatusModel) SetComment(v string) {
-	o.Comment = v
+	o.Comment = &v
 }
 
-// GetCreatedAt returns the CreatedAt field value
+// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetCreatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.CreatedAt
+	return *o.CreatedAt
 }
 
-// GetCreatedAtOk returns a tuple with the CreatedAt field value
+// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetCreatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CreatedAt) {
 		return nil, false
 	}
-	return &o.CreatedAt, true
+	return o.CreatedAt, true
 }
 
-// SetCreatedAt sets field value
+// HasCreatedAt returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasCreatedAt() bool {
+	if o != nil && !IsNil(o.CreatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
 func (o *SkiareaStatusModel) SetCreatedAt(v string) {
-	o.CreatedAt = v
+	o.CreatedAt = &v
 }
 
-// GetUpdatedAt returns the UpdatedAt field value
+// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *SkiareaStatusModel) GetUpdatedAt() string {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		var ret string
 		return ret
 	}
-
-	return o.UpdatedAt
+	return *o.UpdatedAt
 }
 
-// GetUpdatedAtOk returns a tuple with the UpdatedAt field value
+// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SkiareaStatusModel) GetUpdatedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.UpdatedAt) {
 		return nil, false
 	}
-	return &o.UpdatedAt, true
+	return o.UpdatedAt, true
 }
 
-// SetUpdatedAt sets field value
+// HasUpdatedAt returns a boolean if a field has been set.
+func (o *SkiareaStatusModel) HasUpdatedAt() bool {
+	if o != nil && !IsNil(o.UpdatedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *SkiareaStatusModel) SetUpdatedAt(v string) {
-	o.UpdatedAt = v
+	o.UpdatedAt = &v
 }
 
 func (o SkiareaStatusModel) MarshalJSON() ([]byte, error) {
@@ -542,79 +674,106 @@ func (o SkiareaStatusModel) MarshalJSON() ([]byte, error) {
 
 func (o SkiareaStatusModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["skiarea_id"] = o.SkiareaId
-	toSerialize["name"] = o.Name
-	toSerialize["weather"] = o.Weather
-	toSerialize["weather_code_id"] = o.WeatherCodeId
-	toSerialize["weather_flg"] = o.WeatherFlg
-	toSerialize["temperature"] = o.Temperature
-	toSerialize["temperature_flg"] = o.TemperatureFlg
-	toSerialize["snow_accumulation"] = o.SnowAccumulation
-	toSerialize["snow_accumulation_difference"] = o.SnowAccumulationDifference
-	toSerialize["snow_accumulation_flg"] = o.SnowAccumulationFlg
-	toSerialize["cource_state"] = o.CourceState
-	toSerialize["cource_state_flg"] = o.CourceStateFlg
-	toSerialize["snow_state"] = o.SnowState
-	toSerialize["snow_state_flg"] = o.SnowStateFlg
-	toSerialize["wind_speed"] = o.WindSpeed
-	toSerialize["comment"] = o.Comment
-	toSerialize["created_at"] = o.CreatedAt
-	toSerialize["updated_at"] = o.UpdatedAt
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.SkiareaId) {
+		toSerialize["skiarea_id"] = o.SkiareaId
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Weather) {
+		toSerialize["weather"] = o.Weather
+	}
+	if !IsNil(o.WeatherCodeId) {
+		toSerialize["weather_code_id"] = o.WeatherCodeId
+	}
+	if !IsNil(o.WeatherFlg) {
+		toSerialize["weather_flg"] = o.WeatherFlg
+	}
+	if !IsNil(o.Temperature) {
+		toSerialize["temperature"] = o.Temperature
+	}
+	if !IsNil(o.TemperatureFlg) {
+		toSerialize["temperature_flg"] = o.TemperatureFlg
+	}
+	if !IsNil(o.SnowAccumulation) {
+		toSerialize["snow_accumulation"] = o.SnowAccumulation
+	}
+	if !IsNil(o.SnowAccumulationDifference) {
+		toSerialize["snow_accumulation_difference"] = o.SnowAccumulationDifference
+	}
+	if !IsNil(o.SnowAccumulationFlg) {
+		toSerialize["snow_accumulation_flg"] = o.SnowAccumulationFlg
+	}
+	if !IsNil(o.CourceState) {
+		toSerialize["cource_state"] = o.CourceState
+	}
+	if !IsNil(o.CourceStateFlg) {
+		toSerialize["cource_state_flg"] = o.CourceStateFlg
+	}
+	if !IsNil(o.SnowState) {
+		toSerialize["snow_state"] = o.SnowState
+	}
+	if !IsNil(o.SnowStateFlg) {
+		toSerialize["snow_state_flg"] = o.SnowStateFlg
+	}
+	if !IsNil(o.WindSpeed) {
+		toSerialize["wind_speed"] = o.WindSpeed
+	}
+	if !IsNil(o.Comment) {
+		toSerialize["comment"] = o.Comment
+	}
+	if !IsNil(o.CreatedAt) {
+		toSerialize["created_at"] = o.CreatedAt
+	}
+	if !IsNil(o.UpdatedAt) {
+		toSerialize["updated_at"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *SkiareaStatusModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"skiarea_id",
-		"name",
-		"weather",
-		"weather_code_id",
-		"weather_flg",
-		"temperature",
-		"temperature_flg",
-		"snow_accumulation",
-		"snow_accumulation_difference",
-		"snow_accumulation_flg",
-		"cource_state",
-		"cource_state_flg",
-		"snow_state",
-		"snow_state_flg",
-		"wind_speed",
-		"comment",
-		"created_at",
-		"updated_at",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varSkiareaStatusModel := _SkiareaStatusModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varSkiareaStatusModel)
+	err = json.Unmarshal(data, &varSkiareaStatusModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = SkiareaStatusModel(varSkiareaStatusModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "skiarea_id")
+		delete(additionalProperties, "name")
+		delete(additionalProperties, "weather")
+		delete(additionalProperties, "weather_code_id")
+		delete(additionalProperties, "weather_flg")
+		delete(additionalProperties, "temperature")
+		delete(additionalProperties, "temperature_flg")
+		delete(additionalProperties, "snow_accumulation")
+		delete(additionalProperties, "snow_accumulation_difference")
+		delete(additionalProperties, "snow_accumulation_flg")
+		delete(additionalProperties, "cource_state")
+		delete(additionalProperties, "cource_state_flg")
+		delete(additionalProperties, "snow_state")
+		delete(additionalProperties, "snow_state_flg")
+		delete(additionalProperties, "wind_speed")
+		delete(additionalProperties, "comment")
+		delete(additionalProperties, "created_at")
+		delete(additionalProperties, "updated_at")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

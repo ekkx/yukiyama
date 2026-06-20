@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the LocationModel type satisfies the MappedNullable interface at compile time
@@ -17,13 +15,14 @@ var _ MappedNullable = &LocationModel{}
 
 // LocationModel struct for LocationModel
 type LocationModel struct {
-	Lat       int32  `json:"lat"`
-	Lon       int32  `json:"lon"`
-	Altitude  int32  `json:"altitude"`
-	Accuracy  int32  `json:"accuracy"`
-	Course    int32  `json:"course"`
-	Speed     int32  `json:"speed"`
-	Timestamp string `json:"timestamp"`
+	Lat                  *int32  `json:"lat,omitempty"`
+	Lon                  *int32  `json:"lon,omitempty"`
+	Altitude             *int32  `json:"altitude,omitempty"`
+	Accuracy             *int32  `json:"accuracy,omitempty"`
+	Course               *int32  `json:"course,omitempty"`
+	Speed                *int32  `json:"speed,omitempty"`
+	Timestamp            *string `json:"timestamp,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _LocationModel LocationModel
@@ -32,15 +31,8 @@ type _LocationModel LocationModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewLocationModel(lat int32, lon int32, altitude int32, accuracy int32, course int32, speed int32, timestamp string) *LocationModel {
+func NewLocationModel() *LocationModel {
 	this := LocationModel{}
-	this.Lat = lat
-	this.Lon = lon
-	this.Altitude = altitude
-	this.Accuracy = accuracy
-	this.Course = course
-	this.Speed = speed
-	this.Timestamp = timestamp
 	return &this
 }
 
@@ -52,172 +44,228 @@ func NewLocationModelWithDefaults() *LocationModel {
 	return &this
 }
 
-// GetLat returns the Lat field value
+// GetLat returns the Lat field value if set, zero value otherwise.
 func (o *LocationModel) GetLat() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Lat) {
 		var ret int32
 		return ret
 	}
-
-	return o.Lat
+	return *o.Lat
 }
 
-// GetLatOk returns a tuple with the Lat field value
+// GetLatOk returns a tuple with the Lat field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetLatOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Lat) {
 		return nil, false
 	}
-	return &o.Lat, true
+	return o.Lat, true
 }
 
-// SetLat sets field value
+// HasLat returns a boolean if a field has been set.
+func (o *LocationModel) HasLat() bool {
+	if o != nil && !IsNil(o.Lat) {
+		return true
+	}
+
+	return false
+}
+
+// SetLat gets a reference to the given int32 and assigns it to the Lat field.
 func (o *LocationModel) SetLat(v int32) {
-	o.Lat = v
+	o.Lat = &v
 }
 
-// GetLon returns the Lon field value
+// GetLon returns the Lon field value if set, zero value otherwise.
 func (o *LocationModel) GetLon() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Lon) {
 		var ret int32
 		return ret
 	}
-
-	return o.Lon
+	return *o.Lon
 }
 
-// GetLonOk returns a tuple with the Lon field value
+// GetLonOk returns a tuple with the Lon field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetLonOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Lon) {
 		return nil, false
 	}
-	return &o.Lon, true
+	return o.Lon, true
 }
 
-// SetLon sets field value
+// HasLon returns a boolean if a field has been set.
+func (o *LocationModel) HasLon() bool {
+	if o != nil && !IsNil(o.Lon) {
+		return true
+	}
+
+	return false
+}
+
+// SetLon gets a reference to the given int32 and assigns it to the Lon field.
 func (o *LocationModel) SetLon(v int32) {
-	o.Lon = v
+	o.Lon = &v
 }
 
-// GetAltitude returns the Altitude field value
+// GetAltitude returns the Altitude field value if set, zero value otherwise.
 func (o *LocationModel) GetAltitude() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Altitude) {
 		var ret int32
 		return ret
 	}
-
-	return o.Altitude
+	return *o.Altitude
 }
 
-// GetAltitudeOk returns a tuple with the Altitude field value
+// GetAltitudeOk returns a tuple with the Altitude field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetAltitudeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Altitude) {
 		return nil, false
 	}
-	return &o.Altitude, true
+	return o.Altitude, true
 }
 
-// SetAltitude sets field value
+// HasAltitude returns a boolean if a field has been set.
+func (o *LocationModel) HasAltitude() bool {
+	if o != nil && !IsNil(o.Altitude) {
+		return true
+	}
+
+	return false
+}
+
+// SetAltitude gets a reference to the given int32 and assigns it to the Altitude field.
 func (o *LocationModel) SetAltitude(v int32) {
-	o.Altitude = v
+	o.Altitude = &v
 }
 
-// GetAccuracy returns the Accuracy field value
+// GetAccuracy returns the Accuracy field value if set, zero value otherwise.
 func (o *LocationModel) GetAccuracy() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Accuracy) {
 		var ret int32
 		return ret
 	}
-
-	return o.Accuracy
+	return *o.Accuracy
 }
 
-// GetAccuracyOk returns a tuple with the Accuracy field value
+// GetAccuracyOk returns a tuple with the Accuracy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetAccuracyOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Accuracy) {
 		return nil, false
 	}
-	return &o.Accuracy, true
+	return o.Accuracy, true
 }
 
-// SetAccuracy sets field value
+// HasAccuracy returns a boolean if a field has been set.
+func (o *LocationModel) HasAccuracy() bool {
+	if o != nil && !IsNil(o.Accuracy) {
+		return true
+	}
+
+	return false
+}
+
+// SetAccuracy gets a reference to the given int32 and assigns it to the Accuracy field.
 func (o *LocationModel) SetAccuracy(v int32) {
-	o.Accuracy = v
+	o.Accuracy = &v
 }
 
-// GetCourse returns the Course field value
+// GetCourse returns the Course field value if set, zero value otherwise.
 func (o *LocationModel) GetCourse() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Course) {
 		var ret int32
 		return ret
 	}
-
-	return o.Course
+	return *o.Course
 }
 
-// GetCourseOk returns a tuple with the Course field value
+// GetCourseOk returns a tuple with the Course field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetCourseOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Course) {
 		return nil, false
 	}
-	return &o.Course, true
+	return o.Course, true
 }
 
-// SetCourse sets field value
+// HasCourse returns a boolean if a field has been set.
+func (o *LocationModel) HasCourse() bool {
+	if o != nil && !IsNil(o.Course) {
+		return true
+	}
+
+	return false
+}
+
+// SetCourse gets a reference to the given int32 and assigns it to the Course field.
 func (o *LocationModel) SetCourse(v int32) {
-	o.Course = v
+	o.Course = &v
 }
 
-// GetSpeed returns the Speed field value
+// GetSpeed returns the Speed field value if set, zero value otherwise.
 func (o *LocationModel) GetSpeed() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Speed) {
 		var ret int32
 		return ret
 	}
-
-	return o.Speed
+	return *o.Speed
 }
 
-// GetSpeedOk returns a tuple with the Speed field value
+// GetSpeedOk returns a tuple with the Speed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetSpeedOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Speed) {
 		return nil, false
 	}
-	return &o.Speed, true
+	return o.Speed, true
 }
 
-// SetSpeed sets field value
+// HasSpeed returns a boolean if a field has been set.
+func (o *LocationModel) HasSpeed() bool {
+	if o != nil && !IsNil(o.Speed) {
+		return true
+	}
+
+	return false
+}
+
+// SetSpeed gets a reference to the given int32 and assigns it to the Speed field.
 func (o *LocationModel) SetSpeed(v int32) {
-	o.Speed = v
+	o.Speed = &v
 }
 
-// GetTimestamp returns the Timestamp field value
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *LocationModel) GetTimestamp() string {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		var ret string
 		return ret
 	}
-
-	return o.Timestamp
+	return *o.Timestamp
 }
 
-// GetTimestampOk returns a tuple with the Timestamp field value
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LocationModel) GetTimestampOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Timestamp) {
 		return nil, false
 	}
-	return &o.Timestamp, true
+	return o.Timestamp, true
 }
 
-// SetTimestamp sets field value
+// HasTimestamp returns a boolean if a field has been set.
+func (o *LocationModel) HasTimestamp() bool {
+	if o != nil && !IsNil(o.Timestamp) {
+		return true
+	}
+
+	return false
+}
+
+// SetTimestamp gets a reference to the given string and assigns it to the Timestamp field.
 func (o *LocationModel) SetTimestamp(v string) {
-	o.Timestamp = v
+	o.Timestamp = &v
 }
 
 func (o LocationModel) MarshalJSON() ([]byte, error) {
@@ -230,55 +278,58 @@ func (o LocationModel) MarshalJSON() ([]byte, error) {
 
 func (o LocationModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["lat"] = o.Lat
-	toSerialize["lon"] = o.Lon
-	toSerialize["altitude"] = o.Altitude
-	toSerialize["accuracy"] = o.Accuracy
-	toSerialize["course"] = o.Course
-	toSerialize["speed"] = o.Speed
-	toSerialize["timestamp"] = o.Timestamp
+	if !IsNil(o.Lat) {
+		toSerialize["lat"] = o.Lat
+	}
+	if !IsNil(o.Lon) {
+		toSerialize["lon"] = o.Lon
+	}
+	if !IsNil(o.Altitude) {
+		toSerialize["altitude"] = o.Altitude
+	}
+	if !IsNil(o.Accuracy) {
+		toSerialize["accuracy"] = o.Accuracy
+	}
+	if !IsNil(o.Course) {
+		toSerialize["course"] = o.Course
+	}
+	if !IsNil(o.Speed) {
+		toSerialize["speed"] = o.Speed
+	}
+	if !IsNil(o.Timestamp) {
+		toSerialize["timestamp"] = o.Timestamp
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *LocationModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"lat",
-		"lon",
-		"altitude",
-		"accuracy",
-		"course",
-		"speed",
-		"timestamp",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varLocationModel := _LocationModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varLocationModel)
+	err = json.Unmarshal(data, &varLocationModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = LocationModel(varLocationModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "lat")
+		delete(additionalProperties, "lon")
+		delete(additionalProperties, "altitude")
+		delete(additionalProperties, "accuracy")
+		delete(additionalProperties, "course")
+		delete(additionalProperties, "speed")
+		delete(additionalProperties, "timestamp")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

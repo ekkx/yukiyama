@@ -7,9 +7,7 @@ yukiyama
 package gen
 
 import (
-	"bytes"
 	"encoding/json"
-	"fmt"
 )
 
 // checks if the StanceModel type satisfies the MappedNullable interface at compile time
@@ -17,44 +15,45 @@ var _ MappedNullable = &StanceModel{}
 
 // StanceModel struct for StanceModel
 type StanceModel struct {
-	Id           int32  `json:"id"`
-	DataType     int32  `json:"data_type"`
-	Shop         int32  `json:"shop"`
-	ShopName     string `json:"shop_name"`
-	PcCode       string `json:"pc_code"`
-	SerialNum    int32  `json:"serial_num"`
-	Date         string `json:"date"`
-	Time         string `json:"time"`
-	Style        int32  `json:"style"`
-	SelfStance   int32  `json:"self_stance"`
-	ResultStance int32  `json:"result_stance"`
-	Result1L     int32  `json:"result_1_l"`
-	Result1R     int32  `json:"result_1_r"`
-	Result1W     int32  `json:"result_1_w"`
-	Result1D     int32  `json:"result_1_d"`
-	Result2L     int32  `json:"result_2_l"`
-	Result2R     int32  `json:"result_2_r"`
-	Result2W     int32  `json:"result_2_w"`
-	Result2D     int32  `json:"result_2_d"`
-	Result3L     int32  `json:"result_3_l"`
-	Result3R     int32  `json:"result_3_r"`
-	Result3W     int32  `json:"result_3_w"`
-	Result3D     int32  `json:"result_3_d"`
-	Type         int32  `json:"type"`
-	ExRotationL  int32  `json:"ex_rotation_l"`
-	InRotationL  int32  `json:"in_rotation_l"`
-	NpL          int32  `json:"np_l"`
-	ExRotationR  int32  `json:"ex_rotation_r"`
-	InRotationR  int32  `json:"in_rotation_r"`
-	NpR          int32  `json:"np_r"`
-	ResultL      int32  `json:"result_l"`
-	ResultR      int32  `json:"result_r"`
-	ResultW      int32  `json:"result_w"`
-	ResultD      int32  `json:"result_d"`
-	IsManual     int32  `json:"is_manual"`
-	Memo         string `json:"memo"`
-	PrintPattern int32  `json:"print_pattern"`
-	SubjectCode  string `json:"subject_code"`
+	Id                   *int32  `json:"id,omitempty"`
+	DataType             *int32  `json:"data_type,omitempty"`
+	Shop                 *int32  `json:"shop,omitempty"`
+	ShopName             *string `json:"shop_name,omitempty"`
+	PcCode               *string `json:"pc_code,omitempty"`
+	SerialNum            *int32  `json:"serial_num,omitempty"`
+	Date                 *string `json:"date,omitempty"`
+	Time                 *string `json:"time,omitempty"`
+	Style                *int32  `json:"style,omitempty"`
+	SelfStance           *int32  `json:"self_stance,omitempty"`
+	ResultStance         *int32  `json:"result_stance,omitempty"`
+	Result1L             *int32  `json:"result_1_l,omitempty"`
+	Result1R             *int32  `json:"result_1_r,omitempty"`
+	Result1W             *int32  `json:"result_1_w,omitempty"`
+	Result1D             *int32  `json:"result_1_d,omitempty"`
+	Result2L             *int32  `json:"result_2_l,omitempty"`
+	Result2R             *int32  `json:"result_2_r,omitempty"`
+	Result2W             *int32  `json:"result_2_w,omitempty"`
+	Result2D             *int32  `json:"result_2_d,omitempty"`
+	Result3L             *int32  `json:"result_3_l,omitempty"`
+	Result3R             *int32  `json:"result_3_r,omitempty"`
+	Result3W             *int32  `json:"result_3_w,omitempty"`
+	Result3D             *int32  `json:"result_3_d,omitempty"`
+	Type                 *int32  `json:"type,omitempty"`
+	ExRotationL          *int32  `json:"ex_rotation_l,omitempty"`
+	InRotationL          *int32  `json:"in_rotation_l,omitempty"`
+	NpL                  *int32  `json:"np_l,omitempty"`
+	ExRotationR          *int32  `json:"ex_rotation_r,omitempty"`
+	InRotationR          *int32  `json:"in_rotation_r,omitempty"`
+	NpR                  *int32  `json:"np_r,omitempty"`
+	ResultL              *int32  `json:"result_l,omitempty"`
+	ResultR              *int32  `json:"result_r,omitempty"`
+	ResultW              *int32  `json:"result_w,omitempty"`
+	ResultD              *int32  `json:"result_d,omitempty"`
+	IsManual             *int32  `json:"is_manual,omitempty"`
+	Memo                 *string `json:"memo,omitempty"`
+	PrintPattern         *int32  `json:"print_pattern,omitempty"`
+	SubjectCode          *string `json:"subject_code,omitempty"`
+	AdditionalProperties map[string]interface{}
 }
 
 type _StanceModel StanceModel
@@ -63,46 +62,8 @@ type _StanceModel StanceModel
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewStanceModel(id int32, dataType int32, shop int32, shopName string, pcCode string, serialNum int32, date string, time string, style int32, selfStance int32, resultStance int32, result1L int32, result1R int32, result1W int32, result1D int32, result2L int32, result2R int32, result2W int32, result2D int32, result3L int32, result3R int32, result3W int32, result3D int32, type_ int32, exRotationL int32, inRotationL int32, npL int32, exRotationR int32, inRotationR int32, npR int32, resultL int32, resultR int32, resultW int32, resultD int32, isManual int32, memo string, printPattern int32, subjectCode string) *StanceModel {
+func NewStanceModel() *StanceModel {
 	this := StanceModel{}
-	this.Id = id
-	this.DataType = dataType
-	this.Shop = shop
-	this.ShopName = shopName
-	this.PcCode = pcCode
-	this.SerialNum = serialNum
-	this.Date = date
-	this.Time = time
-	this.Style = style
-	this.SelfStance = selfStance
-	this.ResultStance = resultStance
-	this.Result1L = result1L
-	this.Result1R = result1R
-	this.Result1W = result1W
-	this.Result1D = result1D
-	this.Result2L = result2L
-	this.Result2R = result2R
-	this.Result2W = result2W
-	this.Result2D = result2D
-	this.Result3L = result3L
-	this.Result3R = result3R
-	this.Result3W = result3W
-	this.Result3D = result3D
-	this.Type = type_
-	this.ExRotationL = exRotationL
-	this.InRotationL = inRotationL
-	this.NpL = npL
-	this.ExRotationR = exRotationR
-	this.InRotationR = inRotationR
-	this.NpR = npR
-	this.ResultL = resultL
-	this.ResultR = resultR
-	this.ResultW = resultW
-	this.ResultD = resultD
-	this.IsManual = isManual
-	this.Memo = memo
-	this.PrintPattern = printPattern
-	this.SubjectCode = subjectCode
 	return &this
 }
 
@@ -114,916 +75,1220 @@ func NewStanceModelWithDefaults() *StanceModel {
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *StanceModel) GetId() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		var ret int32
 		return ret
 	}
-
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Id) {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value
+// HasId returns a boolean if a field has been set.
+func (o *StanceModel) HasId() bool {
+	if o != nil && !IsNil(o.Id) {
+		return true
+	}
+
+	return false
+}
+
+// SetId gets a reference to the given int32 and assigns it to the Id field.
 func (o *StanceModel) SetId(v int32) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetDataType returns the DataType field value
+// GetDataType returns the DataType field value if set, zero value otherwise.
 func (o *StanceModel) GetDataType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.DataType) {
 		var ret int32
 		return ret
 	}
-
-	return o.DataType
+	return *o.DataType
 }
 
-// GetDataTypeOk returns a tuple with the DataType field value
+// GetDataTypeOk returns a tuple with the DataType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetDataTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.DataType) {
 		return nil, false
 	}
-	return &o.DataType, true
+	return o.DataType, true
 }
 
-// SetDataType sets field value
+// HasDataType returns a boolean if a field has been set.
+func (o *StanceModel) HasDataType() bool {
+	if o != nil && !IsNil(o.DataType) {
+		return true
+	}
+
+	return false
+}
+
+// SetDataType gets a reference to the given int32 and assigns it to the DataType field.
 func (o *StanceModel) SetDataType(v int32) {
-	o.DataType = v
+	o.DataType = &v
 }
 
-// GetShop returns the Shop field value
+// GetShop returns the Shop field value if set, zero value otherwise.
 func (o *StanceModel) GetShop() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Shop) {
 		var ret int32
 		return ret
 	}
-
-	return o.Shop
+	return *o.Shop
 }
 
-// GetShopOk returns a tuple with the Shop field value
+// GetShopOk returns a tuple with the Shop field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetShopOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Shop) {
 		return nil, false
 	}
-	return &o.Shop, true
+	return o.Shop, true
 }
 
-// SetShop sets field value
+// HasShop returns a boolean if a field has been set.
+func (o *StanceModel) HasShop() bool {
+	if o != nil && !IsNil(o.Shop) {
+		return true
+	}
+
+	return false
+}
+
+// SetShop gets a reference to the given int32 and assigns it to the Shop field.
 func (o *StanceModel) SetShop(v int32) {
-	o.Shop = v
+	o.Shop = &v
 }
 
-// GetShopName returns the ShopName field value
+// GetShopName returns the ShopName field value if set, zero value otherwise.
 func (o *StanceModel) GetShopName() string {
-	if o == nil {
+	if o == nil || IsNil(o.ShopName) {
 		var ret string
 		return ret
 	}
-
-	return o.ShopName
+	return *o.ShopName
 }
 
-// GetShopNameOk returns a tuple with the ShopName field value
+// GetShopNameOk returns a tuple with the ShopName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetShopNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ShopName) {
 		return nil, false
 	}
-	return &o.ShopName, true
+	return o.ShopName, true
 }
 
-// SetShopName sets field value
+// HasShopName returns a boolean if a field has been set.
+func (o *StanceModel) HasShopName() bool {
+	if o != nil && !IsNil(o.ShopName) {
+		return true
+	}
+
+	return false
+}
+
+// SetShopName gets a reference to the given string and assigns it to the ShopName field.
 func (o *StanceModel) SetShopName(v string) {
-	o.ShopName = v
+	o.ShopName = &v
 }
 
-// GetPcCode returns the PcCode field value
+// GetPcCode returns the PcCode field value if set, zero value otherwise.
 func (o *StanceModel) GetPcCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.PcCode) {
 		var ret string
 		return ret
 	}
-
-	return o.PcCode
+	return *o.PcCode
 }
 
-// GetPcCodeOk returns a tuple with the PcCode field value
+// GetPcCodeOk returns a tuple with the PcCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetPcCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PcCode) {
 		return nil, false
 	}
-	return &o.PcCode, true
+	return o.PcCode, true
 }
 
-// SetPcCode sets field value
+// HasPcCode returns a boolean if a field has been set.
+func (o *StanceModel) HasPcCode() bool {
+	if o != nil && !IsNil(o.PcCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetPcCode gets a reference to the given string and assigns it to the PcCode field.
 func (o *StanceModel) SetPcCode(v string) {
-	o.PcCode = v
+	o.PcCode = &v
 }
 
-// GetSerialNum returns the SerialNum field value
+// GetSerialNum returns the SerialNum field value if set, zero value otherwise.
 func (o *StanceModel) GetSerialNum() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNum) {
 		var ret int32
 		return ret
 	}
-
-	return o.SerialNum
+	return *o.SerialNum
 }
 
-// GetSerialNumOk returns a tuple with the SerialNum field value
+// GetSerialNumOk returns a tuple with the SerialNum field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetSerialNumOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SerialNum) {
 		return nil, false
 	}
-	return &o.SerialNum, true
+	return o.SerialNum, true
 }
 
-// SetSerialNum sets field value
+// HasSerialNum returns a boolean if a field has been set.
+func (o *StanceModel) HasSerialNum() bool {
+	if o != nil && !IsNil(o.SerialNum) {
+		return true
+	}
+
+	return false
+}
+
+// SetSerialNum gets a reference to the given int32 and assigns it to the SerialNum field.
 func (o *StanceModel) SetSerialNum(v int32) {
-	o.SerialNum = v
+	o.SerialNum = &v
 }
 
-// GetDate returns the Date field value
+// GetDate returns the Date field value if set, zero value otherwise.
 func (o *StanceModel) GetDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.Date) {
 		var ret string
 		return ret
 	}
-
-	return o.Date
+	return *o.Date
 }
 
-// GetDateOk returns a tuple with the Date field value
+// GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Date) {
 		return nil, false
 	}
-	return &o.Date, true
+	return o.Date, true
 }
 
-// SetDate sets field value
+// HasDate returns a boolean if a field has been set.
+func (o *StanceModel) HasDate() bool {
+	if o != nil && !IsNil(o.Date) {
+		return true
+	}
+
+	return false
+}
+
+// SetDate gets a reference to the given string and assigns it to the Date field.
 func (o *StanceModel) SetDate(v string) {
-	o.Date = v
+	o.Date = &v
 }
 
-// GetTime returns the Time field value
+// GetTime returns the Time field value if set, zero value otherwise.
 func (o *StanceModel) GetTime() string {
-	if o == nil {
+	if o == nil || IsNil(o.Time) {
 		var ret string
 		return ret
 	}
-
-	return o.Time
+	return *o.Time
 }
 
-// GetTimeOk returns a tuple with the Time field value
+// GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetTimeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Time) {
 		return nil, false
 	}
-	return &o.Time, true
+	return o.Time, true
 }
 
-// SetTime sets field value
+// HasTime returns a boolean if a field has been set.
+func (o *StanceModel) HasTime() bool {
+	if o != nil && !IsNil(o.Time) {
+		return true
+	}
+
+	return false
+}
+
+// SetTime gets a reference to the given string and assigns it to the Time field.
 func (o *StanceModel) SetTime(v string) {
-	o.Time = v
+	o.Time = &v
 }
 
-// GetStyle returns the Style field value
+// GetStyle returns the Style field value if set, zero value otherwise.
 func (o *StanceModel) GetStyle() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Style) {
 		var ret int32
 		return ret
 	}
-
-	return o.Style
+	return *o.Style
 }
 
-// GetStyleOk returns a tuple with the Style field value
+// GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetStyleOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Style) {
 		return nil, false
 	}
-	return &o.Style, true
+	return o.Style, true
 }
 
-// SetStyle sets field value
+// HasStyle returns a boolean if a field has been set.
+func (o *StanceModel) HasStyle() bool {
+	if o != nil && !IsNil(o.Style) {
+		return true
+	}
+
+	return false
+}
+
+// SetStyle gets a reference to the given int32 and assigns it to the Style field.
 func (o *StanceModel) SetStyle(v int32) {
-	o.Style = v
+	o.Style = &v
 }
 
-// GetSelfStance returns the SelfStance field value
+// GetSelfStance returns the SelfStance field value if set, zero value otherwise.
 func (o *StanceModel) GetSelfStance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.SelfStance) {
 		var ret int32
 		return ret
 	}
-
-	return o.SelfStance
+	return *o.SelfStance
 }
 
-// GetSelfStanceOk returns a tuple with the SelfStance field value
+// GetSelfStanceOk returns a tuple with the SelfStance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetSelfStanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SelfStance) {
 		return nil, false
 	}
-	return &o.SelfStance, true
+	return o.SelfStance, true
 }
 
-// SetSelfStance sets field value
+// HasSelfStance returns a boolean if a field has been set.
+func (o *StanceModel) HasSelfStance() bool {
+	if o != nil && !IsNil(o.SelfStance) {
+		return true
+	}
+
+	return false
+}
+
+// SetSelfStance gets a reference to the given int32 and assigns it to the SelfStance field.
 func (o *StanceModel) SetSelfStance(v int32) {
-	o.SelfStance = v
+	o.SelfStance = &v
 }
 
-// GetResultStance returns the ResultStance field value
+// GetResultStance returns the ResultStance field value if set, zero value otherwise.
 func (o *StanceModel) GetResultStance() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ResultStance) {
 		var ret int32
 		return ret
 	}
-
-	return o.ResultStance
+	return *o.ResultStance
 }
 
-// GetResultStanceOk returns a tuple with the ResultStance field value
+// GetResultStanceOk returns a tuple with the ResultStance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResultStanceOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResultStance) {
 		return nil, false
 	}
-	return &o.ResultStance, true
+	return o.ResultStance, true
 }
 
-// SetResultStance sets field value
+// HasResultStance returns a boolean if a field has been set.
+func (o *StanceModel) HasResultStance() bool {
+	if o != nil && !IsNil(o.ResultStance) {
+		return true
+	}
+
+	return false
+}
+
+// SetResultStance gets a reference to the given int32 and assigns it to the ResultStance field.
 func (o *StanceModel) SetResultStance(v int32) {
-	o.ResultStance = v
+	o.ResultStance = &v
 }
 
-// GetResult1L returns the Result1L field value
+// GetResult1L returns the Result1L field value if set, zero value otherwise.
 func (o *StanceModel) GetResult1L() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result1L) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result1L
+	return *o.Result1L
 }
 
-// GetResult1LOk returns a tuple with the Result1L field value
+// GetResult1LOk returns a tuple with the Result1L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult1LOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result1L) {
 		return nil, false
 	}
-	return &o.Result1L, true
+	return o.Result1L, true
 }
 
-// SetResult1L sets field value
+// HasResult1L returns a boolean if a field has been set.
+func (o *StanceModel) HasResult1L() bool {
+	if o != nil && !IsNil(o.Result1L) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult1L gets a reference to the given int32 and assigns it to the Result1L field.
 func (o *StanceModel) SetResult1L(v int32) {
-	o.Result1L = v
+	o.Result1L = &v
 }
 
-// GetResult1R returns the Result1R field value
+// GetResult1R returns the Result1R field value if set, zero value otherwise.
 func (o *StanceModel) GetResult1R() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result1R) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result1R
+	return *o.Result1R
 }
 
-// GetResult1ROk returns a tuple with the Result1R field value
+// GetResult1ROk returns a tuple with the Result1R field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult1ROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result1R) {
 		return nil, false
 	}
-	return &o.Result1R, true
+	return o.Result1R, true
 }
 
-// SetResult1R sets field value
+// HasResult1R returns a boolean if a field has been set.
+func (o *StanceModel) HasResult1R() bool {
+	if o != nil && !IsNil(o.Result1R) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult1R gets a reference to the given int32 and assigns it to the Result1R field.
 func (o *StanceModel) SetResult1R(v int32) {
-	o.Result1R = v
+	o.Result1R = &v
 }
 
-// GetResult1W returns the Result1W field value
+// GetResult1W returns the Result1W field value if set, zero value otherwise.
 func (o *StanceModel) GetResult1W() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result1W) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result1W
+	return *o.Result1W
 }
 
-// GetResult1WOk returns a tuple with the Result1W field value
+// GetResult1WOk returns a tuple with the Result1W field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult1WOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result1W) {
 		return nil, false
 	}
-	return &o.Result1W, true
+	return o.Result1W, true
 }
 
-// SetResult1W sets field value
+// HasResult1W returns a boolean if a field has been set.
+func (o *StanceModel) HasResult1W() bool {
+	if o != nil && !IsNil(o.Result1W) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult1W gets a reference to the given int32 and assigns it to the Result1W field.
 func (o *StanceModel) SetResult1W(v int32) {
-	o.Result1W = v
+	o.Result1W = &v
 }
 
-// GetResult1D returns the Result1D field value
+// GetResult1D returns the Result1D field value if set, zero value otherwise.
 func (o *StanceModel) GetResult1D() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result1D) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result1D
+	return *o.Result1D
 }
 
-// GetResult1DOk returns a tuple with the Result1D field value
+// GetResult1DOk returns a tuple with the Result1D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult1DOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result1D) {
 		return nil, false
 	}
-	return &o.Result1D, true
+	return o.Result1D, true
 }
 
-// SetResult1D sets field value
+// HasResult1D returns a boolean if a field has been set.
+func (o *StanceModel) HasResult1D() bool {
+	if o != nil && !IsNil(o.Result1D) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult1D gets a reference to the given int32 and assigns it to the Result1D field.
 func (o *StanceModel) SetResult1D(v int32) {
-	o.Result1D = v
+	o.Result1D = &v
 }
 
-// GetResult2L returns the Result2L field value
+// GetResult2L returns the Result2L field value if set, zero value otherwise.
 func (o *StanceModel) GetResult2L() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result2L) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result2L
+	return *o.Result2L
 }
 
-// GetResult2LOk returns a tuple with the Result2L field value
+// GetResult2LOk returns a tuple with the Result2L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult2LOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result2L) {
 		return nil, false
 	}
-	return &o.Result2L, true
+	return o.Result2L, true
 }
 
-// SetResult2L sets field value
+// HasResult2L returns a boolean if a field has been set.
+func (o *StanceModel) HasResult2L() bool {
+	if o != nil && !IsNil(o.Result2L) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult2L gets a reference to the given int32 and assigns it to the Result2L field.
 func (o *StanceModel) SetResult2L(v int32) {
-	o.Result2L = v
+	o.Result2L = &v
 }
 
-// GetResult2R returns the Result2R field value
+// GetResult2R returns the Result2R field value if set, zero value otherwise.
 func (o *StanceModel) GetResult2R() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result2R) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result2R
+	return *o.Result2R
 }
 
-// GetResult2ROk returns a tuple with the Result2R field value
+// GetResult2ROk returns a tuple with the Result2R field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult2ROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result2R) {
 		return nil, false
 	}
-	return &o.Result2R, true
+	return o.Result2R, true
 }
 
-// SetResult2R sets field value
+// HasResult2R returns a boolean if a field has been set.
+func (o *StanceModel) HasResult2R() bool {
+	if o != nil && !IsNil(o.Result2R) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult2R gets a reference to the given int32 and assigns it to the Result2R field.
 func (o *StanceModel) SetResult2R(v int32) {
-	o.Result2R = v
+	o.Result2R = &v
 }
 
-// GetResult2W returns the Result2W field value
+// GetResult2W returns the Result2W field value if set, zero value otherwise.
 func (o *StanceModel) GetResult2W() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result2W) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result2W
+	return *o.Result2W
 }
 
-// GetResult2WOk returns a tuple with the Result2W field value
+// GetResult2WOk returns a tuple with the Result2W field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult2WOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result2W) {
 		return nil, false
 	}
-	return &o.Result2W, true
+	return o.Result2W, true
 }
 
-// SetResult2W sets field value
+// HasResult2W returns a boolean if a field has been set.
+func (o *StanceModel) HasResult2W() bool {
+	if o != nil && !IsNil(o.Result2W) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult2W gets a reference to the given int32 and assigns it to the Result2W field.
 func (o *StanceModel) SetResult2W(v int32) {
-	o.Result2W = v
+	o.Result2W = &v
 }
 
-// GetResult2D returns the Result2D field value
+// GetResult2D returns the Result2D field value if set, zero value otherwise.
 func (o *StanceModel) GetResult2D() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result2D) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result2D
+	return *o.Result2D
 }
 
-// GetResult2DOk returns a tuple with the Result2D field value
+// GetResult2DOk returns a tuple with the Result2D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult2DOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result2D) {
 		return nil, false
 	}
-	return &o.Result2D, true
+	return o.Result2D, true
 }
 
-// SetResult2D sets field value
+// HasResult2D returns a boolean if a field has been set.
+func (o *StanceModel) HasResult2D() bool {
+	if o != nil && !IsNil(o.Result2D) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult2D gets a reference to the given int32 and assigns it to the Result2D field.
 func (o *StanceModel) SetResult2D(v int32) {
-	o.Result2D = v
+	o.Result2D = &v
 }
 
-// GetResult3L returns the Result3L field value
+// GetResult3L returns the Result3L field value if set, zero value otherwise.
 func (o *StanceModel) GetResult3L() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result3L) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result3L
+	return *o.Result3L
 }
 
-// GetResult3LOk returns a tuple with the Result3L field value
+// GetResult3LOk returns a tuple with the Result3L field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult3LOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result3L) {
 		return nil, false
 	}
-	return &o.Result3L, true
+	return o.Result3L, true
 }
 
-// SetResult3L sets field value
+// HasResult3L returns a boolean if a field has been set.
+func (o *StanceModel) HasResult3L() bool {
+	if o != nil && !IsNil(o.Result3L) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult3L gets a reference to the given int32 and assigns it to the Result3L field.
 func (o *StanceModel) SetResult3L(v int32) {
-	o.Result3L = v
+	o.Result3L = &v
 }
 
-// GetResult3R returns the Result3R field value
+// GetResult3R returns the Result3R field value if set, zero value otherwise.
 func (o *StanceModel) GetResult3R() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result3R) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result3R
+	return *o.Result3R
 }
 
-// GetResult3ROk returns a tuple with the Result3R field value
+// GetResult3ROk returns a tuple with the Result3R field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult3ROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result3R) {
 		return nil, false
 	}
-	return &o.Result3R, true
+	return o.Result3R, true
 }
 
-// SetResult3R sets field value
+// HasResult3R returns a boolean if a field has been set.
+func (o *StanceModel) HasResult3R() bool {
+	if o != nil && !IsNil(o.Result3R) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult3R gets a reference to the given int32 and assigns it to the Result3R field.
 func (o *StanceModel) SetResult3R(v int32) {
-	o.Result3R = v
+	o.Result3R = &v
 }
 
-// GetResult3W returns the Result3W field value
+// GetResult3W returns the Result3W field value if set, zero value otherwise.
 func (o *StanceModel) GetResult3W() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result3W) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result3W
+	return *o.Result3W
 }
 
-// GetResult3WOk returns a tuple with the Result3W field value
+// GetResult3WOk returns a tuple with the Result3W field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult3WOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result3W) {
 		return nil, false
 	}
-	return &o.Result3W, true
+	return o.Result3W, true
 }
 
-// SetResult3W sets field value
+// HasResult3W returns a boolean if a field has been set.
+func (o *StanceModel) HasResult3W() bool {
+	if o != nil && !IsNil(o.Result3W) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult3W gets a reference to the given int32 and assigns it to the Result3W field.
 func (o *StanceModel) SetResult3W(v int32) {
-	o.Result3W = v
+	o.Result3W = &v
 }
 
-// GetResult3D returns the Result3D field value
+// GetResult3D returns the Result3D field value if set, zero value otherwise.
 func (o *StanceModel) GetResult3D() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Result3D) {
 		var ret int32
 		return ret
 	}
-
-	return o.Result3D
+	return *o.Result3D
 }
 
-// GetResult3DOk returns a tuple with the Result3D field value
+// GetResult3DOk returns a tuple with the Result3D field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResult3DOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Result3D) {
 		return nil, false
 	}
-	return &o.Result3D, true
+	return o.Result3D, true
 }
 
-// SetResult3D sets field value
+// HasResult3D returns a boolean if a field has been set.
+func (o *StanceModel) HasResult3D() bool {
+	if o != nil && !IsNil(o.Result3D) {
+		return true
+	}
+
+	return false
+}
+
+// SetResult3D gets a reference to the given int32 and assigns it to the Result3D field.
 func (o *StanceModel) SetResult3D(v int32) {
-	o.Result3D = v
+	o.Result3D = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *StanceModel) GetType() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		var ret int32
 		return ret
 	}
-
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetTypeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Type) {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *StanceModel) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given int32 and assigns it to the Type field.
 func (o *StanceModel) SetType(v int32) {
-	o.Type = v
+	o.Type = &v
 }
 
-// GetExRotationL returns the ExRotationL field value
+// GetExRotationL returns the ExRotationL field value if set, zero value otherwise.
 func (o *StanceModel) GetExRotationL() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExRotationL) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExRotationL
+	return *o.ExRotationL
 }
 
-// GetExRotationLOk returns a tuple with the ExRotationL field value
+// GetExRotationLOk returns a tuple with the ExRotationL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetExRotationLOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExRotationL) {
 		return nil, false
 	}
-	return &o.ExRotationL, true
+	return o.ExRotationL, true
 }
 
-// SetExRotationL sets field value
+// HasExRotationL returns a boolean if a field has been set.
+func (o *StanceModel) HasExRotationL() bool {
+	if o != nil && !IsNil(o.ExRotationL) {
+		return true
+	}
+
+	return false
+}
+
+// SetExRotationL gets a reference to the given int32 and assigns it to the ExRotationL field.
 func (o *StanceModel) SetExRotationL(v int32) {
-	o.ExRotationL = v
+	o.ExRotationL = &v
 }
 
-// GetInRotationL returns the InRotationL field value
+// GetInRotationL returns the InRotationL field value if set, zero value otherwise.
 func (o *StanceModel) GetInRotationL() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.InRotationL) {
 		var ret int32
 		return ret
 	}
-
-	return o.InRotationL
+	return *o.InRotationL
 }
 
-// GetInRotationLOk returns a tuple with the InRotationL field value
+// GetInRotationLOk returns a tuple with the InRotationL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetInRotationLOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InRotationL) {
 		return nil, false
 	}
-	return &o.InRotationL, true
+	return o.InRotationL, true
 }
 
-// SetInRotationL sets field value
+// HasInRotationL returns a boolean if a field has been set.
+func (o *StanceModel) HasInRotationL() bool {
+	if o != nil && !IsNil(o.InRotationL) {
+		return true
+	}
+
+	return false
+}
+
+// SetInRotationL gets a reference to the given int32 and assigns it to the InRotationL field.
 func (o *StanceModel) SetInRotationL(v int32) {
-	o.InRotationL = v
+	o.InRotationL = &v
 }
 
-// GetNpL returns the NpL field value
+// GetNpL returns the NpL field value if set, zero value otherwise.
 func (o *StanceModel) GetNpL() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NpL) {
 		var ret int32
 		return ret
 	}
-
-	return o.NpL
+	return *o.NpL
 }
 
-// GetNpLOk returns a tuple with the NpL field value
+// GetNpLOk returns a tuple with the NpL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetNpLOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NpL) {
 		return nil, false
 	}
-	return &o.NpL, true
+	return o.NpL, true
 }
 
-// SetNpL sets field value
+// HasNpL returns a boolean if a field has been set.
+func (o *StanceModel) HasNpL() bool {
+	if o != nil && !IsNil(o.NpL) {
+		return true
+	}
+
+	return false
+}
+
+// SetNpL gets a reference to the given int32 and assigns it to the NpL field.
 func (o *StanceModel) SetNpL(v int32) {
-	o.NpL = v
+	o.NpL = &v
 }
 
-// GetExRotationR returns the ExRotationR field value
+// GetExRotationR returns the ExRotationR field value if set, zero value otherwise.
 func (o *StanceModel) GetExRotationR() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ExRotationR) {
 		var ret int32
 		return ret
 	}
-
-	return o.ExRotationR
+	return *o.ExRotationR
 }
 
-// GetExRotationROk returns a tuple with the ExRotationR field value
+// GetExRotationROk returns a tuple with the ExRotationR field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetExRotationROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ExRotationR) {
 		return nil, false
 	}
-	return &o.ExRotationR, true
+	return o.ExRotationR, true
 }
 
-// SetExRotationR sets field value
+// HasExRotationR returns a boolean if a field has been set.
+func (o *StanceModel) HasExRotationR() bool {
+	if o != nil && !IsNil(o.ExRotationR) {
+		return true
+	}
+
+	return false
+}
+
+// SetExRotationR gets a reference to the given int32 and assigns it to the ExRotationR field.
 func (o *StanceModel) SetExRotationR(v int32) {
-	o.ExRotationR = v
+	o.ExRotationR = &v
 }
 
-// GetInRotationR returns the InRotationR field value
+// GetInRotationR returns the InRotationR field value if set, zero value otherwise.
 func (o *StanceModel) GetInRotationR() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.InRotationR) {
 		var ret int32
 		return ret
 	}
-
-	return o.InRotationR
+	return *o.InRotationR
 }
 
-// GetInRotationROk returns a tuple with the InRotationR field value
+// GetInRotationROk returns a tuple with the InRotationR field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetInRotationROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.InRotationR) {
 		return nil, false
 	}
-	return &o.InRotationR, true
+	return o.InRotationR, true
 }
 
-// SetInRotationR sets field value
+// HasInRotationR returns a boolean if a field has been set.
+func (o *StanceModel) HasInRotationR() bool {
+	if o != nil && !IsNil(o.InRotationR) {
+		return true
+	}
+
+	return false
+}
+
+// SetInRotationR gets a reference to the given int32 and assigns it to the InRotationR field.
 func (o *StanceModel) SetInRotationR(v int32) {
-	o.InRotationR = v
+	o.InRotationR = &v
 }
 
-// GetNpR returns the NpR field value
+// GetNpR returns the NpR field value if set, zero value otherwise.
 func (o *StanceModel) GetNpR() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.NpR) {
 		var ret int32
 		return ret
 	}
-
-	return o.NpR
+	return *o.NpR
 }
 
-// GetNpROk returns a tuple with the NpR field value
+// GetNpROk returns a tuple with the NpR field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetNpROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.NpR) {
 		return nil, false
 	}
-	return &o.NpR, true
+	return o.NpR, true
 }
 
-// SetNpR sets field value
+// HasNpR returns a boolean if a field has been set.
+func (o *StanceModel) HasNpR() bool {
+	if o != nil && !IsNil(o.NpR) {
+		return true
+	}
+
+	return false
+}
+
+// SetNpR gets a reference to the given int32 and assigns it to the NpR field.
 func (o *StanceModel) SetNpR(v int32) {
-	o.NpR = v
+	o.NpR = &v
 }
 
-// GetResultL returns the ResultL field value
+// GetResultL returns the ResultL field value if set, zero value otherwise.
 func (o *StanceModel) GetResultL() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ResultL) {
 		var ret int32
 		return ret
 	}
-
-	return o.ResultL
+	return *o.ResultL
 }
 
-// GetResultLOk returns a tuple with the ResultL field value
+// GetResultLOk returns a tuple with the ResultL field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResultLOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResultL) {
 		return nil, false
 	}
-	return &o.ResultL, true
+	return o.ResultL, true
 }
 
-// SetResultL sets field value
+// HasResultL returns a boolean if a field has been set.
+func (o *StanceModel) HasResultL() bool {
+	if o != nil && !IsNil(o.ResultL) {
+		return true
+	}
+
+	return false
+}
+
+// SetResultL gets a reference to the given int32 and assigns it to the ResultL field.
 func (o *StanceModel) SetResultL(v int32) {
-	o.ResultL = v
+	o.ResultL = &v
 }
 
-// GetResultR returns the ResultR field value
+// GetResultR returns the ResultR field value if set, zero value otherwise.
 func (o *StanceModel) GetResultR() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ResultR) {
 		var ret int32
 		return ret
 	}
-
-	return o.ResultR
+	return *o.ResultR
 }
 
-// GetResultROk returns a tuple with the ResultR field value
+// GetResultROk returns a tuple with the ResultR field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResultROk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResultR) {
 		return nil, false
 	}
-	return &o.ResultR, true
+	return o.ResultR, true
 }
 
-// SetResultR sets field value
+// HasResultR returns a boolean if a field has been set.
+func (o *StanceModel) HasResultR() bool {
+	if o != nil && !IsNil(o.ResultR) {
+		return true
+	}
+
+	return false
+}
+
+// SetResultR gets a reference to the given int32 and assigns it to the ResultR field.
 func (o *StanceModel) SetResultR(v int32) {
-	o.ResultR = v
+	o.ResultR = &v
 }
 
-// GetResultW returns the ResultW field value
+// GetResultW returns the ResultW field value if set, zero value otherwise.
 func (o *StanceModel) GetResultW() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ResultW) {
 		var ret int32
 		return ret
 	}
-
-	return o.ResultW
+	return *o.ResultW
 }
 
-// GetResultWOk returns a tuple with the ResultW field value
+// GetResultWOk returns a tuple with the ResultW field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResultWOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResultW) {
 		return nil, false
 	}
-	return &o.ResultW, true
+	return o.ResultW, true
 }
 
-// SetResultW sets field value
+// HasResultW returns a boolean if a field has been set.
+func (o *StanceModel) HasResultW() bool {
+	if o != nil && !IsNil(o.ResultW) {
+		return true
+	}
+
+	return false
+}
+
+// SetResultW gets a reference to the given int32 and assigns it to the ResultW field.
 func (o *StanceModel) SetResultW(v int32) {
-	o.ResultW = v
+	o.ResultW = &v
 }
 
-// GetResultD returns the ResultD field value
+// GetResultD returns the ResultD field value if set, zero value otherwise.
 func (o *StanceModel) GetResultD() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.ResultD) {
 		var ret int32
 		return ret
 	}
-
-	return o.ResultD
+	return *o.ResultD
 }
 
-// GetResultDOk returns a tuple with the ResultD field value
+// GetResultDOk returns a tuple with the ResultD field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetResultDOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.ResultD) {
 		return nil, false
 	}
-	return &o.ResultD, true
+	return o.ResultD, true
 }
 
-// SetResultD sets field value
+// HasResultD returns a boolean if a field has been set.
+func (o *StanceModel) HasResultD() bool {
+	if o != nil && !IsNil(o.ResultD) {
+		return true
+	}
+
+	return false
+}
+
+// SetResultD gets a reference to the given int32 and assigns it to the ResultD field.
 func (o *StanceModel) SetResultD(v int32) {
-	o.ResultD = v
+	o.ResultD = &v
 }
 
-// GetIsManual returns the IsManual field value
+// GetIsManual returns the IsManual field value if set, zero value otherwise.
 func (o *StanceModel) GetIsManual() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.IsManual) {
 		var ret int32
 		return ret
 	}
-
-	return o.IsManual
+	return *o.IsManual
 }
 
-// GetIsManualOk returns a tuple with the IsManual field value
+// GetIsManualOk returns a tuple with the IsManual field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetIsManualOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IsManual) {
 		return nil, false
 	}
-	return &o.IsManual, true
+	return o.IsManual, true
 }
 
-// SetIsManual sets field value
+// HasIsManual returns a boolean if a field has been set.
+func (o *StanceModel) HasIsManual() bool {
+	if o != nil && !IsNil(o.IsManual) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsManual gets a reference to the given int32 and assigns it to the IsManual field.
 func (o *StanceModel) SetIsManual(v int32) {
-	o.IsManual = v
+	o.IsManual = &v
 }
 
-// GetMemo returns the Memo field value
+// GetMemo returns the Memo field value if set, zero value otherwise.
 func (o *StanceModel) GetMemo() string {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		var ret string
 		return ret
 	}
-
-	return o.Memo
+	return *o.Memo
 }
 
-// GetMemoOk returns a tuple with the Memo field value
+// GetMemoOk returns a tuple with the Memo field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetMemoOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.Memo) {
 		return nil, false
 	}
-	return &o.Memo, true
+	return o.Memo, true
 }
 
-// SetMemo sets field value
+// HasMemo returns a boolean if a field has been set.
+func (o *StanceModel) HasMemo() bool {
+	if o != nil && !IsNil(o.Memo) {
+		return true
+	}
+
+	return false
+}
+
+// SetMemo gets a reference to the given string and assigns it to the Memo field.
 func (o *StanceModel) SetMemo(v string) {
-	o.Memo = v
+	o.Memo = &v
 }
 
-// GetPrintPattern returns the PrintPattern field value
+// GetPrintPattern returns the PrintPattern field value if set, zero value otherwise.
 func (o *StanceModel) GetPrintPattern() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.PrintPattern) {
 		var ret int32
 		return ret
 	}
-
-	return o.PrintPattern
+	return *o.PrintPattern
 }
 
-// GetPrintPatternOk returns a tuple with the PrintPattern field value
+// GetPrintPatternOk returns a tuple with the PrintPattern field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetPrintPatternOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PrintPattern) {
 		return nil, false
 	}
-	return &o.PrintPattern, true
+	return o.PrintPattern, true
 }
 
-// SetPrintPattern sets field value
+// HasPrintPattern returns a boolean if a field has been set.
+func (o *StanceModel) HasPrintPattern() bool {
+	if o != nil && !IsNil(o.PrintPattern) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrintPattern gets a reference to the given int32 and assigns it to the PrintPattern field.
 func (o *StanceModel) SetPrintPattern(v int32) {
-	o.PrintPattern = v
+	o.PrintPattern = &v
 }
 
-// GetSubjectCode returns the SubjectCode field value
+// GetSubjectCode returns the SubjectCode field value if set, zero value otherwise.
 func (o *StanceModel) GetSubjectCode() string {
-	if o == nil {
+	if o == nil || IsNil(o.SubjectCode) {
 		var ret string
 		return ret
 	}
-
-	return o.SubjectCode
+	return *o.SubjectCode
 }
 
-// GetSubjectCodeOk returns a tuple with the SubjectCode field value
+// GetSubjectCodeOk returns a tuple with the SubjectCode field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *StanceModel) GetSubjectCodeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.SubjectCode) {
 		return nil, false
 	}
-	return &o.SubjectCode, true
+	return o.SubjectCode, true
 }
 
-// SetSubjectCode sets field value
+// HasSubjectCode returns a boolean if a field has been set.
+func (o *StanceModel) HasSubjectCode() bool {
+	if o != nil && !IsNil(o.SubjectCode) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubjectCode gets a reference to the given string and assigns it to the SubjectCode field.
 func (o *StanceModel) SetSubjectCode(v string) {
-	o.SubjectCode = v
+	o.SubjectCode = &v
 }
 
 func (o StanceModel) MarshalJSON() ([]byte, error) {
@@ -1036,117 +1301,182 @@ func (o StanceModel) MarshalJSON() ([]byte, error) {
 
 func (o StanceModel) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	toSerialize["id"] = o.Id
-	toSerialize["data_type"] = o.DataType
-	toSerialize["shop"] = o.Shop
-	toSerialize["shop_name"] = o.ShopName
-	toSerialize["pc_code"] = o.PcCode
-	toSerialize["serial_num"] = o.SerialNum
-	toSerialize["date"] = o.Date
-	toSerialize["time"] = o.Time
-	toSerialize["style"] = o.Style
-	toSerialize["self_stance"] = o.SelfStance
-	toSerialize["result_stance"] = o.ResultStance
-	toSerialize["result_1_l"] = o.Result1L
-	toSerialize["result_1_r"] = o.Result1R
-	toSerialize["result_1_w"] = o.Result1W
-	toSerialize["result_1_d"] = o.Result1D
-	toSerialize["result_2_l"] = o.Result2L
-	toSerialize["result_2_r"] = o.Result2R
-	toSerialize["result_2_w"] = o.Result2W
-	toSerialize["result_2_d"] = o.Result2D
-	toSerialize["result_3_l"] = o.Result3L
-	toSerialize["result_3_r"] = o.Result3R
-	toSerialize["result_3_w"] = o.Result3W
-	toSerialize["result_3_d"] = o.Result3D
-	toSerialize["type"] = o.Type
-	toSerialize["ex_rotation_l"] = o.ExRotationL
-	toSerialize["in_rotation_l"] = o.InRotationL
-	toSerialize["np_l"] = o.NpL
-	toSerialize["ex_rotation_r"] = o.ExRotationR
-	toSerialize["in_rotation_r"] = o.InRotationR
-	toSerialize["np_r"] = o.NpR
-	toSerialize["result_l"] = o.ResultL
-	toSerialize["result_r"] = o.ResultR
-	toSerialize["result_w"] = o.ResultW
-	toSerialize["result_d"] = o.ResultD
-	toSerialize["is_manual"] = o.IsManual
-	toSerialize["memo"] = o.Memo
-	toSerialize["print_pattern"] = o.PrintPattern
-	toSerialize["subject_code"] = o.SubjectCode
+	if !IsNil(o.Id) {
+		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.DataType) {
+		toSerialize["data_type"] = o.DataType
+	}
+	if !IsNil(o.Shop) {
+		toSerialize["shop"] = o.Shop
+	}
+	if !IsNil(o.ShopName) {
+		toSerialize["shop_name"] = o.ShopName
+	}
+	if !IsNil(o.PcCode) {
+		toSerialize["pc_code"] = o.PcCode
+	}
+	if !IsNil(o.SerialNum) {
+		toSerialize["serial_num"] = o.SerialNum
+	}
+	if !IsNil(o.Date) {
+		toSerialize["date"] = o.Date
+	}
+	if !IsNil(o.Time) {
+		toSerialize["time"] = o.Time
+	}
+	if !IsNil(o.Style) {
+		toSerialize["style"] = o.Style
+	}
+	if !IsNil(o.SelfStance) {
+		toSerialize["self_stance"] = o.SelfStance
+	}
+	if !IsNil(o.ResultStance) {
+		toSerialize["result_stance"] = o.ResultStance
+	}
+	if !IsNil(o.Result1L) {
+		toSerialize["result_1_l"] = o.Result1L
+	}
+	if !IsNil(o.Result1R) {
+		toSerialize["result_1_r"] = o.Result1R
+	}
+	if !IsNil(o.Result1W) {
+		toSerialize["result_1_w"] = o.Result1W
+	}
+	if !IsNil(o.Result1D) {
+		toSerialize["result_1_d"] = o.Result1D
+	}
+	if !IsNil(o.Result2L) {
+		toSerialize["result_2_l"] = o.Result2L
+	}
+	if !IsNil(o.Result2R) {
+		toSerialize["result_2_r"] = o.Result2R
+	}
+	if !IsNil(o.Result2W) {
+		toSerialize["result_2_w"] = o.Result2W
+	}
+	if !IsNil(o.Result2D) {
+		toSerialize["result_2_d"] = o.Result2D
+	}
+	if !IsNil(o.Result3L) {
+		toSerialize["result_3_l"] = o.Result3L
+	}
+	if !IsNil(o.Result3R) {
+		toSerialize["result_3_r"] = o.Result3R
+	}
+	if !IsNil(o.Result3W) {
+		toSerialize["result_3_w"] = o.Result3W
+	}
+	if !IsNil(o.Result3D) {
+		toSerialize["result_3_d"] = o.Result3D
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
+	}
+	if !IsNil(o.ExRotationL) {
+		toSerialize["ex_rotation_l"] = o.ExRotationL
+	}
+	if !IsNil(o.InRotationL) {
+		toSerialize["in_rotation_l"] = o.InRotationL
+	}
+	if !IsNil(o.NpL) {
+		toSerialize["np_l"] = o.NpL
+	}
+	if !IsNil(o.ExRotationR) {
+		toSerialize["ex_rotation_r"] = o.ExRotationR
+	}
+	if !IsNil(o.InRotationR) {
+		toSerialize["in_rotation_r"] = o.InRotationR
+	}
+	if !IsNil(o.NpR) {
+		toSerialize["np_r"] = o.NpR
+	}
+	if !IsNil(o.ResultL) {
+		toSerialize["result_l"] = o.ResultL
+	}
+	if !IsNil(o.ResultR) {
+		toSerialize["result_r"] = o.ResultR
+	}
+	if !IsNil(o.ResultW) {
+		toSerialize["result_w"] = o.ResultW
+	}
+	if !IsNil(o.ResultD) {
+		toSerialize["result_d"] = o.ResultD
+	}
+	if !IsNil(o.IsManual) {
+		toSerialize["is_manual"] = o.IsManual
+	}
+	if !IsNil(o.Memo) {
+		toSerialize["memo"] = o.Memo
+	}
+	if !IsNil(o.PrintPattern) {
+		toSerialize["print_pattern"] = o.PrintPattern
+	}
+	if !IsNil(o.SubjectCode) {
+		toSerialize["subject_code"] = o.SubjectCode
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
 	return toSerialize, nil
 }
 
 func (o *StanceModel) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"id",
-		"data_type",
-		"shop",
-		"shop_name",
-		"pc_code",
-		"serial_num",
-		"date",
-		"time",
-		"style",
-		"self_stance",
-		"result_stance",
-		"result_1_l",
-		"result_1_r",
-		"result_1_w",
-		"result_1_d",
-		"result_2_l",
-		"result_2_r",
-		"result_2_w",
-		"result_2_d",
-		"result_3_l",
-		"result_3_r",
-		"result_3_w",
-		"result_3_d",
-		"type",
-		"ex_rotation_l",
-		"in_rotation_l",
-		"np_l",
-		"ex_rotation_r",
-		"in_rotation_r",
-		"np_r",
-		"result_l",
-		"result_r",
-		"result_w",
-		"result_d",
-		"is_manual",
-		"memo",
-		"print_pattern",
-		"subject_code",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err
-	}
-
-	for _, requiredProperty := range requiredProperties {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
 	varStanceModel := _StanceModel{}
 
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varStanceModel)
+	err = json.Unmarshal(data, &varStanceModel)
 
 	if err != nil {
 		return err
 	}
 
 	*o = StanceModel(varStanceModel)
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(data, &additionalProperties); err == nil {
+		delete(additionalProperties, "id")
+		delete(additionalProperties, "data_type")
+		delete(additionalProperties, "shop")
+		delete(additionalProperties, "shop_name")
+		delete(additionalProperties, "pc_code")
+		delete(additionalProperties, "serial_num")
+		delete(additionalProperties, "date")
+		delete(additionalProperties, "time")
+		delete(additionalProperties, "style")
+		delete(additionalProperties, "self_stance")
+		delete(additionalProperties, "result_stance")
+		delete(additionalProperties, "result_1_l")
+		delete(additionalProperties, "result_1_r")
+		delete(additionalProperties, "result_1_w")
+		delete(additionalProperties, "result_1_d")
+		delete(additionalProperties, "result_2_l")
+		delete(additionalProperties, "result_2_r")
+		delete(additionalProperties, "result_2_w")
+		delete(additionalProperties, "result_2_d")
+		delete(additionalProperties, "result_3_l")
+		delete(additionalProperties, "result_3_r")
+		delete(additionalProperties, "result_3_w")
+		delete(additionalProperties, "result_3_d")
+		delete(additionalProperties, "type")
+		delete(additionalProperties, "ex_rotation_l")
+		delete(additionalProperties, "in_rotation_l")
+		delete(additionalProperties, "np_l")
+		delete(additionalProperties, "ex_rotation_r")
+		delete(additionalProperties, "in_rotation_r")
+		delete(additionalProperties, "np_r")
+		delete(additionalProperties, "result_l")
+		delete(additionalProperties, "result_r")
+		delete(additionalProperties, "result_w")
+		delete(additionalProperties, "result_d")
+		delete(additionalProperties, "is_manual")
+		delete(additionalProperties, "memo")
+		delete(additionalProperties, "print_pattern")
+		delete(additionalProperties, "subject_code")
+		o.AdditionalProperties = additionalProperties
+	}
 
 	return err
 }

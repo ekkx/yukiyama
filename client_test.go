@@ -12,7 +12,7 @@ import (
 
 // recordingStore is an in-memory SessionStore that tracks call counts and
 // retains the last saved value. It is used to assert the wire-up between
-// Client lifecycle events (NewClient, Login, Logout) and the store.
+// session-lifecycle events (NewClient, User.Login, User.Logout) and the store.
 type recordingStore struct {
 	mu     sync.Mutex
 	loads  int
@@ -159,7 +159,7 @@ func TestClient_Login_PersistsToStore(t *testing.T) {
 	if err != nil {
 		t.Fatalf("NewClient: %v", err)
 	}
-	if err := client.Login(context.Background()); err != nil {
+	if err := client.User.Login(context.Background()); err != nil {
 		t.Fatalf("Login: %v", err)
 	}
 	if got := client.CurrentUserID(); got != 42 {
@@ -199,7 +199,7 @@ func TestClient_Logout_ClearsStore(t *testing.T) {
 		t.Fatal("expected hydrated session")
 	}
 
-	client.Logout()
+	client.User.Logout()
 
 	if client.IsAuthenticated() {
 		t.Error("expected session cleared after Logout")
@@ -226,7 +226,7 @@ func TestClient_NilSessionStore_DefaultsToNoop(t *testing.T) {
 		t.Fatalf("NewClient: %v", err)
 	}
 	// Should not panic.
-	client.Logout()
+	client.User.Logout()
 	if _, ok := client.SessionStore().(NoopSessionStore); !ok {
 		t.Errorf("expected NoopSessionStore fallback, got %T", client.SessionStore())
 	}
